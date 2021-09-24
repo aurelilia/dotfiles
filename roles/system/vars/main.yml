@@ -1,0 +1,7 @@
+packages:
+  - lightdm
+  - xorg-server
+  - xorg-xrandr
+  - borg
+  - borgmatic
+  - rsync

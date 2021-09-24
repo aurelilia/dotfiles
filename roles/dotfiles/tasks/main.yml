@@ -1,0 +1,85 @@
+- name: Install core packages
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  become: yes
+
+- name: Install additional packages
+  community.general.pacman:
+    name: "{{ additional_pkgs }}"
+    state: present
+  become: yes
+
+- name: Remove unwanted packages
+  community.general.pacman:
+    name: "{{ exclude_pkgs }}"
+    state: absent
+  become: yes
+
+
+- name: Copy dotfiles
+  ansible.posix.synchronize:
+    src: "dotfiles/"
+    dest: ~/
+  notify:
+    - Set polybar theme
+
+- name: Copy wallpapers
+  ansible.posix.synchronize:
+    src: "/home/ellie/wallpapers"
+    dest: ~/
+
+- name: Create directory for screenshots
+  ansible.builtin.file:
+    path: ~/screenshots
+    state: directory
+
+- name: Copy firefox configuration
+  copy:
+    src: "firefox/"
+    dest: "{{ home }}/.mozilla/firefox/{{ ff_profile_dir }}"
+    owner: ellie
+    group: ellie
+
+- name: Copy locking script
+  template:
+    src: lock.sh.j2
+    dest: "{{ home }}/.i3/scripts/lock.sh"
+    mode: '755' 
+  when: hassio_token is defined
+
+
+- name: Get physical interfaces name
+  command: find /sys/class/net -type l -not -lname '*virtual*' -printf '%f\n'
+  register: interface
+  changed_when: false
+  check_mode: false
+
+- name: Copy polybar configuration
+  template:
+    src: "{{ item }}.ini.j2"
+    dest: "{{ home }}/.config/polybar/shapes/{{ item }}.ini"
+  with_items:
+    - "config"
+    - "modules"
+
+
+- name: Create directory for zinit
+  ansible.builtin.file:
+    path: ~/.zinit
+    state: directory
+
+- name: Install zinit
+  ansible.builtin.git:
+    repo: "https://github.com/zdharma/zinit.git"
+    dest: "~/.zinit/bin"
+    update: yes
+    version: master
+  register: git_result
+  changed_when: "git_result.after|default('after') != git_result.before|default('before')"
+
+- name: Change shell
+  user:
+    name: ellie
+    shell: /bin/zsh
+  become: yes

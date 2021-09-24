@@ -1,0 +1,24 @@
+- name: Copy pacman conf
+  ansible.builtin.copy:
+    src: pacman.conf
+    dest: /etc/pacman.conf
+  become: yes
+
+- name: Update system
+  community.general.pacman:
+    update_cache: yes
+    upgrade: yes
+  become: yes
+
+- name: Install core packages
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  become: yes
+
+
+- name: Copy lightdm configuration
+  copy:
+    src: "lightdm"
+    dest: /etc/
+  become: yes

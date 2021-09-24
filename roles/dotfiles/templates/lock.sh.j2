@@ -1,0 +1,16 @@
+#!/bin/bash
+
+TOKEN={{ hassio_token }}
+HASSIO=https://homeassistant.angm.xyz/api/states
+
+curl -X POST -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"state": "locked"}' \
+  $HASSIO/sensor.{{ hassio_name }}_state
+
+/usr/bin/i3lock-fancy -n
+
+curl -X POST -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"state": "unlocked"}' \
+  $HASSIO/sensor.{{ hassio_name }}_state

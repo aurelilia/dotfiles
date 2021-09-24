@@ -1,0 +1,10 @@
+---
+- hosts: system
+  gather_facts: true
+  roles:
+    - system
+
+- hosts: dotfiles
+  gather_facts: false
+  roles:
+    - dotfiles
