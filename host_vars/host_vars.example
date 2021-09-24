@@ -1,0 +1,7 @@
+polybar_color: red                      # Color for the polybar theme (includes rofi)
+ff_profile_dir: 1235.default-release    # FF profile directory in .mozilla/firefox
+hassio_name: my-compoot                 # HASSIO machine name
+mobile_device: False                    # If this is a mobile device (show SSID and battery in polybar)
+
+additional_pkgs:                        # Additional pkgs to install
+exclude_pkgs:                           # pkgs from the base set to exclude

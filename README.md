@@ -14,14 +14,4 @@ To deploy this, simply create an `inventory` file with the appropriate roles (se
 
 For the locking script, you will need a HASSIO token (lock state tracking). Supply with `-e "hassio_token=my_token"` when running `ansible-playbook`.
 
-Additionally, you need some host vars. Example:
-
-```yaml
-polybar_color: red                      # Color for the polybar theme (includes rofi)
-ff_profile_dir: 1235.default-release    # FF profile directory in .mozilla/firefox
-hassio_name: my-compoot                 # HASSIO machine name
-mobile_device: False                    # If this is a mobile device (show SSID and battery in polybar)
-
-additional_pkgs:                        # Additional pkgs to install
-exclude_pkgs:                           # pkgs from the base set to exclude
-```
+Additionally, you need some host vars. See `host_vars/host_vars.example` for a template.
