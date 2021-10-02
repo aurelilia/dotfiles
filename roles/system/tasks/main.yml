@@ -22,3 +22,9 @@
     src: "lightdm"
     dest: /etc/
   become: yes
+
+- name: Copy cura machine definition
+  copy:
+    src: "cura/"
+    dest: /usr/share/cura/resources
+  become: yes
