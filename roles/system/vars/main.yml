@@ -5,3 +5,4 @@ packages:
   - borg
   - borgmatic
   - rsync
+  - earlyoom

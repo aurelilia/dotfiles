@@ -28,3 +28,9 @@
     src: "cura/"
     dest: /usr/share/cura/resources
   become: yes
+
+- name: Enable earlyoom
+  systemd:
+    enabled: yes
+    state: started 
+    name: earlyoom.service
