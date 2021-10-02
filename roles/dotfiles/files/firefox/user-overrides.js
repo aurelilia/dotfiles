@@ -94,5 +94,7 @@ user_pref("privacy.resistFingerprinting.letterboxing", false);
 user_pref("browser.startup.blankWindow", true);
 user_pref("ui.prefersReducedMotion", 0);
 
+/* Change sync server */
+user_pref("identity.sync.tokenserver.uri", "https://sync.angm.xyz/token/1.0/sync/1.5");
 
 user_pref("_user.js.parrot", "all done!");
