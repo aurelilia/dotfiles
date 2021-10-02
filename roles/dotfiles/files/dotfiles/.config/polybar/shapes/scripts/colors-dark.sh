@@ -30,6 +30,9 @@ change_color() {
 	  bg2:   ${SH3}FF;
 	  bg3:   ${SH4}FF;
 	  fg:    #FFFFFFFF;
+
+	  background-color: @al;
+      text-color:       inherit;
 	}
 	EOF
 	
