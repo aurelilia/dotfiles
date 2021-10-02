@@ -50,7 +50,7 @@ packages:
   - qt5ct
   - rofi
   - scrot
-  - starship
+  - starship-bin
   - tela-icon-theme
   - thefuck
   - tokei

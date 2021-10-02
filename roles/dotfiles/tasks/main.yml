@@ -37,14 +37,14 @@
 - name: Copy firefox configuration
   copy:
     src: "firefox/"
-    dest: "{{ home }}/.mozilla/firefox/{{ ff_profile_dir }}"
+    dest: "~/.mozilla/firefox/{{ ff_profile_dir }}"
     owner: ellie
     group: ellie
 
 - name: Copy locking script
   template:
     src: lock.sh.j2
-    dest: "{{ home }}/.i3/scripts/lock.sh"
+    dest: "~/.i3/scripts/lock.sh"
     mode: '755' 
   when: hassio_token is defined
 
@@ -58,7 +58,7 @@
 - name: Copy polybar configuration
   template:
     src: "{{ item }}.ini.j2"
-    dest: "{{ home }}/.config/polybar/shapes/{{ item }}.ini"
+    dest: "~/.config/polybar/shapes/{{ item }}.ini"
   with_items:
     - "config"
     - "modules"
