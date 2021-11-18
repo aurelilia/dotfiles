@@ -83,3 +83,11 @@
     name: ellie
     shell: /bin/zsh
   become: yes
+
+
+- name: Enable syncthing
+  systemd:
+    enabled: yes
+    state: started
+    scope: user
+    name: syncthing.service

@@ -51,6 +51,7 @@ packages:
   - rofi
   - scrot
   - starship-bin
+  - syncthing
   - tela-icon-theme
   - thefuck
   - tokei
