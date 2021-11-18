@@ -73,7 +73,7 @@
   ansible.builtin.git:
     repo: "https://github.com/zdharma/zinit.git"
     dest: "~/.zinit/bin"
-    update: yes
+    update: false
     version: master
   register: git_result
   changed_when: "git_result.after|default('after') != git_result.before|default('before')"

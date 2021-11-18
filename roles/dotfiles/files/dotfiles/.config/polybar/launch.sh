@@ -3,6 +3,7 @@
 (
    killall -q polybar
 
+   pacman -Sy
    while pgrep -u $UID -x polybar > /dev/null; do sleep 0.5; done
 
    outputs=$(xrandr --query | grep " connected" | cut -d" " -f1)
