@@ -10,3 +10,5 @@
 	required = true
 [init]
 	defaultBranch = main
+[alias]
+	pall = !git remote | xargs -L1 -I R git push R main
