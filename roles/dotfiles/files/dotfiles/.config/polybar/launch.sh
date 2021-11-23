@@ -3,7 +3,7 @@
 (
    killall -q polybar
 
-   pacman -Sy
+   fakeroot -- pacman -Sy --dbpath "/tmp/pacman_db" --logfile /dev/null &> /dev/null
    while pgrep -u $UID -x polybar > /dev/null; do sleep 0.5; done
 
    outputs=$(xrandr --query | grep " connected" | cut -d" " -f1)
