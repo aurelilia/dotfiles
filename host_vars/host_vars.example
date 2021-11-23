@@ -5,3 +5,5 @@ mobile_device: False                    # If this is a mobile device (show SSID 
 
 additional_pkgs:                        # Additional pkgs to install
 exclude_pkgs:                           # pkgs from the base set to exclude
+
+ansible_become_password:                # Become password for this host. Required for auto-update

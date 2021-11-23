@@ -235,3 +235,4 @@ exec --no-startup-id dunst -conf /home/ellie/.dunstrc &
 exec --no-startup-id /home/ellie/.config/polybar/launch.sh &
 exec --no-startup-id fcitx -d &
 exec --no-startup-id thunderbird &
+exec --no-startup-id /home/ellie/.i3/scripts/update-dotfiles.sh &

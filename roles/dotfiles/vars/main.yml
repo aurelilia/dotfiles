@@ -2,6 +2,7 @@ packages:
   - alacritty
   - alsa-utils
   - ark
+  - ansible
   - bc
   - bdf-unifont
   - breeze

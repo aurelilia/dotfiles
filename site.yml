@@ -5,6 +5,7 @@
     - system
 
 - hosts: dotfiles
+  tags: dotfiles
   gather_facts: false
   roles:
     - dotfiles
