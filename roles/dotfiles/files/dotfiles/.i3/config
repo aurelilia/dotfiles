@@ -2,48 +2,26 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# Win/Super
 set $mod Mod4
 
-# Taken from Airblader's config
-set_from_resource $darkred     color1  #000000
-set_from_resource $red         color9  #000000
-set_from_resource $darkgreen   color2  #000000
-set_from_resource $green       color10 #000000
-set_from_resource $darkyellow  color3  #000000
-set_from_resource $yellow      color11 #000000
-set_from_resource $darkblue    color4  #000000
-set_from_resource $blue        color12 #000000
-set_from_resource $darkmagenta color5  #000000
-set_from_resource $magenta     color13 #000000
-set_from_resource $darkcyan    color6  #000000
-set_from_resource $cyan        color14 #000000
-set_from_resource $darkwhite   color7  #000000
-set $white       #C2C3C6
-#set_from_resource $white i3wm.color7 #C2C3C6
-#set_from_resource $arcdark i3wm.color2 #000000BB
-set $black       #404040
-set $darkblack   #1d2021
-set $transparent #00000088
-#set $arcdark     #2c303d88
-set $arcdark     #000000BB
-
+# This is specific to crimson but that's fine
 workspace 1 output HDMI-A-1
 workspace 2 output DisplayPort-1
 workspace 3 output DVI-D-0
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
+# Font for window titles.
 font pango:Noto Sans 8
-#font pango:DejaVu Sans Mono 8
-#font pango: Roboto 12
 
+
+### Keybindings
 # start a terminal
 bindsym $mod+Return exec alacritty
 
-# kill focused window
+# kill focused window (Alt+4)
 bindsym Mod1+4 kill
 
-# start rofi/dmenu (a program launcher)
+# start rofi
 bindsym $mod+d exec --no-startup-id /home/ellie/.i3/scripts/rofi-drun.sh
 bindsym $mod+Shift+d exec --no-startup-id /home/ellie/.i3/scripts/rofi-run.sh
 
@@ -52,7 +30,6 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-
 # move
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
@@ -61,7 +38,6 @@ bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+h split h
-
 # split in vertical orientation
 bindsym $mod+v split v
 
@@ -75,15 +51,11 @@ bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -96,6 +68,7 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+bindsym $mod+m workspace 11
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -111,17 +84,14 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+t reload
-
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-
-# exit i3 (logs you out of your X session)
+# Open power menu
 bindsym $mod+Shift+e exec /home/ellie/.config/polybar/shapes/scripts/powermenu.sh
 
-# resize window (you can also use the mouse for that)
+### Modes
+# resize window
 mode "resize" {
-	# These bindings trigger as soon as you enter the resize mode
-
 	# Pressing left will shrink the window’s width.
 	# Pressing right will grow the window’s width.
 	# Pressing up will shrink the window’s height.
@@ -141,42 +111,49 @@ mode "resize" {
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
-
+	
+# Mode for livesplit
 mode "speedrun" {
-	# Mode for livesplit
+	# Livesplit hotkeys
 	bindsym s exec /home/ellie/.i3/scripts/livesplit.sh S
 	bindsym r exec /home/ellie/.i3/scripts/livesplit.sh R
 	bindsym z exec /home/ellie/.i3/scripts/livesplit.sh Z
 	bindsym x exec /home/ellie/.i3/scripts/livesplit.sh X
 
+	## All the usual hotkeys
 	# start a terminal
 	bindsym $mod+Return exec alacritty
-	
-	# kill focused window
+	# kill focused window (Alt+4)
 	bindsym Mod1+4 kill
-	
-	# start rofi/dmenu (a program launcher)
+	# start rofi
 	bindsym $mod+d exec --no-startup-id /home/ellie/.i3/scripts/rofi-drun.sh
 	bindsym $mod+Shift+d exec --no-startup-id /home/ellie/.i3/scripts/rofi-run.sh
-	
 	# focus
 	bindsym $mod+Left focus left
 	bindsym $mod+Down focus down
 	bindsym $mod+Up focus up
 	bindsym $mod+Right focus right
-	
 	# move
 	bindsym $mod+Shift+Left move left
 	bindsym $mod+Shift+Down move down
 	bindsym $mod+Shift+Up move up
 	bindsym $mod+Shift+Right move right
-	
+	# split in horizontal orientation
+	bindsym $mod+h split h
+	# split in vertical orientation
+	bindsym $mod+v split v
 	# enter fullscreen mode for the focused container
 	bindsym $mod+f fullscreen toggle
-	
+	# change container layout (stacked, tabbed, toggle split)
+	bindsym $mod+s layout stacking
+	bindsym $mod+w layout tabbed
+	bindsym $mod+e layout toggle split
 	# toggle tiling / floating
 	bindsym $mod+Shift+space floating toggle
-	
+	# change focus between tiling / floating windows
+	bindsym $mod+space focus mode_toggle
+	# focus the parent container
+	bindsym $mod+a focus parent
 	# switch to workspace
 	bindsym $mod+1 workspace 1
 	bindsym $mod+2 workspace 2
@@ -188,7 +165,6 @@ mode "speedrun" {
 	bindsym $mod+8 workspace 8
 	bindsym $mod+9 workspace 9
 	bindsym $mod+0 workspace 10
-	
 	# move focused container to workspace
 	bindsym $mod+Shift+1 move container to workspace 1
 	bindsym $mod+Shift+2 move container to workspace 2
@@ -200,67 +176,57 @@ mode "speedrun" {
 	bindsym $mod+Shift+8 move container to workspace 8
 	bindsym $mod+Shift+9 move container to workspace 9
 	bindsym $mod+Shift+0 move container to workspace 10
-	
+
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
+# Mode hotkeys
 bindsym $mod+r mode "resize"
 bindsym $mod+p mode "speedrun"
 
+# Border changes
 bindsym $mod+x border pixel 1
-bindsym $mod+y border pixel 0
+bindsym $mod+z border pixel 0
 bindsym $mod+c border normal
 
+# Screenshots
 bindsym --release $mod+q exec scrot -f -s '/home/ellie/screenshots/%Y-%m-%d-%H%M%S.jpg' -q 85
 bindsym --release $mod+Shift+q exec flameshot gui
 
+# Misc
 bindsym $mod+l exec xautolock -locknow
 bindsym $mod+grave exec dunstctl history-pop
 
+
+### Looks
+# Gaps
 gaps inner 7
 gaps outer 7
-
-# Only floating windows have borders
-# for_window [class="^.*"] border pixel 0
-# for_window [tiling] border pixel 0
-
 
 smart_gaps on
 smart_borders on
 
 focus_follows_mouse no
 
-set $bg-color            #2f343fee
-set $inactive-bg-color   #2f343fee
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
-
-#bb <- Good transparency (disabled because of black borders on GTK windows)
-#set $boract              #505666
-set $boroff              #252525
-
-#50
-set $boract              #404040	
-#90
-set $indcol              #93c7eb
-
-# window colors
-#                       border              background         text                 indicator
-client.focused          $boract             $boract            $text-color          $indcol
-client.unfocused        $boroff            $boroff             $inactive-text-color $boroff
-client.focused_inactive $boroff             $boroff            $inactive-text-color $boroff
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $indcol
-
-
-# hide_edge_borders both
-
 new_window pixel 1
 
+# Dracula theme from https://github.com/dracula/i3/blob/master/.config/i3/config
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+client.background       #F8F8F2
 
-# Autostart
+
+### Application Rules
+for_window [class="Thunderbird"] move container to workspace 11
+no_focus [class="Steam"]
+
+
+### Autostart
 exec --no-startup-id picom --experimental-backends --config /home/ellie/.config/picom.conf &
 exec --no-startup-id /home/ellie/.i3/scripts/wallpaper.sh &
 exec --no-startup-id setxkbmap us -variant altgr-intl
@@ -268,3 +234,4 @@ exec --no-startup-id xautolock -time 5 -locker "/home/ellie/.i3/scripts/lock.sh"
 exec --no-startup-id dunst -conf /home/ellie/.dunstrc &
 exec --no-startup-id /home/ellie/.config/polybar/launch.sh &
 exec --no-startup-id fcitx -d &
+exec --no-startup-id thunderbird &
