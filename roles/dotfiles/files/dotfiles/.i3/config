@@ -193,6 +193,7 @@ bindsym $mod+c border normal
 
 # Screenshots
 bindsym --release $mod+q exec scrot -f -s '/home/ellie/screenshots/%Y-%m-%d-%H%M%S.jpg' -q 85
+bindsym --release $mod+Ctrl+q exec scrot -u '/home/ellie/screenshots/%Y-%m-%d-%H%M%S.jpg' -q 85
 bindsym --release $mod+Shift+q exec flameshot gui
 
 # Misc
