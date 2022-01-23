@@ -8,10 +8,7 @@ packages:
   - breeze
   - catia-git
   - code
-  - dracula-gtk-theme
-  - dracula-qt5-theme
   - dolphin
-  - dotacat
   - dunst
   - fcitx
   - fcitx-mozc
@@ -26,7 +23,6 @@ packages:
   - htop
   - hyperfine
   - i3-gaps
-  - i3lock-fancy-git
   - imagemagick
   - kvantum-qt5
   - lightdm-gtk-greeter-settings
@@ -42,20 +38,16 @@ packages:
   - ntfs-3g
   - okular
   - pavucontrol
-  - picom-git
   - pipewire
   - pipewire-jack
   - pipewire-pulse
-  - polybar
   - python-pywal
   - qt5ct
   - rofi
   - scrot
   - syncthing
-  - tela-icon-theme
   - thefuck
   - tokei
-  - ttf-comfortaa
   - ttf-dejavu
   - wget
   - xautolock
@@ -64,5 +56,16 @@ packages:
   - yay
   - zoxide
   - zsh
+
+  # Remove below if installing AUR packages manually (see README)
+  - dracula-gtk-theme
+  - dracula-qt5-theme
+  - dotacat
+  - i3lock-fancy-git
+  - picom-git
+  - polybar
+  - tela-icon-theme
+  - ttf-comfortaa
+
 
 home: "{{ lookup('env', 'HOME') }}"

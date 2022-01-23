@@ -5,13 +5,30 @@ This ansible playbook contains my dotfiles and other system configuration as dep
 *If you just want to take a look at the dotfiles themselves, go to `roles/dotfiles/files/dotfiles`.*
 A few files are also templated and at `roles/dotfiles/templates`.
 
-### Deploying
-To deploy this, simply create an `inventory` file with the appropriate roles (see `site.yml`).
+## Deploying
+### Requirements
+For this to work, you'll need a local repo serving some AUR packages that ansible will be
+trying to install. The configuration for this is in `roles/system/files/pacman.conf`.  
+I recommend using `aurutils` for this.
 
-For the locking script, you will need a HASSIO token (lock state tracking). Supply with `-e "hassio_token=my_token"` when running `ansible-playbook`.
+**If you don't want to do this**, you can install them manually. Remove the marked section from
+`roles/dotfiles/vars/main.yml` as well as the repo in `pacman.conf`, and install the packages manually.  
+The packages you'll need from the AUR are as follows:
+`dracula-gtk-theme dracula-qt5-theme i3lock-fancy-git picom-git polybar tela-icon-theme ttf-comfortaa yay`
 
-Additionally, you need some host vars. See `host_vars/host_vars.example` for a template.
+### Deploy
+To deploy this, first modify the `inventory` to contain the hostnames of the devices you want to
+deploy to.  
 
+For the locking script, you will need a HASSIO token (lock state tracking). Supply with `-e "hassio_token=my_token"` when running `ansible-playbook`.  
+If you don't want to use this feature, simply supply the token "NONE".
+
+Lastly, you need some host vars. See `host_vars/host_vars.example` for a template, 
+copy it to for example `host_vars/my_hostname.yml` and change accordingly.
+
+Then simply deploy with `ansible-playbook`; assuming your targets have a running ssh server
+accepting connections with the same user as your local machine and you aren't going to use HASSIO integration:
+`ansible-playbook -K -e "hassio_token=NONE" site.yml`
 
 ### Warning regarding updates
 These dotfiles are configured in such a way that they auto-update, meaning that they are
