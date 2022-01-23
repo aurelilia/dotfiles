@@ -13,8 +13,6 @@ mpv ~/.i3/scripts/notification.ogg
 notify-send -u critical -i $ICON "Dotfiles changed" "Redeploying ansible playbook, please wait..." 
 
 cat << EOF > inventory
-[system]
-$(hostname)
 [dotfiles]
 $(hostname)
 EOF
