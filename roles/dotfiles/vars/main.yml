@@ -51,7 +51,6 @@ packages:
   - qt5ct
   - rofi
   - scrot
-  - starship-bin
   - syncthing
   - tela-icon-theme
   - thefuck
@@ -62,6 +61,7 @@ packages:
   - xautolock
   - xorg-server
   - xorg-xev
+  - yay
   - zoxide
   - zsh
 
