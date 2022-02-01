@@ -12,8 +12,8 @@ trying to install. The configuration for this is in `roles/system/files/pacman.c
 I recommend using `aurutils` for this.
 
 **If you don't want to do this**, you can install them manually. Remove the marked section from
-`roles/dotfiles/vars/main.yml` as well as the repo in `pacman.conf`, and install the packages manually.  
-The packages you'll need from the AUR are as follows:
+`roles/dotfiles/vars/main.yml` as well as the marked repo in `roles/system/files/pacman.conf`, and install the 
+packages manually. The packages you'll need from the AUR are as follows:
 `dracula-gtk-theme dracula-qt5-theme i3lock-fancy-git picom-git polybar tela-icon-theme ttf-comfortaa yay`
 
 Finally, put your desired wallpapers into `data/wallpapers`. They are shuffled at login.
