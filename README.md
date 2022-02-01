@@ -16,18 +16,21 @@ I recommend using `aurutils` for this.
 The packages you'll need from the AUR are as follows:
 `dracula-gtk-theme dracula-qt5-theme i3lock-fancy-git picom-git polybar tela-icon-theme ttf-comfortaa yay`
 
+Finally, put your desired wallpapers into `data/wallpapers`. They are shuffled at login.
+
 ### Deploy
 To deploy this, first modify the `inventory` to contain the hostnames of the devices you want to
-deploy to.  
+deploy to, and change `remote_user` in `ansible.cfg`.  
 
 For the locking script, you will need a HASSIO token (lock state tracking). Supply with `-e "hassio_token=my_token"` when running `ansible-playbook`.  
 If you don't want to use this feature, simply supply the token "NONE".
 
 Lastly, you need some host vars. See `host_vars/host_vars.example` for a template, 
-copy it to for example `host_vars/my_hostname.yml` and change accordingly.
+copy it to for example `host_vars/my_hostname.yml` and change accordingly (hostname should match
+the one put in `inventory`).
 
 Then simply deploy with `ansible-playbook`; assuming your targets have a running ssh server
-accepting connections with the same user as your local machine and you aren't going to use HASSIO integration:
+accepting connections and you aren't going to use HASSIO integration:
 `ansible-playbook -K -e "hassio_token=NONE" site.yml`
 
 ### Warning regarding updates

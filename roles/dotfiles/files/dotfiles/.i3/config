@@ -22,8 +22,8 @@ bindsym $mod+Return exec alacritty
 bindsym Mod1+4 kill
 
 # start rofi
-bindsym $mod+d exec --no-startup-id /home/ellie/.i3/scripts/rofi-drun.sh
-bindsym $mod+Shift+d exec --no-startup-id /home/ellie/.i3/scripts/rofi-run.sh
+bindsym $mod+d exec --no-startup-id ~/.i3/scripts/rofi-drun.sh
+bindsym $mod+Shift+d exec --no-startup-id ~/.i3/scripts/rofi-run.sh
 
 # focus
 bindsym $mod+Left focus left
@@ -87,7 +87,7 @@ bindsym $mod+Shift+t reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # Open power menu
-bindsym $mod+Shift+e exec /home/ellie/.config/polybar/shapes/scripts/powermenu.sh
+bindsym $mod+Shift+e exec ~/.config/polybar/shapes/scripts/powermenu.sh
 
 ### Modes
 # resize window
@@ -115,10 +115,10 @@ mode "resize" {
 # Mode for livesplit
 mode "speedrun" {
 	# Livesplit hotkeys
-	bindsym s exec /home/ellie/.i3/scripts/livesplit.sh S
-	bindsym r exec /home/ellie/.i3/scripts/livesplit.sh R
-	bindsym z exec /home/ellie/.i3/scripts/livesplit.sh Z
-	bindsym x exec /home/ellie/.i3/scripts/livesplit.sh X
+	bindsym s exec ~/.i3/scripts/livesplit.sh S
+	bindsym r exec ~/.i3/scripts/livesplit.sh R
+	bindsym z exec ~/.i3/scripts/livesplit.sh Z
+	bindsym x exec ~/.i3/scripts/livesplit.sh X
 
 	## All the usual hotkeys
 	# start a terminal
@@ -126,8 +126,8 @@ mode "speedrun" {
 	# kill focused window (Alt+4)
 	bindsym Mod1+4 kill
 	# start rofi
-	bindsym $mod+d exec --no-startup-id /home/ellie/.i3/scripts/rofi-drun.sh
-	bindsym $mod+Shift+d exec --no-startup-id /home/ellie/.i3/scripts/rofi-run.sh
+	bindsym $mod+d exec --no-startup-id ~/.i3/scripts/rofi-drun.sh
+	bindsym $mod+Shift+d exec --no-startup-id ~/.i3/scripts/rofi-run.sh
 	# focus
 	bindsym $mod+Left focus left
 	bindsym $mod+Down focus down
@@ -192,8 +192,8 @@ bindsym $mod+z border pixel 0
 bindsym $mod+c border normal
 
 # Screenshots
-bindsym --release $mod+q exec scrot -f -s '/home/ellie/screenshots/%Y-%m-%d-%H%M%S.jpg' -q 85
-bindsym --release $mod+Ctrl+q exec scrot -u '/home/ellie/screenshots/%Y-%m-%d-%H%M%S.jpg' -q 85
+bindsym --release $mod+q exec scrot -f -s '~/screenshots/%Y-%m-%d-%H%M%S.jpg' -q 85
+bindsym --release $mod+Ctrl+q exec scrot -u '~/screenshots/%Y-%m-%d-%H%M%S.jpg' -q 85
 bindsym --release $mod+Shift+q exec flameshot gui
 
 # Misc
@@ -228,12 +228,12 @@ no_focus [class="Steam"]
 
 
 ### Autostart
-exec --no-startup-id picom --experimental-backends --config /home/ellie/.config/picom.conf &
-exec --no-startup-id /home/ellie/.i3/scripts/wallpaper.sh &
+exec --no-startup-id picom --experimental-backends --config ~/.config/picom.conf &
+exec --no-startup-id ~/.i3/scripts/wallpaper.sh &
 exec --no-startup-id setxkbmap us -variant altgr-intl
-exec --no-startup-id xautolock -time 5 -locker "/home/ellie/.i3/scripts/lock.sh" -detectsleep -notify 15 -notifier "/home/ellie/.i3/scripts/notify-lock.sh"
-exec --no-startup-id dunst -conf /home/ellie/.dunstrc &
-exec --no-startup-id /home/ellie/.config/polybar/launch.sh &
+exec --no-startup-id xautolock -time 5 -locker "~/.i3/scripts/lock.sh" -detectsleep -notify 15 -notifier "~/.i3/scripts/notify-lock.sh"
+exec --no-startup-id dunst -conf ~/.dunstrc &
+exec --no-startup-id ~/.config/polybar/launch.sh &
 exec --no-startup-id fcitx -d &
 exec --no-startup-id thunderbird &
-exec --no-startup-id /home/ellie/.i3/scripts/update-dotfiles.sh &
+exec --no-startup-id ~/.i3/scripts/update-dotfiles.sh &

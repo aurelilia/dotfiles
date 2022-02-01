@@ -26,7 +26,7 @@
 
 - name: Copy wallpapers
   ansible.posix.synchronize:
-    src: "/home/ellie/wallpapers"
+    src: "data/wallpapers"
     dest: ~/
 
 - name: Create directory for screenshots
@@ -38,8 +38,8 @@
   copy:
     src: "firefox/"
     dest: "~/.mozilla/firefox/{{ ff_profile_dir }}"
-    owner: ellie
-    group: ellie
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
 
 - name: Copy locking script
   template:
@@ -80,7 +80,7 @@
 
 - name: Change shell
   user:
-    name: ellie
+    name: "{{ ansible_user }}"
     shell: /bin/zsh
   become: yes
 
