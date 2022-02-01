@@ -71,10 +71,10 @@
 
 - name: Install zinit
   ansible.builtin.git:
-    repo: "https://github.com/zdharma/zinit.git"
+    repo: "https://github.com/zdharma-continuum/zinit.git"
     dest: "~/.zinit/bin"
     update: false
-    version: master
+    version: main
   register: git_result
   changed_when: "git_result.after|default('after') != git_result.before|default('before')"
 
@@ -91,3 +91,10 @@
     state: started
     scope: user
     name: syncthing.service
+
+- name: Enable wireplumber
+  systemd:
+    enabled: yes
+    state: started
+    scope: user
+    name: wireplumber.service

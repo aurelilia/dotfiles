@@ -1,0 +1,10 @@
+color:
+  when: always
+
+date: relative
+
+icons:
+  when: always
+
+sorting:
+  dir-grouping: first

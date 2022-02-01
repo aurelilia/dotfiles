@@ -34,3 +34,9 @@
     enabled: yes
     state: started 
     name: earlyoom.service
+
+- name: Enable lightdm
+  systemd:
+    enabled: yes
+    state: started 
+    name: lightdm.service

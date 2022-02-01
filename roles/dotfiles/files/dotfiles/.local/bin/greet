@@ -1,0 +1,3 @@
+#!/bin/bash
+echo ""
+echo -n -e "\033[1m`figlet -k -f smslant Artix   GNU/Linux`\033[0m" | sed -e 's/^/ /' | dotacat

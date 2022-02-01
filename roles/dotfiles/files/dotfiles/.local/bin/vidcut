@@ -1,0 +1,6 @@
+#!/bin/bash
+S=$1
+shift
+T=$1
+shift
+ffmpeg -ss $S -i "$@" -t $T -async 1 -vcodec copy -acodec copy out.mp4

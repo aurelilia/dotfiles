@@ -3,6 +3,7 @@ packages:
   - alsa-utils
   - ark
   - ansible
+  - bat
   - bc
   - bdf-unifont
   - breeze
@@ -45,11 +46,14 @@ packages:
   - qt5ct
   - rofi
   - scrot
+  - sshfs
   - syncthing
   - thefuck
   - tokei
   - ttf-dejavu
+  - ttf-fira-code
   - wget
+  - wireplumber
   - xautolock
   - xorg-server
   - xorg-xev
@@ -58,6 +62,7 @@ packages:
   - zsh
 
   # Remove below if installing AUR packages manually (see README)
+  - aurutils
   - dracula-gtk-theme
   - dracula-qt5-theme
   - dotacat
@@ -66,6 +71,7 @@ packages:
   - polybar
   - tela-icon-theme
   - ttf-comfortaa
+  - vifm
 
 
 home: "{{ lookup('env', 'HOME') }}"
