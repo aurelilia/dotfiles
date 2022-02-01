@@ -1,4 +1,6 @@
 #!/bin/bash
+# Compresses a given video with ffmpeg. Usage:
+# vidcompress <level, 27-31 recommended> <file>
 C=$1
 shift
 rm out.mp4

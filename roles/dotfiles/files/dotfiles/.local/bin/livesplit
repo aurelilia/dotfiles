@@ -1,2 +1,3 @@
 #!/bin/bash
+# Runs livesplit, needs to be install for it to work.
 wine /opt/LiveSplit/LiveSplit.exe

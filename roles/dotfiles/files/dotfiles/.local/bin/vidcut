@@ -1,4 +1,6 @@
 #!/bin/bash
+# Cuts a video with ffmpeg.
+# Usage: vidcut <start> <duration> <file>
 S=$1
 shift
 T=$1
