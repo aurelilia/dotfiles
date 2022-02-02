@@ -7,22 +7,23 @@ A few files are also templated and at `roles/dotfiles/templates`.
 
 ## Deploying
 ### Requirements
-For this to work, you'll need a local repo serving some AUR packages that ansible will be
+For this to work, you'll need to do one of 2 things:
+
+- Recommended: Setup a local repo serving some AUR packages that ansible will be
 trying to install. The configuration for this is in `roles/system/files/pacman.conf`.  
 I recommend using `aurutils` for this.
-
-**If you don't want to do this**, you can install them manually. Remove the marked section from
+- Install required AUR packages manually. Remove the marked section from
 `roles/dotfiles/vars/main.yml` as well as the marked repo in `roles/system/files/pacman.conf`, and install the 
 packages manually. The packages you'll need from the AUR are as follows:
 `dracula-gtk-theme dracula-qt5-theme i3lock-fancy-git picom-git polybar tela-icon-theme ttf-comfortaa yay`
 
-Finally, put your desired wallpapers into `data/wallpapers`. They are shuffled at login.
+Additionally, put your desired wallpapers into `data/wallpapers`. They are shuffled at login.
 
 ### Deploy
 To deploy this, first modify the `inventory` to contain the hostnames of the devices you want to
 deploy to, and change `remote_user` in `ansible.cfg`.  
 
-For the locking script, you will need a HASSIO token (lock state tracking). Supply with `-e "hassio_token=my_token"` when running `ansible-playbook`.  
+For the locking script, you will need a Home Assistant token (lock state tracking). Supply with `-e "hassio_token=my_token"` when running `ansible-playbook`.  
 If you don't want to use this feature, simply supply the token "NONE".
 
 Lastly, you need some host vars. See `host_vars/host_vars.example` for a template, 
