@@ -192,8 +192,8 @@ bindsym $mod+z border pixel 0
 bindsym $mod+c border normal
 
 # Screenshots
-bindsym --release $mod+q exec scrot -f -s '~/screenshots/%Y-%m-%d-%H%M%S.jpg' -q 85
-bindsym --release $mod+Ctrl+q exec scrot -u '~/screenshots/%Y-%m-%d-%H%M%S.jpg' -q 85
+bindsym --release $mod+q exec scrot -f -s '/home/leela/screenshots/%Y-%m-%d-%H%M%S.jpg' -q 85
+bindsym --release $mod+Ctrl+q exec scrot -u '/home/leela/screenshots/%Y-%m-%d-%H%M%S.jpg' -q 85
 bindsym --release $mod+Shift+q exec flameshot gui
 
 # Misc
