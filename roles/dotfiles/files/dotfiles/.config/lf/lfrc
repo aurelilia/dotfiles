@@ -1,0 +1,35 @@
+set drawbox
+set icons
+set dirfirst
+set mouse
+set shell zsh
+
+
+# cmd open-with %"$@" $fx
+cmd open-with ${{
+    set -f
+    echo "$fx" | xargs $@
+}}
+map r push :open-with<space>
+
+cmd touch $touch $fx
+map t touch
+
+
+set previewer lf-previewer
+set cleaner lf-cleaner
+
+map x quitcd
+cmd quitcd ${{
+	echo "1" > "$LF_TEMPDIR"/cdtolastdir
+	lf -remote "send $id quit"
+}}
+
+cmd on-cd &{{
+    # '&' commands run silently in background (which is what we want here),
+    # but are not connected to stdout.
+    # To make sure our escape sequence still reaches stdout we pipe it to /dev/tty
+    printf "\033]0; $(pwd | sed "s|$HOME|~|")\007" > /dev/tty
+}}
+# also run at startup
+on-cd
