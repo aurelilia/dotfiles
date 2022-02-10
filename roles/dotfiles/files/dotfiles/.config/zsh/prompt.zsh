@@ -18,12 +18,23 @@ function command_time() {
                 timer_show="$fg[red]${min}min${sec}s"
             fi
         fi
-        printf "in $timer_show"
+        printf "$fg[white]in $timer_show"
         unset ZSH_COMMAND_TIME
     fi
 }
 
-MNML_PROMPT=(mnml_ssh mnml_status mnml_name command_time mnml_keymap)
+MNML_PROMPT=(mnml_ssh mnml_name mnml_status mnml_fish_pwd command_time mnml_arrow)
+MNML_RPROMPT=()
+
+mnml_fish_pwd() {
+    tput setaf 8
+    print "$PWD" | sed -e "s|^$HOME|~|" -e 's|\(\.\{0,1\}[^/]\)[^/]*/|\1/|g'
+}
+
+mnml_arrow() {
+    tput setaf 7
+    printf "›"
+}
 
 mnml_me_ls() {
     lsd -lFh
