@@ -23,8 +23,13 @@ function command_time() {
     fi
 }
 
-MNML_PROMPT=(mnml_ssh mnml_pyenv mnml_status command_time mnml_keymap)
+MNML_PROMPT=(mnml_ssh mnml_status mnml_name command_time mnml_keymap)
 
 mnml_me_ls() {
     lsd -lFh
+}
+
+mnml_name() {
+    tput setaf 5
+    id -un
 }

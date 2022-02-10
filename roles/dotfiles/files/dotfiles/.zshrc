@@ -11,15 +11,16 @@ export PROMPT_EOL_MARK="" # Partial line character
 emulate sh -c 'source /etc/profile'
 
 # Opts
-unsetopt beep
-setopt no_beep
-setopt extendedglob
-setopt NO_HUP
-setopt NO_CHECK_JOBS
-setopt clobber
+unsetopt beep # No beeping please
+setopt no_beep # No beeping please
+setopt extendedglob # Extended globbing features
+setopt no_hup # Detach jobs from shell
+setopt no_check_jobs # Don't check jobs when exiting shell
+setopt clobber # Make '>' truncate
 setopt share_history # Reloads history whenever you use it
 setopt inc_append_history # Appends every command to the history file once it is executed
 setopt no_auto_remove_slash # https://unix.stackexchange.com/questions/160026/how-can-i-keep-the-trailing-slash-after-choosing-a-directory-from-the-zsh-comple
+setopt hist_ignore_all_dups # No duplicates in history
 
 # Keybinds
 bindkey -e
