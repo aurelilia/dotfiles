@@ -29,6 +29,7 @@
     dest: ~/
   notify:
     - Set polybar theme
+  tags: dotcopy
 
 - name: Copy wallpapers
   ansible.posix.synchronize:
@@ -46,6 +47,7 @@
     dest: "~/.mozilla/firefox/{{ ff_profile_dir }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
+  tags: dotcopy
 
 - name: Copy locking script
   template:
@@ -60,6 +62,7 @@
   register: interface
   changed_when: false
   check_mode: false
+  tags: dotcopy
 
 - name: Copy polybar configuration
   template:
@@ -68,6 +71,7 @@
   with_items:
     - "config"
     - "modules"
+  tags: dotcopy
 
 
 - name: Create directory for zinit
