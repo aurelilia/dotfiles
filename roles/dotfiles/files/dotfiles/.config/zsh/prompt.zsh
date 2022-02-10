@@ -23,7 +23,8 @@ function command_time() {
     fi
 }
 
-MNML_PROMPT=(mnml_ssh mnml_name mnml_status mnml_fish_pwd command_time mnml_arrow)
+MNML_OK_COLOR=5
+MNML_PROMPT=(mnml_ssh mnml_status mnml_fish_pwd command_time mnml_arrow)
 MNML_RPROMPT=()
 
 mnml_fish_pwd() {
@@ -38,9 +39,4 @@ mnml_arrow() {
 
 mnml_me_ls() {
     lsd -lFh
-}
-
-mnml_name() {
-    tput setaf 5
-    id -un
 }
