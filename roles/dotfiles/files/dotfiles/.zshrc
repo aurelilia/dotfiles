@@ -82,19 +82,16 @@ zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
     zsh-users/zsh-completions \
     Aloxaf/fzf-tab
 
+# minimal
+zinit light subnixr/minimal
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(buffer-empty) # https://github.com/zsh-users/zsh-autosuggestions/issues/525
+
+# Source everything from ~/.config/zsh/*.zsh
+for f ("$HOME"/.config/zsh/*.zsh) . $f
+
 # fzf
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
 # zoxide
-if [ -x "$(command -v zoxide)" ]; then
-    eval "$(zoxide init zsh)"
-fi
-
-# minimal
-zinit light subnixr/minimal
-MNML_OK_COLOR=6
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(buffer-empty) # https://github.com/zsh-users/zsh-autosuggestions/issues/525
-
-# Source everything from ~/.config/zsh/*.zsh
-for f ("$HOME"/.config/zsh/*.zsh) . $f
+command -v zoxide > /dev/null && eval "$(zoxide init zsh)"

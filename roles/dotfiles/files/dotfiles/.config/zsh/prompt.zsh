@@ -24,17 +24,12 @@ function command_time() {
 }
 
 MNML_OK_COLOR=5
-MNML_PROMPT=(mnml_ssh mnml_status mnml_fish_pwd command_time mnml_arrow)
+MNML_PROMPT=(mnml_ssh mnml_status mnml_fish_pwd command_time mnml_keymap)
 MNML_RPROMPT=()
 
 mnml_fish_pwd() {
-    tput setaf 8
-    print "$PWD" | sed -e "s|^$HOME|~|" -e 's|\(\.\{0,1\}[^/]\)[^/]*/|\1/|g'
-}
-
-mnml_arrow() {
-    tput setaf 7
-    printf "›"
+    OUT=$(echo "$PWD" | sed -e "s|^$HOME|~|" -e 's|\(\.\{0,1\}[^/]\)[^/]*/|\1/|g')
+    printf '%b' "%{\x1b[90m%}$OUT%{$reset_color%}"
 }
 
 mnml_me_ls() {
