@@ -63,6 +63,7 @@ packages:
   # Remove below if installing AUR packages manually (see README)
   - aurutils
   - catia-git
+  - devtools
   - dracula-gtk-theme
   - dracula-qt5-theme
   - dotacat

@@ -16,6 +16,12 @@
     state: absent
   become: yes
 
+- name: Copy aurutils conf
+  copy:
+    src: "pacman-aur.conf"
+    dest: "/etc/aurutils/pacman-aur.conf"
+  become: yes
+
 
 - name: Copy dotfiles
   ansible.posix.synchronize:
