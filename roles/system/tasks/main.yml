@@ -4,6 +4,21 @@
     dest: /etc/pacman.conf
   become: yes
 
+- name: Create directory for cache
+  ansible.builtin.file:
+    path: /ethereal/cache
+    state: directory
+    owner: 1000
+    group: 1000
+
+- name: Create directory for pacman cache
+  ansible.builtin.file:
+    path: /ethereal/cache/pacman
+    state: directory
+    owner: root
+    group: root
+  become: yes
+
 - name: Update system
   community.general.pacman:
     update_cache: yes
