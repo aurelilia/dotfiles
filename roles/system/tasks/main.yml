@@ -16,6 +16,11 @@
     state: present
   become: yes
 
+- name: Copy opendoas conf
+  ansible.builtin.copy:
+    src: doas.conf
+    dest: /etc/doas.conf
+  become: yes
 
 - name: Copy lightdm configuration
   copy:
