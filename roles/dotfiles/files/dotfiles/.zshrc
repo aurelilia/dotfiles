@@ -37,7 +37,7 @@ zstyle ':completion:*:approximate:*' max-errors 3 numeric
 
 
 # zinit
-source ~/.zinit/bin/zinit.zsh
+source ~/.local/share/zinit/bin/zinit.zsh
 
 # command-time
 zinit light popstas/zsh-command-time

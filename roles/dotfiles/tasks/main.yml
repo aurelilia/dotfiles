@@ -110,13 +110,13 @@
 
 - name: Create directory for zinit
   ansible.builtin.file:
-    path: ~/.zinit
+    path: ~/.local/share/zinit
     state: directory
 
 - name: Install zinit
   ansible.builtin.git:
     repo: "https://github.com/zdharma-continuum/zinit.git"
-    dest: "~/.zinit/bin"
+    dest: "~/.local/share/zinit/bin"
     update: false
     version: main
   register: git_result
