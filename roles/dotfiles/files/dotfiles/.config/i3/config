@@ -22,8 +22,8 @@ bindsym $mod+Return exec alacritty
 bindsym Mod1+4 kill
 
 # start rofi
-bindsym $mod+d exec --no-startup-id ~/.config/i3/scripts/rofi-drun.sh
-bindsym $mod+Shift+d exec --no-startup-id ~/.config/i3/scripts/rofi-run.sh
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/apps.sh
+bindsym $mod+Shift+d exec --no-startup-id ~/.config/rofi/commands.sh
 
 # focus
 bindsym $mod+Left focus left
@@ -87,7 +87,7 @@ bindsym $mod+Shift+t reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # Open power menu
-bindsym $mod+Shift+e exec ~/.config/polybar/shapes/scripts/powermenu.sh
+bindsym $mod+Shift+e exec ~/.config/rofi/powermenu.sh
 
 ### Modes
 # resize window
