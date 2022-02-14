@@ -204,9 +204,7 @@ bindsym $mod+grave exec dunstctl history-pop
 ### Looks
 # Gaps
 gaps inner 7
-gaps outer 7
-
-smart_gaps on
+gaps outer 4
 smart_borders on
 
 focus_follows_mouse no

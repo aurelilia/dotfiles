@@ -98,11 +98,11 @@
 
 - name: Copy polybar configuration
   template:
-    src: "{{ item }}.ini.j2"
-    dest: "~/.config/polybar/shapes/{{ item }}.ini"
+    src: "polybar/{{ item }}.j2"
+    dest: "~/.config/polybar/{{ item }}"
   with_items:
     - "config"
-    - "modules"
+    - "system"
   tags: dotcopy
 
 

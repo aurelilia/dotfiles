@@ -3,7 +3,6 @@
 (
    killall -q polybar
 
-   fakeroot -- pacman -Sy --dbpath "/tmp/pacman_db" --logfile /dev/null &> /dev/null
    while pgrep -u $UID -x polybar > /dev/null; do sleep 0.5; done
 
    outputs=$(xrandr --query | grep " connected" | cut -d" " -f1)
@@ -16,7 +15,7 @@
        TRAY_POSITION=right
      fi
 
-     polybar --reload main -c "~/.config/polybar/shapes/config.ini" &
+     polybar --reload main -c "~/.config/polybar/config" &
      disown
    done
 ) 200>/var/tmp/polybar-launch.lock
