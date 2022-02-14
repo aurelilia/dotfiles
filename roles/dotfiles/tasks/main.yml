@@ -65,8 +65,6 @@
   with_items:
     - "cache"
     - "rustup"
-    - "gradle"
-    - "cargo"
 
 
 - name: Copy firefox configuration
@@ -80,7 +78,7 @@
 - name: Copy locking script
   template:
     src: lock.sh.j2
-    dest: "~/.i3/scripts/lock.sh"
+    dest: "~/.config/i3/scripts/lock.sh"
     mode: '755' 
   when: hassio_token is defined
 

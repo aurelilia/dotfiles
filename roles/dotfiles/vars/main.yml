@@ -68,7 +68,7 @@ packages:
   - dracula-qt5-theme
   - dotacat
   - i3lock-fancy-git
-  - opendoas-sudo
+  #- opendoas-sudo
   - picom-git
   - polybar
   - tela-icon-theme

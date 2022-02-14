@@ -5,7 +5,7 @@
 # Win/Super
 set $mod Mod4
 
-# This is specific to crimson but that's fine
+# This is specific to seance but that's fine
 workspace 1 output HDMI-A-1
 workspace 2 output DisplayPort-1
 workspace 3 output DVI-D-0
@@ -22,8 +22,8 @@ bindsym $mod+Return exec alacritty
 bindsym Mod1+4 kill
 
 # start rofi
-bindsym $mod+d exec --no-startup-id ~/.i3/scripts/rofi-drun.sh
-bindsym $mod+Shift+d exec --no-startup-id ~/.i3/scripts/rofi-run.sh
+bindsym $mod+d exec --no-startup-id ~/.config/i3/scripts/rofi-drun.sh
+bindsym $mod+Shift+d exec --no-startup-id ~/.config/i3/scripts/rofi-run.sh
 
 # focus
 bindsym $mod+Left focus left
@@ -115,10 +115,10 @@ mode "resize" {
 # Mode for livesplit
 mode "speedrun" {
 	# Livesplit hotkeys
-	bindsym s exec ~/.i3/scripts/livesplit.sh S
-	bindsym r exec ~/.i3/scripts/livesplit.sh R
-	bindsym z exec ~/.i3/scripts/livesplit.sh Z
-	bindsym x exec ~/.i3/scripts/livesplit.sh X
+	bindsym s exec ~/.config/i3/scripts/livesplit.sh S
+	bindsym r exec ~/.config/i3/scripts/livesplit.sh R
+	bindsym z exec ~/.config/i3/scripts/livesplit.sh Z
+	bindsym x exec ~/.config/i3/scripts/livesplit.sh X
 
 	## All the usual hotkeys
 	# start a terminal
@@ -126,8 +126,8 @@ mode "speedrun" {
 	# kill focused window (Alt+4)
 	bindsym Mod1+4 kill
 	# start rofi
-	bindsym $mod+d exec --no-startup-id ~/.i3/scripts/rofi-drun.sh
-	bindsym $mod+Shift+d exec --no-startup-id ~/.i3/scripts/rofi-run.sh
+	bindsym $mod+d exec --no-startup-id ~/.config/i3/scripts/rofi-drun.sh
+	bindsym $mod+Shift+d exec --no-startup-id ~/.config/i3/scripts/rofi-run.sh
 	# focus
 	bindsym $mod+Left focus left
 	bindsym $mod+Down focus down
@@ -229,11 +229,11 @@ no_focus [class="Steam"]
 
 ### Autostart
 exec --no-startup-id picom --experimental-backends --config ~/.config/picom.conf &
-exec --no-startup-id ~/.i3/scripts/wallpaper.sh &
-exec --no-startup-id ~/.i3/scripts/input.sh &
-exec --no-startup-id xautolock -time 5 -locker "~/.i3/scripts/lock.sh" -detectsleep -notify 15 -notifier "~/.i3/scripts/notify-lock.sh"
+exec --no-startup-id ~/.config/i3/scripts/wallpaper.sh &
+exec --no-startup-id ~/.config/i3/scripts/input.sh &
+exec --no-startup-id xautolock -time 5 -locker "~/.config/i3/scripts/lock.sh" -detectsleep -notify 15 -notifier "~/.config/i3/scripts/notify-lock.sh"
 exec --no-startup-id dunst -conf ~/.config/dunstrc &
 exec --no-startup-id ~/.config/polybar/launch.sh &
 exec --no-startup-id fcitx -d &
 exec --no-startup-id thunderbird &
-exec --no-startup-id ~/.i3/scripts/update-dotfiles.sh &
+exec --no-startup-id ~/.config/i3/scripts/update-dotfiles.sh &
