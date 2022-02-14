@@ -2,10 +2,10 @@
 
 * {
   al:    #00000000;
-  bg:    #1F1F1FFF;
-  bg1:   #4527A0FF;
-  bg2:   #512DA8FF;
-  bg3:   #5E35B1FF;
+  bg:    #1E1E2E;
+  bg1:   #acadd9;
+  bg2:   #C9CBFF;
+  bg3:   #C9CBFF;
   fg:    #FFFFFFFF;
 
 	background-color: @al;

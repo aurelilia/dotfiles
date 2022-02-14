@@ -38,7 +38,7 @@ prompt {
     enabled: 						true;
 	padding: 						10px 15px 10px 15px;
 	background-color: 				@bg2;
-	text-color: 					#FFFFFF;
+	text-color: 					@bg;
     font: "Comfortaa 11";
 }
 
@@ -66,7 +66,7 @@ entry {
 inputbar {
 	children: 						[ textbox-prompt-colon, prompt ];
     background-color:               @bg2;
-    text-color:                     #FFFFFF;
+    text-color:                     @bg;
     expand:                         false;
 	border:							0px;
     border-radius:                  12px;

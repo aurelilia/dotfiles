@@ -44,8 +44,8 @@ prompt {
 
 entry {
     background-color:               @bg2;
-    text-color:                     #FFFFFF;
-    placeholder-color:              #FFFFFF;
+    text-color:                     @bg;
+    placeholder-color:              @bg;
     expand:                         true;
     horizontal-align:               0;
     placeholder:                    "Search...";
