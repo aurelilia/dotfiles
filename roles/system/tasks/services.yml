@@ -1,0 +1,27 @@
+- name: Copy opendoas conf
+  ansible.builtin.copy:
+    src: doas.conf
+    dest: /etc/doas.conf
+
+- name: Copy lightdm configuration
+  copy:
+    src: "lightdm"
+    dest: /etc/
+
+- name: Copy brightness udev rule
+  template:
+    src: backlight.rules
+    dest: /etc/udev/rules.d/backlight.rules
+
+
+- name: Enable earlyoom
+  systemd:
+    enabled: yes
+    state: started 
+    name: earlyoom.service
+
+- name: Enable lightdm
+  systemd:
+    enabled: yes
+    state: started 
+    name: lightdm.service

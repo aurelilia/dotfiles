@@ -1,69 +1,11 @@
-- name: Copy pacman conf
-  ansible.builtin.copy:
-    src: pacman.conf
-    dest: /etc/pacman.conf
+- name: Configure packages
+  include: pacman.yml
   become: yes
 
-- name: Create directory for cache
-  ansible.builtin.file:
-    path: /ethereal/cache
-    state: directory
-    owner: 1000
-    group: 1000
-
-- name: Create directory for pacman cache
-  ansible.builtin.file:
-    path: /ethereal/cache/pacman
-    state: directory
-    owner: root
-    group: root
+- name: Configure services
+  include: services.yml
   become: yes
 
-- name: Update system
-  community.general.pacman:
-    update_cache: yes
-    upgrade: yes
+- name: Configure GRUB
+  include: grub.yml
   become: yes
-
-- name: Install core packages
-  community.general.pacman:
-    name: "{{ packages }}"
-    state: present
-  become: yes
-
-- name: Copy opendoas conf
-  ansible.builtin.copy:
-    src: doas.conf
-    dest: /etc/doas.conf
-  become: yes
-
-- name: Copy lightdm configuration
-  copy:
-    src: "lightdm"
-    dest: /etc/
-  become: yes
-
-- name: Copy cura machine definition
-  copy:
-    src: "cura/"
-    dest: /usr/share/cura/resources
-  become: yes
-
-- name: Copy brightness udev rule
-  template:
-    src: backlight.rules
-    dest: /etc/udev/rules.d/backlight.rules
-  become: yes
-
-
-- name: Enable earlyoom
-  systemd:
-    enabled: yes
-    state: started 
-    name: earlyoom.service
-
-- name: Enable lightdm
-  systemd:
-    enabled: yes
-    state: started 
-    name: lightdm.service

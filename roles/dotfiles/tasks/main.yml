@@ -1,138 +1,16 @@
-- name: Install core packages
-  community.general.pacman:
-    name: "{{ packages }}"
-    state: present
+- name: Configure packages
+  include: pacman.yml
   become: yes
 
-- name: Install additional packages
-  community.general.pacman:
-    name: "{{ additional_pkgs }}"
-    state: present
-  become: yes
+- name: Configure /ethereal
+  include: ethereal.yml
 
-- name: Remove unwanted packages
-  community.general.pacman:
-    name: "{{ exclude_pkgs }}"
-    state: absent
-  become: yes
-
-- name: Copy aurutils conf
-  copy:
-    src: "pacman-aur.conf"
-    dest: "/etc/aurutils/pacman-aur.conf"
-  become: yes
-
-
-- name: Copy dotfiles
-  ansible.posix.synchronize:
-    src: "dotfiles/"
-    dest: ~/
+- name: Place dotfiles
+  include: dotfiles.yml
   tags: dotcopy
 
-- name: Copy wallpapers
-  ansible.posix.synchronize:
-    src: "data/wallpapers"
-    dest: ~/
+- name: Configure shell
+  include: shell.yml
 
-- name: Create directory for screenshots
-  ansible.builtin.file:
-    path: /ethereal/screenshots
-    state: directory
-
-- name: Symlink screenshots directory inside /ethereal
-  ansible.builtin.file:
-    src: /ethereal/screenshots
-    path: ~/screenshots
-    state: link
-
-- name: Create cache directories inside /ethereal
-  ansible.builtin.file:
-    path: "/ethereal/cache/{{ item }}"
-    state: directory
-  with_items:
-    - "cache"
-    - "rustup"
-    - "gradle"
-    - "cargo"
-
-- name: Symlink cache directories inside /ethereal
-  ansible.builtin.file:
-    src: "/ethereal/cache/{{ item }}"
-    path: "~/.{{ item }}"
-    state: link
-  with_items:
-    - "cache"
-    - "rustup"
-
-
-- name: Copy firefox configuration
-  ansible.posix.synchronize:
-    src: "firefox/"
-    dest: "~/.mozilla/firefox/{{ ff_profile_dir }}"
-  tags: dotcopy
-
-- name: Copy locking script
-  template:
-    src: lock.sh.j2
-    dest: "~/.config/i3/scripts/lock.sh"
-    mode: '755' 
-  when: hassio_token is defined
-
-- name: Copy input config script
-  template:
-    src: input.sh.j2
-    dest: "~/.config/i3/scripts/input.sh"
-    mode: '755' 
-
-
-- name: Get physical interfaces name
-  command: find /sys/class/net -type l -not -lname '*virtual*' -printf '%f\n'
-  register: interface
-  changed_when: false
-  check_mode: false
-  tags: dotcopy
-
-- name: Copy polybar configuration
-  template:
-    src: "polybar/{{ item }}.j2"
-    dest: "~/.config/polybar/{{ item }}"
-  with_items:
-    - "config"
-    - "system"
-  tags: dotcopy
-
-
-- name: Create directory for zinit
-  ansible.builtin.file:
-    path: ~/.local/share/zinit
-    state: directory
-
-- name: Install zinit
-  ansible.builtin.git:
-    repo: "https://github.com/zdharma-continuum/zinit.git"
-    dest: "~/.local/share/zinit/bin"
-    update: false
-    version: main
-  register: git_result
-  changed_when: "git_result.after|default('after') != git_result.before|default('before')"
-
-- name: Change shell
-  user:
-    name: "{{ ansible_user }}"
-    shell: /bin/zsh
-  become: yes
-
-
-- name: Enable syncthing
-  systemd:
-    enabled: yes
-    state: started
-    scope: user
-    name: syncthing.service
-
-- name: Enable wireplumber
-  systemd:
-    enabled: yes
-    state: started
-    scope: user
-    name: wireplumber.service
+- name: Configure services
+  include: services.yml

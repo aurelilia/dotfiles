@@ -1,0 +1,28 @@
+- name: Copy pacman conf
+  ansible.builtin.copy:
+    src: pacman.conf
+    dest: /etc/pacman.conf
+
+- name: Create directory for cache
+  ansible.builtin.file:
+    path: /ethereal/cache
+    state: directory
+    owner: 1000
+    group: 1000
+
+- name: Create directory for pacman cache
+  ansible.builtin.file:
+    path: /ethereal/cache/pacman
+    state: directory
+    owner: root
+    group: root
+
+- name: Update system
+  community.general.pacman:
+    update_cache: yes
+    upgrade: yes
+
+- name: Install core packages
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present

@@ -1,0 +1,34 @@
+- name: Copy wallpapers
+  ansible.posix.synchronize:
+    src: "data/wallpapers"
+    dest: ~/
+
+- name: Create directory for screenshots
+  ansible.builtin.file:
+    path: /ethereal/screenshots
+    state: directory
+
+- name: Symlink screenshots directory inside /ethereal
+  ansible.builtin.file:
+    src: /ethereal/screenshots
+    path: ~/screenshots
+    state: link
+
+- name: Create cache directories inside /ethereal
+  ansible.builtin.file:
+    path: "/ethereal/cache/{{ item }}"
+    state: directory
+  with_items:
+    - "cache"
+    - "rustup"
+    - "gradle"
+    - "cargo"
+
+- name: Symlink cache directories inside /ethereal
+  ansible.builtin.file:
+    src: "/ethereal/cache/{{ item }}"
+    path: "~/.{{ item }}"
+    state: link
+  with_items:
+    - "cache"
+    - "rustup"

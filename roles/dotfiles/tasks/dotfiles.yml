@@ -1,0 +1,32 @@
+- name: Copy dotfiles
+  ansible.posix.synchronize:
+    src: "dotfiles/"
+    dest: ~/
+
+- name: Copy firefox configuration
+  ansible.posix.synchronize:
+    src: "firefox/"
+    dest: "~/.mozilla/firefox/{{ ff_profile_dir }}"
+
+- name: Copy script templates
+  template:
+    src: "{{ item }}.sh.j2"
+    dest: "~/.config/i3/scripts/{{ item }}.sh"
+    mode: '755' 
+  with_items:
+    - "input"
+    - "lock"
+
+- name: Get physical interfaces name
+  command: find /sys/class/net -type l -not -lname '*virtual*' -printf '%f\n'
+  register: interface
+  changed_when: false
+  check_mode: false
+
+- name: Copy polybar configuration
+  template:
+    src: "polybar/{{ item }}.j2"
+    dest: "~/.config/polybar/{{ item }}"
+  with_items:
+    - "config"
+    - "system"

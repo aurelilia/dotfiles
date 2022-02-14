@@ -1,0 +1,13 @@
+- name: Enable syncthing
+  systemd:
+    enabled: yes
+    state: started
+    scope: user
+    name: syncthing.service
+
+- name: Enable wireplumber
+  systemd:
+    enabled: yes
+    state: started
+    scope: user
+    name: wireplumber.service
