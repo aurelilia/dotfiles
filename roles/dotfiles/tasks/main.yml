@@ -66,11 +66,9 @@
 
 
 - name: Copy firefox configuration
-  copy:
+  ansible.posix.synchronize:
     src: "firefox/"
     dest: "~/.mozilla/firefox/{{ ff_profile_dir }}"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
   tags: dotcopy
 
 - name: Copy locking script
