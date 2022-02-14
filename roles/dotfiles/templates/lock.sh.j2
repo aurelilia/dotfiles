@@ -1,8 +1,6 @@
 #!/bin/bash
 
-{% if !hassio_token %}
-/usr/bin/i3lock-fancy -n
-{% else %}
+{% if hassio_token is defined %}
 TOKEN={{ hassio_token }}
 HASSIO=https://homeassistant.angm.xyz/api/states
 
@@ -17,4 +15,6 @@ curl -X POST -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"state": "unlocked"}' \
   $HASSIO/sensor.{{ hassio_name }}_state
+{% else %}
+/usr/bin/i3lock-fancy -n
 {% endif %}
