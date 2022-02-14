@@ -253,27 +253,23 @@ accumulate-stats = true
 unknown-as-up = true
 
 format-connected = <ramp-signal><label-connected>
+format-connected-padding = 2
+format-connected-foreground = ${color.font}
+format-connected-background = ${color.pink}
 
 format-disconnected = <label-disconnected>
 format-disconnected-prefix = "睊 "
 format-disconnected-prefix-font = 2
 format-disconnected-foreground = ${color.font}
 format-disconnected-background = ${color.pink}
+format-disconnected-padding = 2
 
 label-connected = "%{A1:def-nmdmenu &:}%essid%%{A}"
 label-disconnected = "%{A1:def-nmdmenu &:}Offline%{A}"
-
-label-connected-foreground = ${color.font}
-label-disconnected-foreground = ${color.font}
-
-label-connected-background = ${color.pink}
-label-disconnected-background = ${color.pink}
 
 ramp-signal-0 = " "
 ramp-signal-1 = " "
 ramp-signal-2 = " "
 ramp-signal-3 = " "
 ramp-signal-4 = " "
-ramp-signal-foreground = ${color.font}
-ramp-signal-background = ${color.pink}
 ramp-signal-font = 2

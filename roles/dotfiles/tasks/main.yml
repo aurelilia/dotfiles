@@ -27,8 +27,6 @@
   ansible.posix.synchronize:
     src: "dotfiles/"
     dest: ~/
-  notify:
-    - Set polybar theme
   tags: dotcopy
 
 - name: Copy wallpapers

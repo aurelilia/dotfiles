@@ -7,4 +7,4 @@
 adapter = ACAD
 battery = BAT1
 graphics_card = {{ backlight_name }}
-network_interface = {{ interface }}
+network_interface = {{ interface.stdout_lines[0] }}

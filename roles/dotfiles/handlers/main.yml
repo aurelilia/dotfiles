@@ -1,2 +1,0 @@
-- name: Set polybar theme
-  command: ~/.config/polybar/shapes/scripts/colors-dark.sh --{{ polybar_color }}
