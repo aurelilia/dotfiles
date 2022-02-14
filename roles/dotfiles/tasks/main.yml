@@ -85,7 +85,7 @@
 - name: Copy input config script
   template:
     src: input.sh.j2
-    dest: "~/.i3/scripts/input.sh"
+    dest: "~/.config/i3/scripts/input.sh"
     mode: '755' 
 
 
