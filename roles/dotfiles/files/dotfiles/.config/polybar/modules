@@ -232,7 +232,7 @@ content-font = 3
 content-foreground = ${color.font}
 content-background = ${color.lavender}
 content-padding = 2
-click-left=~/.config/i3/scripts/rofi-drun.sh
+click-left=~/.config/rofi/apps.sh
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
