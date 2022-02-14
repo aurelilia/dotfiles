@@ -10,7 +10,7 @@
 - name: Copy theme
   ansible.posix.synchronize:
     src: /tmp/grub/catppuccin-grub-theme
-    dest: /usr/share/grub/themes/catppuccin-grub-theme
+    dest: /usr/share/grub/themes/
   delegate_to: "{{ inventory_hostname }}"
 
 - name: Configure grub
