@@ -1,0 +1,8 @@
+#!/bin/sh
+
+setxkbmap us -variant altgr-intl
+
+{% if mobile_device %}
+xinput set-prop "{{ touchpad_name }}" "libinput Tapping Enabled" 1
+xinput set-prop "{{ touchpad_name }}" "libinput Middle Emulation Enabled" 1
+{% endif %}

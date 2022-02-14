@@ -230,9 +230,9 @@ no_focus [class="Steam"]
 ### Autostart
 exec --no-startup-id picom --experimental-backends --config ~/.config/picom.conf &
 exec --no-startup-id ~/.i3/scripts/wallpaper.sh &
-exec --no-startup-id setxkbmap us -variant altgr-intl
+exec --no-startup-id ~/.i3/scripts/input.sh &
 exec --no-startup-id xautolock -time 5 -locker "~/.i3/scripts/lock.sh" -detectsleep -notify 15 -notifier "~/.i3/scripts/notify-lock.sh"
-exec --no-startup-id dunst -conf ~/.dunstrc &
+exec --no-startup-id dunst -conf ~/.config/dunstrc &
 exec --no-startup-id ~/.config/polybar/launch.sh &
 exec --no-startup-id fcitx -d &
 exec --no-startup-id thunderbird &

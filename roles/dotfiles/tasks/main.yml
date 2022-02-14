@@ -84,6 +84,12 @@
     mode: '755' 
   when: hassio_token is defined
 
+- name: Copy input config script
+  template:
+    src: input.sh.j2
+    dest: "~/.i3/scripts/input.sh"
+    mode: '755' 
+
 
 - name: Get physical interfaces name
   command: find /sys/class/net -type l -not -lname '*virtual*' -printf '%f\n'
