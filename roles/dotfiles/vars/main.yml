@@ -4,6 +4,7 @@ packages:
   - ansible
   - bat
   - bc
+  - btop
   - code
   - dunst
   - evince
