@@ -222,6 +222,7 @@ client.background       #F8F8F2
 
 ### Application Rules
 for_window [class="Thunderbird"] move container to workspace 11
+for_window [title="Color Picker"] floating enable
 no_focus [class="Steam"]
 
 
