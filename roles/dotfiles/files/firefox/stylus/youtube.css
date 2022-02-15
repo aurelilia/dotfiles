@@ -1,0 +1,82 @@
+/* ==UserStyle==
+@name           Youtube Catppucin (Edit of Dracula)
+@namespace      USO Archive
+@author         Wilfison Batista, leela
+@version        20200302.1.8
+@preprocessor   uso
+==/UserStyle== */
+
+/* i really want this to be global */
+html:not(.style-scope)[dark], :not(.style-scope)[dark] {
+    --yt-spec-brand-background-solid: #161320;
+    --yt-spec-brand-background-primary: #1E1E2E;
+    --yt-spec-brand-background-secondary: #302D41;
+    --yt-spec-general-background-a: #161320;
+    --yt-spec-general-background-b: #161320;
+    --yt-spec-general-background-c: #6E6C7E;
+    --yt-spec-error-background: #D9E0EE;
+    --yt-spec-text-primary: #D9E0EE;
+    --yt-spec-text-primary-inverse: #120b02;
+    --yt-spec-text-secondary: #C3BAC6;
+    --yt-spec-text-disabled: #6E6C7E;
+    --yt-spec-call-to-action: #DDB6F2;
+    --yt-spec-icon-active-other: #D9E0EE;
+    --yt-spec-icon-inactive: #988BA2;
+    --yt-spec-icon-disabled: #575268;
+    --yt-spec-badge-chip-background: rgba(255, 255, 255, 0.1);
+    --yt-spec-verified-badge-background: rgba(255, 255, 255, 0.25);
+    --yt-spec-suggested-action: #1E1E2E;
+    --yt-spec-button-chip-background-hover: rgba(255, 255, 255, 0.2);
+    --yt-spec-touch-response: #D9E0EE;
+    --yt-spec-paper-tab-ink: rgba(255, 255, 255, 0.3);
+    --yt-spec-filled-button-text: #161320;
+    --yt-spec-call-to-action-inverse: #96CDFB;
+    --yt-spec-brand-icon-active: #D9E0EE;
+    --yt-spec-brand-icon-inactive: #988BA2;
+    --yt-spec-brand-button-background: #F8BD96;
+    --yt-spec-brand-link-text: #F8BD96;
+    --yt-spec-filled-button-focus-outline: rgba(255, 255, 255, 0.7);
+    --yt-spec-call-to-action-button-focus-outline: rgba(62, 166, 255, 0.3);
+    --yt-spec-brand-text-button-focus-outline: rgba(255, 78, 69, 0.3);
+    --yt-spec-inactive-text-button-focus-outline: #575268;
+    --yt-spec-ad-indicator: #B5E8E0;
+    --yt-spec-brand-subscribe-button-background: var(--yt-spec-brand-button-background);
+    --yt-spec-wordmark-text: #D9E0EE;
+    --yt-spec-10-percent-layer: rgba(255, 255, 255, 0.1);
+    --yt-spec-selected-nav-text: #D9E0EE;
+    --yt-spec-themed-blue: #F28FAD;
+    --yt-spec-themed-green: #ABE9B3;
+    --yt-spec-themed-overlay-background: rgba(0, 0, 0, 0.8);
+}
+
+ytd-masthead {
+    --paper-input-container-input-align: baseline;
+    display: block;
+    width: 100%;
+    background: var(--yt-spec-brand-background-primary);
+}
+paper-toggle-button[checked]:not([disabled]) .toggle-bar.paper-toggle-button {
+    opacity: 1;
+    background-color: #5f6282;
+}
+.guide-entry-badge.ytd-guide-entry-renderer {
+    color: var(--yt-spec-brand-link-text);
+}
+#progress.ytd-thumbnail-overlay-resume-playback-renderer {
+    background-color: var(--yt-spec-themed-blue);
+}
+#notification-count.ytd-notification-topbar-button-renderer {
+    background-color: var(--yt-spec-themed-blue);
+}
+.sbdd_b, .sbsb_a, .sbfl_b, .sbsb_c {
+    background: var(--yt-spec-brand-background-primary);
+}
+.gsfs, .sbfl_b {
+    color: #fff;
+}
+.sbsb_d {
+    background-color: var(--yt-spec-general-background-c);
+}
+.sbdd_b {
+    border: 1px solid transparent;
+}
