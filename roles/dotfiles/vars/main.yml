@@ -52,6 +52,7 @@ packages:
   - ttc-iosevka
   - ttf-dejavu
   - ttf-fira-code
+  - usbutils
   - vifm
   - wget
   - wireplumber
@@ -72,6 +73,7 @@ packages:
   #- opendoas-sudo
   - picom-git
   - polybar
+  - ueberzug
   - tela-icon-theme
   - ttf-comfortaa
   - xcursor-breeze
