@@ -71,7 +71,7 @@ packages:
   - dotacat
   - i3lock-fancy-git
   #- opendoas-sudo
-  - picom-git
+  - picom-ibhagwan-git
   - polybar
   - ueberzug
   - tela-icon-theme
