@@ -1,5 +1,5 @@
-/* Hide border on tab bar, force its state to 'scroll', adjust margin-left for width of scrollbar. */
-#tabbar {
+ /* Hide border on tab bar, force its state to 'scroll', adjust margin-left for width of scrollbar. */
+ #tabbar {
 	border: 0;
 	overflow-y: scroll !important;
 	margin-left: -18px !important;
@@ -52,49 +52,30 @@
 
 
 #tabbar {
-	border-right: 1px solid #1d1d1d;
+	border-right: 1px solid #1e1e2d;
 	box-shadow: none !important;
-	background-color: #222;
+	background-color: #1a1823;
 }
 
 
 
 .tab {
 	background-color: transparent;
-	border-color: #292929;
-	box-shadow: none !important;
+    box-shadow: none !important;
 }
 .tab .label {
-	color: rgba(207,207,207,0.75) !important;
+	color: #D9E0EE !important;
 }
-.tab:hover {
-	background-color: #404040 !important;
-}
-.tab:hover .label {
-	color: rgba(207,207,207,1) !important;
-}
-
-
 
 .tab.discarded {
-	background-color: #181818;
-}
-.tab.discarded .label {
-	color: rgba(207,207,207,0.75) !important;
+	background-color: #161320;
 }
 .tab.discarded:hover {
-    background-color: #292929 !important;
+    background-color: #302D41 !important;
 }
 
-.tab.active {
-	background-color: #512DA8;
-}
 .tab.active .label {
 	font-weight: bold;
-	color: rgba(207,207,207,1) !important;
-}
-.tab.active:hover {
-	background-color: #512DA8 !important;
 }
 
 
@@ -115,4 +96,4 @@
 /* Adjust style for tab that is muted. */
 .tab.muted {
 	opacity: 0.5;
-}
+} 
