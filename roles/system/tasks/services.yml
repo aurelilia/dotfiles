@@ -12,6 +12,7 @@
   template:
     src: backlight.rules
     dest: /etc/udev/rules.d/backlight.rules
+  when: mobile_device
 
 
 - name: Enable earlyoom

@@ -150,6 +150,22 @@ content-foreground = ${color.maroon}
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
+[module/peachleft]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.background}
+content-foreground = ${color.peach}
+
+[module/peachright]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.background}
+content-foreground = ${color.peach}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
 [module/redtopeach]
 type = custom/text
 content = "%{T3}%{T-}"
@@ -186,3 +202,10 @@ content = "%{T3}%{T-}"
 content-font = 3
 content-background = ${color.pink}
 content-foreground = ${color.maroon}
+
+[module/maroontopeach]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.maroon}
+content-foreground = ${color.peach}

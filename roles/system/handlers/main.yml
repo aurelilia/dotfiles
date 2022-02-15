@@ -1,3 +1,5 @@
 - name: Recreate grub config
   command: grub-mkconfig -o /boot/grub/grub.cfg
   become: yes
+  environment:
+    ZPOOL_VDEV_NAME_PATH: 1 # Work around issue with ZFS volume detection

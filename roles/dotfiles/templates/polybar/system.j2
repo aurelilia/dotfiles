@@ -6,5 +6,9 @@
 [system]
 adapter = ACAD
 battery = BAT1
+{% if backlight_name is defined %}
 graphics_card = {{ backlight_name }}
+{% else %}
+graphics_card = none
+{% endif %}
 network_interface = {{ interface.stdout_lines[0] }}
