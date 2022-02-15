@@ -5,6 +5,7 @@ This ansible playbook contains my dotfiles and other system configuration as dep
 *If you just want to take a look at the dotfiles themselves, go to `roles/dotfiles/files/dotfiles`.*
 A few files are also templated and at `roles/dotfiles/templates`.
 
+
 ## Deploying
 ### Requirements
 For this to work, you'll need to do one of 2 things:
@@ -37,3 +38,8 @@ These dotfiles are configured in such a way that they auto-update, meaning that 
 redeployed on `localhost` when a new commit on `origin/main` is found.  
 For this to work, the repo must live in `~/.local/share/dotfiles`.  
 Remove the last autostart entry in `.config/i3/config` to disable this.
+
+
+## Misc
+For some other misc things you might be interested in that go along with my dotfiles,
+check out [MISC.md](./MISC.md).
