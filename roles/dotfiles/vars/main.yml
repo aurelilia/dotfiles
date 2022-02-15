@@ -1,24 +1,21 @@
 packages:
   - alacritty
   - alsa-utils
-  - ark
   - ansible
   - bat
   - bc
-  - bdf-unifont
-  - breeze
   - code
   - dunst
+  - evince
   - fcitx
   - fcitx-mozc
   - fd
   - feh
-  - figlet
   - firefox
+  - file-roller
   - fish
   - flameshot
   - fzf
-  - gwenview
   - htop
   - hyperfine
   - i3-gaps
@@ -35,7 +32,6 @@ packages:
   - noto-fonts
   - noto-fonts-cjk
   - ntfs-3g
-  - okular
   - pavucontrol
   - pipewire
   - pipewire-jack
@@ -48,10 +44,15 @@ packages:
   - syncthing
   - thefuck
   - thunar
+  - thunar-archive-plugin
+  - thunar-media-tags-plugin
+  - thunar-volman
+  - tumbler
   - tokei
   - ttc-iosevka
   - ttf-dejavu
   - ttf-fira-code
+  - vifm
   - wget
   - wireplumber
   - xautolock
@@ -73,7 +74,7 @@ packages:
   - polybar
   - tela-icon-theme
   - ttf-comfortaa
-  - vifm
+  - xcursor-breeze
   - yay
 
 
