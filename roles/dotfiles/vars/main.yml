@@ -8,7 +8,6 @@ packages:
   - bdf-unifont
   - breeze
   - code
-  - dolphin
   - dunst
   - fcitx
   - fcitx-mozc
@@ -48,6 +47,7 @@ packages:
   - sshfs
   - syncthing
   - thefuck
+  - thunar
   - tokei
   - ttc-iosevka
   - ttf-dejavu
