@@ -209,6 +209,8 @@ smart_borders on
 
 focus_follows_mouse no
 
+new_window pixel 0
+
 # Dracula theme from https://github.com/dracula/i3/blob/master/.config/i3/config
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
