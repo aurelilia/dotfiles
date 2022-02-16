@@ -21,7 +21,6 @@ packages:
   - hyperfine
   - i3-gaps
   - imagemagick
-  - kvantum-qt5
   - lightdm-gtk-greeter-settings
   - lsd
   - lxappearance
@@ -38,7 +37,6 @@ packages:
   - pipewire-jack
   - pipewire-pulse
   - python-pywal
-  - qt5ct
   - rofi
   - scrot
   - sshfs
@@ -74,6 +72,7 @@ packages:
   #- opendoas-sudo
   - picom-ibhagwan-git
   - polybar
+  - qt5-styleplugins
   - ueberzug
   - tela-icon-theme
   - ttf-comfortaa
