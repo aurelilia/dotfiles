@@ -2,7 +2,7 @@
 
 {% if hassio_token is defined %}
 TOKEN={{ hassio_token }}
-HASSIO=https://homeassistant.angm.xyz/api/states
+HASSIO=https://homeassistant.elia.garden/api/states
 
 curl -X POST -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
