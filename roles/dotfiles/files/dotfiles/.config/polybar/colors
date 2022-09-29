@@ -2,29 +2,29 @@
 
 [color]
 flamingo 	= #F2CDCD
-mauve 	    = #DDB6F2
+mauve 	    = #CBA6F7
 pink 	    = #F5C2E7
-maroon 	    = #E8A2AF
-red 	    = #F28FAD
-peach 	    = #F8BD96
-yellow 	    = #FAE3B0
-green 	    = #ABE9B3
-teal 	    = #B5E8E0
-blue 	    = #96CDFB
+maroon 	    = #EBA0AC
+red 	    = #F38BA8
+peach 	    = #FAB387
+yellow 	    = #F9E2AF
+green 	    = #A6E3A1
+teal 	    = #94E2D5
+blue 	    = #89B4FA
 sky 	    = #89DCEB
 
-black0   	= #161320
-black1   	= #1A1826
+black0   	= #11111B
+black1   	= #181825
 black2   	= #1E1E2E
-black3   	= #302D41
-black4   	= #575268
-gray0 	    = #6E6C7E
-gray1 	    = #988BA2
-gray2 	    = #C3BAC6
+black3   	= #313244
+black4   	= #585B70
+gray0 	    = #6C7086
+gray1 	    = #9399B2
+gray2 	    = #BAC2DE
 white 	    = #D9E0EE
-lavender 	= #C9CBFF
+lavender 	= #B4BEFE
 rosewater 	= #F5E0DC
 
 background  = #0000
-foreground  = #D9E0EE
+foreground  = #CDD6F4
 font        = #1A1826

@@ -196,11 +196,11 @@ content-background = ${color.maroon}
 content-foreground = ${color.red}
 
 
-[module/pinktomaroon]
+[module/flamingotomaroon]
 type = custom/text
 content = "%{T3}%{T-}"
 content-font = 3
-content-background = ${color.pink}
+content-background = ${color.flamingo}
 content-foreground = ${color.maroon}
 
 [module/maroontopeach]

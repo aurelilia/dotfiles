@@ -146,28 +146,28 @@ ws-icon-4 = 5;ﭮ
 ws-icon-5 = 6;
 ws-icon-6 = 7;漣
 format = <label-state><label-mode>
-format-background = ${color.gray0}
+format-background = ${color.pink}
 
 label-mode = %mode%
 label-mode-padding = 3
-label-mode-background = ${color.gray0}
+label-mode-background = ${color.pink}
 label-mode-foreground = ${color.yellow}
 
 label-focused = %index%
-label-focused-foreground = ${color.blue}
-label-focused-background = ${color.gray0}
+label-focused-foreground = ${color.gray0}
+label-focused-background = ${color.pink}
 
 label-unfocused = %index%
-label-unfocused-foreground = ${color.foreground}
-label-unfocused-background = ${color.gray0}
+label-unfocused-foreground = ${color.font}
+label-unfocused-background = ${color.pink}
 
 label-visible = %index%
 label-visible-foreground = ${color.peach}
-label-visible-background = ${color.gray0}
+label-visible-background = ${color.pink}
 
 label-urgent = %index%
 label-urgent-foreground = ${color.red}
-label-urgent-background = ${color.gray0}
+label-urgent-background = ${color.pink}
 
 label-focused-padding = 3
 label-unfocused-padding = 3
@@ -255,13 +255,13 @@ unknown-as-up = true
 format-connected = <ramp-signal><label-connected>
 format-connected-padding = 2
 format-connected-foreground = ${color.font}
-format-connected-background = ${color.pink}
+format-connected-background = ${color.flamingo}
 
 format-disconnected = <label-disconnected>
 format-disconnected-prefix = "睊 "
 format-disconnected-prefix-font = 2
 format-disconnected-foreground = ${color.font}
-format-disconnected-background = ${color.pink}
+format-disconnected-background = ${color.flamingo}
 format-disconnected-padding = 2
 
 label-connected = "%{A1:def-nmdmenu &:}%essid%%{A}"
