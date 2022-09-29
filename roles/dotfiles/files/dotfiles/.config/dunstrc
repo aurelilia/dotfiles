@@ -1,4 +1,5 @@
 # From https://github.com/dracula/dunst
+# Using catppuccin Mocha
 # Thank you!
 
 [global]
@@ -88,7 +89,7 @@
     frame_width = 2
 
     # Defines color of the frame around the notification window.
-    frame_color = "#ddb6f2"
+    frame_color = "#cba6f7"
 
     # Define a color for the separator.
     # possible values are:
@@ -274,21 +275,21 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#1e1d2f"
+    background = "#1e1e2e"
     foreground = "#D9E0EE"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #new_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#1e1d2f"
+    background = "#1e1e2e"
     foreground = "#D9E0EE"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     #new_icon = /path/to/icon
 
 [urgency_critical]
-    background = "#1e1d2f"
+    background = "#1e1e2e"
     foreground = "#D9E0EE"
     frame_color = "#f8bd96"
     timeout = 0

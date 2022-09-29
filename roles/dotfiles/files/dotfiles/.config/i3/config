@@ -23,7 +23,6 @@ bindsym Mod1+4 kill
 
 # start rofi
 bindsym $mod+d exec --no-startup-id ~/.config/rofi/apps.sh
-bindsym $mod+Shift+d exec --no-startup-id ~/.config/rofi/commands.sh
 
 # focus
 bindsym $mod+Left focus left

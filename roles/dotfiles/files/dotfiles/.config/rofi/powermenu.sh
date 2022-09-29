@@ -1,78 +1,106 @@
 #!/usr/bin/env bash
+rofi_command="rofi -theme $HOME/.config/rofi/config/powermenu.rasi"
 
-## Author  : Aditya Shakya
-## Mail    : adi1090x@gmail.com
-## Github  : @adi1090x
-## Twitter : @adi1090x
-
-dir="~/.config/rofi/style"
 uptime=$(uptime -p | sed -e 's/up //g')
 
-rofi_command="rofi -theme $dir/powermenu.rasi"
-
 # Options
-shutdown=" Shutdown"
-reboot=" Restart"
-lock=" Lock"
-suspend=" Sleep"
-logout=" Logout"
+if [[ "$DIR" == "powermenus" ]]; then
+	shutdown=""
+	reboot=""
+	lock=""
+	suspend=""
+	logout=""
+	ddir="$HOME/.config/rofi/config"
+else
 
-# Confirmation
-confirm_exit() {
-	echo -e "Yes\nNo" | rofi -dmenu -selected-row 0 -p "Are You Sure?" -theme $dir/confirm.rasi
+# For some reason the Icons are mess up I don't know why but to fix it uncomment section 2 and comment section 1 but if the section 1 icons are mess up uncomment section 2 and comment section 1
+
+	# Buttons
+	layout=`cat $HOME/.config/rofi/config/powermenu.rasi | grep BUTTON | cut -d'=' -f2 | tr -d '[:blank:],*/'`
+	if [[ "$layout" == "TRUE" ]]; then
+  # Section 1
+
+		shutdown=""
+		reboot=""
+		lock=""
+		suspend=""
+		logout=""
+  # Section 2
+#		shutdown="襤"
+#		reboot="ﰇ"
+#		lock=""
+#		suspend="鈴"
+#		logout=" "
+
+
+	else
+  # Section 1
+		shutdown=" Shutdown"
+		reboot=" Restart"
+		lock=" Lock"
+		suspend=" Sleep"
+		logout=" Logout"
+  # Section 2
+#		shutdown="襤Shutdown"
+#		reboot="ﰇ Restart"
+#		lock=" Lock"
+#		suspend="鈴Sleep"
+#		logout=" Logout"
+	fi
+	ddir="$HOME/.config/rofi/config"
+fi
+
+# Ask for confirmation
+rdialog () {
+rofi -dmenu\
+    -i\
+    -no-fixed-num-lines\
+    -p "Are You Sure? : "\
+    -theme "$ddir/confirm.rasi"
 }
 
-# Message
-msg() {
-	rofi -theme "$dir/message.rasi" -e "Available Options  -  yes / y / no / n"
+# Display Help
+show_msg() {
+	rofi -theme "$ddir/askpass.rasi" -e "Options : yes / no / y / n"
 }
 
 # Variable passed to rofi
-options="$lock\n$suspend\n$logout\n$reboot\n$shutdown"
+options="$lock\n$logout\n$reboot\n$shutdown"
 
-chosen="$(echo -e "$options" | $rofi_command -p "Uptime: $uptime" -dmenu -selected-row 0)"
+chosen="$(echo -e "$options" | $rofi_command -p "UP - $uptime" -dmenu -selected-row 0)"
 case $chosen in
     $shutdown)
-		ans=$(confirm_exit &)
-		if [[ $ans == "yes" || $ans == "Yes" || $ans == "y" || $ans == "Y" ]]; then
-			systemctl poweroff
+		ans=$(rdialog &)
+		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
+			poweroff
+		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
+			exit
         else
-			exit 0
+			show_msg
         fi
         ;;
     $reboot)
-		ans=$(confirm_exit &)
-		if [[ $ans == "yes" || $ans == "Yes" || $ans == "y" || $ans == "Y" ]]; then
-			systemctl reboot
-		else
-			exit 0
+		ans=$(rdialog &)
+		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
+			reboot
+		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
+			exit
+        else
+			show_msg
         fi
         ;;
     $lock)
-		xautolock -locknow
-        ;;
-    $suspend)
-		ans=$(confirm_exit &)
-		if [[ $ans == "yes" || $ans == "Yes" || $ans == "y" || $ans == "Y" ]]; then
-			mpc -q pause
-			amixer set Master mute
-			systemctl suspend
-		else
-			exit 0
-        fi
+        xautolock -locknow
         ;;
     $logout)
-		ans=$(confirm_exit &)
-		if [[ $ans == "yes" || $ans == "Yes" || $ans == "y" || $ans == "Y" ]]; then
-			if [[ "$DESKTOP_SESSION" == "Openbox" ]]; then
-				openbox --exit
-			elif [[ "$DESKTOP_SESSION" == "bspwm" ]]; then
-				bspc quit
-			elif [[ "$DESKTOP_SESSION" == "i3" ]]; then
-				i3-msg exit
-			fi
-		else
-			exit 0
+		ans=$(rdialog &)
+		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
+			i3-msg exit3
+		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
+			exit
+        else
+			show_msg
         fi
         ;;
 esac
+

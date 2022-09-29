@@ -8,7 +8,7 @@
 /* Hide .twisty and adjust margins so favicons have 7px on left. */
 .tab .twisty {
 	visibility: hidden;
-	margin-left: -7;
+	margin-left: 7px;
 }
 
 /* Push tab labels slightly to the right so they're completely hidden in collapsed state, but still look fine while expanded. */
@@ -54,7 +54,7 @@
 #tabbar {
 	border-right: 1px solid #1e1e2d;
 	box-shadow: none !important;
-	background-color: #1a1823;
+	background-color: var(--theme-colors-sidebar);
 }
 
 
@@ -68,7 +68,7 @@
 }
 
 .tab.discarded {
-	background-color: #161320;
+	background-color: var(--theme-colors-frame);
 }
 .tab.discarded:hover {
     background-color: #302D41 !important;

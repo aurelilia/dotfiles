@@ -62,7 +62,7 @@ packages:
   # Remove below if installing AUR packages manually (see README)
   - aurutils
   - catia-git
-  - catppuccin-gtk-theme
+  - catppuccin-gtk-theme-mocha
   - devtools
   - dotacat
   - i3lock-fancy-git
