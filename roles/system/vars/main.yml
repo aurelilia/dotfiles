@@ -8,3 +8,7 @@ packages:
   - rsync
   - inetutils
   - opendoas
+  - cronie-openrc
+
+  # Remove if not using local repo
+  - sanoid

@@ -1,0 +1,2 @@
+* * * * * root flock -n /var/run/sanoid/cron-take.lock -c "sanoid --take-snapshots"
+* * * * * root flock -n /var/run/sanoid/cron-prune.lock -c "sanoid --prune-snapshots"

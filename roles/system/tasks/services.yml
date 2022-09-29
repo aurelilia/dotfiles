@@ -1,4 +1,4 @@
-- name: Copy opendoas conf
+- name: Copy opendoas configuration
   ansible.builtin.copy:
     src: doas.conf
     dest: /etc/doas.conf
@@ -7,6 +7,11 @@
   copy:
     src: "lightdm"
     dest: /etc/
+
+- name: Copy sanoid configuration
+  copy:
+    src: "sanoid.conf"
+    dest: /etc/sanoid/
 
 - name: Copy brightness udev rule
   template:
@@ -22,3 +27,17 @@
     name: lightdm
     runlevel: default
 
+- name: Enable cronie
+  service:
+    enabled: yes
+    state: started 
+    name: cronie
+    runlevel: default
+
+- name: Copy sanoid cron task
+  copy:
+    src: "sanoid"
+    dest: /etc/cron.d
+    owner: root
+    group: root
+    mode: '644'
