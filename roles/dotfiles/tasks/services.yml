@@ -1,9 +1,0 @@
-- name: Enable services
-  systemd:
-    enabled: yes
-    state: started
-    scope: user
-    name: "{{ item }}.service"
-  with_items:
-    - wireplumber
-    - syncthing

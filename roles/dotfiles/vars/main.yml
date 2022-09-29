@@ -1,6 +1,5 @@
 packages:
   - alacritty
-  - alsa-utils
   - ansible
   - bat
   - bc
@@ -47,7 +46,6 @@ packages:
   - thunar-media-tags-plugin
   - thunar-volman
   - tumbler
-  - tokei
   - ttc-iosevka
   - ttf-dejavu
   - ttf-fira-code
@@ -68,11 +66,12 @@ packages:
   - devtools
   - dotacat
   - i3lock-fancy-git
-  #- opendoas-sudo
+  - opendoas-sudo
   - picom-ibhagwan-git
   - polybar
   - qt5-styleplugins
   - ueberzug
+  - scc
   - tela-icon-theme
   - ttf-comfortaa
   - xcursor-breeze

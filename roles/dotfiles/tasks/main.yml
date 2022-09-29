@@ -11,6 +11,3 @@
 
 - name: Configure shell
   include: shell.yml
-
-- name: Configure services
-  include: services.yml

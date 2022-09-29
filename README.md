@@ -7,6 +7,16 @@ A few files are also templated and at `roles/dotfiles/templates`.
 
 
 ## Deploying
+### Assumptions
+- You are running Artix Linux with OpenRC
+- You have a local repository with AUR packages
+- You are running ZFS as your root filesystem, and want Sanoid
+- You are using EFISTUB to boot your system
+- You want my usual set of applications
+- *You have my specific SSH servers and git user configuration* (you don't (are you me?), change them)
+
+Any deviation from these assumptions needs modification to these dotfiles.
+
 ### Requirements
 For this to work, you'll need to do one of 2 things:
 

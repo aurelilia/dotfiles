@@ -4,7 +4,7 @@ packages:
   - xorg-xrandr
   - borg
   - borgmatic
+  - git
   - rsync
-  - earlyoom
   - inetutils
   - opendoas

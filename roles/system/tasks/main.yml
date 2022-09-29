@@ -5,7 +5,3 @@
 - name: Configure services
   include: services.yml
   become: yes
-
-- name: Configure GRUB
-  include: grub.yml
-  become: yes

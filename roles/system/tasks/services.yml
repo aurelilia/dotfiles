@@ -15,14 +15,10 @@
   when: mobile_device
 
 
-- name: Enable earlyoom
-  systemd:
-    enabled: yes
-    state: started 
-    name: earlyoom.service
-
 - name: Enable lightdm
-  systemd:
+  service:
     enabled: yes
     state: started 
-    name: lightdm.service
+    name: lightdm
+    runlevel: default
+
