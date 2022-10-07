@@ -31,4 +31,3 @@
     state: link
   with_items:
     - "cache"
-    - "rustup"

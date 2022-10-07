@@ -4,7 +4,6 @@ HISTSIZE=50000
 SAVEHIST=50000
 
 # Environment variables
-export BAT_THEME="base16"
 export PROMPT_EOL_MARK="" # Partial line character
 
 # Source global profile

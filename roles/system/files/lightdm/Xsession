@@ -3,6 +3,11 @@
 # LightDM wrapper to run around X sessions.
 
 echo "Running X session wrapper"
+XDG_CACHE_HOME="$HOME/.cache"
+USERXSESSION="$XDG_CACHE_HOME/X11/xsession"
+USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
+ALTUSERXSESSION="$XDG_CACHE_HOME/X11/Xsession"
+ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 
 # Load profile
 for file in "/etc/profile" "$HOME/.profile" "/etc/xprofile" "$HOME/.xprofile"; do

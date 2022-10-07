@@ -10,3 +10,7 @@ export QT_IM_MODULE=fcitx
 export LESSHISTFILE="/dev/null"
 export GRADLE_USER_HOME="/ethereal/cache/gradle"
 export CARGO_HOME="/ethereal/cache/cargo"
+export RUSTUP_HOME="/ethereal/cache/rustup"
+export ANSIBLE_HOME="/ethereal/cache/ansible"
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java 
