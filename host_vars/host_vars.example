@@ -1,11 +1,6 @@
 ff_profile_dir: 1235        # FF profile directory in .mozilla/firefox
-hassio_name: my-compoot     # HASSIO machine name
 
 mobile_device: False        # If this is a mobile device (show SSID and battery in polybar)
-touchpad_name: ""           # If mobile: name for touchpad (configures libinput on boot)
-backlight_name: ""          # If mobile: name of backlight in /sys/class/backlight
 
 additional_pkgs:            # Additional pkgs to install
 exclude_pkgs:               # pkgs from the base set to exclude
-
-ansible_become_password:    # Become password for this host. Required for auto-update

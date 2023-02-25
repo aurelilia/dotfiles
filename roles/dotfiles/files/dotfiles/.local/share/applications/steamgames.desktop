@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=Steam Games
-Exec=/home/leela/.config/rofi/steam/launch.sh
-Icon=steam
-Terminal=false
-Type=Application
