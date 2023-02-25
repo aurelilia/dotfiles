@@ -38,8 +38,8 @@ packages:
   - thunar-volman
   - tumbler
   - ttc-iosevka
-  - ttf-dejavu
   - ttf-fira-code
+  - ttf-firacode-nerd
   - usbutils
   - vifm
   - wget
