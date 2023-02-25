@@ -5,9 +5,10 @@ swaylock \
 	--indicator \
 	--indicator-radius 200 \
 	--indicator-thickness 20 \
-	--effect-blur 7x5 \
+	--effect-blur 8x5 \
 	--effect-vignette 0.5:0.5 \
-	--grace 15 \
+    --effect-greyscale \
+	--grace 5 \
 	--fade-in 0.2 \
     --color 00000000 \
     --inside-color 1e1e2e \

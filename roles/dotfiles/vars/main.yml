@@ -69,6 +69,7 @@ packages:
   - yay
   - hyprland
   - swaylock-effects-git
+  - sway-audio-idle-inhibit-git
 
 
 home: "{{ lookup('env', 'HOME') }}"

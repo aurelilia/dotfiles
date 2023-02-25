@@ -5,6 +5,7 @@ dunst -conf ~/.config/dunstrc &
 swaybg -i $(shuf -e -n1 ~/wallpapers/*) &
 waybar &
 swayidle &
+sway-audio-idle-inhibit &
 
 # Pipewire
 pipewire &
