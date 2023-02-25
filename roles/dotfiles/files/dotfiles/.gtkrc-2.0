@@ -2,7 +2,7 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/leela/.gtkrc-2.0.mine"
-gtk-theme-name="Catppuccin-Mocha-Mauve"
+gtk-theme-name="Catppuccin-Mocha-Standard-Mauve-Dark"
 gtk-icon-theme-name="Tela-purple-dark"
 gtk-font-name="Noto Sans Regular 10"
 gtk-cursor-theme-name="Catppuccin-Mocha-Mauve-Cursors"

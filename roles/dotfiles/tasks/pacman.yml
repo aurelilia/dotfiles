@@ -10,12 +10,6 @@
     state: present
   become: yes
 
-- name: Remove unwanted packages
-  community.general.pacman:
-    name: "{{ exclude_pkgs }}"
-    state: absent
-  become: yes
-
 - name: Copy aurutils conf
   copy:
     src: "pacman-aur.conf"

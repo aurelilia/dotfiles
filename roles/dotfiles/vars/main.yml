@@ -1,16 +1,13 @@
 packages:
   - alacritty
-  - ansible
   - bat
   - bc
-  - btop
   - code
   - dunst
   - evince
   - fcitx
   - fcitx-mozc
   - fd
-  - feh
   - firefox
   - file-roller
   - fish
@@ -18,11 +15,9 @@ packages:
   - fzf
   - htop
   - hyperfine
-  - i3-gaps
   - imagemagick
   - lightdm-gtk-greeter-settings
   - lsd
-  - lxappearance
   - micro
   - mpv
   - ncdu
@@ -33,11 +28,7 @@ packages:
   - ntfs-3g
   - pavucontrol
   - pipewire
-  - pipewire-jack
   - pipewire-pulse
-  - python-pywal
-  - rofi
-  - scrot
   - sshfs
   - syncthing
   - thefuck
@@ -53,29 +44,31 @@ packages:
   - vifm
   - wget
   - wireplumber
-  - xautolock
-  - xorg-server
-  - xorg-xev
   - zoxide
   - zsh
+  - swaybg
+  - qt5-wayland
+  - qt6-wayland
+  - brightnessctl
+  - slurp
+  - grim
+  - swayidle
 
   # Remove below if installing AUR packages manually (see README)
   - aurutils
-  - catia-git
   - catppuccin-gtk-theme-mocha
   - devtools
-  - dotacat
-  - i3lock-fancy-git
   - opendoas-sudo
-  - picom-ibhagwan-git
-  - polybar
   - qt5-styleplugins
-  - ueberzug
+  - rofi-lbonn-wayland-git
   - scc
   - tela-icon-theme
   - ttf-comfortaa
-  - xcursor-breeze
+  - waybar-hyprland-no-systemd
+  - xdg-desktop-portal-hyprland-git
   - yay
+  - hyprland
+  - swaylock-effects-git
 
 
 home: "{{ lookup('env', 'HOME') }}"
