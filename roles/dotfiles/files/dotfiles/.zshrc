@@ -38,10 +38,6 @@ zstyle ':completion:*:approximate:*' max-errors 3 numeric
 # zinit
 source ~/.local/share/zinit/bin/zinit.zsh
 
-# command-time
-zinit light popstas/zsh-command-time
-ZSH_COMMAND_TIME_MIN_SECONDS=2
-
 # history-substring-search
 zinit ice wait"0a" lucid
 zinit light zsh-users/zsh-history-substring-search

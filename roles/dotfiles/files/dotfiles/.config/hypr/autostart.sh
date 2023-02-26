@@ -24,3 +24,8 @@ killall xdg-desktop-portal
 /usr/lib/xdg-desktop-portal-hyprland &
 sleep 2
 /usr/lib/xdg-desktop-portal &
+
+# GTK being an ass
+gsettings set org.gnome.desktop.interface gtk-theme 'Catppuccin-Mocha-Standard-Red-Dark'
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus-dark'
+gsettings set org.gnome.desktop.interface cursor-theme 'Catppuccin-Mocha-Mauve-Cursors'

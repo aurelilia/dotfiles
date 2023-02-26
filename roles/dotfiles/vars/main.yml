@@ -52,6 +52,7 @@ packages:
   - slurp
   - grim
   - swayidle
+  - papirus-icon-theme
 
   # Remove below if installing AUR packages manually (see README)
   - aurutils
@@ -61,7 +62,6 @@ packages:
   - qt5-styleplugins
   - rofi-lbonn-wayland-git
   - scc
-  - tela-icon-theme
   - ttf-comfortaa
   - waybar-hyprland-no-systemd
   - xdg-desktop-portal-hyprland-git

@@ -3,7 +3,7 @@
 
 include "/home/leela/.gtkrc-2.0.mine"
 gtk-theme-name="Catppuccin-Mocha-Standard-Mauve-Dark"
-gtk-icon-theme-name="Tela-purple-dark"
+gtk-icon-theme-name="Papirus-dark"
 gtk-font-name="Noto Sans Regular 10"
 gtk-cursor-theme-name="Catppuccin-Mocha-Mauve-Cursors"
 gtk-cursor-theme-size=0
