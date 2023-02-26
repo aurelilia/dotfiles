@@ -5,7 +5,7 @@ configuration {
 	modi:					"drun";
 	display-drun: 			"Apps";
 	drun-display-format:    "{name}";
-	font:				    "Fira Code Nerd Font 9";
+	font:				    "nintendo_udsg\-r_std_003 Regular 10";
 	show-icons:              true;
 	icon-theme: 			"Papirus";
 }

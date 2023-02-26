@@ -123,13 +123,13 @@ window#waybar.hidden {
 }
 
 tooltip {
-    font-family: "Eurostile", sans-serif;
+    font-family: "nintendo_udsg\-r_std_003", sans-serif;
     border-radius: 8px;
     padding: 20px;
     margin: 30px;
 }
 
 tooltip label {
-    font-family: "Eurostile", sans-serif;
+    font-family: "nintendo_udsg\-r_std_003", sans-serif;
     padding: 20px;
 }
