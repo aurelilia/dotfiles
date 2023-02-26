@@ -46,7 +46,6 @@ packages:
   - wireplumber
   - zoxide
   - zsh
-  - swaybg
   - qt5-wayland
   - qt6-wayland
   - brightnessctl
@@ -70,6 +69,7 @@ packages:
   - hyprland
   - swaylock-effects-git
   - sway-audio-idle-inhibit-git
+  - swww-git
 
 
 home: "{{ lookup('env', 'HOME') }}"

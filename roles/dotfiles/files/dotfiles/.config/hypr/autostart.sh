@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
 # Environment
 dunst -conf ~/.config/dunstrc &
-swaybg -i $(shuf -e -n1 ~/wallpapers/*) &
+~/.config/hypr/scripts/wallpaper.sh &
 waybar &
 swayidle &
 sway-audio-idle-inhibit &
