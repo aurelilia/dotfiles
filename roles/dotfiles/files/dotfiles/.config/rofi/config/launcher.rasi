@@ -1,149 +1,93 @@
+// Modified from https://github.com/ljmill/dotfiles/blob/main/rofi/config.rasi,
+// thank you!
+
 configuration {
-    show-icons:                     true;
-    display-drun: 		            "";
-    drun-display-format:            "{icon} {name}";
-    disable-history:                false;
-    click-to-exit: 		            true;
-    location:                       0;
+	modi:					"drun";
+	display-drun: 			"Apps";
+	drun-display-format:    "{name}";
+	font:				    "Fira Code Nerd Font 9";
+	show-icons:              true;
+	icon-theme: 			"Papirus";
 }
 
-@import "font.rasi"
-@import "colors.rasi"
+@theme "/dev/null"
+
+* {
+	bg:				#1e1e2e;
+	fg:				#cdd6f4;
+    active:      	#585b70;
+	rad:			5px;
+
+	background-color: @bg;
+	text-color:	@fg;
+}
 
 window {
-    transparency:                   "real";
-    background-color:               @BG;
-    text-color:                     @FG;
-    border:                         2px;
-    border-color:                   @BDR;
-    border-radius:                  10px;
-    width:                          500px;
-    anchor:                         center;
-    x-offset:                       0;
-    y-offset:                       0;
-}
-
-prompt {
-    enabled: 			            true;
-    padding: 			            8px;
-    background-color: 		        @BG;
-    text-color: 		            @IMG;
-}
-
-textbox-prompt-colon {
-    expand: 			            false;
-    str: 			                "";
-    border-radius:                  100%;
-    background-color:               @SEL;
-    text-color:                     @FG;
-    padding:                        8px 12px 8px 12px;
-    font:			                "Iosevka Nerd Font 10";
-}
-
-entry {
-    background-color:               @BG;
-    text-color:                     @FG;
-    placeholder-color:              @FG;
-    expand:                         true;
-    horizontal-align:               0;
-    placeholder:                    "Search...";
-    blink:                          true;
-    border:                  	    0px 0px 2px 0px;
-    border-color:                   @BDR;
-    border-radius:                  10px;
-    padding:                        8px;
+	transparency: "real";
+	height: 20%;
+    width: 100%;
+	location: north;
+	x-offset: 0;
+	y-offset: 0;
+	border: 0;
+	children: [ listview, inputbar ];
 }
 
 inputbar {
-	children: 		                [ textbox-prompt-colon, prompt, entry ];
-    background-color:               @BG;
-    text-color:                     @FG;
-    expand:                         false;
-    border:                  	    0px 0px 0px 0px;
-    border-radius:                  0px;
-    border-color:                   @BDR;
-    margin:                         0px 0px 0px 0px;
-    padding:                        0px;
-    position:                       center;
+	children: [ textbox, entry ];
+	expand: false;
+	margin: 0 40% 15px;
+	border-radius: @rad;
+	background-color: @active;
 }
 
-case-indicator {
-    background-color:               @BG;
-    text-color:                     @FG;
-    spacing:                        0;
+textbox {
+    str: "🔍";
+    expand: false;
+    padding: 0.5%;
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+    border-radius: @rad;
+    background-image: linear-gradient(to right, #cba6f7, #f38ba8);
+    text-color: @bg;
+    font: "Material Icons 14";
 }
 
+entry {
+	expand: false;
+	padding: 1%;
+    placeholder: "Search";
+	border-radius: @rad;
+    background-color: @active;
+}
 
 listview {
-    background-color:               @BG;
-    columns:                        1;
-    lines:			                7;
-    spacing:                        4px;
-    cycle:                          false;
-    dynamic:                        true;
-    layout:                         vertical;
-}
-
-mainbox {
-    background-color:               @BG;
-    children:                       [ inputbar, listview ];
-    spacing:                        15px;
-    padding:                        15px;
+	columns: 12;
+	cycle: false;
+    margin: 20px 20px 0;
 }
 
 element {
-    background-color:               @BG;
-    text-color:                     @FG;
-    orientation:                    horizontal;
-    border-radius:                  4px;
-    padding:                        6px 6px 6px 6px;
+	orientation: vertical;
+	padding: 0.5em;
 }
 
-element-icon {
-    background-color: 	            inherit;
-    text-color:       		        inherit;
-    horizontal-align:               0.5;
-    vertical-align:                 0.5;
-    size:                           24px;
-    border:                         0px;
+element-text, element-icon {
+	padding: 0.2em;
+	horizontal-align: 0.5;
+	background-color: inherit;
 }
 
-element-text {
-    background-color: 		        inherit;
-    text-color:       		        inherit;
-    expand:                         true;
-    horizontal-align:               0;
-    vertical-align:                 0.5;
-    margin:                         2px 0px 2px 2px;
+element-icon { 
+	size: 48px;
 }
 
-element normal.urgent,
-element alternate.urgent {
-    background-color:               @UGT;
-    text-color:                     @FG;
-    border-radius:                  9px;
-}
-
-element normal.active,
-element alternate.active {
-    background-color:               @BGA;
-    text-color:                     @FG;
+listview, element, element selected, element-text, element-icon {
+	cursor: pointer;
 }
 
 element selected {
-    background-color:               @BGA;
-    text-color:                     @SEL;
-    border:                  	    0px 0px 0px 0px;
-    border-radius:                  10px;
-    border-color:                   @BDR;
-}
-
-element selected.urgent {
-    background-color:               @UGT;
-    text-color:                     @FG;
-}
-
-element selected.active {
-    background-color:               @BGA;
-    color:                          @FG;
+	background-color: @active;
+	text-color: @fg;
+	border-radius: @rad;
 }

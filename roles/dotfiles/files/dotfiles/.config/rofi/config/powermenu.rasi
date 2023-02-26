@@ -1,3 +1,7 @@
+* {
+    font:				 	"Comfortaa 11";
+}
+
 configuration {
     show-icons:                     true;
     display-drun: 		            "";
@@ -7,7 +11,6 @@ configuration {
     location:                       4;
 }
 
-@import "font.rasi"
 @import "colors.rasi"
 
 /* Line Responsible For Button Layouts */

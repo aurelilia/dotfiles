@@ -50,57 +50,22 @@ else
 	ddir="$HOME/.config/rofi/config"
 fi
 
-# Ask for confirmation
-rdialog () {
-rofi -dmenu\
-    -i\
-    -no-fixed-num-lines\
-    -p "Are You Sure? : "\
-    -theme "$ddir/confirm.rasi"
-}
-
-# Display Help
-show_msg() {
-	rofi -theme "$ddir/askpass.rasi" -e "Options : yes / no / y / n"
-}
-
 # Variable passed to rofi
 options="$lock\n$logout\n$reboot\n$shutdown"
 
 chosen="$(echo -e "$options" | $rofi_command -p "UP - $uptime" -dmenu -selected-row 0)"
 case $chosen in
     $shutdown)
-		ans=$(rdialog &)
-		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
-			poweroff
-		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
-			exit
-        else
-			show_msg
-        fi
+		poweroff
         ;;
     $reboot)
-		ans=$(rdialog &)
-		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
-			reboot
-		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
-			exit
-        else
-			show_msg
-        fi
+		reboot
         ;;
     $lock)
-        xautolock -locknow
+        ~/.config/hypr/scripts/lock.sh
         ;;
     $logout)
-		ans=$(rdialog &)
-		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
-			i3-msg exit3
-		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
-			exit
-        else
-			show_msg
-        fi
+		pkill Hyprland
         ;;
 esac
 
