@@ -17,5 +17,5 @@ fish_style_pwd_dir_length = 1
 min_time = 1000
 format = "[]($style)[in (bg:#24263a fg:#eba0ac bold)$duration](bg:#24263a fg:#BBC3DF)[ ]($style)"
 style = "bg:none fg:#24263a"
-min_time_to_notify = 45000
+min_time_to_notify = 250000
 show_notifications = true
