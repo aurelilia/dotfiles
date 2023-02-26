@@ -1,5 +1,4 @@
 packages:
-  - alacritty
   - bat
   - bc
   - code
@@ -69,7 +68,8 @@ packages:
   - hyprland
   - swaylock-effects-git
   - sway-audio-idle-inhibit-git
-  - swww-git
+  - swww
+  - alacritty-sixel-git
 
 
 home: "{{ lookup('env', 'HOME') }}"

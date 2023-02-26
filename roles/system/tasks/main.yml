@@ -5,3 +5,8 @@
 - name: Configure services
   include: services.yml
   become: yes
+
+- name: Configure sanoid
+  include: sanoid.yml
+  become: yes
+  when: zfs

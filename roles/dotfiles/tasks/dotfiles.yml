@@ -7,6 +7,7 @@
   ansible.posix.synchronize:
     src: "firefox/"
     dest: "~/.mozilla/firefox/{{ ff_profile_dir }}"
+  when: ff_profile_dir is defined
 
 - name: Copy waybar configuration
   template:
