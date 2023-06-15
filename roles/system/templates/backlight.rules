@@ -1,3 +1,0 @@
-ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="{{ backlight_name }}", GROUP="video", MODE="0664"
-RUN+="/bin/chgrp video /sys/class/backlight/{{ backlight_name }}/brightness"
-RUN+="/bin/chmod g+w /sys/class/backlight/{{ backlight_name }}/brightness"

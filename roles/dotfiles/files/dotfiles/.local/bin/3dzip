@@ -1,4 +1,0 @@
-#!/bin/bash
-# Unzip into a directory with the same name as the zip.
-unzip $1 -d "${1%%.*}"
-rm $1

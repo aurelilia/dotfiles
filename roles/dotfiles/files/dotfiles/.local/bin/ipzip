@@ -1,4 +1,0 @@
-#!/bin/bash
-# 'ipzip' - unzip in place
-unzip $1 -d "${1%%.*}"
-rm $1

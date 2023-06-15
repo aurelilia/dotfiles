@@ -1,5 +1,0 @@
-mobile_device: False         # If this is a mobile device (show SSID and battery in polybar)
-backlight_name: "amdgpu_bl0" # If mobile: Name of the backlight for udev rule
-
-user: 1000                   # UID/GID of the user
-zfs: True                    # If this system uses ZFS (use sanoid)
