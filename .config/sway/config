@@ -97,6 +97,8 @@ input * {
     floating_modifier $mod normal
     # Reload the configuration file
     bindsym $mod+Shift+c reload
+    # Pick a colour
+    bindsym $mod+p exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy 
 
 # Moving around
     # Move your focus around
