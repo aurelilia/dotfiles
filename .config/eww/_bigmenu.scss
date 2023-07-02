@@ -1,0 +1,119 @@
+@import 'colours';
+
+$mauve:rgb(203, 166, 247);
+$red: rgb(243, 139, 168);
+$peach: rgb(250, 179, 135);
+$yellow: rgb(249, 226, 175);
+$green: rgb(166, 227, 161);
+$teal: rgb(148, 226, 213);
+
+$lavender: rgb(180, 190, 254);
+$subtext0: rgb(166, 173, 200);
+$crust: rgb(17, 17, 27);
+
+$bg: $crust;
+$time: $lavender;
+$date: $subtext0;
+
+.big-menu-closer {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.big-menu {
+    background-color: $bg;
+}
+
+.bigmenu-box {
+    padding: 100px 20px;
+}
+
+.time, .date, .sysinfo *, .netinfo *, .volume label, .brightness label {
+    font-family: "Iosevka";
+    padding: 0;
+    margin: 0;
+}
+
+.time {
+    font-size: 80px;
+    color: $time;
+}
+
+.date {
+    font-size: 40px;
+    color: $date;
+}
+
+.sysinfo, .volume {
+    margin-top: 70px;
+}
+
+.sysinfo *, .netinfo * {
+    font-size: 30px;
+    padding: 0 20px;
+}
+
+.cpu {
+    color: $red;
+}
+
+.ram {
+    color: $peach;
+}
+
+.temp {
+    color: $green;
+}
+
+.netinfo {
+    margin-top: 15px;
+}
+
+.ip {
+    color: $teal;
+}
+
+.volume label {
+    font-size: 30px;
+    margin-right: 15px;
+    color: $mauve;
+}
+
+.volume scale {
+    border-radius: 10px;
+
+    trough {
+        background-color: $subtext0;
+        min-height: 18px;
+        border-radius: 10px;
+    }
+
+    slider, fill, highlight, marks, value {
+        background-color: $mauve;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+    }
+}
+
+.brightness label {
+    font-size: 30px;
+    margin-right: 15px;
+    color: $yellow;
+}
+
+.brightness scale {
+    border-radius: 10px;
+
+    trough {
+        background-color: $subtext0;
+        min-height: 18px;
+        border-radius: 10px;
+    }
+
+    slider, fill, highlight, marks, value {
+        background-color: $yellow;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+    }
+}

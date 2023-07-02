@@ -1,0 +1,27 @@
+@import 'colours';
+
+.rc-menu-closer {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.context-menu-box {
+    background-color: $widget-bg;
+    padding: 10px;
+}
+
+.context-menu-box .header {
+    background-color: $widget-bg-highlight;
+    color: $header-text;
+    font-weight: bold;
+    padding: 7px 10px;
+    margin-bottom: 5px;
+}
+
+.context-menu-box .menu-icon-entry {
+    background-color: $widget-bg;
+    border-radius: 0;
+}
+
+.menu-icon {
+    padding-right: 6px;
+}

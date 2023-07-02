@@ -1,0 +1,18 @@
+(defwindow bgbox
+  :monitor 0
+  :stacking "bg"
+  :exclusive false
+  :geometry (geometry
+              :width "100%"
+              :height "100%")
+  (bgbox_layout))
+
+(defwidget bgbox_layout []
+  (button :onclick "eww open big-menu && eww open big-menu-closer && eww update bigmenu_visible=true"
+          :onrightclick "eww open rc-menu && eww open rc-menu-closer"))
+
+(defwidget closer [window]
+  (eventbox :onclick "eww close ${window} && eww close ${window}-closer"))
+
+(include "./bigmenu.yuck")
+(include "./rightclick.yuck")

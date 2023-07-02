@@ -1,0 +1,97 @@
+(defvar bigmenu_visible false)
+
+(defwindow big-menu-closer
+    :monitor 0
+    :geometry (geometry :width "100%" :height "100%")
+    :stacking "fg"
+    :focusable false
+    (bgcloser))
+
+(defwidget bgcloser []
+  (eventbox :onclick "sh ./scripts/close.sh &"
+            :timeout 1000))
+
+(defwindow big-menu
+    :monitor 0
+    :stacking "fg"
+    :exclusive false
+    :geometry (geometry :x "0"
+                        :y "0"
+                        :width "25%"
+                        :height "100%"
+                        :anchor "top left")
+    (bigmenu))
+
+(defwidget bigmenu []
+  (revealer :transition "crossfade" 
+            :reveal bigmenu_visible
+    (box :orientation "vertical"
+        :halign "center"
+        :class "bigmenu-box"
+        :hexpand true
+        :vexpand true
+        :space-evenly false
+      (clock)
+      (sysinfo)
+      (netinfo)
+      (volume)
+      (brightness))))
+
+
+(defwidget clock []
+  (box :orientation "vertical"
+       :space-evenly false
+    (label :class "date" :text "${weekday}")
+    (label :class "time" :text "${time}")
+    (label :class "date" :text "${date}")))
+
+(defwidget sysinfo []
+  (box :orientation "horizontal"
+       :class "sysinfo"
+    (label :class "cpu" :text " ${round(EWW_CPU.avg, 1)}%")
+    (label :class "ram" :text " ${round(EWW_RAM.used_mem / 1000000000, 1)}GB")
+    (label :class "temp" :text " ${round(EWW_TEMPS['CORETEMP_PACKAGE_ID_0'], 1)}C")))
+
+(defwidget netinfo []
+  (box :orientation "horizontal"
+        :class "netinfo"
+    (label :class "ip" :text " ${net}")))
+    
+(defwidget volume []
+  (box :orientation "horizontal"
+       :space-evenly false
+       :class "volume"
+    (label :text "")
+    (scale :hexpand true
+           :round-digits 0
+           :value volume
+           :min 0
+           :max 100
+           :onchange "amixer -D pulse sset Master {}%")))
+
+(defwidget brightness []
+  (box :orientation "horizontal"
+       :space-evenly false
+       :class "brightness"
+    (label :text "")
+    (scale :hexpand true
+           :round-digits 0
+           :value brightness
+           :min 0
+           :max 100
+           :onchange "brightnessctl s {}%")))
+
+(defpoll time :interval "10s"
+    "date '+%H:%M'")
+(defpoll date :interval "60s"
+    "date '+%B %d %Y'")
+(defpoll weekday :interval "60s"
+    "date '+%A'")
+
+(defpoll net :interval "60s"
+    "sh ./scripts/net.sh")
+
+(defpoll volume :interval "1s"
+    "sh ./scripts/vol.sh")
+(defpoll brightness :interval "1s"
+    "sh ./scripts/brightness.sh")
