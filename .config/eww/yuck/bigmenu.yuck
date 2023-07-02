@@ -96,7 +96,7 @@
        :class "notif"
        :space-evenly false
     (label :class "notif-title" :text "${title}")
-    (label :class "notif-text" :text "${text}")))
+    (label :class "notif-text" :text "${text}" :wrap true)))
 
 (defwidget workspaces-bottom []
   (box :class "workspaces"

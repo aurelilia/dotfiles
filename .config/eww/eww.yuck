@@ -8,11 +8,13 @@
   (bgbox_layout))
 
 (defwidget bgbox_layout []
-  (button :onclick "eww open big-menu && eww open big-menu-closer && eww update bigmenu_visible=true"
-          :onrightclick "eww open rc-menu && eww open rc-menu-closer"))
+  (eventbox :onclick "eww open big-menu && eww open big-menu-closer && eww update bigmenu_visible=true"
+          :onrightclick "eww open rc-menu && eww open rc-menu-closer"
+          :onscroll "sh ./scripts/bgscroll.sh {}"))
 
 (defwidget closer [window]
   (eventbox :onclick "eww close ${window} && eww close ${window}-closer"))
 
 (include "./yuck/bigmenu.yuck")
 (include "./yuck/rightclick.yuck")
+(include "./yuck/workspace_popup.yuck")
