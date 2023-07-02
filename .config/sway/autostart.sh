@@ -7,6 +7,8 @@ waybar &
 swayidle &
 sway-audio-idle-inhibit &
 autotiling-rs &
+eww daemon
+eww open bgbox
 
 # Pipewire
 pipewire &

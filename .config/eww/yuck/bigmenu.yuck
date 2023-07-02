@@ -65,7 +65,7 @@
   (box :orientation "horizontal"
        :space-evenly false
        :class "volume"
-    (label :text "")
+    (label :text "" :width 40)
     (scale :hexpand true
            :round-digits 0
            :value volume
@@ -77,29 +77,19 @@
   (box :orientation "horizontal"
        :space-evenly false
        :class "brightness"
-    (label :text "")
+    (label :text "󰃠" :width 40)
     (scale :hexpand true
            :round-digits 0
            :value brightness
            :min 0
-           :max 100
-           :onchange "brightnessctl s {}%")))
+           :max brightness-max
+           :onchange "brightnessctl s {}")))
 
 (defwidget notifs []
   (scroll :height 400
           :class "notif-box"
-    (box :orientation "vertical"
-          :space-evenly false
-          :class "notif-box-inner"
-      (notif :title "${notifs["data"][0][0]["summary"]["data"]}" :text "${notifs["data"][0][0]["body"]["data"]}")
-      (notif :title "${notifs["data"][0][1]["summary"]["data"]}" :text "${notifs["data"][0][1]["body"]["data"]}")
-      (notif :title "${notifs["data"][0][1]["summary"]["data"]}" :text "${notifs["data"][0][1]["body"]["data"]}")
-      (notif :title "${notifs["data"][0][1]["summary"]["data"]}" :text "${notifs["data"][0][1]["body"]["data"]}")
-      (notif :title "${notifs["data"][0][1]["summary"]["data"]}" :text "${notifs["data"][0][1]["body"]["data"]}")
-      (notif :title "${notifs["data"][0][1]["summary"]["data"]}" :text "${notifs["data"][0][1]["body"]["data"]}")
-      (notif :title "${notifs["data"][0][2]["summary"]["data"]}" :text "${notifs["data"][0][2]["body"]["data"]}")
-      (notif :title "${notifs["data"][0][3]["summary"]["data"]}" :text "${notifs["data"][0][3]["body"]["data"]}")
-      (notif :title "${notifs["data"][0][4]["summary"]["data"]}" :text "${notifs["data"][0][4]["body"]["data"]}"))))
+          :hscroll false
+    (literal :content notifs)))
     
 (defwidget notif [title text]
   (box :orientation "vertical"
@@ -132,10 +122,10 @@
   (box :class "misc-btns"
        :orientation "horizontal"
        :space-evenly true
-    (button :height 85 :width 85 :onclick "sh ./scripts/picker.sh" "C")
-    (button :height 85 :width 85 :onclick "~/.config/sway/scripts/screenshot.sh" "S")
-    (button :height 85 :width 85 :onclick "~/.config/rofi/apps.sh" "L")
-    (button :height 85 :width 85 :onclick "~/.config/rofi/powermenu.sh" "P")))
+    (button :height 100 :onclick "~/.config/sway/scripts/picker.sh" "")
+    (button :height 100 :onclick "~/.config/sway/scripts/screenshot.sh" "")
+    (button :height 100 :onclick "~/.config/rofi/apps.sh" "󰏋")
+    (button :height 100 :onclick "~/.config/rofi/powermenu.sh" "⏻")))
 
 (defpoll time :interval "10s"
     "date '+%H:%M'")
@@ -150,7 +140,9 @@
 (defpoll volume :interval "1s"
     "sh ./scripts/vol.sh")
 (defpoll brightness :interval "1s"
-    "sh ./scripts/brightness.sh")
+    "brightnessctl g")
+(defpoll brightness-max :interval "1s"
+    "brightnessctl m")
 
 (defpoll notifs :interval "1s"
-    "dunstctl history")
+    "sh ./scripts/notif.sh")

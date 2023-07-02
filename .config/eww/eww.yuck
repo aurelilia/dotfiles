@@ -14,5 +14,5 @@
 (defwidget closer [window]
   (eventbox :onclick "eww close ${window} && eww close ${window}-closer"))
 
-(include "./bigmenu.yuck")
-(include "./rightclick.yuck")
+(include "./yuck/bigmenu.yuck")
+(include "./yuck/rightclick.yuck")

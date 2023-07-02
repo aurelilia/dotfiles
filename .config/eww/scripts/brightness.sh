@@ -1,1 +1,1 @@
-echo 100
+brightnessctl g

@@ -1,22 +1,5 @@
 @import 'colours';
 
-$mauve:rgb(203, 166, 247);
-$red: rgb(243, 139, 168);
-$peach: rgb(250, 179, 135);
-$yellow: rgb(249, 226, 175);
-$green: rgb(166, 227, 161);
-$teal: rgb(148, 226, 213);
-$blue: rgb(137, 180, 250);
-
-$lavender: rgb(180, 190, 254);
-$subtext0: rgb(166, 173, 200);
-$mantle: rgb(24, 24, 37);
-$crust: rgb(17, 17, 27);
-
-$bg: $crust;
-$time: $lavender;
-$date: $subtext0;
-
 * {
     font-family: "Iosevka";
 }
@@ -26,7 +9,7 @@ $date: $subtext0;
 }
 
 .big-menu {
-    background-color: $bg;
+    background-color: $crust;
 }
 
 .bigmenu-box {
@@ -39,13 +22,13 @@ $date: $subtext0;
 }
 
 .time {
-    font-size: 80px;
-    color: $time;
+    font-size: 4.7em;
+    color: $lavender;
 }
 
 .date {
-    font-size: 40px;
-    color: $date;
+    font-size: 2.4em;
+    color: $subtext0;
 }
 
 .sysinfo, .volume {
@@ -53,7 +36,7 @@ $date: $subtext0;
 }
 
 .sysinfo *, .netinfo * {
-    font-size: 30px;
+    font-size: 2em;
     padding: 0 20px;
 }
 
@@ -78,18 +61,17 @@ $date: $subtext0;
 }
 
 .volume label {
-    font-size: 30px;
+    font-size: 2em;
     margin-right: 15px;
     color: $mauve;
 }
 
 .volume scale {
-    border-radius: 10px;
-
     trough {
         background-color: $subtext0;
         min-height: 18px;
         border-radius: 10px;
+        padding-right: 10px;
     }
 
     slider, fill, highlight, marks, value {
@@ -98,21 +80,29 @@ $date: $subtext0;
         border: none;
         box-shadow: none;
     }
+
+
+    fill, highlight, value {
+        padding-left: 10px;
+    }
+
+    fill, highlight {
+        border-radius: 10px 0 0 10px;
+    }
 }
 
 .brightness label {
-    font-size: 30px;
+    font-size: 2em;
     margin-right: 15px;
     color: $yellow;
 }
 
 .brightness scale {
-    border-radius: 10px;
-
     trough {
         background-color: $subtext0;
         min-height: 18px;
         border-radius: 10px;
+        padding-right: 10px;
     }
 
     slider, fill, highlight, marks, value {
@@ -121,11 +111,19 @@ $date: $subtext0;
         border: none;
         box-shadow: none;
     }
+
+    fill, highlight, value {
+        padding-left: 10px;
+    }
+
+    fill, highlight {
+        border-radius: 10px 0 0 10px;
+    }
 }
 
 .notif-box {
     margin-top: 70px;
-    font-size: 17px;
+    font-size: 1.2em;
 }
 
 .notif-box-inner {
@@ -149,4 +147,5 @@ $date: $subtext0;
 .misc-btns button {
     margin-top: 20px;
     color: $blue;
+    font-size: 2em;
 }
