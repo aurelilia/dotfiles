@@ -35,7 +35,11 @@
       (sysinfo)
       (netinfo)
       (volume)
-      (brightness))))
+      (brightness)
+      (notifs)
+      (workspaces-top)
+      (workspaces-bottom)
+      (misc-btns))))
 
 
 (defwidget clock []
@@ -48,7 +52,7 @@
 (defwidget sysinfo []
   (box :orientation "horizontal"
        :class "sysinfo"
-    (label :class "cpu" :text " ${round(EWW_CPU.avg, 1)}%")
+    (label :class "cpu" :text " ${round(EWW_CPU.avg, 1)}%")
     (label :class "ram" :text " ${round(EWW_RAM.used_mem / 1000000000, 1)}GB")
     (label :class "temp" :text " ${round(EWW_TEMPS['CORETEMP_PACKAGE_ID_0'], 1)}C")))
 
@@ -81,6 +85,58 @@
            :max 100
            :onchange "brightnessctl s {}%")))
 
+(defwidget notifs []
+  (scroll :height 400
+          :class "notif-box"
+    (box :orientation "vertical"
+          :space-evenly false
+          :class "notif-box-inner"
+      (notif :title "${notifs["data"][0][0]["summary"]["data"]}" :text "${notifs["data"][0][0]["body"]["data"]}")
+      (notif :title "${notifs["data"][0][1]["summary"]["data"]}" :text "${notifs["data"][0][1]["body"]["data"]}")
+      (notif :title "${notifs["data"][0][1]["summary"]["data"]}" :text "${notifs["data"][0][1]["body"]["data"]}")
+      (notif :title "${notifs["data"][0][1]["summary"]["data"]}" :text "${notifs["data"][0][1]["body"]["data"]}")
+      (notif :title "${notifs["data"][0][1]["summary"]["data"]}" :text "${notifs["data"][0][1]["body"]["data"]}")
+      (notif :title "${notifs["data"][0][1]["summary"]["data"]}" :text "${notifs["data"][0][1]["body"]["data"]}")
+      (notif :title "${notifs["data"][0][2]["summary"]["data"]}" :text "${notifs["data"][0][2]["body"]["data"]}")
+      (notif :title "${notifs["data"][0][3]["summary"]["data"]}" :text "${notifs["data"][0][3]["body"]["data"]}")
+      (notif :title "${notifs["data"][0][4]["summary"]["data"]}" :text "${notifs["data"][0][4]["body"]["data"]}"))))
+    
+(defwidget notif [title text]
+  (box :orientation "vertical"
+       :class "notif"
+       :space-evenly false
+    (label :class "notif-title" :text "${title}")
+    (label :class "notif-text" :text "${text}")))
+
+(defwidget workspaces-bottom []
+  (box :class "workspaces"
+       :orientation "horizontal"
+       :space-evenly true
+    (button :height 85 :width 85 :onclick "swaymsg workspace 6" 6)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 7" 7)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 8" 8)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 9" 9)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 10" 10)))
+
+(defwidget workspaces-top []
+  (box :class "workspaces-top"
+       :orientation "horizontal"
+       :space-evenly true
+    (button :height 85 :width 85 :onclick "swaymsg workspace 1" 1)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 2" 2)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 3" 3)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 4" 4)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 5" 5)))
+
+(defwidget misc-btns []
+  (box :class "misc-btns"
+       :orientation "horizontal"
+       :space-evenly true
+    (button :height 85 :width 85 :onclick "sh ./scripts/picker.sh" "C")
+    (button :height 85 :width 85 :onclick "~/.config/sway/scripts/screenshot.sh" "S")
+    (button :height 85 :width 85 :onclick "~/.config/rofi/apps.sh" "L")
+    (button :height 85 :width 85 :onclick "~/.config/rofi/powermenu.sh" "P")))
+
 (defpoll time :interval "10s"
     "date '+%H:%M'")
 (defpoll date :interval "60s"
@@ -95,3 +151,6 @@
     "sh ./scripts/vol.sh")
 (defpoll brightness :interval "1s"
     "sh ./scripts/brightness.sh")
+
+(defpoll notifs :interval "1s"
+    "dunstctl history")

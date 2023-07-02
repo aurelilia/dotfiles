@@ -6,14 +6,20 @@ $peach: rgb(250, 179, 135);
 $yellow: rgb(249, 226, 175);
 $green: rgb(166, 227, 161);
 $teal: rgb(148, 226, 213);
+$blue: rgb(137, 180, 250);
 
 $lavender: rgb(180, 190, 254);
 $subtext0: rgb(166, 173, 200);
+$mantle: rgb(24, 24, 37);
 $crust: rgb(17, 17, 27);
 
 $bg: $crust;
 $time: $lavender;
 $date: $subtext0;
+
+* {
+    font-family: "Iosevka";
+}
 
 .big-menu-closer {
     background-color: rgba(0, 0, 0, 0);
@@ -28,7 +34,6 @@ $date: $subtext0;
 }
 
 .time, .date, .sysinfo *, .netinfo *, .volume label, .brightness label {
-    font-family: "Iosevka";
     padding: 0;
     margin: 0;
 }
@@ -116,4 +121,32 @@ $date: $subtext0;
         border: none;
         box-shadow: none;
     }
+}
+
+.notif-box {
+    margin-top: 70px;
+    font-size: 17px;
+}
+
+.notif-box-inner {
+    margin-bottom: 20px;
+}
+
+.notif-title {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.workspaces-top {
+    margin-top: 100px;
+}
+
+.workspaces-top button, .workspaces button, .misc-btns button {
+    background-color: $mantle;
+    margin: 10px;
+}
+
+.misc-btns button {
+    margin-top: 20px;
+    color: $blue;
 }
