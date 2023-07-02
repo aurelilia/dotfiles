@@ -1,0 +1,66 @@
+(defvar appmenu_visible false)
+(defvar appsa "[]")
+(defvar appsb "[]")
+
+(defwindow app-menu-closer
+    :monitor 0
+    :geometry (geometry :width "100%" :height "100%")
+    :stacking "fg"
+    :focusable false
+    (appcloser))
+
+(defwidget appcloser []
+  (eventbox :onclick "sh ./scripts/appclose.sh &"
+            :onrightclick "sh ./scripts/appclose.sh &"
+            :timeout 1000))
+
+(defwindow app-menu
+    :monitor 0
+    :stacking "fg"
+    :exclusive false
+    :focusable true
+    :geometry (geometry :x "0"
+                        :y "0"
+                        :width "25%"
+                        :height "100%"
+                        :anchor "top right")
+    (appmenu))
+
+(defwidget appmenu []
+  (revealer :transition "crossfade" 
+            :reveal appmenu_visible
+    (box :orientation "vertical"
+        :halign "center"
+        :class "bigmenu-box"
+        :hexpand true
+        :vexpand true
+        :space-evenly false
+      (search)  
+      (box :orientation "horizontal"
+           :class "apps-row-box"
+        (apps :apps appsa)
+        (apps :apps appsb)))))
+
+(defwidget search []
+  (box :class "search"
+       :space-evenly false
+       :hexpand true
+    (label :text "" :class "icon")
+    (input :class "input"
+           :hexpand true
+           :width 350
+           :onchange "sh ./scripts/apps.sh {} &"
+           :onaccept "gtk-launch ${appsa[0].exec} && sh ./scripts/appclose.sh &")))
+
+(defwidget apps [apps]
+  (box :orientation "vertical" :space-evenly true :class "apps-box-inner"
+    (for app in apps
+      (app :name "${app["name"]}" :icon "${app["icon"]}" :exec "${app["exec"]}"))))
+
+(defwidget app [name icon exec]
+  (button :class "app-button" :onclick "gtk-launch ${exec} && sh ./scripts/appclose.sh &" 
+    (box :orientation "vertical"
+         :class "app"
+         :space-evenly false
+      (image :path icon :image-width 64)
+      (label :text "${name}"))))

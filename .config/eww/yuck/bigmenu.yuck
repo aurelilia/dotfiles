@@ -8,7 +8,7 @@
     (bgcloser))
 
 (defwidget bgcloser []
-  (eventbox :onclick "sh ./scripts/close.sh &"
+  (eventbox :onclick "sh ./scripts/leftclose.sh &"
             :timeout 1000))
 
 (defwindow big-menu
@@ -89,8 +89,10 @@
   (scroll :height 400
           :class "notif-box"
           :hscroll false
-    (literal :content notifs)))
-    
+    (box :orientation "vertical" :space-evenly false :class "notif-box-inner"
+      (for notif in notifs
+        (notif :title "${notif["title"]}" :text "${notif["body"]}")))))
+
 (defwidget notif [title text]
   (box :orientation "vertical"
        :class "notif"
