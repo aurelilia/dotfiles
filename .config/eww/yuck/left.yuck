@@ -75,7 +75,11 @@
   (box :orientation "horizontal"
        :space-evenly false
        :class "brightness"
-    (label :text "󰃠" :width 40)
+    (label :class "bat-text"
+           :text "󰁹 ${EWW_BATTERY['total_avg']}%")
+    (label :class "brightness-label"
+           :text "󰃠"
+           :width 40)
     (scale :hexpand true
            :round-digits 0
            :value brightness

@@ -17,7 +17,12 @@
     padding: 7em 20px;
 }
 
-.time, .date, .sysinfo *, .netinfo *, .volume label, .brightness label {
+.time,
+.date,
+.sysinfo *,
+.netinfo *,
+.volume label,
+.brightness label {
     padding: 0;
     margin: 0;
 }
@@ -32,11 +37,13 @@
     color: $subtext0;
 }
 
-.sysinfo, .volume {
+.sysinfo,
+.volume {
     margin-top: 70px;
 }
 
-.sysinfo *, .netinfo * {
+.sysinfo *,
+.netinfo * {
     font-size: 2em;
     padding: 0 20px;
 }
@@ -75,7 +82,11 @@
         padding-right: 10px;
     }
 
-    slider, fill, highlight, marks, value {
+    slider,
+    fill,
+    highlight,
+    marks,
+    value {
         background-color: $mauve;
         background-image: none;
         border: none;
@@ -83,19 +94,29 @@
     }
 
 
-    fill, highlight, value {
+    fill,
+    highlight,
+    value {
         padding-left: 10px;
     }
 
-    fill, highlight {
+    fill,
+    highlight {
         border-radius: 10px 0 0 10px;
     }
+}
+
+.bat-text {
+    color: $maroon;
+}
+
+.brightness-label {
+    color: $yellow;
 }
 
 .brightness label {
     font-size: 2em;
     margin-right: 15px;
-    color: $yellow;
 }
 
 .brightness scale {
@@ -106,18 +127,25 @@
         padding-right: 10px;
     }
 
-    slider, fill, highlight, marks, value {
+    slider,
+    fill,
+    highlight,
+    marks,
+    value {
         background-color: $yellow;
         background-image: none;
         border: none;
         box-shadow: none;
     }
 
-    fill, highlight, value {
+    fill,
+    highlight,
+    value {
         padding-left: 10px;
     }
 
-    fill, highlight {
+    fill,
+    highlight {
         border-radius: 10px 0 0 10px;
     }
 }
@@ -140,7 +168,9 @@
     margin-top: 100px;
 }
 
-.workspaces-top button, .workspaces button, .misc-btns button {
+.workspaces-top button,
+.workspaces button,
+.misc-btns button {
     background-color: $mantle;
     margin: 10px;
 }
