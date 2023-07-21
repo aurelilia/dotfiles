@@ -85,7 +85,7 @@ input * {
     # Kill focused window
     bindsym Mod1+4 kill
     # Start launcher
-    bindsym $mod+t exec ~/.config/rofi/apps.sh
+    bindsym $mod+t exec ~/.config/eww/right.sh
     bindsym $mod+Shift+e exec ~/.config/rofi/powermenu.sh
 	# Dunst history
     bindsym $mod+grave exec dunstctl history-pop

@@ -14,4 +14,4 @@
            :class "workspace-text")))
 
 (defpoll workspace :interval "1s"
-    "sh ./scripts/workspace.sh")
+    "sh ./scripts/get_workspace.sh")

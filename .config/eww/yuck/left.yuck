@@ -1,0 +1,148 @@
+(defvar left_visible false)
+(defvar user "leela")
+
+(defwindow left-closer
+    :monitor 0
+    :geometry (geometry :width "100%" :height "100%")
+    :stacking "fg"
+    :focusable false
+    (closer :window "left"))
+
+(defwindow left
+    :monitor 0
+    :stacking "fg"
+    :exclusive false
+    :geometry (geometry :x "0"
+                        :y "0"
+                        :width "25%"
+                        :height "100%"
+                        :anchor "top left")
+    (left-widget))
+
+(defwidget left-widget []
+  (revealer :transition "crossfade" 
+            :reveal left_visible
+    (box :orientation "vertical"
+        :halign "center"
+        :class "left-box"
+        :hexpand true
+        :vexpand true
+        :space-evenly false
+      (clock)
+      (sysinfo)
+      (netinfo)
+      (volume)
+      (literal :content "${config['brightness']}")
+      (notifs)
+      (workspaces-top)
+      (workspaces-bottom)
+      (misc-btns))))
+
+
+(defwidget clock []
+  (box :orientation "vertical"
+       :space-evenly false
+    (label :class "date" :text "${weekday}")
+    (label :class "time" :text "${time}")
+    (label :class "date" :text "${date}")))
+
+(defwidget sysinfo []
+  (box :orientation "horizontal"
+       :class "sysinfo"
+    (label :class "cpu" :text " ${round(EWW_CPU.avg, 1)}%")
+    (label :class "ram" :text " ${round(EWW_RAM.used_mem / 1000000000, 1)}GB")
+    (label :class "temp" :text " ${round(EWW_TEMPS[config['temp_sensor']], 1)}C")))
+
+(defwidget netinfo []
+  (box :orientation "horizontal"
+        :class "netinfo"
+    (label :class "ip"
+          :text "${user} @  ${net}")))
+    
+(defwidget volume []
+  (box :orientation "horizontal"
+       :space-evenly false
+       :class "volume"
+    (label :text "" :width 40)
+    (scale :hexpand true
+           :round-digits 0
+           :value volume
+           :min 0
+           :max 100
+           :onchange "amixer -D pulse sset Master {}%")))
+
+(defwidget brightness []
+  (box :orientation "horizontal"
+       :space-evenly false
+       :class "brightness"
+    (label :text "󰃠" :width 40)
+    (scale :hexpand true
+           :round-digits 0
+           :value brightness
+           :min 0
+           :max brightness-max
+           :onchange "brightnessctl s {}")))
+
+(defwidget notifs []
+  (scroll :height 400
+          :class "notif-box"
+          :hscroll false
+    (box :orientation "vertical" :space-evenly false :class "notif-box-inner"
+      (for notif in notifs
+        (notif :title "${notif["title"]}" :text "${notif["body"]}")))))
+
+(defwidget notif [title text]
+  (box :orientation "vertical"
+       :class "notif"
+       :space-evenly false
+    (label :class "notif-title" :text "${title}")
+    (label :class "notif-text" :text "${text}" :wrap true)))
+
+(defwidget workspaces-bottom []
+  (box :class "workspaces"
+       :orientation "horizontal"
+       :space-evenly true
+    (button :height 85 :width 85 :onclick "swaymsg workspace 6" 6)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 7" 7)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 8" 8)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 9" 9)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 10" 10)))
+
+(defwidget workspaces-top []
+  (box :class "workspaces-top"
+       :orientation "horizontal"
+       :space-evenly true
+    (button :height 85 :width 85 :onclick "swaymsg workspace 1" 1)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 2" 2)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 3" 3)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 4" 4)
+    (button :height 85 :width 85 :onclick "swaymsg workspace 5" 5)))
+
+(defwidget misc-btns []
+  (box :class "misc-btns"
+       :orientation "horizontal"
+       :space-evenly true
+    (button :height 100 :onclick "~/.config/sway/scripts/picker.sh" "")
+    (button :height 100 :onclick "~/.config/sway/scripts/screenshot.sh" "")
+    (button :height 100 :onclick "~/.config/eww/right.sh" "󰏋")
+    (button :height 100 :onclick "sh scripts/left/switch_user.sh ${user} &" "⏻")))
+
+(defpoll time :interval "10s"
+    "date '+%H:%M'")
+(defpoll date :interval "60s"
+    "date '+%B %d %Y'")
+(defpoll weekday :interval "60s"
+    "date '+%A'")
+
+(defpoll net :interval "60s"
+    "sh ./scripts/left/get_ip.sh")
+
+(defpoll volume :interval "1s"
+    "sh ./scripts/left/get_volume.sh")
+(defpoll brightness :interval "1s"
+    "brightnessctl g")
+(defpoll brightness-max :interval "1s"
+    "brightnessctl m")
+
+(defpoll notifs :interval "1s"
+    "sh ./scripts/left/get_notifs.sh")

@@ -1,0 +1,152 @@
+@import 'colours';
+
+* {
+    font-family: "Iosevka";
+}
+
+.left-closer {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.left {
+    background-color: $crust;
+    border-radius: 0 150px 150px 0;
+}
+
+.left-box {
+    padding: 7em 20px;
+}
+
+.time, .date, .sysinfo *, .netinfo *, .volume label, .brightness label {
+    padding: 0;
+    margin: 0;
+}
+
+.time {
+    font-size: 4.7em;
+    color: $lavender;
+}
+
+.date {
+    font-size: 2.4em;
+    color: $subtext0;
+}
+
+.sysinfo, .volume {
+    margin-top: 70px;
+}
+
+.sysinfo *, .netinfo * {
+    font-size: 2em;
+    padding: 0 20px;
+}
+
+.cpu {
+    color: $red;
+}
+
+.ram {
+    color: $peach;
+}
+
+.temp {
+    color: $green;
+}
+
+.netinfo {
+    margin-top: 15px;
+}
+
+.ip {
+    color: $teal;
+}
+
+.volume label {
+    font-size: 2em;
+    margin-right: 15px;
+    color: $mauve;
+}
+
+.volume scale {
+    trough {
+        background-color: $subtext0;
+        min-height: 18px;
+        border-radius: 10px;
+        padding-right: 10px;
+    }
+
+    slider, fill, highlight, marks, value {
+        background-color: $mauve;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+    }
+
+
+    fill, highlight, value {
+        padding-left: 10px;
+    }
+
+    fill, highlight {
+        border-radius: 10px 0 0 10px;
+    }
+}
+
+.brightness label {
+    font-size: 2em;
+    margin-right: 15px;
+    color: $yellow;
+}
+
+.brightness scale {
+    trough {
+        background-color: $subtext0;
+        min-height: 18px;
+        border-radius: 10px;
+        padding-right: 10px;
+    }
+
+    slider, fill, highlight, marks, value {
+        background-color: $yellow;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+    }
+
+    fill, highlight, value {
+        padding-left: 10px;
+    }
+
+    fill, highlight {
+        border-radius: 10px 0 0 10px;
+    }
+}
+
+.notif-box {
+    margin-top: 70px;
+    font-size: 1.2em;
+}
+
+.notif-box-inner {
+    margin-bottom: 20px;
+}
+
+.notif-title {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.workspaces-top {
+    margin-top: 100px;
+}
+
+.workspaces-top button, .workspaces button, .misc-btns button {
+    background-color: $mantle;
+    margin: 10px;
+}
+
+.misc-btns button {
+    margin-top: 20px;
+    color: $blue;
+    font-size: 2em;
+}

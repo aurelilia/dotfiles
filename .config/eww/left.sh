@@ -1,2 +1,2 @@
 #!/bin/sh
-eww open big-menu && eww open big-menu-closer && eww update bigmenu_visible=true
+eww open left && eww open left-closer && eww update left_visible=true

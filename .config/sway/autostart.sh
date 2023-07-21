@@ -7,8 +7,8 @@ waybar &
 swayidle &
 sway-audio-idle-inhibit &
 autotiling-rs &
-eww daemon
-eww open bgbox
+~/.config/eww/init.sh
+ydotoold &
 
 # Pipewire
 pipewire &

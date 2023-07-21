@@ -1,4 +1,11 @@
-@import 'styles/appmenu';
-@import 'styles/bigmenu';
-@import 'styles/rightclick';
-@import 'styles/workspace';
+@import 'styles/left';
+@import 'styles/right';
+@import 'styles/workspace_popup';
+
+.closer {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.bgbox {
+    background-color: $crust;
+}
