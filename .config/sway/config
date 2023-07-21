@@ -15,7 +15,7 @@ gaps outer 5
 workspace_auto_back_and_forth yes
 
 # Class assigns
-assign [class="thunderbird"] 10
+assign [app_id="thunderbird"] 10
 
 # Mouse behavior
 focus_follows_mouse always

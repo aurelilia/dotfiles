@@ -14,3 +14,6 @@ cp sanoid.conf /etc/sanoid/
 # services
 dinitctl enable cronie
 dinitctl enable lightdm
+
+# keymap
+cp us /usr/share/X11/xkb/symbols/
