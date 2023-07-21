@@ -8,10 +8,7 @@
   (box :hexpand true
        :vexpand true
        :class "workspace-box"
-    (label :halign "center"
-           :valign "center"
-           :text workspace
-           :class "workspace-text")))
-
-(defpoll workspace :interval "1s"
-    "sh ./scripts/get_workspace.sh")
+    (for space in workspaces
+      (label :text "${space['name']}"
+             :width 175
+             :class "workspace-text ${space['focused'] ? "active" : "inactive"}"))))

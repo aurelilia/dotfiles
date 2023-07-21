@@ -3,7 +3,6 @@
 # Environment
 dunst -conf ~/.config/dunstrc &
 ~/.config/sway/scripts/wallpaper.sh &
-waybar &
 swayidle &
 sway-audio-idle-inhibit &
 autotiling-rs &

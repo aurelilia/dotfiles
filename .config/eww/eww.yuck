@@ -1,4 +1,5 @@
 (defvar config "{}")
+(defvar workspaces "[]")
 (defvar wallpaper "./assets/wallpaper.png")
 (defvar wallpaper_visible true)
 
@@ -38,3 +39,4 @@
 (include "./yuck/left.yuck")
 (include "./yuck/right.yuck")
 (include "./yuck/workspace_popup.yuck")
+(include "./yuck/clock.yuck")

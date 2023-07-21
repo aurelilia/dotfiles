@@ -1,10 +1,15 @@
 @import 'colours';
 
 .workspace-popup {
-    background-color: rgba(0, 0, 0, 0);
+    background-color: $crust-trans;
+    border-radius: 50px 0 50px 0;
 }
 
-.workspace-text {
-    margin-left: 60px;
-    font-size: 10em;
+.active {
+    color: $lavender;
+    font-size: 8em;
+}
+
+.inactive {
+    font-size: 4em;
 }
