@@ -1,5 +1,5 @@
 #!/bin/sh
-RES=$(swaymsg -t get_outputs -p | rg -o '[0-9]*x[0-9]*' | head -n1)
+RES=$(swaymsg -t get_outputs -p | rg -o '[0-9]{4}x[0-9]+' | head -n1)
 
 while :
 do
