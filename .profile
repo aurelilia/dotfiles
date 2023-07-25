@@ -4,6 +4,7 @@ export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 export IDEA_JDK="/usr/lib64/jvm/java-1.11-openjdk/"
 export EDITOR=micro
 export MOZ_ENABLE_WAYLAND=1
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 export XCURSOR_THEME=Catppuchin-Mocha-Mauve
 export XCURSOR_SIZE=24
