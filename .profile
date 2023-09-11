@@ -14,3 +14,5 @@ export GRADLE_USER_HOME="/ethereal/cache/gradle"
 export CARGO_HOME="/ethereal/cache/cargo"
 export RUSTUP_HOME="/ethereal/cache/rustup"
 export GNUPGHOME="$HOME/.local/share/gnupg"
+
+export XDG_CURRENT_DESKTOP=sway
