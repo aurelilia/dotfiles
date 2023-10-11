@@ -1,8 +1,6 @@
 #!/bin/sh
 
 # ethereal
-mkdir -p /ethereal/screenshots
-ln -s /ethereal/screenshots ~/screenshots
 mkdir -p /ethereal/cache/{cache,rustup,gradle,cargo}
 ln -s /ethereal/cache/cache ~/.cache
 
