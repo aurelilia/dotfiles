@@ -3,7 +3,7 @@ RES=$(swaymsg -t get_outputs -p | rg -o '[0-9]{4}x[0-9]+' | head -n1)
 
 while :
 do
-	img=$(shuf -e -n1 ~/images/wallpapers/*)
+	img=$(shuf -e -n1 ~/personal/images/wallpapers/*)
 	convert $img -resize $RES^ -gravity center -extent $RES ~/.config/eww/assets/wallpaper.png
 
 	eww update wallpaper_visible=false
