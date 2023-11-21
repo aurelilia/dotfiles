@@ -1,2 +1,2 @@
-timeout 300 '~/.config/hypr/scripts/lock.sh'
-timeout 420 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
+timeout 300 '~/.config/sway/scripts/lock.sh'
+timeout 360 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
