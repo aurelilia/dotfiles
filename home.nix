@@ -11,6 +11,7 @@
 
   home.packages = with pkgs; [
     (wrapWithNixGL firefox)
+    (wrapWithNixGL thunderbird)
   ];
 
   programs.home-manager.enable = true;

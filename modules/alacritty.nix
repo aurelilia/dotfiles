@@ -241,10 +241,10 @@
     # Default:
     #   - (Linux/macOS) /bin/bash --login
     #   - (Windows) powershell
-    #shell:
-    #  program: /bin/bash
-    #  args:
-    #    - --login
+    shell:
+      program: /home/leela/.nix-profile/bin/zsh
+      args:
+        - --login
 
     # Windows 10 ConPTY backend (Windows only)
     #

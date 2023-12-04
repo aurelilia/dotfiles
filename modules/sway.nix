@@ -2,7 +2,7 @@
 {
   wayland.windowManager.sway = {
     enable = true;
-    package = pkgs.swayfx;
+    package = (pkgs.wrapWithNixGL pkgs.swayfx);
   };
   # TODO port config
   home.file.".config/sway".source = ../files/sway;

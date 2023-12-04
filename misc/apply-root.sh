@@ -11,11 +11,5 @@ cp files/sanoid /etc/cron.d/
 mkdir -p /etc/sanoid
 cp files/sanoid.conf /etc/sanoid/
 
-# services
-dinitctl enable cronie
-dinitctl enable lightdm
-
-# keymap
-cp files/us /usr/local/share/keymap-us
-cp files/keymap.hook /usr/share/libalpm/hooks/
-cp files/copy-keymap /usr/local/bin/
+# keymap. cheating
+cp .config/home-manager/misc/files/us $(fd us /nix/store | rg symbols/us)
