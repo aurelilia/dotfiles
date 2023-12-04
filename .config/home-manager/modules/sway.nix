@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 {
-  wayland.windowManager.sway = {
-    enable = false; # todo: sway itself
-  };
+  # TODO switch to a systemd distro lol
+  home.file.".config/sway".source = ../files/sway;
+  home.file.".config/swayidle".source = ../files/swayidle;
 
   services.swayidle = {
     enable = true;
@@ -22,7 +22,7 @@
     QT_QPA_PLATFORMTHEME = "gtk2";
     MOZ_ENABLE_WAYLAND = 1;
     _JAVA_AWT_WM_NONREPARENTING = 1;
-    
+
     XCURSOR_THEME = "Catppuchin-Mocha-Mauve";
     XCURSOR_SIZE = 24;
     XDG_CURRENT_DESKTOP = "sway";
