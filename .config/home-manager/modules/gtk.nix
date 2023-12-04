@@ -4,6 +4,7 @@
     enable = true;
     theme.name = "Catppuccin-Mocha-Standard-Red-Dark";
     cursorTheme.name = "Catppuccin-Mocha-Mauve-Cursors";
+    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
     iconTheme = {
       package = pkgs.papirus-icon-theme;
@@ -63,4 +64,6 @@
       cursor-theme = "Catppuccin-Mocha-Mauve-Cursors";
     };
   };
+
+  home.file.".local/share/icons".source = ../files/icons;
 }

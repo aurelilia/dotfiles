@@ -11,6 +11,6 @@
   };
 
   programs.zsh.shellAliases = {
-    ls = "ls -lFh";
+    ls = "lsd -lFh";
   };
 }

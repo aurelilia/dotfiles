@@ -8,4 +8,5 @@
       colorscheme = "catppuccin-mocha";
     };
   };
+  home.sessionVariables.EDITOR = "micro";
 }

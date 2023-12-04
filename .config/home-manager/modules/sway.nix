@@ -17,4 +17,14 @@
     configFile = "$XDG_CONFIG_HOME/dunstrc";
   };
   home.file.".config/dunstrc".source = ../files/dunstrc;
+
+  home.sessionVariables = {
+    QT_QPA_PLATFORMTHEME = "gtk2";
+    MOZ_ENABLE_WAYLAND = 1;
+    _JAVA_AWT_WM_NONREPARENTING = 1;
+    
+    XCURSOR_THEME = "Catppuchin-Mocha-Mauve";
+    XCURSOR_SIZE = 24;
+    XDG_CURRENT_DESKTOP = "sway";
+  };
 }
