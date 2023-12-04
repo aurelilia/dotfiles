@@ -1,6 +1,7 @@
 # From https://github.com/dracula/dunst
 # Using catppuccin Mocha
 # Thank you!
+# TODO maybe into Nix? Meh.
 
 [global]
     ### Display ###

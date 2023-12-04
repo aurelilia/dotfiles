@@ -1,9 +1,4 @@
-{
-  options,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, ... }:
 {
   programs.git = {
     enable = true;
@@ -11,7 +6,7 @@
     userEmail = "git@elia.garden";
 
     aliases = { 
-      pall = "!git remote | xargs -L1 -I R git push R main";
+      pall = "!git remote | xargs -I R git push R main";
     };
 
     extraConfig = {

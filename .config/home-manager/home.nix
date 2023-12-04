@@ -61,6 +61,7 @@
     ./modules/git.nix
     ./modules/lsd.nix
     ./modules/micro.nix
+    ./modules/starship.nix
 
     ./modules/alacritty.nix
     ./modules/eww.nix
