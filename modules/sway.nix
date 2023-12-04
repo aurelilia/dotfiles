@@ -1,8 +1,11 @@
 { config, pkgs, ... }:
 {
-  # TODO switch to a systemd distro lol
+  wayland.windowManager.sway = {
+    enable = true;
+    package = pkgs.swayfx;
+  };
+  # TODO port config
   home.file.".config/sway".source = ../files/sway;
-  home.file.".config/swayidle".source = ../files/swayidle;
 
   services.swayidle = {
     enable = true;
@@ -18,6 +21,10 @@
   };
   home.file.".config/dunstrc".source = ../files/dunstrc;
 
+  # Misc services
+  # Syncthing
+  services.syncthing.enable = true;
+
   home.sessionVariables = {
     QT_QPA_PLATFORMTHEME = "gtk2";
     MOZ_ENABLE_WAYLAND = 1;
@@ -25,6 +32,11 @@
 
     XCURSOR_THEME = "Catppuchin-Mocha-Mauve";
     XCURSOR_SIZE = 24;
-    XDG_CURRENT_DESKTOP = "sway";
   };
+
+  home.packages = with pkgs; [
+    sway-audio-idle-inhibit
+    autotiling-rs
+    ydotool
+  ];
 }

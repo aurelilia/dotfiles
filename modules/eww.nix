@@ -2,6 +2,7 @@
 {
   programs.eww = {
     enable = true;
+    package = pkgs.eww-wayland;
     configDir = ../files/eww;
   };
 

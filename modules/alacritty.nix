@@ -2,6 +2,7 @@
 {
   programs.alacritty = {
     enable = true;
+    package = (pkgs.wrapWithNixGL pkgs.alacritty);
   };
 
   xdg.configFile."alacritty/alacritty.yml".text = ''
