@@ -1,0 +1,40 @@
+@import 'colours';
+
+* {
+    font-family: "Iosevka";
+}
+
+.right-closer {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.right {
+    background-color: $crust;
+    border-radius: 150px 0 0 150px;
+}
+
+.right-box {
+    padding: 50px 20px;
+}
+
+.search, .input {
+    font-size: 1.5em;
+    background-color: $surface0;
+}
+
+.icon {
+    margin: 10px;
+}
+
+.search {
+    border-radius: 15px;
+    margin: 40px 0;
+}
+
+.apps-row-box {
+    margin-top: 30px;
+}
+
+.app-button {
+    margin: 5px;
+}

@@ -1,0 +1,51 @@
+(defvar user "autumn")
+
+(defwidget left []
+  (box :orientation "vertical"
+       :space-evenly false
+    (top)
+    (taskbar)
+    (desktops)))
+
+
+(defwidget top []
+  (box :orientation "horizontal"
+       :space-evenly false
+    (sysinfo)
+    (tray)))
+
+(defwidget sysinfo []
+  (box :orientation "vertical"
+       :class "blob-box sysinfo"
+       :space-evenly false
+    (eventbox :onclick "sh scripts/switchuser.sh ${user}" 
+              :class "pfp"
+              :timeout 100
+      (image :path "assets/${user}.jpg"))
+    (label :text "${user}@seance")
+    (label :class "sep" :text "x----x----x")
+    (label :text "os: FreeBSD")
+    (label :text "wm: sway")
+    (label :text "pk: ??")
+    (label :class "uptime" :text "up: ${uptime}")))
+
+(defwidget tray []
+  (box :orientation "vertical"))
+
+
+(defwidget taskbar []
+  (box :orientation "horizontal"))
+
+
+(defwidget desktops []
+  (box :class "blob-box workspaces"
+       :orientation "horizontal"
+       :space-evenly true
+    (button :onclick "swaymsg workspace 1" 1)
+    (button :onclick "swaymsg workspace 2" 2)
+    (button :onclick "swaymsg workspace 3" 3)
+    (button :onclick "swaymsg workspace 4" 4)
+    (button :onclick "swaymsg workspace 5" 5)))
+
+(defpoll uptime :interval "60s"
+  "uptime -p | tail -c+4")

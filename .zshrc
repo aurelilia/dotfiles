@@ -88,3 +88,5 @@ source /usr/share/fzf/completion.zsh
 command -v zoxide > /dev/null && eval "$(zoxide init zsh)"
 # Starship
 eval "$(starship init zsh)"
+
+if [ -e /home/leela/.nix-profile/etc/profile.d/nix.sh ]; then . /home/leela/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

@@ -1,5 +1,0 @@
-{
-    "brightness": "(box)",
-    "temp_sensor": "CORETEMP_PACKAGE_ID_0",
-    "scroll_regions": [["workspace"], ["workspace"], ["volume"]]
-}

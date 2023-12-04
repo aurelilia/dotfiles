@@ -1,0 +1,61 @@
+(defvar apps "[]")
+
+(defwidget right []
+  (box :orientation "vertical"
+       :space-evenly false
+    (launcher)
+    (notifs)))
+
+(defwidget launcher []
+  (box :orientation "vertical"
+      :halign "center"
+      :class "blob-box bigmenu-box"
+      :space-evenly false
+      :width 800
+    (search)  
+    (box :orientation "vertical"
+          :class "apps-rows-box"
+      (for row in apps
+        (app-row :apps "${row}")))))
+
+(defwidget search []
+  (box :class "search"
+       :space-evenly false
+       :hexpand true
+    (label :text "" :class "icon")
+    (input :class "input"
+           :onchange "sh ./scripts/app_search.sh {} &"
+           :onaccept "sh ./scripts/app_launch.sh \"${apps[0][0].name}\" \"${apps[0][0].exec}\"")))
+
+(defwidget app-row [apps]
+  (box :orientation "horizontal" :space-evenly true :class "apps-box-inner"
+    (for app in apps
+      (app :name "${app["name"]}" :icon "${app["icon"]}" :exec "${app["exec"]}"))))
+
+(defwidget app [name icon exec]
+  (button :class "app-button" :onclick "sh ./scripts/app_launch.sh \"${name}\" \"${exec}\"" 
+    (box :orientation "vertical"
+         :class "app"
+         :space-evenly false
+      (image :path icon :image-width 64)
+      (label :wrap true :text "${name}"))))
+
+(defwidget notifs []
+  (scroll :height 400
+          :width 600
+          :class "blob-box notif-box"
+          :hscroll false
+    (box :orientation "vertical" :space-evenly false :class "notif-box-inner"
+      (for notif in notifs
+        (notif :app "${notif["app"]}" :title "${notif["title"]}" :text "${notif["body"]}")))))
+
+(defwidget notif [app title text]
+  (box :orientation "vertical"
+       :class "notif"
+       :space-evenly false
+    (label :halign "start" :class "notif-app" :text "${app}")
+    (label :halign "start" :class "notif-title" :text "${title}")
+    (label :halign "start" :class "notif-text" :text "${text}" :wrap true)))
+
+(defpoll notifs :interval "5s"
+  "sh scripts/notif.sh")

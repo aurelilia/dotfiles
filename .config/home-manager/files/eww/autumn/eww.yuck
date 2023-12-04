@@ -1,0 +1,52 @@
+(defvar config "{\"scroll_regions\": [\"workspaces\"]}")
+(defvar workspaces "[]")
+(defvar wallpaper "./assets/wallpaper.png")
+(defvar wallpaper_visible true)
+
+(defvar bigmenu_visible false)
+
+(defwindow background
+    :monitor 0
+    :stacking "bg"
+    :exclusive false
+    :focusable true
+    :geometry (geometry :x "0"
+                        :y "0"
+                        :width "100%"
+                        :height "100%"
+                        :anchor "top left")
+    (bg_layout))
+
+(defwidget bg_layout []
+  (overlay
+    (wallpaper)
+    (bigmenu)
+    (box :orientation "horizontal"
+      (for sc in "${config.scroll_regions}"
+        (box :orientation "vertical"
+          (for scr in sc
+            (scroller :of scr)))))))
+
+(defwidget wallpaper []
+  (revealer :transition "crossfade" 
+            :reveal wallpaper_visible
+    (image :path "${wallpaper}")))
+
+(defwidget scroller [of]
+  (eventbox :onscroll "sh ./scripts/bg/scroll_${of}.sh {}"))
+
+(defwidget bigmenu []
+  (revealer :transition "crossfade" 
+            :reveal true
+    (box :orientation "horizontal"
+        :class "bigmenu-box"
+        :hexpand true
+        :vexpand true
+        :space-evenly false
+      (left)
+      (center)
+      (right))))
+
+(include "yuck/left.yuck")
+(include "yuck/center.yuck")
+(include "yuck/right.yuck")

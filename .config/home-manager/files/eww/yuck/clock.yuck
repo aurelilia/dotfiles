@@ -1,0 +1,14 @@
+(defwindow clock
+    :monitor 0
+    :stacking "fg"
+    :exclusive false
+    :geometry (geometry :x "0"
+                        :y "0"
+                        :width "140px"
+                        :height "40px"
+                        :anchor "top center")
+    (clock-widget))
+
+(defwidget clock-widget []
+  (eventbox :onclick "sh ./scripts/clock_click.sh &"    
+    (label :text "${time}")))
