@@ -9,9 +9,7 @@
     PATH = "$HOME/.local/bin:$HOME/.cargo/bin:$PATH";
   };
 
-  # Probably feishin...
   nixpkgs.config.allowUnfreePredicate = _: true;
-
   home.packages = with pkgs; [
     # Graphical
     (wrapWithNixGL firefox)
@@ -56,11 +54,6 @@
     wireguard-tools
   ];
 
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium.fhs;
-  };
-
   programs.home-manager.enable = true;
   targets.genericLinux.enable = true;
   fonts.fontconfig.enable = true;
@@ -78,6 +71,7 @@
     ./modules/eww.nix
     ./modules/gtk.nix
     ./modules/sway.nix
+    ./modules/vscode.nix
     ./modules/xdg.nix
   ];
 
@@ -108,5 +102,4 @@
         };
     }
   );
-
 }
