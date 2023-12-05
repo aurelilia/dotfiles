@@ -30,7 +30,7 @@
     MOZ_ENABLE_WAYLAND = 1;
     _JAVA_AWT_WM_NONREPARENTING = 1;
 
-    XCURSOR_THEME = "Catppuchin-Mocha-Mauve";
+    XCURSOR_THEME = "Catppuchin-Mocha-Maroon";
     XCURSOR_SIZE = 24;
   };
 

@@ -5,17 +5,19 @@
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
         
     theme = {
-      name = "Catppuccin-Mocha-Compact-Maroon-Dark";
+      name = "Catppuccin-Mocha-Standard-Maroon-Dark";
       package = pkgs.catppuccin-gtk.override {
         accents = [ "maroon" ];
-        size = "compact";
         tweaks = [ "rimless" "black" ];
         variant = "mocha";
       };
     };
     iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus-dark";
+      name = "Papirus-Dark";
+      package = pkgs.catppuccin-papirus-folders.override {
+          accent = "maroon";
+          flavor = "mocha";
+      };
     };
     cursorTheme = {
       package = pkgs.catppuccin-cursors.mochaMaroon;
