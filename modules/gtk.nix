@@ -8,7 +8,7 @@
       name = "Catppuccin-Mocha-Standard-Maroon-Dark";
       package = pkgs.catppuccin-gtk.override {
         accents = [ "maroon" ];
-        tweaks = [ "rimless" "black" ];
+        tweaks = [ "rimless" ];
         variant = "mocha";
       };
     };
@@ -69,4 +69,12 @@
       '';
     };
   };
+
+  home.sessionVariables = {
+    GTK_THEME = "Catppuccin-Mocha-Standard-Maroon-Dark";
+    QT_QPA_PLATFORMTHEME = "gtk2";
+    XCURSOR_THEME = "Catppuchin-Mocha-Maroon";
+    XCURSOR_SIZE = 24;
+  };
+  home.packages = [ pkgs.libsForQt5.qtstyleplugins ];
 }

@@ -22,16 +22,11 @@
   home.file.".config/dunstrc".source = ../files/dunstrc;
 
   # Misc services
-  # Syncthing
   services.syncthing.enable = true;
 
   home.sessionVariables = {
-    QT_QPA_PLATFORMTHEME = "gtk2";
     MOZ_ENABLE_WAYLAND = 1;
     _JAVA_AWT_WM_NONREPARENTING = 1;
-
-    XCURSOR_THEME = "Catppuchin-Mocha-Maroon";
-    XCURSOR_SIZE = 24;
   };
 
   home.packages = with pkgs; [

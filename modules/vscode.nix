@@ -22,7 +22,7 @@
     ];
 
     userSettings = {
-      "workbench.iconTheme" = "Catppuccin Mocha";
+      "workbench.iconTheme" = "catppuccin-mocha";
       "workbench.colorTheme" = "Catppuccin Mocha";
       "files.exclude" = {
         "**/.classpath" = true;

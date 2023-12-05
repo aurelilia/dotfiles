@@ -3,9 +3,6 @@
 # doas
 cp files/doas.conf /etc/doas.conf
 
-# lightdm
-cp -r lightdm/ /etc
-
 # sanoid
 cp files/sanoid /etc/cron.d/
 mkdir -p /etc/sanoid

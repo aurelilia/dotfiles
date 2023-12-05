@@ -27,6 +27,7 @@
     obs-studio
     obs-studio-plugins.input-overlay
     pavucontrol
+    hotspot
     # Scanner tomfoolery
     epkowa
 
