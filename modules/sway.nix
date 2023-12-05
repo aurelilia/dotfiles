@@ -35,8 +35,16 @@
   };
 
   home.packages = with pkgs; [
-    sway-audio-idle-inhibit
+    alsa-utils
     autotiling-rs
+    grim
+    jq
+    inetutils
+    slurp
+    sway-audio-idle-inhibit
+    swaylock-effects
+    wl-clipboard
+    xdg-desktop-portal-wlr
     ydotool
   ];
 }

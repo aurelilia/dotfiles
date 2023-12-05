@@ -2,15 +2,26 @@
 {
   gtk = {
     enable = true;
-    theme.name = "Catppuccin-Mocha-Standard-Red-Dark";
-    cursorTheme.name = "Catppuccin-Mocha-Mauve-Cursors";
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-
+        
+    theme = {
+      name = "Catppuccin-Mocha-Compact-Maroon-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "maroon" ];
+        size = "compact";
+        tweaks = [ "rimless" "black" ];
+        variant = "mocha";
+      };
+    };
     iconTheme = {
       package = pkgs.papirus-icon-theme;
       name = "Papirus-dark";
     };
-      
+    cursorTheme = {
+      package = pkgs.catppuccin-cursors.mochaMaroon;
+      name = "Catppuccin-Mocha-Maroon-Cursors";
+    };
+
     font = {
       package = pkgs.noto-fonts;
       name = "Noto Sans Regular";
@@ -56,14 +67,4 @@
       '';
     };
   };
-
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      gtk-theme = "Catppuccin-Mocha-Standard-Red-Dark";
-      icon-theme = "Papirus-dark";
-      cursor-theme = "Catppuccin-Mocha-Mauve-Cursors";
-    };
-  };
-
-  home.file.".local/share/icons".source = ../files/icons;
 }

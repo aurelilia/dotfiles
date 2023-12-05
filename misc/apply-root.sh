@@ -13,3 +13,6 @@ cp files/sanoid.conf /etc/sanoid/
 
 # keymap. cheating
 cp .config/home-manager/misc/files/us $(fd us /nix/store | rg symbols/us)
+
+# some packages i want
+pacman -S fish opendoas

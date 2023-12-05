@@ -23,7 +23,7 @@
       };
       
       cmd_duration = {
-        min_time = 1000;
+        min_time = 100000;
         format = "[]($style)[in (bg:#24263a fg:#eba0ac bold)$duration](bg:#24263a fg:#BBC3DF)[ ]($style)";
         style = "bg:none fg:#24263a";
         min_time_to_notify = 250000;

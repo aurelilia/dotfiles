@@ -51,10 +51,10 @@
 
 
       # zinit
-      ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/bin"
+      ZINIT_HOME="/home/leela/.local/share/zinit/bin"
       [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
       [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-      source "${ZINIT_HOME}/zinit.zsh"
+      source "/home/leela/.local/share/zinit/bin/zinit.zsh"
 
       # history-substring-search
       zinit ice wait"0a" lucid

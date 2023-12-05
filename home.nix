@@ -9,13 +9,61 @@
     PATH = "$HOME/.local/bin:$HOME/.cargo/bin:$PATH";
   };
 
+  # Probably feishin...
+  nixpkgs.config.allowUnfreePredicate = _: true;
+
   home.packages = with pkgs; [
+    # Graphical
     (wrapWithNixGL firefox)
     (wrapWithNixGL thunderbird)
+    gnome.eog
+    gnome.evince
+    gnome.file-roller
+    gnome.simple-scan
+    xfce.thunar
+    xfce.thunar-archive-plugin
+    xfce.thunar-media-tags-plugin
+    xfce.thunar-volman
+    xfce.tumbler
+    flameshot
+    obs-studio
+    obs-studio-plugins.input-overlay
+    pavucontrol
+    # Scanner tomfoolery
+    epkowa
+
+    # Fonts / Style
+    fira-code
+    fira-code-nerdfont
+    comfortaa
+    iosevka
+    # General CLI
+    apprise
+    efibootmgr
+    fd
+    htop
+    neofetch
+    openssh
+    sshfs
+
+    # Desktop CLI
+    curlie
+    dosfstools
+    rustup
+    rsync
+    usbutils
+    yt-dlp
+    wireguard-tools
   ];
+
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium.fhs;
+  };
 
   programs.home-manager.enable = true;
   targets.genericLinux.enable = true;
+  fonts.fontconfig.enable = true;
 
   imports = [
     ./modules/bat.nix
