@@ -35,7 +35,6 @@
   };
 
   home.packages = with pkgs; [
-    alsa-utils
     autotiling-rs
     grim
     jq
@@ -46,5 +45,6 @@
     wl-clipboard
     xdg-desktop-portal-wlr
     ydotool
+    ripgrep
   ];
 }

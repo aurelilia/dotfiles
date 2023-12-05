@@ -69,7 +69,7 @@
            :value volume
            :min 0
            :max 100
-           :onchange "amixer -D pulse sset Master {}%")))
+           :onchange "amixer sset Master {}%")))
 
 (defwidget brightness []
   (box :orientation "horizontal"
