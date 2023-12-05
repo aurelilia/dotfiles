@@ -12,5 +12,6 @@
 
   programs.zsh.shellAliases = {
     ls = "lsd -lFh";
+    la = "lsd -lFha";
   };
 }
