@@ -46,5 +46,6 @@
     yt-dlp
     wireguard-tools
     hyperfine
+    imagemagick
   ];
 }

@@ -1,6 +1,6 @@
 (defvar config "{}")
 (defvar workspaces "[]")
-(defvar wallpaper "./assets/wallpaper.png")
+(defvar wallpaper "/home/leela/.config/wallpaper.png")
 (defvar wallpaper_visible true)
 
 (defwindow bgbox
