@@ -6,7 +6,7 @@ sway-audio-idle-inhibit &
 autotiling-rs &
 ~/.config/eww/init.sh
 ydotoold &
-dunst -conf ~/.config/dunstrc
+dunst -conf ~/.config/dunstrc &
 
 # Apps
 thunderbird &
