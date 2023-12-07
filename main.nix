@@ -29,6 +29,14 @@
 
       programs.home-manager.enable = true;
       targets.genericLinux.enable = config.dots.base != "nix";
+
+      home.activation."diff" = ''
+        ${pkgs.nvd}/bin/nvd --color=always diff "$oldGenPath" "$newGenPath"
+        ${pkgs.colordiff}/bin/colordiff \
+          --nobanner --fakeexitcode --color=always -ur -I '\/nix\/store' \
+          -x "home-path" \
+          -- "$oldGenPath" "$newGenPath"
+      '';
     }
     (lib.mkIf (config.dots.kind != "server") {
         home.sessionVariables = {
