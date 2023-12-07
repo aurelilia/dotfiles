@@ -30,7 +30,9 @@
     obs-studio-plugins.input-overlay
     pavucontrol
     hotspot
-
+    # Steam
+    flatpak
+    
     # Fonts / Style
     fira-code-nerdfont
     comfortaa
@@ -43,5 +45,6 @@
     usbutils
     yt-dlp
     wireguard-tools
+    hyperfine
   ];
 }

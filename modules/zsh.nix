@@ -6,8 +6,9 @@
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
-    
     autocd = true;
+    # Handled by zinit
+    enableCompletion = false; 
 
     history = {
       path = "${config.xdg.dataHome}/zsh_history";
@@ -16,10 +17,8 @@
       share = true;
     };
 
-    # TODO Port some of this properly, maybe? meh.
     initExtra =''
       if [ -e /home/leela/.nix-profile/etc/profile.d/nix.sh ]; then . /home/leela/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-      source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
 
       # Opts
       unsetopt beep # No beeping please
@@ -43,7 +42,8 @@
       zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
       zstyle ':completion:*' completer _complete _match _approximate
       zstyle ':completion:*:approximate:*' max-errors 3 numeric
-
+      zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
+      
       # zinit
       ZINIT_HOME="/home/leela/.local/share/zinit/bin"
       [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
@@ -85,7 +85,7 @@
       zinit light zsh-users/zsh-autosuggestions
 
       # completions
-      zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
+      zinit wait lucid atload"zicompinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION; zicdreplay" blockf for \
           zsh-users/zsh-completions \
           Aloxaf/fzf-tab
 
