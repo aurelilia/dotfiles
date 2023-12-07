@@ -3,13 +3,16 @@
   home.packages = with pkgs; [
     # General CLI
     apprise
+    colordiff
     efibootmgr
     fd
     htop
     neofetch
+    nvd
     rsync
     openssh
     sshfs
+    less
   ] ++ lib.optionals (config.dots.kind != "server") [
     # Graphical
     (wrapWithNixGL firefox)
