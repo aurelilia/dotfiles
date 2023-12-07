@@ -4,8 +4,7 @@
     enable = true;
     package = (pkgs.wrapWithNixGL pkgs.swayfx);
   };
-  # TODO port config
-  home.file.".config/sway".source = ../files/sway;
+  xdg.configFile."sway".source = ../files/sway;
 
   services.swayidle = {
     enable = true;
@@ -19,14 +18,18 @@
     enable = true;
     configFile = "$XDG_CONFIG_HOME/dunstrc";
   };
-  home.file.".config/dunstrc".source = ../files/dunstrc;
+  xdg.configFile."dunstrc".source = ../files/dunstrc;
 
   # Misc services
   services.syncthing.enable = true;
 
-  home.sessionVariables = {
+  systemd.user.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
     _JAVA_AWT_WM_NONREPARENTING = 1;
+
+    XCURSOR_THEME = "Catppuchin-Mocha-Maroon";
+    XCURSOR_SIZE = 24;
+    WAYLAND_DISPLAY = "wayland-1"; # swayidle fails to connect without this
   };
 
   home.packages = with pkgs; [

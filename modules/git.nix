@@ -7,6 +7,7 @@
 
     aliases = { 
       pall = "!git remote | xargs -I R git push R main";
+      amend = "git add -u && git commit --amend";
     };
 
     extraConfig = {

@@ -10,14 +10,10 @@
     autocd = true;
 
     history = {
-      path = ".local/share/zsh_history";
+      path = "${config.xdg.dataHome}/zsh_history";
       size = 50000;
       ignoreAllDups = true;
       share = true;
-    };
-
-    shellAliases = {
-      code = "codium";
     };
 
     # TODO Port some of this properly, maybe? meh.
@@ -48,18 +44,11 @@
       zstyle ':completion:*' completer _complete _match _approximate
       zstyle ':completion:*:approximate:*' max-errors 3 numeric
 
-
       # zinit
       ZINIT_HOME="/home/leela/.local/share/zinit/bin"
       [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
       [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
       source "/home/leela/.local/share/zinit/bin/zinit.zsh"
-
-      # history-substring-search
-      zinit ice wait"0a" lucid
-      zinit light zsh-users/zsh-history-substring-search
-      bindkey '^[[A' history-substring-search-up
-      bindkey '^[[B' history-substring-search-down
 
       # syntax highlighting
       zinit ice wait"0b" lucid
@@ -84,6 +73,12 @@
       # patterns
       typeset -A ZSH_HIGHLIGHT_PATTERNS
       ZSH_HIGHLIGHT_PATTERNS+=('rm*-rf*' 'fg=white,bold,bg=red')
+
+      # history-substring-search
+      zinit ice wait"0a" lucid
+      zinit light zsh-users/zsh-history-substring-search
+      bindkey '^[[A' history-substring-search-up
+      bindkey '^[[B' history-substring-search-down
 
       # autosuggestions
       zinit ice wait"0c" lucid atload"_zsh_autosuggest_start"

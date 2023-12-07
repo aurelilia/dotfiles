@@ -36,6 +36,7 @@
         "file:///home/leela/personal"
         "file:///home/leela/misc"
         "file:///ethereal"
+        "file:///mnt"
       ];
 
       extraConfig."gtk-application-prefer-dark-theme" = true;
@@ -70,11 +71,9 @@
     };
   };
 
-  home.sessionVariables = {
+  systemd.user.sessionVariables = {
     GTK_THEME = "Catppuccin-Mocha-Standard-Maroon-Dark";
     QT_QPA_PLATFORMTHEME = "gtk2";
-    XCURSOR_THEME = "Catppuchin-Mocha-Maroon";
-    XCURSOR_SIZE = 24;
   };
   home.packages = [ pkgs.libsForQt5.qtstyleplugins ];
 }

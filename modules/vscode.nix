@@ -49,4 +49,8 @@
       "cSpell.enabled" = false;
     };
   };
+
+  programs.zsh.shellAliases = {
+    code = "codium";
+  };
 }

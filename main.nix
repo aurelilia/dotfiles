@@ -40,7 +40,7 @@
     }
     (lib.mkIf (config.dots.kind != "server") {
         home.sessionVariables = {
-          PATH = "$HOME/.local/bin:$HOME/.cargo/bin:$PATH";
+          PATH = "$HOME/.local/bin:/ethereal/cache/cargo/bin:$PATH";
         };
     
         fonts.fontconfig.enable = true;
