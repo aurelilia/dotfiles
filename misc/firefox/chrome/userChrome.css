@@ -5889,26 +5889,6 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
     display: none !important;
 }
 
-/* Colorize the Tab bar in black/red */
-.tab-line[selected="true"] {
-    border: 1px solid #DDB6F2 !important;
-}
-.urlbarView-row:hover, .urlbarView-row[selected] {
-background-color: #DDB6F2 !important;
-}
-.tab-throbber,
-.tab-throbber[busy=true] {
-    color: #DDB6F2 !important;
-}
-
-#nav-bar {
-	background-color: #1e1e2d !important;
-}
-
-#navigator-toolbox {
-	border-bottom: 1px solid #302D41 !important;
-}
-
 /* ##### SIDEBAR ########################################## */
 
 /* Sidebar min and max width removal */
@@ -5984,25 +5964,10 @@ background-color: #DDB6F2 !important;
 }
 
 
-/* BELOW: adapted from imoutocon#4530 on discord */
-:root:-moz-lwtheme-brighttext {                                      /* minor color changes to the default dark theme */
-	--color-overflow: #D9E0EE;                                            /* >> button color */
-	--chrome-secondary-background-color: #1E1E2E !important;              /* nav bar & active tab */
-	--chrome-color: #C3BAC6 !important;                                   /* url & tab text, close tab & new tab buttons */
-	background-color: #302D41 !important;                                 /* top border of out of focus window */
-}
-
 :root {
 	--toolbox-border-bottom-color: transparent !important;             /* 1px line under background tabs */
 	--chrome-nav-bar-controls-border-color: transparent !important;    /* border around url bar */
 	--chrome-content-separator-color: transparent !important;			/* border below tabs */
-	--urlbar-popup-url-color: #DDB6F2 !important;
-	--autocomplete-popup-highlight-background: #DDB6F2 !important;
-}
-
-#navigator-toolbox,
-#TabsToolbar {
-	background: #302D41 !important;
 }
 
 #urlbar {
@@ -6012,19 +5977,6 @@ background-color: #DDB6F2 !important;
 	margin-top: 0 !important;
 	min-height: 32px !important;
 	padding-top: 1px !important;
-}
-
-#urlbar-background {
-	background: #1E1E2E !important;
-	border-color: #1E1E2E !important;
-}
-
-.urlbarView-url {
-	color: #DDB6F2 !important;
-}
-
-#urlbar * {
-	color: #D9E0EE;
 }
 
 /* Remove padding above tabbar in compact mode */
@@ -6067,8 +6019,6 @@ background-color: #DDB6F2 !important;
 menupopup:not(#BMB_bookmarksPopup),
 .textbox-contextmenu{
 	border: none !important;
-	background: #302D41 !important;
-	color: #D9E0EE !important;
 }
 
 /* bookmarks menu is different from others */
@@ -6078,24 +6028,12 @@ menupopup:not(#BMB_bookmarksPopup),
 
 /* GENERAL */
 menupopup {
-	background-color:#302D41 !important;
 	border:none;
 }
 
 menuitem,
 menu{
 	min-height:24px !important;
-	color: #D9E0EE !important;
-}
-
-menuitem[disabled="true"],
-menu[disabled="true"]{
-	color: #6E6C7E !important;
-}
-
-menuitem:hover,
-menu:hover{
-	background-color:#575268 !important;
 }
 
 menupopup menuseparator {
@@ -6112,54 +6050,6 @@ menupopup menuseparator {
 .menu-right{ filter: invert(100%) }
 #context-navigation{ background-color: transparent !important; }
 
-/* POPUP PANELS */
-.panel-subviews,
-#mainPopupSet menupopup,
-#main-menubar menupopup,
-#bookmarks-menu-button menu menupopup > hbox,
-.search-panel-header.search-panel-current-engine,
-.search-panel-current-input,
-panelview,
-.PanelUI-subView,
-.autocomplete-richlistbox{
-	background-color:  #302D41 !important;
-}
-
-.subviewbutton:hover,
-#widget-overflow-mainView .toolbarbutton-1:hover,
-#PopupAutoCompleteRichResult .autocomplete-richlistitem:hover,
-#PopupSearchAutoComplete .autocomplete-richlistitem:hover{
-	background-color: #575268 !important;
-}
-
-
-panelview toolbarbutton.subviewbutton .toolbarbutton-text,
-#downloadsFooter,
-#customizationui-widget-panel label,
-.autocomplete-richlistitem .ac-title,
-#widget-overflow-mainView toolbarbutton,
-#bookmarks-menu-button menu menupopup,
-#PopupSearchAutoComplete .autocomplete-tree.plain.search-panel-tree,
-#PanelUI-contents toolbarbutton,
-#sidebar-switcher-target,
-#alltabs_containersTab,
-#PopupAutoCompleteRichResult .ac-title,
-#PopupAutoCompleteRichResult .search-one-offs,
-.search-panel-input-value{
-	color: #D9E0EE!important;
-}
-
-.search-panel-one-offs,
-.downloadsPanelFooterButton:not(:hover),
-#overflowMenu-customize-button:not(:hover),
-#searchbar-anon-search-settings{
-	background-color: #C3BAC6 !important;
-}
-
-#PopupAutoCompleteRichResult .ac-emphasize-text.ac-emphasize-text-title{
-	color: #302D41 !important;
-}
-
 /* Pad hamburger on the right */
 #navigator-toolbox #PanelUI-button {
 	margin-right: 4px;
@@ -6168,5 +6058,9 @@ panelview toolbarbutton.subviewbutton .toolbarbutton-text,
 /* Pad back button on the left */
 #back-button {
 	margin-left: 4px !important;
+}
+
+.urlbarView-url {
+	color: #f38ba8 !important;
 }
 

@@ -30,7 +30,7 @@ corner_radius 10
 default_border pixel 1
 default_floating_border normal 2
 
-client.focused #cba6f7ff #cba6f7ff #ffffff #ffa6f7ff #cba6f7
+client.focused #f38ba8 #f38ba8 #ffffff #ffa6f7ff #f38ba8
 
 # Window background blur
 blur on
