@@ -4,11 +4,13 @@
     :exclusive false
     :geometry (geometry :x "0"
                         :y "0"
-                        :width "140px"
+                        :width "150px"
                         :height "40px"
-                        :anchor "top center")
+                        :anchor "top right")
     (clock-widget))
 
 (defwidget clock-widget []
-  (eventbox :onclick "sh ./scripts/clock_click.sh &"    
-    (label :text "${time}")))
+  (box :space-evenly false
+    (eventbox :onclick "sh ./scripts/clock_click.sh &"
+      (label :text "${time}"))
+    (button :onclick "playerctl play-pause" :class "clock-button" "${player['status'] == 'Playing' ? '⏸' : '⏵'}")))

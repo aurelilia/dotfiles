@@ -31,6 +31,8 @@
       (clock)
       (sysinfo)
       (netinfo)
+      (player)
+      (musicvolume)
       (volume)
       (literal :content "${config['brightness']}")
       (notifs)
@@ -71,6 +73,18 @@
            :max 100
            :onchange "amixer sset Master {}%")))
 
+(defwidget musicvolume []
+  (box :orientation "horizontal"
+       :space-evenly false
+       :class "musicvolume"
+    (label :text "🎶" :width 40)
+    (scale :hexpand true
+           :round-digits 0
+           :value "${player['volume'] * 100}"
+           :min 0
+           :max 100
+           :onchange "playerctl volume $(python -c 'print({} / 100)')")))
+
 (defwidget brightness []
   (box :orientation "horizontal"
        :space-evenly false
@@ -86,6 +100,25 @@
            :min 0
            :max brightness-max
            :onchange "brightnessctl s {}")))
+
+(defwidget player []
+  (box :orientation "horizontal"
+       :space-evenly false
+       :class "player"
+    (label :text "🎵"
+           :class "player-icon"
+           :style "background-image: url(${player['cover']})")
+    (box :orientation "vertical"
+         :hexpand true
+         :space-evenly true
+      (label :limit-width 30 :hexpand true :show-truncated true :class "song" :text "${player['song']}")
+      (label :limit-width 30 :hexpand true :show-truncated true :class "artist" :text "${player['artist']}")
+      (label :limit-width 30 :hexpand true :show-truncated true :class "progress" :text "${player['position']} / ${player['length']}"))
+    (box :orientation "horizontal"
+         :space-evenly true
+      (button :onclick "playerctl previous" :class "player-button" "⏮")
+      (button :onclick "playerctl play-pause" :class "player-button" "${player['status'] == 'Playing' ? '⏸' : '⏵'}")
+      (button :onclick "playerctl next" :class "player-button" "⏭"))))
 
 (defwidget notifs []
   (scroll :height 400
@@ -150,3 +183,6 @@
 
 (defpoll notifs :interval "1s"
     "sh ./scripts/left/get_notifs.sh")
+
+(deflisten player :initial "{}"
+  `sh ./scripts/left/player.sh`)

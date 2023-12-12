@@ -1,5 +1,5 @@
 {
     "brightness": "(box)",
-    "temp_sensor": "CORETEMP_PACKAGE_ID_0",
+    "temp_sensor": "K10TEMP_TCTL",
     "scroll_regions": [["workspace"], ["workspace"], ["volume"]]
 }
