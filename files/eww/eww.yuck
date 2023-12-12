@@ -37,6 +37,5 @@
             :class "closer"))
 
 (include "./yuck/left.yuck")
-(include "./yuck/right.yuck")
 (include "./yuck/workspace_popup.yuck")
 (include "./yuck/clock.yuck")
