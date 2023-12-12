@@ -37,6 +37,10 @@
           -x "home-path" \
           -- "$oldGenPath" "$newGenPath"
       '';
+
+      xdg.configFile."nix/nix.conf".text = ''
+        experimental-features = nix-command flakes
+      '';
     }
     (lib.mkIf (config.dots.kind != "server") {
         home.sessionVariables = {

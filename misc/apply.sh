@@ -14,3 +14,5 @@ nix-shell '<home-manager>' -A install
 
 # firefox profile
 cp -r firefox/* ~/.mozilla/firefox/*.*/
+# ulauncher
+cp -r ../files/ulauncher ~/.config/

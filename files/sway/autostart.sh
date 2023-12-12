@@ -10,3 +10,4 @@ dunst -conf ~/.config/dunstrc &
 
 # Apps
 thunderbird &
+ulauncher &

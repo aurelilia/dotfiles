@@ -44,5 +44,9 @@
     xdg-desktop-portal-wlr
     ydotool
     ripgrep
+    libnotify
+
+    ulauncher
+    (python3.withPackages(ps: with ps; [ requests pint simpleeval parsedatetime pytz ]))
   ];
 }
