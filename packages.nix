@@ -26,7 +26,7 @@
     xfce.thunar-volman
     xfce.tumbler
     flameshot
-    obs-studio
+    (wrapWithNixGL obs-studio)
     obs-studio-plugins.input-overlay
     pavucontrol
     hotspot
@@ -47,5 +47,8 @@
     wireguard-tools
     hyperfine
     imagemagick
+    unzip
+    unrar
+    zip
   ];
 }

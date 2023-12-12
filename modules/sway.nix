@@ -30,6 +30,7 @@
     XCURSOR_THEME = "Catppuchin-Mocha-Maroon";
     XCURSOR_SIZE = 24;
     WAYLAND_DISPLAY = "wayland-1"; # swayidle fails to connect without this
+    XDG_CURRENT_DESKTOP = "sway";
   };
 
   home.packages = with pkgs; [
@@ -44,6 +45,7 @@
     ydotool
     ripgrep
     libnotify
+    playerctl
     ulauncher
     (python3.withPackages(ps: with ps; [ requests pint simpleeval parsedatetime pytz ]))
   ];
