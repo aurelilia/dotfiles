@@ -32,7 +32,7 @@
     hotspot
     # Steam
     flatpak
-    
+
     # Fonts / Style
     fira-code-nerdfont
     comfortaa

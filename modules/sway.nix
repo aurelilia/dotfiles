@@ -2,7 +2,7 @@
 {
   wayland.windowManager.sway = {
     enable = true;
-    package = (pkgs.wrapWithNixGL pkgs.swayfx);
+    package = null;
   };
   xdg.configFile."sway".source = ../files/sway;
 
@@ -41,11 +41,9 @@
     sway-audio-idle-inhibit
     swaylock-effects
     wl-clipboard
-    xdg-desktop-portal-wlr
     ydotool
     ripgrep
     libnotify
-
     ulauncher
     (python3.withPackages(ps: with ps; [ requests pint simpleeval parsedatetime pytz ]))
   ];
