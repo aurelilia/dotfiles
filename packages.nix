@@ -13,6 +13,7 @@
     openssh
     sshfs
     less
+    ncdu
   ] ++ lib.optionals (config.dots.kind != "server") [
     # Graphical
     (wrapWithNixGL firefox)
