@@ -20,6 +20,7 @@
       yzhang.markdown-all-in-one
 
       bbenoist.nix
+      mkhl.direnv
     ];
 
     userSettings = {
