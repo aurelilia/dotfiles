@@ -20,6 +20,14 @@
     initExtra =''
       if [ -e /home/leela/.nix-profile/etc/profile.d/nix.sh ]; then . /home/leela/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
+      # Remove stuff set by NixGL, needed to prevent native applications from
+      # failing to load.
+      # This is set in the first place since Alacritty is using NixGL and the
+      # shell inherits it's environment
+      unset LD_LIBRARY_PATH LIBGL_DRIVERS_PATH LIBVA_DRIVERS_PATH __EGL_VENDOR_LIBRARY_FILENAMES
+      # Apply user environment
+      . .config/environment.d/*
+      
       # Opts
       unsetopt beep # No beeping please
       setopt no_beep # No beeping please

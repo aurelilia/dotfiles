@@ -243,6 +243,7 @@
     #   - (Windows) powershell
     shell:
       program: /home/leela/.nix-profile/bin/zsh
+      args: ["-l"]
 
     # Windows 10 ConPTY backend (Windows only)
     #
