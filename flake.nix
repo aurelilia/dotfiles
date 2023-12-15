@@ -21,5 +21,9 @@
         inherit pkgs;
         modules = [ ./hosts/hazyboi.nix ];
       };
+
+      nixosModules.dotfiles = import ./main.nix;
+      raw.dotfiles = import ./main.nix;
+
     };
 }
