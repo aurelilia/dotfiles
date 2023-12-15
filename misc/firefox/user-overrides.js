@@ -6,23 +6,13 @@ user_pref("browser.newtab.extensionControlled", true);
 user_pref("browser.newtab.privateAllowed", false);
 user_pref("browser.newtabpage.storageVersion", 1);
 
-/* 0517, 0860: Form autofill */
-user_pref("extensions.formautofill.addresses.enabled", true);
-user_pref("extensions.formautofill.available", "on");
-user_pref("browser.formfill.enable", true);
-
-/* 0701: Enable IPv6 */
-user_pref("network.dns.disableIPv6", false);
-
-/* 0703: Re-enable alternative services */
-user_pref("network.http.altsvc.enabled", true);
-user_pref("network.http.altsvc.oe", true);
-
 /* 0801: Re-enable search in URL bar */
 user_pref("keyword.enabled", true);
+user_pref("browser.search.suggest.enabled", true);
+user_pref("browser.urlbar.suggest.searches", true);
 
-/* 0803: Keep URL trimming ***/
-user_pref("browser.urlbar.trimURLs", true);
+/* 0810: Form autofill */
+user_pref("browser.formfill.enable", true);
 
 /* 0811: Resolve single words */
 user_pref("browser.urlbar.dnsResolveSingleWordsAfterSearch", 2);
@@ -36,14 +26,8 @@ user_pref("browser.sessionstore.privacy_level", 0);
 /* 1030: Keep shortcut favicons */
 user_pref("browser.shell.shortcutFavicons", true);
 
-/* 1241: Re-enable insecure passive content (such as images) on https pages */
-user_pref("security.mixed_content.block_display_content", false);
-
 /* 1246: Re-enable HTTP background requests [FF82+] */
 user_pref("dom.security.https_only_mode_send_http_background_request", true);
-
-/* 1603: Always send referrer (breaks pixiv) */
-user_pref("network.http.referer.XOriginPolicy", 0);
 
 /* 2001: Re-enable WebRTC **/
 user_pref("media.peerconnection.enabled", true);
@@ -71,10 +55,13 @@ user_pref("javascript.options.wasm", true);
 /* 2522: Re-enable WebGL (Web Graphics Library) */
 user_pref("webgl.disabled", false);
 user_pref("webgl.enable-webgl2", true);
-user_pref("webgl.disable-fail-if-major-performance-caveat", true); 
+user_pref("webgl.disable-fail-if-major-performance-caveat", true);
 
 /* 2603: Keep temp files opened with an external application */
 user_pref("browser.helperApps.deleteTempFileOnExit", false);
+
+/* 2653: enable adding downloads to the system's "recent documents" list ***/
+user_pref("browser.download.manager.addToRecentDocs", true);
 
 /* 2701, 2702: i like cookies */
 user_pref("network.cookie.cookieBehavior", 4);
