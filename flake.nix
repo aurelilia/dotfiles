@@ -1,8 +1,9 @@
 {
-  description = "leela's dotfiles, HM edition";
+  description = "aurlila's full system configurations using Nix, NixOS, and HM";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
     nixgl.url = "github:guibou/nixGL";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -10,20 +11,26 @@
     };
   };
 
-  outputs = { nixpkgs, nixgl, home-manager, ... }:
+  outputs = { home-manager, nixpkgs, nixpkgs-stable, nixgl, ... }:
     let
-      pkgs = import nixpkgs {
+      hostSystem = "x86_64-linux";
+      nixpkgsHost = import nixpkgs { system = hostSystem; };
+      workstationPkgs = import nixpkgs {
         system = "x86_64-linux";
         overlays = [ nixgl.overlay ];
       };
     in {
-      homeConfigurations."leela@hazyboi" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./hosts/hazyboi.nix ];
+      devShells.${hostSystem}.default = nixpkgsHost.mkShell {
+        buildInputs = [ nixpkgsHost.colmena ];
       };
 
-      nixosModules.dotfiles = import ./main.nix;
-      raw.dotfiles = import ./main.nix;
+      homeConfigurations = {
+        "leela@hazyboi" = home-manager.lib.homeManagerConfiguration {
+          pkgs = workstationPkgs;
+          modules = [ ./hosts/hazyboi ];
+        };
+      };
 
+      colmena = import ./fleet { inherit home-manager; nixpkgs = nixpkgs-stable; };
     };
 }

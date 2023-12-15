@@ -5,7 +5,7 @@
     enableZshIntegration = true;
 
     settings = {
-      format = "$directory$character";
+      format = "$directory$hostname$character";
       right_format = "$cmd_duration";
       add_newline = false;
 
@@ -29,6 +29,8 @@
         min_time_to_notify = 250000;
         show_notifications = true;
       };
+
+      hostname.format = "[$hostname](bold red) ";
     };
   };
 }
