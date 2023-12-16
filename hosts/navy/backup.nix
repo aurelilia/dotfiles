@@ -4,5 +4,5 @@ let
 in {
   programs.ssh.knownHosts = borg.hosts;
   services.borgbackup.jobs.borgbase = 
-    borg.systemBorgbase // { paths = [ "/containers" ] };
+    borg.systemBorgbase // { paths = [ "/containers" ]; };
 }

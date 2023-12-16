@@ -4,7 +4,7 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-intel" "nfs" "nfsd" ];
   boot.extraModulePackages = [ ];
 
   boot.loader.grub = {
