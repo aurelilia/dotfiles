@@ -2,6 +2,7 @@
   services.openssh = {
     enable = true;
     openFirewall = true;
+    extraConfig = "PrintLastLog no";
   };
 
   users.users.root.openssh.authorizedKeys.keys =

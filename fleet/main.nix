@@ -21,10 +21,13 @@
 
   # Root user / Dotfiles
   programs.zsh.enable = true;
-  users.users.root = {
-    shell = pkgs.zsh;
-    initialHashedPassword = "";
-  };
+  users = {
+    motd = "nixos welcomes u c:";
+    users.root = {
+      shell = pkgs.zsh;
+      initialHashedPassword = "";
+    };
+  }; 
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
