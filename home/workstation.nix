@@ -35,6 +35,7 @@
 
     home.packages = with pkgs; [
       # Graphical
+      nixgl.nixGLIntel
       (wrapWithNixGL firefox)
       (wrapWithNixGL thunderbird)
       gnome.eog
