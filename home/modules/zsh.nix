@@ -12,7 +12,6 @@
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
-    autocd = true;
     # Handled by zinit
     enableCompletion = false; 
 
@@ -65,10 +64,10 @@
       zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
       
       # zinit
-      ZINIT_HOME="/home/leela/.local/share/zinit/bin"
+      ZINIT_HOME="${config.home.homeDirectory}/.local/share/zinit/bin"
       [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
       [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-      source "/home/leela/.local/share/zinit/bin/zinit.zsh"
+      source "${config.home.homeDirectory}/.local/share/zinit/bin/zinit.zsh"
 
       # syntax highlighting
       zinit ice wait"0b" lucid
@@ -90,9 +89,6 @@
       ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=magenta'
       ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=yellow'
       ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
-      # patterns
-      typeset -A ZSH_HIGHLIGHT_PATTERNS
-      ZSH_HIGHLIGHT_PATTERNS+=('rm*-rf*' 'fg=white,bold,bg=red')
 
       # history-substring-search
       zinit ice wait"0a" lucid

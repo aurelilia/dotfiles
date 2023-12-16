@@ -1,5 +1,7 @@
 {...}:
-{
+let
+  caddySnippets = import ../../../fleet/mixins/caddy.nix;
+in {
   virtualisation.oci-containers.containers = {
     caddy.dependsOn = [ "element-web" ];
     
@@ -10,6 +12,13 @@
       volumes = [ "/etc/element-web.json:/app/config.json" ];
     };
   };
+
+  environment.etc."caddy/Caddyfile".text = ''
+    element.elia.garden, element.louane.xyz {
+      ${caddySnippets.no-robots}
+      reverse_proxy element-web:80
+    }
+  '';
 
   environment.etc."element-web.json".text = ''
 {

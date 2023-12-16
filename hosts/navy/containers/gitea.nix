@@ -1,5 +1,7 @@
 {...}:
-{
+let
+  caddySnippets = import ../../../fleet/mixins/caddy.nix;
+in {
   networking.firewall.allowedTCPPorts = [ 22 ];
   virtualisation.oci-containers.containers = {
     caddy.dependsOn = [ "gitea" ];
@@ -22,5 +24,13 @@
       ];
     };
   };
+
+  environment.etc."caddy/Caddyfile".text = ''
+    git.elia.garden {
+      ${caddySnippets.no-robots}
+      reverse_proxy gitea:3000
+    }
+  '';
+
 }
 

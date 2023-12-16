@@ -1,5 +1,7 @@
 {...}:
-{
+let
+  snippets = import ../../../fleet/mixins/caddy.nix;
+in {
   imports = [ ../../../fleet/modules/caddy.nix ];
 
   config = {
@@ -14,23 +16,16 @@
       openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDFquR2G8EJUqlunUCoWOhiTaqUmuowWRVeMMJaEJI4OUzlWItD3+lQQw+55NaSPEqiOnGZpA61dlJ79k0pVLbBEAOMynk/ljBD+u+HfKbw2KkZYv8NtYDBevK2bT6jlowoYDF7R7QUgn02t2W46E34wMuDpJuVTjLX98iEtQ64UOyFGCtNPASlo+22XdKX8chZWxCjYtFuhpdcxdlIJ9oYzigQsnh0U8/Fi3k2vTTdemPqqk6VoHw+JtOEq7fp6MJgMkgjpwfgwmuy7cN4UkFu0IqJPO1dUBmfPWV1ddpY70xKoV7/1ZYwqjaRIUORkzUQycekunLTxKipSs04rS16C1+3xQ9TVZQrsoBDmTdFFPeUNpevjBd5TTCocays/poPBbhtAAchhNQHGbCZEyI6FK14TOvfMgiOVA1m5wo3ySCwfR5cdFSa72TlL5QJt6YPLyHZl3k7xPPrR9WRQOtUS7qGj+NxQyOOw3I5uqJF0Vw2Czp2QKDo9FgCCy1tGwk= drone@jade" ];
     };
 
+    # Static public pages are defined here.
     environment.etc."caddy/Caddyfile".text = ''
-      import snippets
-
-      # Static public pages
       elia.garden {
         header /.well-known/matrix/* Access-Control-Allow-Origin "*"
         respond /.well-known/matrix/client `{"m.homeserver":{"base_url":"https://matrix.elia.garden/"}}`
         respond /.well-known/matrix/server `{"m.server":"matrix.elia.garden:443"}`
 
-        import no-robots
+        ${snippets.no-robots}
         root * /srv/html
         file_server
-      }
-
-      element.elia.garden, element.louane.xyz {
-        import no-robots
-        reverse_proxy element-web:80
       }
 
       gelix.elia.garden {
@@ -71,12 +66,6 @@
         header /.well-known/matrix/* Access-Control-Allow-Origin "*"
         respond /.well-known/matrix/client `{"m.homeserver":{"base_url":"https://matrix.louane.xyz/"}}`
         respond /.well-known/matrix/server `{"m.server":"matrix.louane.xyz:443"}`
-      }
-
-      # Reverse proxies
-      git.elia.garden {
-        import no-robots
-        reverse_proxy gitea:3000
       }
 
       # Google telemetry workaround for some networks
