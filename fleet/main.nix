@@ -31,7 +31,6 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.root = import ../home/server.nix;
   };
 
   # Borg secrets

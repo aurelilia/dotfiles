@@ -1,4 +1,3 @@
 args@{ config, lib, pkgs, ... }: {
-  imports = [
-    ../../home/workstation.nix ];
+  imports = [ ../../home/workstation.nix ];
 }
