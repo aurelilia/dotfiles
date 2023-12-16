@@ -30,8 +30,9 @@
 
     xdg.configFile."nix/nix.conf".text = ''
       experimental-features = nix-command flakes
+      warn-dirty = false
     '';
-    
+
     home.packages = with pkgs; [
       # Graphical
       (wrapWithNixGL firefox)
@@ -85,7 +86,7 @@
             wrapBin =
               name:
               self.writeShellScriptBin name ''
-                exec /home/leela/.nix-profile/bin/nixGLIntel ${package}/bin/${name} "$@"
+                exec ${config.home.homeDirectory}/.local/state/nix/profile/bin/nixGLIntel ${package}/bin/${name} "$@"
               '';
           in
           self.symlinkJoin {

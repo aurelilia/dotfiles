@@ -242,7 +242,7 @@
     #   - (Linux/macOS) /bin/bash --login
     #   - (Windows) powershell
     shell:
-      program: /home/leela/.nix-profile/bin/zsh
+      program: ${config.home.homeDirectory}/.local/state/nix/profile/bin/zsh
       args: ["-l"]
 
     # Windows 10 ConPTY backend (Windows only)
