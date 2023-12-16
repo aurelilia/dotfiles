@@ -1,8 +1,9 @@
-{ home-manager, nixpkgs, agenix, ... }:
+{ home-manager, nixpkgs, nixgl, agenix, ... }:
 {
   meta = {
     nixpkgs = import nixpkgs {
       system = "x86_64-linux";
+      overlays = [ nixgl.overlay ];
     };
   };
 
@@ -28,6 +29,6 @@
 
   mauve = { name, nodes, pkgs, ... }: {
     deployment.tags = [ "prod" "desktop" "laptop" ];
-    imports = [ ../hosts/mauve ./workspace.nix ];
+    imports = [ ../hosts/mauve ./workstation.nix ];
   };
 }

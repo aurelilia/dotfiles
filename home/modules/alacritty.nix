@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
 {
-  programs.alacritty = {
-    enable = true;
-    package = (pkgs.wrapWithNixGL pkgs.alacritty);
-  };
+  # Package handled separately, by nixos/arch modules
 
   xdg.configFile."alacritty/alacritty.yml".text = ''
     # Configuration for Alacritty, the GPU enhanced terminal emulator.

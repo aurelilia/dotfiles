@@ -5,4 +5,6 @@ args@{ config, lib, pkgs, ... }: {
 
     ../../fleet/modules/zfs.nix
   ];
+
+  networking.hostId = "42df1e0d";
 }

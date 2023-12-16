@@ -8,4 +8,6 @@
 
     ../../fleet/modules/zfs.nix
   ];
+
+  networking.hostId = "42df1e05";
 }

@@ -42,6 +42,6 @@
         "leela@coral" = mkHome ./hosts/coral;
       };
 
-      colmena = import ./fleet { inherit home-manager agenix; nixpkgs = nixpkgs-stable; };
+      colmena = import ./fleet { inherit home-manager agenix nixgl; nixpkgs = nixpkgs-stable; };
     };
 }
