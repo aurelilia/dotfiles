@@ -1,5 +1,0 @@
-#!/bin/sh
-
-termdown $@
-notify-send "Time's up!"
-mpv .config/i3/scripts/notification.ogg > /dev/null 2> /dev/null

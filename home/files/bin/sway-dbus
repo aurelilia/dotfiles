@@ -1,2 +1,2 @@
 #!/bin/sh
-dbus-launch sway
+/home/leela/.local/state/nix/profiles/profile/bin/zsh -c "dbus-launch sway"

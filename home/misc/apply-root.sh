@@ -12,3 +12,9 @@ cp files/sanoid.conf /etc/sanoid/
 cp files/us /usr/local/share/keymap-us
 cp files/keymap.hook /usr/share/libalpm/hooks/
 cp files/copy-keymap /usr/local/bin/ 
+
+# tuigreet
+cp -r files/greetd /etc/greetd
+
+# services
+systemctl enable greetd
