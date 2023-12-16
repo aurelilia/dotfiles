@@ -20,4 +20,9 @@
     deployment.tags = [ "prod" "server" ];
     imports = [ ../hosts/navy ];
   };
+
+  jade = { name, nodes, pkgs, ... }: {
+    deployment.tags = [ "prod" "server" "far" ];
+    imports = [ ../hosts/jade ];
+  };
 }

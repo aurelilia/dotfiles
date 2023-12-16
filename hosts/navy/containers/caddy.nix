@@ -79,10 +79,6 @@
         reverse_proxy gitea:3000
       }
 
-      http://*.elia.garden {
-        redir https://{host}{uri}
-      }
-
       # Google telemetry workaround for some networks
       http://connectivitycheck.gstatic.com {
         respond /generate_204 204

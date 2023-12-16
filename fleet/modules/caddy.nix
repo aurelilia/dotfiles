@@ -39,5 +39,9 @@ in {
         import trusted_proxy_list
       }
     }
+
+    http://*.elia.garden {
+      redir https://{host}{uri}
+    }
   '';
 }
