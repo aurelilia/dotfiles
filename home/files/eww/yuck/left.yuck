@@ -111,9 +111,9 @@
     (box :orientation "vertical"
          :hexpand true
          :space-evenly true
-      (label :limit-width 30 :hexpand true :show-truncated true :class "song" :text "${player['song']}")
-      (label :limit-width 30 :hexpand true :show-truncated true :class "artist" :text "${player['artist']}")
-      (label :limit-width 30 :hexpand true :show-truncated true :class "progress" :text "${player['position']} / ${player['length']}"))
+      (label :limit-width 30 :hexpand true :show-truncated true :class "song" :text "${player['song'] ?: "None"}")
+      (label :limit-width 30 :hexpand true :show-truncated true :class "artist" :text "${player['artist'] ?: "Feishin not running"}")
+      (label :limit-width 30 :hexpand true :show-truncated true :class "progress" :text "${player['position'] ?: "-"} / ${player['length'] ?: "-"}"))
     (box :orientation "horizontal"
          :space-evenly true
       (button :onclick "playerctl previous" :class "player-button" "⏮")
