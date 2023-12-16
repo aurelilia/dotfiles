@@ -8,6 +8,11 @@
     };
   };
 
+  # Create a 'web' network; all docker hosts use this anyway
+  system.activationScripts.dockernet.text = ''
+    docker network create -d bridge web || true
+  '';
+
   virtualisation.oci-containers = {
     backend = "docker";
     

@@ -1,23 +1,11 @@
 { config, lib, pkgs, ... }: {
   imports = [
     ./hardware.nix
+    ./containers/caddy.nix
+    ./containers/element.nix
+    ./containers/gitea.nix
+    ./containers/mail.nix
   ];
-
-  # Network
-  networking.firewall = {
-    allowedTCPPorts = [
-      # Web
-      80 443 8448
-      # Gitea/SSH
-      22 9022
-      # Mail
-      25 143 465 587 993
-    ];
-    allowedUDPPorts = [ 
-      # Mail
-      25 143 465 587 993
-    ];
-  };
 
   # SSH
   services.openssh.ports = [ 9022 ];
