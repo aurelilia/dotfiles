@@ -5,6 +5,15 @@
   config = {
     networking.firewall.allowedTCPPorts = [ 8448 ];
     virtualisation.oci-containers.containers.caddy.ports = [ "8448" ];
+
+    # Drone CI wants to push some static files
+    # TODO Maybe integrate this into Nix better?
+    users.users.drone = {
+      isNormalUser  = true;
+      uid = 1000;
+      openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDFquR2G8EJUqlunUCoWOhiTaqUmuowWRVeMMJaEJI4OUzlWItD3+lQQw+55NaSPEqiOnGZpA61dlJ79k0pVLbBEAOMynk/ljBD+u+HfKbw2KkZYv8NtYDBevK2bT6jlowoYDF7R7QUgn02t2W46E34wMuDpJuVTjLX98iEtQ64UOyFGCtNPASlo+22XdKX8chZWxCjYtFuhpdcxdlIJ9oYzigQsnh0U8/Fi3k2vTTdemPqqk6VoHw+JtOEq7fp6MJgMkgjpwfgwmuy7cN4UkFu0IqJPO1dUBmfPWV1ddpY70xKoV7/1ZYwqjaRIUORkzUQycekunLTxKipSs04rS16C1+3xQ9TVZQrsoBDmTdFFPeUNpevjBd5TTCocays/poPBbhtAAchhNQHGbCZEyI6FK14TOvfMgiOVA1m5wo3ySCwfR5cdFSa72TlL5QJt6YPLyHZl3k7xPPrR9WRQOtUS7qGj+NxQyOOw3I5uqJF0Vw2Czp2QKDo9FgCCy1tGwk= drone@jade" ];
+    };
+
     environment.etc."caddy/Caddyfile".text = ''
       import snippets
 
