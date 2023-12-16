@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }: {
   imports = [
+    ./backup.nix
     ./hardware.nix
     ./containers/caddy.nix
     ./containers/element.nix

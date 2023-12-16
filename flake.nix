@@ -4,14 +4,21 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+
     nixgl.url = "github:guibou/nixGL";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.darwin.follows = "";
+    };
   };
 
-  outputs = { home-manager, nixpkgs, nixpkgs-stable, nixgl, ... }:
+  outputs = { home-manager, nixpkgs, nixpkgs-stable, nixgl, agenix, ... }:
     let
       hostSystem = "x86_64-linux";
       nixpkgsHost = import nixpkgs { system = hostSystem; };
@@ -21,7 +28,10 @@
       };
     in {
       devShells.${hostSystem}.default = nixpkgsHost.mkShell {
-        buildInputs = [ nixpkgsHost.colmena ];
+        buildInputs = [
+          nixpkgsHost.colmena
+          agenix.packages.${hostSystem}.default
+        ];
       };
 
       homeConfigurations = {
@@ -31,6 +41,6 @@
         };
       };
 
-      colmena = import ./fleet { inherit home-manager; nixpkgs = nixpkgs-stable; };
+      colmena = import ./fleet { inherit home-manager agenix; nixpkgs = nixpkgs-stable; };
     };
 }

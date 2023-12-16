@@ -1,4 +1,4 @@
-{ home-manager, nixpkgs, ... }:
+{ home-manager, nixpkgs, agenix, ... }:
 {
   meta = {
     nixpkgs = import nixpkgs {
@@ -9,6 +9,7 @@
   defaults = { name, nodes, pkgs, ... }: {
     imports = [
       home-manager.nixosModules.home-manager
+      agenix.nixosModules.default
       ./main.nix
     ];
 
