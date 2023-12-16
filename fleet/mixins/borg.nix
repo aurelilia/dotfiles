@@ -33,9 +33,9 @@ rec {
   systemJob = defaultJob // {
     paths = [
       "/boot"
-      "/containers"
       "/etc"
       "/var"
+      "/root"
     ];
     exclude = [
       "/etc/ssl"
@@ -47,17 +47,21 @@ rec {
     prune.keep = {
       within = "1d";
       daily = 7;
-      weekly = 4;
-      monthly = 6;
+      monthly = 3;
     };
   };
 
+  borgbaseMediaUrl = "t5z1y940@t5z1y940.repo.borgbase.com:repo";
+  borgbaseSystemUrl = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
+
   systemBorgbase = systemJob // {
-    repo = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
+    repo = borgbaseSystemUrl;
   };
 
   hosts = {
     "c689j5a8.repo.borgbase.com".publicKey =
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
+    "t5z1y940.repo.borgbase.com".publicKey = 
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
   };
 }
