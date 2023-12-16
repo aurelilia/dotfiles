@@ -69,6 +69,7 @@
       unzip
       unrar
       zip
+      scc
     ];
 
     nixpkgs.overlays = lib.singleton (
