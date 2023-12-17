@@ -35,7 +35,7 @@
       # shell inherits it's environment
       unset LD_LIBRARY_PATH LIBGL_DRIVERS_PATH LIBVA_DRIVERS_PATH __EGL_VENDOR_LIBRARY_FILENAMES
       # Apply user environment
-      if [ -e ~/.config/environment.d/ ]; then . .config/environment.d/*; fi
+      if [ -e ~/.config/environment.d/ ]; then . ~/.config/environment.d/*; fi
 
       # Quiet direnv
       export DIRENV_LOG_FORMAT=""

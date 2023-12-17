@@ -239,7 +239,7 @@
     #   - (Linux/macOS) /bin/bash --login
     #   - (Windows) powershell
     shell:
-      program: ${config.home.homeDirectory}/.local/state/nix/profile/bin/zsh
+      program: ${pkgs.zsh}/bin/zsh
       args: ["-l"]
 
     # Windows 10 ConPTY backend (Windows only)
