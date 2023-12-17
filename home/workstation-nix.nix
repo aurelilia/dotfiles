@@ -7,5 +7,6 @@
     thunderbird
     obs-studio
     alacritty
+    dejavu_fonts
   ];
 }

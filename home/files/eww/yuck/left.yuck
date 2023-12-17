@@ -90,7 +90,7 @@
        :space-evenly false
        :class "brightness"
     (label :class "bat-text"
-           :text "󰁹 ${EWW_BATTERY['total_avg']}%")
+           :text "󰁹 ${round(EWW_BATTERY['total_avg'], 1)}%")
     (label :class "brightness-label"
            :text "󰃠"
            :width 40)
