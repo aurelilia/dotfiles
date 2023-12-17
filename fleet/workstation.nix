@@ -15,6 +15,13 @@
   users.groups.leela.gid = 1000;
   home-manager.users.leela = import ../home/workstation-nix.nix;
 
+  # Ethereal, expected to be present on workstations and owned by leela.
+  # Usually also a mountpoint, but we still want permissions to be correct
+  system.activationScripts.makeEthereal = ''
+    mkdir -p /ethereal/cache
+    chown -R 1000:1000 /ethereal
+  '';
+
   /* TODO why does this not do anything :(
     https://stackoverflow.com/questions/68523367/
   nixpkgs.overlays = [

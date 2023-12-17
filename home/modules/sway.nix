@@ -1,11 +1,13 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
+  # Sway itself. Package is managed either by Arch or NixOS
   wayland.windowManager.sway = {
     enable = true;
     package = null;
   };
   xdg.configFile."sway".source = ../files/sway;
 
+  # Swayidle
   services.swayidle = {
     enable = true;
     timeouts = [
@@ -14,6 +16,7 @@
     ];
   };
 
+  # Dunst
   services.dunst = {
     enable = true;
     configFile = "$XDG_CONFIG_HOME/dunstrc";
@@ -22,7 +25,14 @@
 
   # Misc services
   services.syncthing.enable = true;
+  # Ulauncher tries to open themes RW (?!?!) which obviously does not work
+  # with the store, so we link it's files directly out of this repo.
+  # https://github.com/nix-community/home-manager/issues/257
+  home.activation.linkUlauncher = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    ln -sf $HOME/git/public/dotfiles/home/files/ulauncher $HOME/.config/ulauncher
+  '';
 
+  # Session variables
   systemd.user.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
     _JAVA_AWT_WM_NONREPARENTING = 1;
@@ -33,6 +43,7 @@
     XDG_CURRENT_DESKTOP = "sway";
   };
 
+  # Packages
   home.packages = with pkgs; [
     autotiling-rs
     grim

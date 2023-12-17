@@ -28,9 +28,15 @@
       systemctlPath = "/usr/bin/systemctl";
     };
 
+    #### Misc configurations:
+    # Nix
     xdg.configFile."nix/nix.conf".text = ''
       experimental-features = nix-command flakes
       warn-dirty = false
+    '';
+    # Firefox
+    home.activation.copyFirefox = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      cp -r $HOME/git/public/dotfiles/home/files/firefox/* ~/.mozilla/firefox/*.*/
     '';
 
     home.packages = with pkgs; [

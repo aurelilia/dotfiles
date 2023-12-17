@@ -22,4 +22,7 @@
   xdg.configFile."nix/nix.conf".text = ''
     use-xdg-base-directories = true
   '';
+  home.activation.linkCache = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    ln -sf /ethereal/cache/cacho $HOME/.cache
+  '';
 }
