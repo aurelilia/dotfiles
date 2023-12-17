@@ -23,6 +23,6 @@
     use-xdg-base-directories = true
   '';
   home.activation.linkCache = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ln -sf /ethereal/cache/cacho $HOME/.cache
+    ln -sf /ethereal/cache/cache $HOME/.cache
   '';
 }
