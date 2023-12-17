@@ -28,7 +28,7 @@
   };
 
   mauve = { name, nodes, pkgs, ... }: {
-    deployment.tags = [ "prod" "desktop" "laptop" ];
-    imports = [ ../hosts/mauve ./workstation.nix ];
+    deployment.tags = [ "prod" "workstation" "laptop" ];
+    imports = [ ../hosts/mauve ./laptop.nix ];
   };
 }
