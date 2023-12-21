@@ -50,6 +50,9 @@ in {
 
       file.elia.garden {
         root * /srv/file
+        basicauth /hidden/* {
+          aurelia $2a$14$HDTVj/YGiEtAA7nICvlSxeEivE3HryuQ9dnFChHGbXYqnDtFVMMba
+        }
         file_server
       }
 

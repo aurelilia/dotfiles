@@ -7,7 +7,7 @@
     hibernateKey = "ignore";
     suspendKey = "ignore";
     suspendKeyLongPress = "ignore";
-    lidSwitch = "suspend";
+    lidSwitch = "ignore";
     lidSwitchExternalPower = "ignore";
   };
   services.upower.enable = true;
