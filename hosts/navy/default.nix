@@ -6,6 +6,7 @@
     ./containers/element.nix
     ./containers/forgejo.nix
     ./containers/mail.nix
+    ./containers/piped.nix
   ];
 
   # SSH
