@@ -4,10 +4,10 @@ let
 in {
   networking.firewall.allowedTCPPorts = [ 22 ];
   virtualisation.oci-containers.containers = {
-    caddy.dependsOn = [ "gitea" ];
+    caddy.dependsOn = [ "forgejo" ];
     
-    gitea = {
-      image = "gitea/gitea:1";
+    forgejo = {
+      image = "codeberg.org/forgejo/forgejo:1.21";
       autoStart = true;
       extraOptions = [ "--network=web" ];
 
@@ -18,7 +18,7 @@ in {
 
       ports = [ "22:22" ];
       volumes = [ 
-        "/containers/gitea/data:/data"
+        "/containers/forgejo/data:/data"
         "/etc/timezone:/etc/timezone:ro"
         "/etc/localtime:/etc/localtime:ro"
       ];
@@ -28,9 +28,8 @@ in {
   environment.etc."caddy/Caddyfile".text = ''
     git.elia.garden {
       ${caddySnippets.no-robots}
-      reverse_proxy gitea:3000
+      reverse_proxy forgejo:3000
     }
   '';
-
 }
 

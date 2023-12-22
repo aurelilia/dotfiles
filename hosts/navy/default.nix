@@ -4,7 +4,7 @@
     ./hardware.nix
     ./containers/caddy.nix
     ./containers/element.nix
-    ./containers/gitea.nix
+    ./containers/forgejo.nix
     ./containers/mail.nix
   ];
 
