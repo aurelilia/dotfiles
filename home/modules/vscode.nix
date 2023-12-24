@@ -47,8 +47,10 @@
       "editor.minimap.enabled" = true;
       "editor.fontFamily" = "'Fira Code Mono', 'Noto Sans Mono'";
       "editor.fontLigatures" = true;
-
       "cSpell.enabled" = false;
+      
+      "files.insertFinalNewline" = true;
+      "files.trimFinalNewlines" = true;
     };
   };
 
