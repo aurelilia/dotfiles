@@ -2,15 +2,11 @@
 let
   caddySnippets = import ../../../fleet/mixins/caddy.nix;
 in {
-  virtualisation.oci-containers.containers = {
-    caddy.dependsOn = [ "element-web" ];
-    
-    element-web = {
-      image = "vectorim/element-web:latest";
-      autoStart = true;
-      extraOptions = [ "--network=web" ];
-      volumes = [ "/etc/element-web.json:/app/config.json" ];
-    };
+  virtualisation.oci-containers.containers.element-web = {
+    image = "vectorim/element-web:latest";
+    autoStart = true;
+    extraOptions = [ "--network=web" ];
+    volumes = [ "/etc/element-web.json:/app/config.json" ];
   };
 
   environment.etc."caddy/Caddyfile".text = ''
