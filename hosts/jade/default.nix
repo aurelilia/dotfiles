@@ -3,11 +3,16 @@
     ./backup.nix
     ./hardware.nix
 
-    ./containers/caddy.nix
-    ./modules/dvb-firmware.nix
+    # ./containers/caddy.nix
 
     ../../fleet/modules/zfs.nix
   ];
 
-  networking.hostId = "42df1e05";
+  # ZFS
+  networking.hostId = "00000000";
+  virtualisation.docker.storageDriver = "zfs";
+
+  # Janky DVB card
+  environment.systemPackages = [ pkgs.libreelec-dvb-firmware ];
+  hardware.firmware = [ pkgs.libreelec-dvb-firmware ];
 }

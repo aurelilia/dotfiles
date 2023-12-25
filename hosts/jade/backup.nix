@@ -17,7 +17,7 @@ in {
       repo = "/backup/system";
     };
 
-    borgbaseMedia = defaultJob // {
+    borgbaseMedia = borg.defaultJob // {
       paths = mediaDirs;
       repo = borg.borgbaseMediaUrl;
       preHook = mediaPre;
@@ -29,7 +29,7 @@ in {
         weekly = 2;
       };
     };
-    localMedia = defaultJob // {
+    localMedia = borg.defaultJob // {
       paths = mediaDirs;
       repo = "/backup/media";
       preHook = mediaPre;

@@ -7,18 +7,18 @@
   boot.kernelModules = [ "kvm-intel" "nfs" "nfsd" ];
   boot.extraModulePackages = [ ];
 
+  boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub = {
     enable = true;
     zfsSupport = true;
     efiSupport = true;
-    efiInstallAsRemovable = true;
     mirroredBoots = [
       { devices = [ "nodev" ]; path = "/boot"; }
     ];
   };
 
   fileSystems."/" = {
-    device = "zroot/root/nix";
+    device = "zroot/root/nixos";
     fsType = "zfs";
   };
   fileSystems."/nix" = {
