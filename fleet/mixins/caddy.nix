@@ -1,15 +1,15 @@
 rec {
   no-robots = ''
-    respond /robots.txt `User-agent: *
-  Disallow: /`
-    @not-allowed {
-      remote_ip 114.119.0.0/16 # Some weird bot network?
-    }
-    redir @not-allowed https://www.youtube.com/watch?v=dQw4w9WgXcQ
+      respond /robots.txt `User-agent: *
+    Disallow: /`
+      @not-allowed {
+        remote_ip 114.119.0.0/16 # Some weird bot network?
+      }
+      redir @not-allowed https://www.youtube.com/watch?v=dQw4w9WgXcQ
   '';
-  
+
   sso = "https://sso.elia.garden";
-  sso_proxy = ''
+  sso-proxy = ''
     # always forward outpost path to actual outpost
     reverse_proxy /outpost.goauthentik.io/* ${sso}
     # forward authentication to outpost

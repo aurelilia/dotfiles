@@ -1,5 +1,4 @@
-{...}:
-{
+{ ... }: {
   imports = [ ../../../fleet/modules/caddy.nix ];
 
   config = {

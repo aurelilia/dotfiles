@@ -1,6 +1,5 @@
 { ... }:
-let
-  caddyDir = "/containers/caddy/";
+let caddyDir = "/containers/caddy/";
 in {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
   virtualisation.oci-containers.containers.caddy = {
@@ -8,10 +7,7 @@ in {
     autoStart = true;
     extraOptions = [ "--network=web" ];
 
-    ports = [
-      "80:80"
-      "443:443"
-    ];
+    ports = [ "80:80" "443:443" ];
     volumes = [
       "${caddyDir}/srv:/srv:ro"
       "/etc/caddy/Caddyfile:/etc/caddy/Caddyfile:ro"

@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   programs.fzf.enable = true;
   programs.zoxide.enable = true;
 
@@ -13,7 +12,7 @@
     enable = true;
     dotDir = ".config/zsh";
     # Handled by zinit
-    enableCompletion = false; 
+    enableCompletion = false;
 
     history = {
       path = "${config.xdg.dataHome}/zsh_history";
@@ -24,11 +23,12 @@
 
     shellAliases = {
       hm-switch = "home-manager --impure --flake path:. switch";
-      hm-switch-git = "home-manager --impure --flake github:aurelila/dotfiles switch";
-      nulclean = "ssh -q navy -t \"rm /containers/caddy/srv/file/*\"";
+      hm-switch-git =
+        "home-manager --impure --flake github:aurelila/dotfiles switch";
+      nulclean = ''ssh -q navy -t "rm /containers/caddy/srv/file/*"'';
     };
 
-    initExtra =''
+    initExtra = ''
       # Remove stuff set by NixGL, needed to prevent native applications from
       # failing to load.
       # This is set in the first place since Alacritty is using NixGL and the
@@ -39,7 +39,7 @@
 
       # Quiet direnv
       export DIRENV_LOG_FORMAT=""
-      
+
       # Opts
       unsetopt beep # No beeping please
       setopt no_beep # No beeping please
@@ -63,7 +63,7 @@
       zstyle ':completion:*' completer _complete _match _approximate
       zstyle ':completion:*:approximate:*' max-errors 3 numeric
       zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
-      
+
       # zinit
       ZINIT_HOME="${config.home.homeDirectory}/.local/share/zinit/bin"
       [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"

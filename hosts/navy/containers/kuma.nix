@@ -1,6 +1,5 @@
-{...}:
-let
-  caddySnippets = import ../../../fleet/mixins/caddy.nix;
+{ ... }:
+let caddySnippets = import ../../../fleet/mixins/caddy.nix;
 in {
   virtualisation.oci-containers.containers.kuma = {
     image = "louislam/uptime-kuma:1";

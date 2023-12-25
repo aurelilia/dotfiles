@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   nixpkgs.config.allowUnfreePredicate = _: true;
   programs.vscode = {
     enable = true;
@@ -48,13 +47,11 @@
       "editor.fontFamily" = "'Fira Code Mono', 'Noto Sans Mono'";
       "editor.fontLigatures" = true;
       "cSpell.enabled" = false;
-      
+
       "files.insertFinalNewline" = true;
       "files.trimFinalNewlines" = true;
     };
   };
 
-  programs.zsh.shellAliases = {
-    code = "codium";
-  };
+  programs.zsh.shellAliases = { code = "codium"; };
 }

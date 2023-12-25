@@ -15,3 +15,6 @@ some are not migrated yet - work in progress!
 
 I'm using the great `colmena` to deploy remotely. See `/fleet` for system
 configuration.
+
+### Formatting
+Using `nixfmt`.

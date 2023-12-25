@@ -1,11 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   borg = import ../../fleet/mixins/borg.nix;
-  mediaDirs = [
-    "/containers"
-    "/media"
-    "/srv/nextcloud"
-  ];
+  mediaDirs = [ "/containers" "/media" "/srv/nextcloud" ];
   mediaPre = "find /media/media | cut -b 14- > /media/.media-list";
   mediaPost = "rm /media/.media-list";
 in {
@@ -13,9 +9,7 @@ in {
 
   services.borgbackup.jobs = {
     borgbaseSystem = borg.systemBorgbase;
-    localSystem = borg.systemJob // {
-      repo = "/backup/system";
-    };
+    localSystem = borg.systemJob // { repo = "/backup/system"; };
 
     borgbaseMedia = borg.defaultJob // {
       paths = mediaDirs;

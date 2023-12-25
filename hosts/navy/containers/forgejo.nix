@@ -1,6 +1,5 @@
-{...}:
-let
-  caddySnippets = import ../../../fleet/mixins/caddy.nix;
+{ ... }:
+let caddySnippets = import ../../../fleet/mixins/caddy.nix;
 in {
   networking.firewall.allowedTCPPorts = [ 22 ];
   virtualisation.oci-containers.containers.forgejo = {
@@ -14,7 +13,7 @@ in {
     };
 
     ports = [ "22:22" ];
-    volumes = [ 
+    volumes = [
       "/containers/forgejo/data:/data"
       "/etc/timezone:/etc/timezone:ro"
       "/etc/localtime:/etc/localtime:ro"

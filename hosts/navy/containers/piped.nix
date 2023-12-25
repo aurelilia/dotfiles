@@ -1,6 +1,5 @@
-{...}:
-let
-  caddySnippets = import ../../../fleet/mixins/caddy.nix;
+{ ... }:
+let caddySnippets = import ../../../fleet/mixins/caddy.nix;
 in {
   virtualisation.oci-containers.containers = {
     # Actual containers are defined using docker compose, since

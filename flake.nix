@@ -22,18 +22,20 @@
     let
       hostSystem = "x86_64-linux";
       nixpkgsHost = import nixpkgs { system = hostSystem; };
-      mkHome = module: home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-          overlays = [ nixgl.overlay ];
+      mkHome = module:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [ nixgl.overlay ];
+          };
+          modules = [ module ];
         };
-        modules = [ module ];
-      };
     in {
       devShells.${hostSystem}.default = nixpkgsHost.mkShell {
         buildInputs = [
           nixpkgsHost.colmena
           agenix.packages.${hostSystem}.default
+          nixpkgsHost.nixfmt
         ];
       };
 
@@ -42,6 +44,9 @@
         "leela@coral" = mkHome ./hosts/coral;
       };
 
-      colmena = import ./fleet { inherit home-manager agenix nixgl; nixpkgs = nixpkgs-stable; };
+      colmena = import ./fleet {
+        inherit home-manager agenix nixgl;
+        nixpkgs = nixpkgs-stable;
+      };
     };
 }

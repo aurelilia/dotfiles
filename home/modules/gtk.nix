@@ -7,7 +7,7 @@ in {
   gtk = {
     enable = true;
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-        
+
     theme = {
       name = "Catppuccin-${variant}-Standard-${color}-Dark";
       package = pkgs.catppuccin-gtk.override {

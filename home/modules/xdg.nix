@@ -1,17 +1,16 @@
-{ config, pkgs, lib, ... }:
-{
+{ config, pkgs, lib, ... }: {
   home.sessionVariables = {
     LESSHISTFILE = "/dev/null";
-    
+
     GRADLE_USER_HOME = "/ethereal/cache/gradle";
     CARGO_HOME = "/ethereal/cache/cargo";
     RUSTUP_HOME = "/ethereal/cache/rustup";
     GNUPGHOME = "/ethereal/cache/gnupg";
     WINEPREFIX = "/ethereal/cache/wineprefix";
 
-    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=\"$XDG_CONFIG_HOME\"/java";
+    _JAVA_OPTIONS = ''-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java'';
 
-    NPM_CONFIG_USERCONFIG = "$XDG_CONFIG_HOME/npm/npmrc"; 
+    NPM_CONFIG_USERCONFIG = "$XDG_CONFIG_HOME/npm/npmrc";
   };
 
   xdg.configFile."npm/npmrc".text = ''

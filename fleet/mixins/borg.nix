@@ -5,7 +5,7 @@ rec {
       passCommand = "cat /run/agenix/borg-repokey";
     };
     environment = { BORG_RSH = "ssh -i /run/agenix/borg-ssh-id"; };
-    
+
     compression = "zstd";
     extraCreateArgs = "--exclude-caches --exclude-if-present .nobackup";
 
@@ -31,18 +31,8 @@ rec {
   };
 
   systemJob = defaultJob // {
-    paths = [
-      "/boot"
-      "/etc"
-      "/var"
-      "/root"
-    ];
-    exclude = [
-      "/etc/ssl"
-      "/var/cache"
-      "/var/log"
-      "/var/db"
-    ];
+    paths = [ "/boot" "/etc" "/var" "/root" ];
+    exclude = [ "/etc/ssl" "/var/cache" "/var/log" "/var/db" ];
 
     prune.keep = {
       within = "1d";
@@ -102,9 +92,7 @@ rec {
   borgbaseMediaUrl = "t5z1y940@t5z1y940.repo.borgbase.com:repo";
   borgbaseSystemUrl = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
 
-  systemBorgbase = systemJob // {
-    repo = borgbaseSystemUrl;
-  };
+  systemBorgbase = systemJob // { repo = borgbaseSystemUrl; };
 
   mediaWorkstationBorgbase = mediaWorkstationJob // {
     repo = borgbaseMediaUrl;
@@ -117,7 +105,7 @@ rec {
   hosts = {
     "c689j5a8.repo.borgbase.com".publicKey =
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
-    "t5z1y940.repo.borgbase.com".publicKey = 
+    "t5z1y940.repo.borgbase.com".publicKey =
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
   };
 }

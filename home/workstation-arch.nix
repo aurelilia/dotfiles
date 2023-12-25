@@ -1,5 +1,4 @@
-{ pkgs, lib, config, ... }:
-{
+{ pkgs, lib, config, ... }: {
   imports = [ ./workstation.nix ];
 
   home.packages = with pkgs; [
@@ -11,26 +10,21 @@
     (wrapWithNixGL alacritty)
   ];
 
-  nixpkgs.overlays = lib.singleton (
-    self: super:
-    {
-      wrapWithNixGL = package:
-        let
-          binFiles = lib.pipe "${lib.getBin package}/bin" [
-            builtins.readDir
-            builtins.attrNames
-            (builtins.filter (n: builtins.match "^\\..*" n == null))
-          ];
-          wrapBin =
-            name:
-            self.writeShellScriptBin name ''
-              exec ${config.home.homeDirectory}/.local/state/nix/profile/bin/nixGLIntel ${package}/bin/${name} "$@"
-            '';
-        in
-        self.symlinkJoin {
-          name = "${package.name}-nixgl";
-          paths = (map wrapBin binFiles) ++ [ package ];
-        };
-    }
-  );
+  nixpkgs.overlays = lib.singleton (self: super: {
+    wrapWithNixGL = package:
+      let
+        binFiles = lib.pipe "${lib.getBin package}/bin" [
+          builtins.readDir
+          builtins.attrNames
+          (builtins.filter (n: builtins.match "^\\..*" n == null))
+        ];
+        wrapBin = name:
+          self.writeShellScriptBin name ''
+            exec ${config.home.homeDirectory}/.local/state/nix/profile/bin/nixGLIntel ${package}/bin/${name} "$@"
+          '';
+      in self.symlinkJoin {
+        name = "${package.name}-nixgl";
+        paths = (map wrapBin binFiles) ++ [ package ];
+      };
+  });
 }

@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 let
   ports = [ 25 143 465 587 993 ];
   caddyDir = "/containers/caddy/";
@@ -22,11 +22,11 @@ in {
     ];
 
     ports = [
-      "25:25"    # SMTP  (explicit TLS => STARTTLS)
-      "143:143"  # IMAP4 (explicit TLS => STARTTLS)
-      "465:465"  # ESMTP (implicit TLS)
-      "587:587"  # ESMTP (explicit TLS => STARTTLS)
-      "993:993"  # IMAP4 (implicit TLS)
+      "25:25" # SMTP  (explicit TLS => STARTTLS)
+      "143:143" # IMAP4 (explicit TLS => STARTTLS)
+      "465:465" # ESMTP (implicit TLS)
+      "587:587" # ESMTP (explicit TLS => STARTTLS)
+      "993:993" # IMAP4 (implicit TLS)
     ];
     volumes = [
       "${mailDir}/docker-data/dms/mail-data/:/var/mail/"
@@ -34,11 +34,11 @@ in {
       "${mailDir}/docker-data/dms/mail-logs/:/var/log/mail/"
       "${mailDir}/docker-data/dms/config/:/tmp/docker-mailserver/"
       "/etc/localtime:/etc/localtime:ro"
-        "${caddyDir}/data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/${fqdn}/${fqdn}.crt:/etc/letsencrypt/live/${fqdn}/fullchain.pem"
-        "${caddyDir}/data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/${fqdn}/${fqdn}.key:/etc/letsencrypt/live/${fqdn}/privkey.pem"
+      "${caddyDir}/data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/${fqdn}/${fqdn}.crt:/etc/letsencrypt/live/${fqdn}/fullchain.pem"
+      "${caddyDir}/data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/${fqdn}/${fqdn}.key:/etc/letsencrypt/live/${fqdn}/privkey.pem"
     ];
   };
-  
+
   environment.etc."mailserver.env".text = ''
     # -----------------------------------------------
     # --- Mailserver Environment Variables ----------

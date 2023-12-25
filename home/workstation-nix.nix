@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   imports = [ ./workstation.nix ];
 
   home.packages = with pkgs; [

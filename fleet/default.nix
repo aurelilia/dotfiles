@@ -1,5 +1,4 @@
-{ home-manager, nixpkgs, nixgl, agenix, ... }:
-{
+{ home-manager, nixpkgs, nixgl, agenix, ... }: {
   meta = {
     nixpkgs = import nixpkgs {
       system = "x86_64-linux";

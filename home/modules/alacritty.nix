@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   # Package handled separately, by nixos/arch modules
 
   xdg.configFile."alacritty/alacritty.yml".text = ''
@@ -545,8 +544,7 @@
   '';
 }
 
-/*
-    settings = {
+/* settings = {
         env.TERM = "xterm-256color";
         window = {
             padding = { x = 2; y = 2; };
@@ -554,7 +552,7 @@
             decorations = "none";
             opacity = 0.7;
         };
-        
+
         scrolling = {
             history = 10000;
             multiplier = 3;
@@ -591,4 +589,4 @@
             save_to_clipboard = false;
         };
     };
-    */
+*/

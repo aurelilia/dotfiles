@@ -1,5 +1,4 @@
-{ config, pkgs, lib, ... }:
-{
+{ config, pkgs, lib, ... }: {
   # Sway itself. Package is managed either by Arch or NixOS
   wayland.windowManager.sway = {
     enable = true;
@@ -11,8 +10,15 @@
   services.swayidle = {
     enable = true;
     timeouts = [
-      { timeout = 300; command = "~/.config/sway/scripts/lock.sh"; }
-      { timeout = 360; command = "swaymsg output '*' dpms off"; resumeCommand = "swaymsg output '*' dpms on && ~/.config/eww/init.sh"; }
+      {
+        timeout = 300;
+        command = "~/.config/sway/scripts/lock.sh";
+      }
+      {
+        timeout = 360;
+        command = "swaymsg output '*' dpms off";
+        resumeCommand = "swaymsg output '*' dpms on && ~/.config/eww/init.sh";
+      }
     ];
   };
 
@@ -58,6 +64,7 @@
     libnotify
     playerctl
     ulauncher
-    (python3.withPackages(ps: with ps; [ requests pint simpleeval parsedatetime pytz ]))
+    (python3.withPackages
+      (ps: with ps; [ requests pint simpleeval parsedatetime pytz ]))
   ];
 }

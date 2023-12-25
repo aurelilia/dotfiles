@@ -15,7 +15,7 @@
 
   virtualisation.oci-containers = {
     backend = "docker";
-    
+
     containers.watchtower = {
       image = "containrrr/watchtower";
       volumes = [ "/run/docker.sock:/var/run/docker.sock" ];

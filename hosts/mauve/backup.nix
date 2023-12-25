@@ -1,6 +1,5 @@
 { config, lib, pkgs, ... }:
-let
-  borg = import ../../fleet/mixins/borg.nix;
+let borg = import ../../fleet/mixins/borg.nix;
 in {
   # Borg
   programs.ssh.knownHosts = borg.hosts;

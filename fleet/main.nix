@@ -1,8 +1,5 @@
 { name, nodes, config, lib, pkgs, ... }: {
-  imports = [
-    ./modules/network.nix
-    ./modules/ssh.nix
-  ];
+  imports = [ ./modules/network.nix ./modules/ssh.nix ];
 
   # Locale related stuff
   time.timeZone = "Europe/Brussels";
@@ -27,7 +24,7 @@
       shell = pkgs.zsh;
       initialHashedPassword = "";
     };
-  }; 
+  };
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
