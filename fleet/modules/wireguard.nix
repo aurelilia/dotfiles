@@ -4,7 +4,6 @@ let
       key = "8ezeQyYgoWhhTILBoXy7ABSCR87pHbjr+LMCVtcU038=";
       ip = "10.45.0.1";
       endpoint = "202.61.255.155:50220";
-      keepalive = 25;
     };
 
     haze = {
@@ -29,7 +28,8 @@ in { name, config, lib, pkgs, ... }: {
         publicKey = key;
         allowedIPs = [ "${ip}/32" ];
         endpoint = args.endpoint or null;
-        persistentKeepalive = args.keepalive or null;
+        persistentKeepalive =
+          (if args.endpoint or null != null then 25 else null);
       }) (lib.attrValues (removeAttrs hosts [ name ]));
     };
   };
