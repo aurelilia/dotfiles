@@ -25,6 +25,10 @@
     device = "zroot/system/nixstore";
     fsType = "zfs";
   };
+  fileSystems."/var/lib/docker" = {
+    device = "zroot/system/docker";
+    fsType = "zfs";
+  };
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/64FD-A75F";
     fsType = "vfat";

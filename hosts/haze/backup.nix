@@ -5,8 +5,8 @@ let
   mediaPre = "find /media/media | cut -b 14- > /media/.media-list";
   mediaPost = "rm /media/.media-list";
 in {
+  # Borg
   programs.ssh.knownHosts = borg.hosts;
-
   services.borgbackup.jobs = {
     borgbaseSystem = borg.systemBorgbase;
 
@@ -22,5 +22,12 @@ in {
         weekly = 2;
       };
     };
+  };
+
+  # Sanoid
+  services.sanoid.datasets = {
+    "zroot/system/nixos".useTemplate = [ "tempDir" ];
+    "zroot/data/vms".useTemplate = [ "tempDir" ];
+    "zroot/data/personal".useTemplate = [ "hasBackup" ];
   };
 }
