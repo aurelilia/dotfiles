@@ -23,6 +23,7 @@ in {
         header /.well-known/matrix/* Access-Control-Allow-Origin "*"
         respond /.well-known/matrix/client `{"m.homeserver":{"base_url":"https://matrix.elia.garden/"}}`
         respond /.well-known/matrix/server `{"m.server":"matrix.elia.garden:443"}`
+        redir /.well-known/webfinger https://social.elia.garden{uri}
 
         ${snippets.no-robots}
         root * /srv/html
