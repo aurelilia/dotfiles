@@ -6,6 +6,7 @@
     ./modules/gtk.nix
     ./modules/ssh.nix
     ./modules/sway.nix
+    ./modules/virt.nix
     ./modules/vscode.nix
     ./modules/xdg.nix
   ];

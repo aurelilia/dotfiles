@@ -3,6 +3,7 @@
     ./backup.nix
     ./hardware.nix
 
+    ../../fleet/modules/libvirt.nix
     ../../fleet/modules/zfs.nix
   ];
 
