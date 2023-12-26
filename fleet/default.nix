@@ -26,6 +26,11 @@
     imports = [ ../hosts/jade ./server.nix ];
   };
 
+  haze = { name, nodes, pkgs, ... }: {
+    deployment.tags = [ "prod" "server" ];
+    imports = [ ../hosts/haze ./server.nix ];
+  };
+
   mauve = { name, nodes, pkgs, ... }: {
     deployment.tags = [ "prod" "workstation" "laptop" ];
     imports = [ ../hosts/mauve ./laptop.nix ];

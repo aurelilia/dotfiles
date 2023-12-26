@@ -1,4 +1,7 @@
-{ ... }: {
+{ lib, ... }: {
+  networking.hostId = lib.mkDefault "00000000";
+  virtualisation.docker.storageDriver = lib.mkDefault "zfs";
+
   services.zfs.autoScrub.enable = true;
   services.zfs.trim.enable = true;
   systemd.services.zfs-mount.enable = true;

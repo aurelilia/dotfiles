@@ -13,4 +13,6 @@
       };
     };
   };
+
+  programs.zsh.shellAliases.ssh-unlock = "ssh -p 2222";
 }
