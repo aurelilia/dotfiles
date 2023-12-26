@@ -2,7 +2,7 @@
   networking = {
     hostName = name;
     fqdn = name + ".elia.garden";
-    firewall.enable = true;
+    firewall.enable = lib.mkDefault true;
     extraHosts = ''
       10.0.1.10 helio
       10.0.0.1 celadon

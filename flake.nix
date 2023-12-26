@@ -16,9 +16,13 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
       inputs.darwin.follows = "";
     };
+
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs-stable";
   };
 
-  outputs = { home-manager, nixpkgs, nixpkgs-stable, nixgl, agenix, ... }:
+  outputs =
+    { home-manager, nixpkgs, nixpkgs-stable, nixgl, agenix, disko, ... }:
     let
       hostSystem = "x86_64-linux";
       nixpkgsHost = import nixpkgs { system = hostSystem; };
@@ -45,7 +49,7 @@
       };
 
       colmena = import ./fleet {
-        inherit home-manager agenix nixgl;
+        inherit home-manager agenix nixgl disko;
         nixpkgs = nixpkgs-stable;
       };
     };

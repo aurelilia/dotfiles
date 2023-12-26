@@ -5,6 +5,7 @@
 
     # ./containers/caddy.nix
 
+    ../../fleet/modules/borg.nix
     ../../fleet/modules/zfs.nix
   ];
 

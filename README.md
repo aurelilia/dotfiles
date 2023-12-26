@@ -16,5 +16,13 @@ some are not migrated yet - work in progress!
 I'm using the great `colmena` to deploy remotely. See `/fleet` for system
 configuration.
 
+For deploying an initial configuration from another Linux or the NixOS
+installer, see `utils/deploy-*.sh`.
+
+```
+./utils/deploy-disko.sh <entry in hosts/; must contain disko.nix> <hostname>
+./utils/deploy-prepartitioned.sh <hostname>
+```
+
 ### Formatting
 Using `nixfmt`.

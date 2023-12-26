@@ -1,4 +1,9 @@
-{ home-manager, nixpkgs, nixgl, agenix, ... }: {
+let
+  haze-swarm = { name, nodes, pkgs, ... }: {
+    deployment.tags = [ "prod" "server" "swarm" ];
+    imports = [ ../hosts/haze-swarm ./server.nix ];
+  };
+in { home-manager, nixpkgs, nixgl, agenix, disko, ... }: {
   meta = {
     nixpkgs = import nixpkgs {
       system = "x86_64-linux";
@@ -10,6 +15,7 @@
     imports = [
       home-manager.nixosModules.home-manager
       agenix.nixosModules.default
+      disko.nixosModules.disko
       ./main.nix
     ];
 
@@ -30,6 +36,9 @@
     deployment.tags = [ "prod" "server" ];
     imports = [ ../hosts/haze ./server.nix ];
   };
+  haze-swarm1 = haze-swarm;
+  haze-swarm2 = haze-swarm;
+  haze-swarm3 = haze-swarm;
 
   mauve = { name, nodes, pkgs, ... }: {
     deployment.tags = [ "prod" "workstation" "laptop" ];
