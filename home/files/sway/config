@@ -161,6 +161,10 @@ bindsym $mod+space focus mode_toggle
 # Move focus to the parent container
 bindsym $mod+a focus parent
 
+# Change scaling
+bindsym $mod+x output DP-1 scale 1.5
+bindsym $mod+c output DP-1 scale 1
+
 # Scratchpad
 # Sway has a "scratchpad", which is a bag of holding for windows.
 # You can send windows there and get them back later.
