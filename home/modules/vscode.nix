@@ -54,4 +54,5 @@
   };
 
   programs.zsh.shellAliases = { code = "codium"; };
+  home.sessionVariables.NIXOS_OZONE_WL = "1";
 }

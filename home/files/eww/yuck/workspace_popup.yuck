@@ -1,5 +1,10 @@
-(defwindow workspace-popup
+(defwindow workspace-popup-0
     :monitor 0
+    :stacking "fg"
+    :exclusive false
+    (workspace))
+(defwindow workspace-popup-1
+    :monitor 1
     :stacking "fg"
     :exclusive false
     (workspace))

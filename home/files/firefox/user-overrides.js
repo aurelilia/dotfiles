@@ -84,4 +84,7 @@ user_pref("ui.prefersReducedMotion", 0);
 /* Change sync server */
 user_pref("identity.sync.tokenserver.uri", "https://sync.elia.garden/token/1.0/sync/1.5");
 
+/* Fractional scaling */
+user_pref("widget.wayland.fractional-scale.enabled", true);
+
 user_pref("_user.js.parrot", "all done!");

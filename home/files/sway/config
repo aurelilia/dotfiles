@@ -53,8 +53,10 @@ scratchpad_minimize disable
 
 
 ### Output configuration
-output HDMI-A-1 resolution 2560x1440 position 0,0
-
+output HDMI-A-1 resolution 2560x1440 position 0 0
+output HDMI-A-1 transform 90
+output DP-1 resolution 3840x2160 position 1440 780
+output DP-1 scale 1.5
 
 ### Input configuration
 #

@@ -3,8 +3,17 @@
 (defvar wallpaper "/home/leela/.config/wallpaper.png")
 (defvar wallpaper_visible true)
 
-(defwindow bgbox
+(defwindow bgbox-0
   :monitor 0
+  :stacking "bg"
+  :exclusive false
+  :geometry (geometry
+              :width "100%"
+              :height "100%")
+  (bgbox_layout))
+
+(defwindow bgbox-1
+  :monitor 1
   :stacking "bg"
   :exclusive false
   :geometry (geometry
