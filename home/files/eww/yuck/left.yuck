@@ -1,14 +1,14 @@
 (defvar left_visible false)
 (defvar user "leela")
 
-(defwindow left-closer-0
+(defwindow left-closer-1
     :monitor 1
     :geometry (geometry :width "100%" :height "100%")
     :stacking "fg"
     :focusable false
     (closer :window "left"))
 
-(defwindow left-0
+(defwindow left-1
     :monitor 0
     :stacking "fg"
     :exclusive false
@@ -19,14 +19,14 @@
                         :anchor "top right")
     (left-widget))
 
-(defwindow left-closer-1
+(defwindow left-closer-2
     :monitor 1
     :geometry (geometry :width "100%" :height "100%")
     :stacking "fg"
     :focusable false
     (closer :window "left"))
 
-(defwindow left-1
+(defwindow left-2
     :monitor 1
     :stacking "fg"
     :exclusive false

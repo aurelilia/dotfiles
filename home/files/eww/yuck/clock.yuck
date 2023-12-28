@@ -1,4 +1,4 @@
-(defwindow clock-0
+(defwindow clock
     :monitor 0
     :stacking "fg"
     :exclusive false
@@ -6,18 +6,7 @@
                         :y "0"
                         :width "150px"
                         :height "40px"
-                        :anchor "top right")
-    (clock-widget))
-
-(defwindow clock-1
-    :monitor 1
-    :stacking "fg"
-    :exclusive false
-    :geometry (geometry :x "0"
-                        :y "0"
-                        :width "150px"
-                        :height "40px"
-                        :anchor "top right")
+                        :anchor "bottom right")
     (clock-widget))
 
 (defwidget clock-widget []

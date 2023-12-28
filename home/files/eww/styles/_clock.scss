@@ -1,15 +1,15 @@
-.clock-0, .clock-1 {
-    border-radius: 0 0 0 1000px;
+.clock {
+    border-radius: 1000px 0 0 0;
     background-color: $crust-trans;
     font-size: 1.5em;
 }
 
-.clock-0 label, .clock-1 label {
+.clock label {
     margin: 3px 0 0 1.5em;
     color: $red;
 }
 
-.clock-0 button, .clock-1 button {
+.clock button {
     background-color: rgba($color: #000000, $alpha: 0.0);
     padding: 0;
     margin: 0;
