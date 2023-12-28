@@ -22,13 +22,11 @@
   (bgbox_layout))
 
 (defwidget bgbox_layout []
-  (overlay
-    (wallpaper)
-    (box :orientation "horizontal"
-      (for sc in "${config.scroll_regions}"
-        (box :orientation "vertical"
-          (for scr in sc
-            (scroller :of scr)))))))
+  (box :orientation "horizontal"
+    (for sc in "${config.scroll_regions}"
+      (box :orientation "vertical"
+        (for scr in sc
+          (scroller :of scr))))))
 
 (defwidget wallpaper []
   (revealer :transition "crossfade" 

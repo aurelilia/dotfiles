@@ -63,6 +63,7 @@
     ripgrep
     libnotify
     playerctl
+    swww
     ulauncher
     (python3.withPackages
       (ps: with ps; [ requests pint simpleeval parsedatetime pytz ]))
