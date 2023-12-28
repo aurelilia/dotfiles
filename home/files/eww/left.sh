@@ -1,5 +1,5 @@
 #!/bin/sh
-SCR="$(sh ./scripts/screencount.sh)"
-eww open left-$SCR
-eww open left-closer-$SCR
+SCR="$(sh ./scripts/screen.sh)"
+eww open --arg monitor=$SCR left
+eww open --arg monitor=$SCR left-closer
 eww update left_visible=true

@@ -3,9 +3,12 @@
 pkill eww || true
 eww daemon
 eww update config="$(cat ~/.config/eww/config/$(hostname).json)"
-eww open bgbox-0
-eww open clock
 
-if [ $(sh ./scripts/screencount.sh) -gt 1 ]; then
-    eww open bgbox-1
-fi
+CLOCKS=$(swaymsg -t get_outputs -r | jq -r ".[] | select(.scale == 1.0) | .model")
+eww open --arg monitor="$CLOCKS" clock
+
+IFS=$'\n'
+for scr in $(sh ./scripts/screens.sh)
+do
+    eww open --id $scr --arg monitor=$scr bgbox
+done

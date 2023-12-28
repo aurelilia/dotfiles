@@ -2,6 +2,6 @@
 killall switch_workspace_sleep.sh
 
 SCR=$(sh ~/.config/eww/scripts/screen.sh)
-eww open workspace-popup-$SCR
+eww open --arg monitor="$SCR" workspace-popup
 ~/.config/sway/scripts/switch_workspace_sleep.sh
-eww close workspace-popup-$SCR
+eww close workspace-popup

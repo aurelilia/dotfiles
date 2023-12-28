@@ -1,5 +1,5 @@
-(defwindow clock
-    :monitor 0
+(defwindow clock [monitor]
+    :monitor monitor
     :stacking "fg"
     :exclusive false
     :geometry (geometry :x "0"
