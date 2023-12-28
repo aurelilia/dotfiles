@@ -21,12 +21,7 @@
 
     fonts.fontconfig.enable = true;
     programs.home-manager.enable = true;
-    targets.genericLinux.enable = true;
-
-    systemd.user = {
-      startServices = true;
-      systemctlPath = "/usr/bin/systemctl";
-    };
+    systemd.user.startServices = true;
 
     #### Misc configurations:
     # Nix
@@ -38,6 +33,8 @@
     home.activation.copyFirefox = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       cp -r $HOME/git/public/dotfiles/home/files/firefox/* ~/.mozilla/firefox/*.*/
     '';
+    # Syncthing
+    services.syncthing.enable = true;
 
     home.packages = with pkgs; [
       # Graphical

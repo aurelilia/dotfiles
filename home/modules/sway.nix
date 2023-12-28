@@ -1,10 +1,56 @@
-{ config, pkgs, lib, ... }: {
+let
+  mkScript = content: {
+    text = ''
+      #!/bin/sh
+      ${content}'';
+    executable = true;
+  };
+in { config, pkgs, lib, ... }: {
   # Sway itself. Package is managed either by Arch or NixOS
   wayland.windowManager.sway = {
     enable = true;
     package = null;
   };
-  xdg.configFile."sway".source = ../files/sway;
+
+  xdg.configFile."sway/config".source = lib.mkForce ../files/sway/config;
+  xdg.configFile."sway/autostart.sh".source = ../files/sway/autostart.sh;
+  xdg.configFile."sway/scripts".source = ../files/sway/scripts;
+
+  # Swaylock
+  programs.swaylock = {
+    enable = true;
+    package = pkgs.swaylock-effects;
+    settings = {
+      screenshots = true;
+      clock = true;
+      indicator = true;
+      indicator-radius = "200";
+      indicator-thickness = "20";
+      effect-blur = "8x5";
+      effect-vignette = "0.5:0.5";
+      effect-greyscale = true;
+      grace = "5";
+      fade-in = "0.2";
+      color = "00000000";
+      inside-color = "1e1e2e";
+      inside-clear-color = "1e1e2e";
+      inside-ver-color = "1e1e2e";
+      inside-wrong-color = "1e1e2e";
+      line-color = "11111b";
+      line-ver-color = "11111b";
+      line-clear-color = "11111b";
+      line-wrong-color = "11111b";
+      ring-color = "cba6f7";
+      ring-clear-color = "cba6f7";
+      ring-ver-color = "cba6f7";
+      ring-wrong-color = "f38ba8";
+      separator-color = "00000000";
+      text-color = "cdd6f4";
+      text-clear-color = "cdd6f4";
+      text-ver-color = "cdd6f4";
+      text-wrong-color = "f38ba8";
+    };
+  };
 
   # Swayidle
   services.swayidle = {
@@ -12,12 +58,13 @@
     timeouts = [
       {
         timeout = 300;
-        command = "~/.config/sway/scripts/lock.sh";
+        command = "${pkgs.swaylock-effects}/bin/swaylock";
       }
       {
         timeout = 360;
-        command = "swaymsg output '*' dpms off";
-        resumeCommand = "swaymsg output '*' dpms on && ~/.config/eww/init.sh";
+        command = "${pkgs.swayfx}/bin/swaymsg output '*' dpms off";
+        resumeCommand =
+          "${pkgs.swayfx}/bin/swaymsg output '*' dpms on && ~/.config/eww/init.sh";
       }
     ];
   };
@@ -30,7 +77,6 @@
   xdg.configFile."dunstrc".source = ../files/dunstrc;
 
   # Misc services
-  services.syncthing.enable = true;
   # Ulauncher tries to open themes RW (?!?!) which obviously does not work
   # with the store, so we link it's files directly out of this repo.
   # https://github.com/nix-community/home-manager/issues/257
@@ -57,7 +103,6 @@
     inetutils
     slurp
     sway-audio-idle-inhibit
-    swaylock-effects
     wl-clipboard
     ydotool
     ripgrep

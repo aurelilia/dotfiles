@@ -10,6 +10,9 @@
     (wrapWithNixGL alacritty)
   ];
 
+  systemd.user.systemctlPath = "/usr/bin/systemctl";
+  targets.genericLinux.enable = true;
+
   nixpkgs.overlays = lib.singleton (self: super: {
     wrapWithNixGL = package:
       let
