@@ -16,4 +16,10 @@
   # Libvirt
   networking.bridges.vmbr0.interfaces = [ "eno1" ];
   networking.firewall.enable = false;
+
+  # NFS
+  services.nfs.server.enable = true;
+  services.nfs.server.exports = ''
+    /media          *(rw,fsid=0,async,no_subtree_check,crossmnt,no_root_squash)
+  '';
 }
