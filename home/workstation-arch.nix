@@ -12,6 +12,8 @@
 
   systemd.user.systemctlPath = "/usr/bin/systemctl";
   targets.genericLinux.enable = true;
+  # PAM is broken
+  services.swayidle.enable = lib.mkForce false;
 
   nixpkgs.overlays = lib.singleton (self: super: {
     wrapWithNixGL = package:

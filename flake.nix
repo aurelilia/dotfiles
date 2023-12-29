@@ -44,7 +44,6 @@
       };
 
       homeConfigurations = {
-        "leela@hazyboi" = mkHome ./hosts/hazyboi;
         "leela@coral" = mkHome ./hosts/coral;
       };
 
