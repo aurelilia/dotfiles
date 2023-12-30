@@ -15,6 +15,11 @@ let
       key = "UikEcq+qAfPSfoMM+2FBFFezpr+GMNvySxEa6f+3iDI=";
       ip = "10.45.0.3";
     };
+
+    hazyboi = {
+      key = "POmbXmW6t1fCyorK3vCcmiZtrusndPrKzieotwOT02w=";
+      ip = "10.45.0.4";
+    };
   };
 in { name, config, lib, pkgs, ... }: {
   networking.firewall.allowedUDPPorts = [ 50220 ];

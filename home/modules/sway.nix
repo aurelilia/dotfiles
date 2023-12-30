@@ -53,21 +53,10 @@ in { config, pkgs, lib, ... }: {
   };
 
   # Swayidle
-  services.swayidle = {
-    enable = true;
-    timeouts = [
-      {
-        timeout = 300;
-        command = "${pkgs.swaylock-effects}/bin/swaylock";
-      }
-      {
-        timeout = 360;
-        command = "${pkgs.swayfx}/bin/swaymsg output '*' dpms off";
-        resumeCommand =
-          "${pkgs.swayfx}/bin/swaymsg output '*' dpms on && ~/.config/eww/init.sh";
-      }
-    ];
-  };
+  xdg.configFile."swayidle/config".text = ''
+    timeout 300 '${pkgs.swaylock-effects}/bin/swaylock'
+    timeout 360 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on && ~/.config/eww/init.sh"' 
+  '';
 
   # Dunst
   services.dunst = {
@@ -81,7 +70,7 @@ in { config, pkgs, lib, ... }: {
   # with the store, so we link it's files directly out of this repo.
   # https://github.com/nix-community/home-manager/issues/257
   home.activation.linkUlauncher = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ln -sf $HOME/git/public/dotfiles/home/files/ulauncher $HOME/.config/ulauncher
+    ln -sf $HOME/git/public/dotfiles/home/files/ulauncher $HOME/.config/
   '';
 
   # Session variables
@@ -102,6 +91,7 @@ in { config, pkgs, lib, ... }: {
     jq
     inetutils
     slurp
+    swayidle
     sway-audio-idle-inhibit
     wl-clipboard
     ydotool

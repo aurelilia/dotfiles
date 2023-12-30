@@ -4,10 +4,12 @@ rec {
 
   mauve =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBcgB0MWHDtutAz/MomjqK0kt3auZ4lg/BZIEImsq66q";
+  hazyboi =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIADLWi36uYnFOIRv2LS7b+SGKlsCh1xV6+PjG273wl/u";
   navy =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGAeAfFlx5dwh0/NHkEoffxzcjVjG5wtsze00cANiDr";
   haze =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBXofGKR0wV5Qy0S8EWkZ7A4E15asz7wtGYhSwG14gyA";
 
-  all = [ leela mauve navy haze ];
+  all = [ leela mauve hazyboi navy haze ];
 }

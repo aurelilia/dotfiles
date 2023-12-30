@@ -54,5 +54,12 @@
   };
 
   programs.zsh.shellAliases = { code = "codium"; };
-  home.sessionVariables.NIXOS_OZONE_WL = "1";
+  # Electron is currently broken
+  # TODO: Remove once Electron supports Wayland properly
+  # https://github.com/electron/electron/issues/39449
+  #
+  # Sway, for this reason, also sets scale to 1.0 on
+  # switching to the third workspace, which I usually use VSC on
+  # (Since running in XWayland with fractional scaling is very blurry)
+  # home.sessionVariables.NIXOS_OZONE_WL = "1";
 }

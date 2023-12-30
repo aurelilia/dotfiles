@@ -43,9 +43,7 @@
         ];
       };
 
-      homeConfigurations = {
-        "leela@coral" = mkHome ./hosts/coral;
-      };
+      homeConfigurations = { "leela@coral" = mkHome ./hosts/coral; };
 
       colmena = import ./fleet {
         inherit home-manager agenix nixgl disko;

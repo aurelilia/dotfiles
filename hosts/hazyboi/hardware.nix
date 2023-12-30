@@ -27,12 +27,17 @@
     fsType = "zfs";
   };
   fileSystems."/win" = {
-    device = "/dev/disk/by-uuid/3648FBC748FB83C1";
+    device = "/dev/disk/by-uuid/A0F40170F40149CC";
     fsType = "ntfs";
   };
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/69DB-CD68";
     fsType = "vfat";
+  };
+  fileSystems."/haze" = {
+    device = "haze:/";
+    fsType = "nfs4";
+    options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
   };
 
   swapDevices = [ ];

@@ -55,8 +55,8 @@ scratchpad_minimize disable
 ### Output configuration
 output HDMI-A-1 resolution 2560x1440 position 0 0
 output HDMI-A-1 transform 90
-output DP-1 resolution 3840x2160 position 1440 780
-output DP-1 scale 1.5
+output DP-3 resolution 3840x2160 position 1440 780
+output DP-3 scale 1.5
 
 ### Input configuration
 #
@@ -162,8 +162,8 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # Change scaling
-bindsym $mod+x output DP-1 scale 1.5
-bindsym $mod+c output DP-1 scale 1
+bindsym $mod+x output DP-3 scale 1.5
+bindsym $mod+c output DP-3 scale 1
 
 # Scratchpad
 # Sway has a "scratchpad", which is a bag of holding for windows.
