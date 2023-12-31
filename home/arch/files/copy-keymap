@@ -1,2 +1,0 @@
-#!/bin/sh
-cp /usr/local/share/keymap-us /usr/share/X11/xkb/symbols/us 

@@ -44,6 +44,10 @@ in { home-manager, nixpkgs, nixgl, agenix, disko, ... }: {
     deployment.tags = [ "prod" "workstation" "laptop" ];
     imports = [ ../hosts/mauve ./laptop.nix ];
   };
+  coral = { name, nodes, pkgs, ... }: {
+    deployment.tags = [ "prod" "workstation" "laptop" ];
+    imports = [ ../hosts/coral ./laptop.nix ];
+  };
   hazyboi = { name, nodes, pkgs, ... }: {
     deployment.tags = [ "prod" "workstation" ];
     imports = [ ../hosts/hazyboi ./workstation.nix ];

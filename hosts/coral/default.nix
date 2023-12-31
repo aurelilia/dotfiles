@@ -1,3 +1,1 @@
-args@{ config, lib, pkgs, ... }: {
-  imports = [ ../../home/workstation-arch.nix ];
-}
+args@{ config, lib, pkgs, ... }: { imports = [ ./hardware.nix ]; }

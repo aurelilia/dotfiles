@@ -38,6 +38,10 @@
 
     home.packages = with pkgs; [
       # Graphical
+      firefox
+      thunderbird
+      obs-studio
+      alacritty
       gnome.eog
       gnome.evince
       gnome.file-roller
@@ -55,6 +59,7 @@
 
       # Fonts / Style
       fira-code-nerdfont
+      dejavu_fonts
       comfortaa
       iosevka
 

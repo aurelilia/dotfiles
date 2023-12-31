@@ -11,7 +11,7 @@
     initialHashedPassword = "changeme";
   };
   users.groups.leela.gid = 1000;
-  home-manager.users.leela = import ../home/workstation-nix.nix;
+  home-manager.users.leela = import ../home/workstation.nix;
 
   # Ethereal, expected to be present on workstations and owned by leela.
   # Usually also a mountpoint, but we still want permissions to be correct
