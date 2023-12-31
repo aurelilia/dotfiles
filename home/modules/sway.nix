@@ -206,6 +206,9 @@ in { nixosConfig, config, pkgs, lib, ... }: {
 
     # SwayFX
     extraConfig = ''
+      corner_radius 5
+      tiling_drag enable
+
       # Window background blur
       blur on
       blur_xray on
@@ -222,7 +225,7 @@ in { nixosConfig, config, pkgs, lib, ... }: {
       swaybg_command -
     '';
   };
-  xdg.configFile."sway/scripts".source = ../files/sway/scripts;
+  xdg.configFile."sway/scripts".source = ../files/sway-scripts;
 
   # Swaylock
   programs.swaylock = {
