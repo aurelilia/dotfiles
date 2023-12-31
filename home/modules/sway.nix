@@ -1,19 +1,227 @@
 let
-  mkScript = content: {
-    text = ''
-      #!/bin/sh
-      ${content}'';
-    executable = true;
+  swayCfg = {
+    hazyboi = {
+      output = {
+        HDMI-A-1 = {
+          resolution = "2560x1440";
+          position = "0 0";
+          transform = "90";
+        };
+        DP-3 = {
+          resolution = "3840x2160";
+          position = "1440 780";
+          scale = "1.5";
+        };
+      };
+
+      workspaceOutputAssign = [
+        {
+          output = "DP-3";
+          workspace = "1";
+        }
+        {
+          output = "HDMI-A-1";
+          workspace = "2";
+        }
+        {
+          output = "DP-3";
+          workspace = "3";
+        }
+        {
+          output = "HDMI-A-1";
+          workspace = "10";
+        }
+      ];
+    };
+
+    mauve = {
+      input."*" = {
+        middle_emulation = "enabled";
+        tap = "enabled";
+      };
+    };
+
+    coral = {
+      input."*" = {
+        middle_emulation = "enabled";
+        tap = "enabled";
+      };
+    };
   };
-in { config, pkgs, lib, ... }: {
+in { nixosConfig, config, pkgs, lib, ... }: {
   # Sway itself. Package is managed either by Arch or NixOS
   wayland.windowManager.sway = {
     enable = true;
     package = null;
-  };
 
-  xdg.configFile."sway/config".source = lib.mkForce ../files/sway/config;
-  xdg.configFile."sway/autostart.sh".source = ../files/sway/autostart.sh;
+    config = (lib.getAttr nixosConfig.networking.hostName swayCfg) // rec {
+      modifier = "Mod4";
+
+      # Behavior
+      focus = {
+        followMouse = "always";
+        wrapping = "workspace";
+      };
+      workspaceAutoBackAndForth = true;
+
+      # Assigns
+      assigns = { "10" = [{ app_id = "thunderbird"; }]; };
+
+      # Appearance
+      fonts = {
+        names = [ "DejaVu Sans" ];
+        size = 9.0;
+      };
+      gaps = {
+        inner = 5;
+        outer = 2;
+      };
+      colors.focused = {
+        background = "#f38ba8";
+        border = "#f38ba8";
+        childBorder = "#f38ba8";
+        indicator = "#ffa6f7ff";
+        text = "#cdd6f4";
+      };
+      floating.border = 2;
+      window = {
+        border = 1;
+        titlebar = false;
+        commands = [{
+          command = "border none";
+          criteria = { app_id = "ulauncher"; };
+        }];
+      };
+
+      # Keymap
+      input."*" = {
+        xkb_layout = "us";
+        xkb_variant = "minimak-8";
+      };
+
+      # Keybinds
+      modes.resize = {
+        Left = "resize shrink width 10px";
+        Down = "resize grow height 10px";
+        Up = "resize shrink height 10px";
+        Right = "resize grow width 10px";
+        Return = "mode default";
+        Escape = "mode default";
+      };
+
+      keybindings = {
+        # Start a terminal
+        "${modifier}+Return" = "exec alacritty";
+        # Kill focused window
+        "Mod1+4" = "kill";
+        # Start launcher
+        "${modifier}+t" = "exec ulauncher-toggle";
+        # Dunst history
+        "${modifier}+grave" = "exec dunstctl history-pop";
+        # Screen locker
+        "${modifier}+l" = "swaylock";
+        # Screenshots
+        "${modifier}+q" = "exec ~/.config/sway/scripts/screenshot.sh";
+        "${modifier}+Shift+q" =
+          "exec ~/.config/sway/scripts/screenshot-delay.sh";
+        # Pick a colour
+        "${modifier}+p" = "exec ~/.config/sway/scripts/picker.sh";
+
+        # Moving around
+        # Move your focus around
+        "${modifier}+Left" = "focus left";
+        "${modifier}+Down" = "focus down";
+        "${modifier}+Up" = "focus up";
+        "${modifier}+Right" = "focus right";
+
+        # Move the focused window with the same, but add Shift
+        "${modifier}+Shift+Left" = "move left";
+        "${modifier}+Shift+Down" = "move down";
+        "${modifier}+Shift+Up" = "move up";
+        "${modifier}+Shift+Right" = "move right";
+
+        # Workspaces
+        # Switch to workspace
+        "${modifier}+1" = "exec ~/.config/sway/scripts/switch_workspace.sh 1";
+        "${modifier}+2" = "exec ~/.config/sway/scripts/switch_workspace.sh 2";
+        "${modifier}+3" = "exec ~/.config/sway/scripts/switch_workspace.sh 3";
+        "${modifier}+4" = "exec ~/.config/sway/scripts/switch_workspace.sh 4";
+        "${modifier}+5" = "exec ~/.config/sway/scripts/switch_workspace.sh 5";
+        "${modifier}+6" = "exec ~/.config/sway/scripts/switch_workspace.sh 6";
+        "${modifier}+7" = "exec ~/.config/sway/scripts/switch_workspace.sh 7";
+        "${modifier}+8" = "exec ~/.config/sway/scripts/switch_workspace.sh 8";
+        "${modifier}+9" = "exec ~/.config/sway/scripts/switch_workspace.sh 9";
+        "${modifier}+0" = "exec ~/.config/sway/scripts/switch_workspace.sh 10";
+        # Move focused container to workspace
+        "${modifier}+Shift+1" = "move container to workspace number 1";
+        "${modifier}+Shift+2" = "move container to workspace number 2";
+        "${modifier}+Shift+3" = "move container to workspace number 3";
+        "${modifier}+Shift+4" = "move container to workspace number 4";
+        "${modifier}+Shift+5" = "move container to workspace number 5";
+        "${modifier}+Shift+6" = "move container to workspace number 6";
+        "${modifier}+Shift+7" = "move container to workspace number 7";
+        "${modifier}+Shift+8" = "move container to workspace number 8";
+        "${modifier}+Shift+9" = "move container to workspace number 9";
+        "${modifier}+Shift+0" = "move container to workspace number 10";
+
+        # Layout stuff
+        # You can "split" the current object of your focus with
+        # $mod+b or $mod+v, for horizontal and vertical splits
+        # respectively.
+        "${modifier}+b" = "splith";
+        "${modifier}+v" = "splitv";
+
+        # Switch the current container between different layout styles
+        "${modifier}+n" = "layout tabbed";
+        "${modifier}+e" = "layout toggle split";
+
+        # Make the current focus fullscreen
+        "${modifier}+f" = "fullscreen";
+
+        # Toggle the current focus between tiling and floating mode
+        "${modifier}+Shift+space" = "floating toggle";
+
+        # Swap focus between the tiling area and the floating area
+        "${modifier}+space" = "focus mode_toggle";
+
+        # Move focus to the parent container
+        "${modifier}+a" = "focus parent";
+
+        # Change scaling
+        "${modifier}+x" = "output DP-3 scale 1.5";
+        "${modifier}+c" = "output DP-3 scale 1";
+
+        # Move the currently focused window to the scratchpad
+        "${modifier}+Shift+minus" = "move scratchpad";
+        # Show the next scratchpad window or hide the focused scratchpad window.
+        # If there are multiple scratchpad windows, this command cycles through them.
+        "${modifier}+minus" = "scratchpad show";
+      };
+
+      # No bars!
+      bars = [ ];
+
+      startup = [{ command = "~/.config/sway/scripts/autostart.sh"; }];
+    };
+
+    # SwayFX
+    extraConfig = ''
+      # Window background blur
+      blur on
+      blur_xray on
+      blur_passes 1
+      blur_radius 7
+
+      # Shadows
+      shadows on
+      shadows_on_csd off
+      shadow_blur_radius 7
+      shadow_color #1a1a1aee
+
+      # Disable swaybg
+      swaybg_command -
+    '';
+  };
   xdg.configFile."sway/scripts".source = ../files/sway/scripts;
 
   # Swaylock
@@ -80,8 +288,6 @@ in { config, pkgs, lib, ... }: {
 
     XCURSOR_THEME = "Catppuchin-Mocha-Maroon";
     XCURSOR_SIZE = 24;
-    WAYLAND_DISPLAY = "wayland-1"; # swayidle fails to connect without this
-    XDG_CURRENT_DESKTOP = "sway";
   };
 
   # Packages
