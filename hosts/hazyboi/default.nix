@@ -7,8 +7,9 @@ args@{ config, lib, pkgs, ... }: {
     ../../fleet/modules/zfs.nix
   ];
 
+  # Scanner
   hardware.sane.enable = true;
   hardware.sane.extraBackends = [ pkgs.epkowa ];
-  users.users.leela.extraGroups = [ "scanner" "lp" ];
-  environment.systemPackages = [ pkgs.gnome.simple-scan ];
+  users.users.leela.extraGroups = [ "scanner" ];
+  environment.systemPackages = [ pkgs.libsForQt5.skanlite ];
 }
