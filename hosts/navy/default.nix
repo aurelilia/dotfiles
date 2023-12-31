@@ -11,7 +11,6 @@
     ./containers/piped.nix
 
     ../../fleet/modules/borg.nix
-    ../../fleet/modules/wireguard.nix
   ];
 
   # SSH

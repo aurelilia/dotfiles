@@ -5,7 +5,6 @@
 
     ../../fleet/modules/borg.nix
     ../../fleet/modules/libvirt.nix
-    ../../fleet/modules/wireguard.nix
     ../../fleet/modules/zfs.nix
   ];
 

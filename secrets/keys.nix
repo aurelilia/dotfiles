@@ -5,7 +5,7 @@ rec {
   mauve =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBcgB0MWHDtutAz/MomjqK0kt3auZ4lg/BZIEImsq66q";
   hazyboi =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIADLWi36uYnFOIRv2LS7b+SGKlsCh1xV6+PjG273wl/u";
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILy/C1WwUJWfsZfGKvKlJ/y9v3nPbpUpBGdDeBv16XE+";
   navy =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGAeAfFlx5dwh0/NHkEoffxzcjVjG5wtsze00cANiDr";
   haze =
