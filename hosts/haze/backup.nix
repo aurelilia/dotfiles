@@ -2,8 +2,6 @@
 let
   borg = import ../../fleet/mixins/borg.nix;
   mediaDirs = [ "/containers" "/media" ];
-  mediaPre = "find /media/media | cut -b 14- > /media/.media-list";
-  mediaPost = "rm /media/.media-list";
 in {
   # Borg
   programs.ssh.knownHosts = borg.hosts;
@@ -13,8 +11,6 @@ in {
     borgbaseMedia = borg.defaultJob // {
       paths = mediaDirs;
       repo = borg.borgbaseMediaUrl;
-      preHook = mediaPre;
-      postCreate = mediaPost;
 
       prune.keep = {
         within = "1d";

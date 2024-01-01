@@ -29,6 +29,7 @@
   fileSystems."/win" = {
     device = "/dev/disk/by-uuid/A0F40170F40149CC";
     fsType = "ntfs";
+    options = [ "uid=1000" "gid=1000" ];
   };
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/69DB-CD68";

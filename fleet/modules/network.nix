@@ -3,7 +3,7 @@ let
     near = {
       gateway = "192.168.0.1";
       prefix = 24;
-      nameservers = [ "192.168.0.2" ];
+      nameservers = [ "192.168.0.100" ];
     };
 
     far = {
