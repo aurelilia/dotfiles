@@ -29,14 +29,6 @@
     };
 
     initExtra = ''
-      # Remove stuff set by NixGL, needed to prevent native applications from
-      # failing to load.
-      # This is set in the first place since Alacritty is using NixGL and the
-      # shell inherits it's environment
-      unset LD_LIBRARY_PATH LIBGL_DRIVERS_PATH LIBVA_DRIVERS_PATH __EGL_VENDOR_LIBRARY_FILENAMES
-      # Apply user environment
-      if [ -e ~/.config/environment.d/ ]; then . ~/.config/environment.d/*; fi
-
       # Quiet direnv
       export DIRENV_LOG_FORMAT=""
 
@@ -62,7 +54,7 @@
       zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
       zstyle ':completion:*' completer _complete _match _approximate
       zstyle ':completion:*:approximate:*' max-errors 3 numeric
-      zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
+      zstyle ':completion:*' cache-path $HOME/.cache/zsh/zcompcache
 
       # zinit
       ZINIT_HOME="${config.home.homeDirectory}/.local/share/zinit/bin"
@@ -73,29 +65,12 @@
       # syntax highlighting
       zinit ice wait"0b" lucid
       zinit light zsh-users/zsh-syntax-highlighting
-      # highlighters
-      ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern line)
-      # colors
-      typeset -A ZSH_HIGHLIGHT_STYLES
-      ZSH_HIGHLIGHT_STYLES[alias]='fg=green,bold'
-      ZSH_HIGHLIGHT_STYLES[builtin]='fg=blue'
-      ZSH_HIGHLIGHT_STYLES[command]='fg=green'
-      ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan,bold'
-      ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=magenta'
-      ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=yellow'
-      ZSH_HIGHLIGHT_STYLES[function]='fg=blue,bold'
-      ZSH_HIGHLIGHT_STYLES[path]='fg=yellow,underline'
-      ZSH_HIGHLIGHT_STYLES[precommand]='fg=blue,underline'
-      ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
-      ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=magenta'
-      ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=yellow'
-      ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
 
       # history-substring-search
       zinit ice wait"0a" lucid
       zinit light zsh-users/zsh-history-substring-search
-      bindkey '^[[A' history-substring-search-up
-      bindkey '^[[B' history-substring-search-down
+      bindkey '^[OA' history-substring-search-up
+      bindkey '^[OB' history-substring-search-down
 
       # autosuggestions
       zinit ice wait"0c" lucid atload"_zsh_autosuggest_start"
