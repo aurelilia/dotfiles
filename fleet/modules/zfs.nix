@@ -32,7 +32,7 @@ in {
   boot.initrd.systemd.services.rollback = {
     description = "Lustrate root filesystem";
     wantedBy = [ "initrd.target" ];
-    after = [ "zfs-import-zpool.service" ];
+    after = [ "zfs-import-zroot.service" ];
     before = [ "sysroot.mount" ];
     path = with pkgs; [ zfs ];
     unitConfig.DefaultDependencies = "no";
@@ -41,10 +41,10 @@ in {
       # We keep root from the last 3 boots
       # Any command except the create can fail in case the system has not
       # booted that often yet
-      zfs destroy -r ${root}-minus-3 || true
-      zfs rename -r ${root}-minus-2 ${root}-minus-3 || true
-      zfs rename -r ${root}-minus-1 ${root}-minus-2 || true
-      zfs rename -r ${root} ${root}-minus-1 || true
+      zfs destroy ${root}-minus-3 || true
+      zfs rename ${root}-minus-2 ${root}-minus-3 || true
+      zfs rename ${root}-minus-1 ${root}-minus-2 || true
+      zfs rename ${root} ${root}-minus-1 || true
       zfs create -o mountpoint=legacy ${root}
     '';
   };
