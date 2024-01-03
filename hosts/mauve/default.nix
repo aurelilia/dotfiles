@@ -7,6 +7,10 @@ args@{ config, lib, pkgs, ... }: {
     ../../fleet/modules/zfs.nix
   ];
 
+  # Separate Swap partition
+  boot.zfs.allowHibernation = true;
+  boot.zfs.forceImportRoot = false;
+
   # Bluetooth
   hardware.bluetooth = {
     enable = true;

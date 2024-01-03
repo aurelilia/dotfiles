@@ -11,4 +11,6 @@
     lidSwitchExternalPower = "ignore";
   };
   services.upower.enable = true;
+  services.auto-cpufreq.enable = true;
+  networking.wireless.iwd.enable = true;
 }
