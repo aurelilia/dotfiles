@@ -26,6 +26,10 @@
     device = "zroot/data/nix";
     fsType = "zfs";
   };
+  fileSystems."/persist" = {
+    device = "zroot/data/persist";
+    fsType = "zfs";
+  };
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/0066-697F";
     fsType = "vfat";

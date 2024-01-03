@@ -97,7 +97,7 @@ in {
         wg0 = {
           ips = [ "${host.wg.ip}/24" ];
           listenPort = 50220;
-          privateKeyFile = "/etc/nixos/wireguard-private";
+          privateKeyFile = "/persist/secrets/wireguard/wireguard-private";
 
           peers = map (args@{ key, ip, ... }: {
             publicKey = key;

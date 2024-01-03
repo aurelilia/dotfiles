@@ -15,7 +15,7 @@
     ssh = {
       enable = true;
       port = 2222;
-      hostKeys = [ "/etc/nixos/ssh_host_ed25519_key" ];
+      hostKeys = [ "/persist/secrets/ssh/initrd/ssh_host_ed25519_key" ];
     };
   };
 }
