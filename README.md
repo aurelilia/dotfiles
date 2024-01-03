@@ -5,7 +5,7 @@ packaged as a flake.
 ### Dotfiles
 This includes my dotfiles, which are managed with `home-manager` and expect
 NixOS as a base. See `/home`; you'll likely want to import
-either `server.nix` or `workstation.nix`, as this flake does.
+either `server.nix` or `workstation.nix`, as `fleet/` does.
 
 ### NixOS
 My systems running NixOS are also configured out of this repository; currently

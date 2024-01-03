@@ -7,7 +7,6 @@ in { home-manager, nixpkgs, nixgl, agenix, disko, ... }: {
   meta = {
     nixpkgs = import nixpkgs {
       system = "x86_64-linux";
-      overlays = [ nixgl.overlay ];
     };
   };
 
