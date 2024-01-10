@@ -4,12 +4,7 @@ args@{ config, lib, pkgs, ... }: {
     ./hardware.nix
 
     ../../fleet/modules/borg.nix
+    ../../fleet/modules/libvirt.nix
     ../../fleet/modules/zfs.nix
   ];
-
-  # Scanner
-  hardware.sane.enable = true;
-  hardware.sane.extraBackends = [ pkgs.epkowa ];
-  users.users.leela.extraGroups = [ "scanner" ];
-  environment.systemPackages = [ pkgs.libsForQt5.skanlite ];
 }

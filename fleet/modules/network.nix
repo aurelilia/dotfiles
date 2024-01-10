@@ -76,6 +76,7 @@ in {
     # Static IPv4
     (lib.mkIf (host ? gateway) {
       networking = {
+        useDHCP = false;
         defaultGateway = host.gateway;
         nameservers = host.nameservers;
         interfaces.lan.ipv4.addresses = [{

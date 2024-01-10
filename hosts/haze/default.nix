@@ -11,6 +11,8 @@
   # Initrd networking kernel drivers
   boot.kernelModules = [ "igb" ];
   boot.initrd.kernelModules = [ "igb" ];
+  boot.initrd.network.udhcpc.enable = false;
+  boot.kernelParams = [ "ip=192.168.0.100" ];
 
   # Libvirt
   networking.bridges.vmbr0.interfaces = [ "eno1" ];

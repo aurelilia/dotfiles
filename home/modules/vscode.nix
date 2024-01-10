@@ -8,10 +8,6 @@
       catppuccin.catppuccin-vsc-icons
       catppuccin.catppuccin-vsc
 
-      ms-vscode.cpptools
-      twxs.cmake
-      xaver.clang-format
-
       rust-lang.rust-analyzer
       tamasfe.even-better-toml
 

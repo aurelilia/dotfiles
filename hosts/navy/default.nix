@@ -16,4 +16,18 @@
   # SSH
   # Port 22 is taken by Forgejo
   services.openssh.ports = [ 9022 ];
+
+  # NAT
+  # Haze is behind NAT.
+  networking.nat = {
+    enable = true;
+    externalInterface = "ens3";
+    internalInterfaces = [ "wg0" ];
+    internalIPs = [ "10.45.0.0/24" ];
+    forwardPorts = [{
+      destination = "haze-wg:22";
+      proto = "tcp";
+      sourcePort = 10293;
+    }];
+  };
 }

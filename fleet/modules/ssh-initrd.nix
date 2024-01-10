@@ -1,7 +1,7 @@
-{ ... }: {
+{ lib,... }: {
   boot.initrd.network = {
     enable = true;
-    udhcpc.enable = true;
+    udhcpc.enable = lib.mkDefault true;
 
     postCommands = ''
       if type "zpool" > /dev/null; then

@@ -1,4 +1,4 @@
-let uris = [ "qemu+ssh://root@haze/system" ];
+let uris = [ "qemu+ssh://root@haze/system" "qemu:///session" ];
 in { config, pkgs, lib, ... }: {
   home.packages = with pkgs; [ virt-manager dconf ];
 

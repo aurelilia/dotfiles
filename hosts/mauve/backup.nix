@@ -8,7 +8,7 @@ in {
 
   # Sanoid
   services.sanoid.datasets = {
-    "zroot/root/nixos".useTemplate = [ "tempDir" ];
+    "zroot/data/persist".useTemplate = [ "tempDir" ];
     "zroot/data/ethereal".useTemplate = [ "tempDir" ];
     "zroot/data/home".useTemplate = [ "hasBackup" ];
   };

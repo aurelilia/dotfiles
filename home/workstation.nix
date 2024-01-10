@@ -54,6 +54,7 @@
       obs-studio-plugins.input-overlay
       pavucontrol
       hotspot
+      mpv
       # Steam
       flatpak
 
@@ -73,7 +74,6 @@
       hyperfine
       imagemagick
       unzip
-      unrar
       zip
       scc
     ];

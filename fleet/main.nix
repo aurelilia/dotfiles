@@ -1,11 +1,11 @@
 { name, nodes, config, lib, pkgs, ... }: {
   imports = [ ./modules/network.nix ./modules/ssh.nix ];
 
-  # Locale related stuff
+  # Locale
   time.timeZone = "Europe/Brussels";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Base Nix(OS) config
+  # Nix(OS) config
   system.stateVersion = "23.11";
   system.autoUpgrade.enable = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -29,4 +29,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
   };
+
+  # Misc
+  zramSwap.enable = true;
 }

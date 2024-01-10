@@ -3,7 +3,7 @@ let
     deployment.tags = [ "prod" "server" "swarm" ];
     imports = [ ../hosts/haze-swarm ./server.nix ];
   };
-in { home-manager, nixpkgs, nixgl, agenix, disko, ... }: {
+in { home-manager, nixpkgs, agenix, disko, ... }: {
   meta = {
     nixpkgs = import nixpkgs {
       system = "x86_64-linux";
