@@ -18,8 +18,7 @@
     };
   };
 
-  outputs =
-    { home-manager, nixpkgs, agenix, disko, ... }:
+  outputs = { home-manager, nixpkgs, agenix, disko, ... }:
     let
       hostSystem = "x86_64-linux";
       nixpkgsHost = import nixpkgs { system = hostSystem; };
@@ -32,8 +31,6 @@
         ];
       };
 
-      colmena = import ./fleet {
-        inherit nixpkgs home-manager agenix disko;
-      };
+      colmena = import ./fleet { inherit nixpkgs home-manager agenix disko; };
     };
 }

@@ -1,7 +1,8 @@
 rec {
   leela-old =
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyackPHAi1dToh8rb1E9nkeWZA19DTt5/qfHrDNZbNWojWN2axWB6fUvOPDWsfi7vszX/I9gmqo+qztcyVOmeu4FlPO9nQfCbpXfdrrUmLje/WzuWQeChnqC73D26dJmgxvTT3ytE2sovVMvXZEB+yAYDFPA0DU4C1VdtwU7nXbB4u9z3IwD9+nOTBTEcPcMLMrSpP8fDDfvjXSDvfIdeg0TBun6zNoSyO8RiVX38CKy+UEQKGcP2mc/gIrgdgGPdNoNiYXN7vXIr1kXXutbQ7BaifQuA9ryw+AmrhSMzhBHtx5Gx1Y0MbruVXvtNGlzE78r7r4kASJbVC/qTfKj7p leela@mauve";
-  leela = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHaBw1inXuNMKkMFIYtsif72XIIhNeB8Po7Koqx7Oird";
+  leela =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHaBw1inXuNMKkMFIYtsif72XIIhNeB8Po7Koqx7Oird";
 
   mauve =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBcgB0MWHDtutAz/MomjqK0kt3auZ4lg/BZIEImsq66q";

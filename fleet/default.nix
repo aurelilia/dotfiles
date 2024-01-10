@@ -4,11 +4,7 @@ let
     imports = [ ../hosts/haze-swarm ./server.nix ];
   };
 in { home-manager, nixpkgs, agenix, disko, ... }: {
-  meta = {
-    nixpkgs = import nixpkgs {
-      system = "x86_64-linux";
-    };
-  };
+  meta = { nixpkgs = import nixpkgs { system = "x86_64-linux"; }; };
 
   defaults = { name, nodes, pkgs, ... }: {
     imports = [

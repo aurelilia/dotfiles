@@ -17,5 +17,6 @@
     ];
   };
 
-  users.users.root.openssh.authorizedKeys.keys = (import ../../secrets/keys.nix).ssh;
+  users.users.root.openssh.authorizedKeys.keys =
+    (import ../../secrets/keys.nix).ssh;
 }

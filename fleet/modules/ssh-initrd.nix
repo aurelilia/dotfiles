@@ -1,4 +1,4 @@
-{ lib,... }: {
+{ lib, ... }: {
   boot.initrd.network = {
     enable = true;
     udhcpc.enable = lib.mkDefault true;
