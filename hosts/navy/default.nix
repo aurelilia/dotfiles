@@ -9,6 +9,7 @@
     ./containers/kuma.nix
     ./containers/mail.nix
     ./containers/piped.nix
+    ./services/coturn.nix
 
     ../../fleet/modules/borg.nix
   ];
