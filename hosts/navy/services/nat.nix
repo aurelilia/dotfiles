@@ -5,15 +5,7 @@ in { ... }: {
   # Haze is behind NAT.
   networking = {
     nftables = {
-      enable = true;
-      ruleset = ''
-          table ip nat {
-            chain PREROUTING {
-              type nat hook prerouting priority dstnat; policy accept;
-              iifname "ens3" tcp dport 22 dnat to ${haze-wg}:22
-            }
-          }
-      '';
+      enable = false;
     };
 
     firewall = {
