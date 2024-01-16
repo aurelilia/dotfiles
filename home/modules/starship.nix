@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
   programs.starship = {
     enable = true;
-    enableZshIntegration = true;
+    enableNushellIntegration = true;
 
     settings = {
       format = "$directory$hostname$character";

@@ -1,3 +1,0 @@
-#!/bin/sh
-efibootmgr --bootnext 0003
-reboot

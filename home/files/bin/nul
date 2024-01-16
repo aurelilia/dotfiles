@@ -1,7 +1,0 @@
-#!/bin/sh
-
-rsync --progress "$@" navy:/containers/caddy/srv/file/
-
-N=$(basename "$@")
-echo "Link: https://file.elia.garden/$N"
-wl-copy "https://file.elia.garden/$N"

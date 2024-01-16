@@ -199,7 +199,7 @@
         #   - (macOS) open
         #   - (Linux) xdg-open
         #   - (Windows) explorer
-        launcher: None
+        launcher: ${pkgs.xdg-utils}/bin/xdg-open
 
         # URL modifiers
         #
@@ -238,7 +238,7 @@
     #   - (Linux/macOS) /bin/bash --login
     #   - (Windows) powershell
     shell:
-      program: ${pkgs.zsh}/bin/zsh
+      program: ${pkgs.nushell}/bin/nu
       args: ["-l"]
 
     # Windows 10 ConPTY backend (Windows only)

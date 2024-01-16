@@ -14,5 +14,5 @@
     };
   };
 
-  programs.zsh.shellAliases.ssh-unlock = "ssh -p 2222";
+  programs.nushell.shellAliases.ssh-unlock = "ssh -p 2222";
 }

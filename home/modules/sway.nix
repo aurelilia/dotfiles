@@ -144,17 +144,17 @@ in { nixosConfig, config, pkgs, lib, ... }: {
 
           # Workspaces
           # Switch to workspace
-          "${modifier}+1" = "exec ~/.config/sway/scripts/switch_workspace.sh 1";
-          "${modifier}+2" = "exec ~/.config/sway/scripts/switch_workspace.sh 2";
-          "${modifier}+3" = "exec ~/.config/sway/scripts/switch_workspace.sh 3";
-          "${modifier}+4" = "exec ~/.config/sway/scripts/switch_workspace.sh 4";
-          "${modifier}+5" = "exec ~/.config/sway/scripts/switch_workspace.sh 5";
-          "${modifier}+6" = "exec ~/.config/sway/scripts/switch_workspace.sh 6";
-          "${modifier}+7" = "exec ~/.config/sway/scripts/switch_workspace.sh 7";
-          "${modifier}+8" = "exec ~/.config/sway/scripts/switch_workspace.sh 8";
-          "${modifier}+9" = "exec ~/.config/sway/scripts/switch_workspace.sh 9";
+          "${modifier}+1" = "exec ~/.config/sway/scripts/switch_workspace.nu 1";
+          "${modifier}+2" = "exec ~/.config/sway/scripts/switch_workspace.nu 2";
+          "${modifier}+3" = "exec ~/.config/sway/scripts/switch_workspace.nu 3";
+          "${modifier}+4" = "exec ~/.config/sway/scripts/switch_workspace.nu 4";
+          "${modifier}+5" = "exec ~/.config/sway/scripts/switch_workspace.nu 5";
+          "${modifier}+6" = "exec ~/.config/sway/scripts/switch_workspace.nu 6";
+          "${modifier}+7" = "exec ~/.config/sway/scripts/switch_workspace.nu 7";
+          "${modifier}+8" = "exec ~/.config/sway/scripts/switch_workspace.nu 8";
+          "${modifier}+9" = "exec ~/.config/sway/scripts/switch_workspace.nu 9";
           "${modifier}+0" =
-            "exec ~/.config/sway/scripts/switch_workspace.sh 10";
+            "exec ~/.config/sway/scripts/switch_workspace.nu 10";
           # Move focused container to workspace
           "${modifier}+Shift+1" = "move container to workspace number 1";
           "${modifier}+Shift+2" = "move container to workspace number 2";
@@ -268,6 +268,8 @@ in { nixosConfig, config, pkgs, lib, ... }: {
   };
 
   # Swayidle
+  # The systemd service is a bit wonky with the path,
+  # so we start it with the sway autostart script
   xdg.configFile."swayidle/config".text = ''
     timeout 300 '${pkgs.swaylock-effects}/bin/swaylock'
     timeout 360 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" && ~/.config/eww/init.sh' 

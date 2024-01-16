@@ -1,7 +1,0 @@
-#!/bin/bash
-# Compresses a given video with ffmpeg. Usage:
-# vidcompress <level, 27-31 recommended> <file>
-C=$1
-shift
-rm out.mp4
-ffmpeg -i "$@" -c:v libx264 -c:a aac -crf $C -preset slow out.mp4

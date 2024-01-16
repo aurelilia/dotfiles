@@ -9,8 +9,8 @@
     };
   };
 
-  programs.zsh.shellAliases = {
-    ls = "lsd -lFh";
-    la = "lsd -lFha";
+  programs.nushell.shellAliases = {
+    lsd = "lsd -lFh";
+    lad = "lsd -lFha";
   };
 }

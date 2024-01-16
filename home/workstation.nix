@@ -14,10 +14,6 @@
   config = {
     home.username = "leela";
     home.homeDirectory = "/home/${config.home.username}";
-    home.file.".local/bin".source = files/bin;
-    home.sessionVariables = {
-      PATH = "$HOME/.local/bin:/ethereal/cache/cargo/bin:$PATH";
-    };
 
     fonts.fontconfig.enable = true;
     programs.home-manager.enable = true;
@@ -35,12 +31,16 @@
     '';
     # Syncthing
     services.syncthing.enable = true;
+    # OBS
+    programs.obs-studio = {
+      enable = true;
+      plugins = [ pkgs.obs-studio-plugins.input-overlay ];
+    };
 
     home.packages = with pkgs; [
       # Graphical
       firefox
       thunderbird
-      obs-studio
       alacritty
       gnome.eog
       gnome.evince
@@ -51,7 +51,6 @@
       xfce.thunar-volman
       xfce.tumbler
       flameshot
-      obs-studio-plugins.input-overlay
       pavucontrol
       hotspot
       mpv
@@ -65,9 +64,7 @@
       iosevka
 
       # Desktop CLI
-      curlie
       dosfstools
-      rustup
       usbutils
       yt-dlp
       wireguard-tools

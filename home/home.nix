@@ -4,6 +4,7 @@
     ./modules/git.nix
     ./modules/lsd.nix
     ./modules/micro.nix
+    ./modules/nu.nix
     ./modules/starship.nix
     ./modules/zsh.nix
   ];

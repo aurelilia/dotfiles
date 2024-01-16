@@ -1,5 +1,4 @@
 { config, pkgs, ... }: {
-  nixpkgs.config.allowUnfreePredicate = _: true;
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium.fhs;
@@ -16,6 +15,8 @@
 
       bbenoist.nix
       mkhl.direnv
+
+      thenuprojectcontributors.vscode-nushell-lang
     ];
 
     userSettings = {

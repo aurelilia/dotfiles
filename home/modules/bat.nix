@@ -4,7 +4,7 @@
     config.theme = "Catppuccin-mocha";
   };
 
-  programs.zsh.shellAliases = {
+  programs.nushell.shellAliases = {
     ca = "bat -pp";
     va = "bat";
   };
