@@ -17,7 +17,6 @@ in { ... }: {
       enable = true;
       externalInterface = "ens3";
       internalInterfaces = [ "wg0" ];
-      internalIPs = [ "10.45.0.0/24" ];
       forwardPorts = [{
         destination = "${haze-wg}:22";
         proto = "tcp";
