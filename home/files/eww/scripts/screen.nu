@@ -16,5 +16,9 @@ def current-workspaces [] {
 }
 
 def update-eww [] {
-    eww update $"workspaces=(current-workspaces | to json)"
+    try {
+        eww update $"workspaces=(current-workspaces | to json)"
+    } catch {
+        nu ~/.config/eww/init.nu
+    }
 }

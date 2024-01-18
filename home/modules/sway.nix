@@ -28,7 +28,7 @@ let
           workspace = "3";
         }
         {
-          output = "HDMI-A-1";
+          output = "DP-3";
           workspace = "10";
         }
       ];
@@ -173,6 +173,8 @@ in { nixosConfig, config, pkgs, lib, ... }: {
           # respectively.
           "${modifier}+b" = "splith";
           "${modifier}+v" = "splitv";
+          # Resize mode
+          "${modifier}+r" = "mode resize";
 
           # Switch the current container between different layout styles
           "${modifier}+n" = "layout tabbed";
