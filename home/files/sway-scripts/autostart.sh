@@ -12,9 +12,9 @@ ydotoold &
 dunst -conf ~/.config/dunstrc &
 
 # Apps
-thunderbird &
 ulauncher &
+thunderbird &
 
 # Eww needs a moment, otherwise SWWW ends up on top...
 sleep 1
-~/.config/eww/init.sh
+~/.config/eww/init.nu

@@ -8,7 +8,7 @@
     settings = {
       default_session = {
         command =
-          "tuigreet --cmd sway -t -r --asterisks -g 'welcome to the garden'";
+          "tuigreet --cmd 'dbus-run-session sway' -t -r --asterisks -g 'welcome to the garden'";
       };
     };
   };
@@ -26,6 +26,8 @@
     enable = true;
     wlr.enable = true;
     xdgOpenUsePortal = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
+    config = { common.default = [ "gtk" "wlr" ]; };
   };
 
   # Audio

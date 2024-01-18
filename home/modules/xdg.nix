@@ -13,14 +13,25 @@
     NPM_CONFIG_USERCONFIG = "$XDG_CONFIG_HOME/npm/npmrc";
   };
 
-  xdg.configFile."npm/npmrc".text = ''
-    prefix=/ethereal/cache/npm-prefix
-    cache=/ethereal/cache/npm
-    init-module=/ethereal/cache/npm/config/npm-init.js
-  '';
-  xdg.configFile."nix/nix.conf".text = ''
-    use-xdg-base-directories = true
-  '';
+  xdg = {
+    configFile = {
+      "npm/npmrc".text = ''
+        prefix=/ethereal/cache/npm-prefix
+        cache=/ethereal/cache/npm
+        init-module=/ethereal/cache/npm/config/npm-init.js
+      '';
+      "nix/nix.conf".text = ''
+        use-xdg-base-directories = true
+      '';
+    };
+
+    mime.enable = true;
+    userDirs = {
+      enable = true;
+      download = "${config.home.homeDirectory}/download";
+    };
+  };
+
   home.activation.linkCache = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     ln -sf /ethereal/cache/cache $HOME/.cache
   '';

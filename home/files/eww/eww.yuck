@@ -25,7 +25,7 @@
     (image :path "${wallpaper}")))
 
 (defwidget scroller [of]
-  (eventbox :onclick "sh ./left.nu"
+  (eventbox :onclick "nu ./left.nu"
             :onrightclick "ulauncher-toggle &"
             :onscroll "sh ./scripts/bg/scroll_${of}.sh {}"))
 
