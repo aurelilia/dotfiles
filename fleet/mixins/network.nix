@@ -34,6 +34,16 @@ rec {
       };
     };
 
+    jade = networks.far // {
+      mac = "94:de:80:21:d2:08";
+      address = "10.0.1.1";
+
+      wg = {
+        key = "U9vjXmnxWiHEdeDQM53K4hE23XZTdgBqoI4gxXKGlik=";
+        ip = "10.45.0.5";
+      };
+    };
+
     mauve = {
       # This is a mobile device using WLAN, static IPv4 configuration
       # does not make sense since it is often in foreign networks.

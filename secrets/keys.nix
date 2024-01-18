@@ -12,7 +12,9 @@ rec {
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGAeAfFlx5dwh0/NHkEoffxzcjVjG5wtsze00cANiDr";
   haze =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBXofGKR0wV5Qy0S8EWkZ7A4E15asz7wtGYhSwG14gyA";
+  jade =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBTTaHIF2zQr6uNVSWcZdL+Ld8/yKBzn6WyGXvQlUNb/";
 
-  all = [ leela mauve hazyboi navy haze ];
+  all = [ leela mauve hazyboi navy haze jade ];
   ssh = [ leela ];
 }

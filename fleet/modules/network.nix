@@ -43,7 +43,7 @@ in {
         allowedUDPPorts = [ 50220 ];
         trustedInterfaces = [ "wg0" ];
       };
-      
+
       networking.wireguard.interfaces.wg0 = {
         ips = [ "${host.wg.ip}/24" ];
         listenPort = 50220;
