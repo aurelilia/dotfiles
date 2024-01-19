@@ -5,7 +5,7 @@ in {
   virtualisation.oci-containers.containers.caddy = {
     image = "caddy:2";
     autoStart = true;
-    extraOptions = [ "--network=web" ];
+    extraOptions = [ "--network=web" "--add-host=dockerhost:host-gateway" ];
 
     ports = [ "80:80" "443:443" ];
     volumes = [

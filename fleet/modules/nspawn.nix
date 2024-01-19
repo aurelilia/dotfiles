@@ -1,43 +1,49 @@
 { config, lib, pkgs, ... }: {
   config = {
-    lib.containers = {};
-
     networking.nat = {
       enable = true;
-      internalInterfaces = ["ve-+"];
+      internalInterfaces = [ "ve-+" ];
       externalInterface = "ens3";
       # Lazy IPv6 connectivity for the container
       enableIPv6 = true;
     };
 
-    containers = (lib.foldl (a: b: a // b) {} (map lib.listToAttrs 
-      (lib.imap (inet: network: 
-        (lib.imap (icont: { name, value }: {
-          name = "${name}-${network.name}";
-          value = {
-            ephemeral = true;
-            autoStart = true;
+    containers = (lib.listToAttrs (lib.imap (icont:
+      { name, value }: {
+        name = "${name}";
+        value = {
+          ephemeral = true;
+          autoStart = true;
 
-            privateNetwork = true;
-            hostAddress = "192.168.${(toString (inet + 10))}.1";
-            localAddress = "192.168.${(toString (inet + 10))}.${(toString (icont + 1))}";
+          privateNetwork = true;
+          hostAddress = "192.168.47.1";
+          localAddress = "192.168.47.${(toString (icont + 1))}";
 
-            bindMounts = value.mounts or {};
-            forwardPorts = value.ports or [];
+          bindMounts = value.mounts or { };
+          forwardPorts = value.ports or [ ];
 
-            config = (args: (lib.mkMerge [
+          config = (args:
+            (lib.mkMerge [
               (value.config args)
               (({ lib, ... }: {
                 nixpkgs.pkgs = pkgs;
                 system.stateVersion = "23.11";
 
                 networking = {
-                  firewall.enable = true;
+                  firewall = {
+                    enable = true;
+                    allowedTCPPorts =
+                      (map (port: port.containerPort or port.hostPort)
+                        value.ports or [ ]);
+                    allowedUDPPorts =
+                      (map (port: port.containerPort or port.hostPort)
+                        value.ports or [ ]);
+                  };
                   # Use systemd-resolved inside the container
                   # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
                   useHostResolvConf = lib.mkForce false;
-                  extraHosts = lib.concatStringsSep "\n" (lib.attrValues
-                    (lib.mapAttrs
+                  extraHosts = lib.concatStringsSep "\n"
+                    ([ "192.168.47.1 host" ] ++ lib.attrValues (lib.mapAttrs
                       (name: { localAddress, ... }: "${localAddress} ${name}")
                       config.containers));
                 };
@@ -45,14 +51,19 @@
                 services.resolved.enable = true;
               }) args)
             ]));
-          };
-        }) (lib.attrsToList network.value))
-      ) (lib.attrsToList config.lib.containers))
-    ));
+        };
+      }) (lib.attrsToList config.elia.containers)));
 
     networking.extraHosts = lib.concatStringsSep "\n" (lib.attrValues
       (lib.mapAttrs
         (name: { localAddress, ... }: "${localAddress} ${name}.container")
         config.containers));
+  };
+
+  options = {
+    elia.containers = lib.mkOption {
+      type = lib.types.attrs;
+      default = { };
+    };
   };
 }

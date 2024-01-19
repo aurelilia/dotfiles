@@ -1,21 +1,6 @@
-{ ... }:
-let caddySnippets = import ../../../fleet/mixins/caddy.nix;
-in {
-  virtualisation.oci-containers.containers.element-web = {
-    image = "vectorim/element-web:latest";
-    autoStart = true;
-    extraOptions = [ "--network=web" ];
-    volumes = [ "/etc/element-web.json:/app/config.json" ];
-  };
-
-  environment.etc."caddy/Caddyfile".text = ''
-    element.elia.garden, element.louane.xyz {
-      ${caddySnippets.no-robots}
-      reverse_proxy element-web:80
-    }
-  '';
-
-  environment.etc."element-web.json".text = ''
+{ config, pkgs, ... }:
+let
+  element-config = ''
     {
         "default_server_config": {
             "m.homeserver": {
@@ -136,4 +121,14 @@ in {
         }
     }
   '';
+in {
+  elia.caddy.routes."element.elia.garden" = {
+    serverAliases = [ "element.louane.xyz" ];
+    extraConfig = ''
+      ${config.lib.caddy.snippets.no-robots}
+      respond /config.json `${element-config}`
+      root * ${pkgs.element-web}
+      file_server
+    '';
+  };
 }

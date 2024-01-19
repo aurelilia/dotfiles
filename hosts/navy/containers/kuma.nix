@@ -1,18 +1,24 @@
-{ ... }:
-let caddySnippets = import ../../../fleet/mixins/caddy.nix;
-in {
-  virtualisation.oci-containers.containers.kuma = {
-    image = "louislam/uptime-kuma:1";
-    autoStart = true;
-    extraOptions = [ "--network=web" ];
-    volumes = [ "/containers/kuma/:/app/data" ];
+{ config, lib, ... }: {
+  elia.containers.kuma = {
+    mounts."/var/lib/private/uptime-kuma" = {
+      hostPath = "/containers/kuma";
+      isReadOnly = false;
+    };
+
+    config = { ... }: {
+      networking.firewall.allowedTCPPorts = [ 3001 ];
+      services.uptime-kuma = {
+        enable = true;
+        appriseSupport = true;
+        settings.HOST = "0.0.0.0";
+      };
+    };
   };
 
-  environment.etc."caddy/Caddyfile".text = ''
-    uptime.elia.garden {
-      ${caddySnippets.no-robots}
+  elia.caddy.routes."uptime.elia.garden" = {
+    extraConfig = ''
+      ${config.lib.caddy.snippets.no-robots}
       reverse_proxy kuma:3001
-    }
-  '';
+    '';
+  };
 }
-

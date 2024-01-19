@@ -1,12 +1,8 @@
-{ ... }:
-let snippets = import ../../../fleet/mixins/caddy.nix;
-in {
-  imports = [ ../../../fleet/modules/caddy.nix ];
+{ config, ... }:
+with config.lib.caddy.snippets; {
+  imports = [ ../../../fleet/containers/caddy.nix ];
 
   config = {
-    networking.firewall.allowedTCPPorts = [ 8448 ];
-    virtualisation.oci-containers.containers.caddy.ports = [ "8448" ];
-
     # Drone CI wants to push some static files
     # TODO Maybe integrate this into Nix better?
     users.users.drone = {
@@ -18,14 +14,14 @@ in {
     };
 
     # Static public pages are defined here.
-    environment.etc."caddy/Caddyfile".text = ''
+    elia.caddy.extra = ''
       elia.garden {
         header /.well-known/matrix/* Access-Control-Allow-Origin "*"
         respond /.well-known/matrix/client `{"m.homeserver":{"base_url":"https://matrix.elia.garden/"}}`
         respond /.well-known/matrix/server `{"m.server":"matrix.elia.garden:443"}`
         redir /.well-known/webfinger https://social.elia.garden{uri}
 
-        ${snippets.no-robots}
+        ${no-robots}
         root * /srv/html
         file_server
       }

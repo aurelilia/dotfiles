@@ -4,9 +4,7 @@ let
 in { ... }: {
   # Haze is behind NAT.
   networking = {
-    nftables = {
-      enable = false;
-    };
+    nftables = { enable = false; };
 
     firewall = {
       enable = true;

@@ -8,7 +8,10 @@
   networking.firewall = {
     allowedTCPPorts = [ 3478 5349 ];
     allowedUDPPorts = [ 3478 5349 ];
-    allowedUDPPortRanges = [ { from = 49152; to = 65535; } ];
+    allowedUDPPortRanges = [{
+      from = 49152;
+      to = 65535;
+    }];
   };
 
   services.coturn = {

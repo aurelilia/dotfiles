@@ -18,6 +18,8 @@
     environmentVariables = {
       # Quiet direnv
       DIRENV_LOG_FORMAT = "''";
+      # Atuin sync
+      ATUIN_SYNC_ADDRESS = "https://atuin.elia.garden";
     };
 
     shellAliases = {
