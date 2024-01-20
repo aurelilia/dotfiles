@@ -37,4 +37,14 @@
     pulse.enable = true;
     wireplumber.enable = true;
   };
+
+  # Plymouth
+  boot = {
+    kernelParams = [ "quiet" ];
+    initrd.systemd.enable = true;
+    plymouth = {
+      enable = true;
+      theme = "breeze";
+    };
+  };
 }

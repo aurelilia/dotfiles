@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  borg = import ../../fleet/mixins/borg.nix;
+  borg = config.lib.borg;
   mediaDirs = [ "/containers" "/media" "/srv/nextcloud" ];
   mediaPre = "find /media/media | cut -b 14- > /media/.media-list";
   mediaPost = "rm /media/.media-list";

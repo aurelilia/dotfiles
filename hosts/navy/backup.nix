@@ -1,8 +1,6 @@
-{ config, lib, pkgs, ... }:
-let borg = import ../../fleet/mixins/borg.nix;
-in {
-  programs.ssh.knownHosts = borg.hosts;
-  services.borgbackup.jobs.borgbase = borg.systemBorgbase // {
+{ config, lib, pkgs, ... }: {
+  programs.ssh.knownHosts = config.lib.borg.hosts;
+  services.borgbackup.jobs.borgbase = config.lib.borg.systemBorgbase // {
     paths = [ "/containers" ];
   };
 }

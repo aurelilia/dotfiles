@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  borg = import ../../fleet/mixins/borg.nix;
+  borg = config.lib.borg;
   mediaDirs = [ "/containers" "/media" ];
 in {
   # Borg

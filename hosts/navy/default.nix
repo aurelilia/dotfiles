@@ -12,9 +12,6 @@
     ./containers/piped.nix
     ./services/coturn.nix
     ./services/nat.nix
-
-    ../../fleet/modules/borg.nix
-    ../../fleet/modules/nspawn.nix
   ];
 
   # SSH

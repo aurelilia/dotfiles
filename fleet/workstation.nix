@@ -1,5 +1,5 @@
 { name, nodes, config, lib, pkgs, ... }: {
-  imports = [ ./modules/gui.nix ./modules/plymouth.nix ];
+  imports = [ ./optional/gui.nix ];
 
   # Dotfiles
   users.users.leela = {

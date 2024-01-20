@@ -1,11 +1,5 @@
 args@{ config, lib, pkgs, ... }: {
-  imports = [
-    ./backup.nix
-    ./hardware.nix
-
-    ../../fleet/modules/borg.nix
-    ../../fleet/modules/zfs.nix
-  ];
+  imports = [ ./backup.nix ./hardware.nix ];
 
   # Separate Swap partition
   boot.zfs.allowHibernation = true;

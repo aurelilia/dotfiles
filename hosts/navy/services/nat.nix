@@ -1,7 +1,4 @@
-let
-  hosts = (import ../../../fleet/mixins/network.nix).hosts;
-  haze-wg = hosts.haze.wg.ip;
-in { ... }: {
+{ config, ... }: {
   # Haze is behind NAT.
   networking = {
     nftables = { enable = false; };
@@ -16,7 +13,7 @@ in { ... }: {
       externalInterface = "ens3";
       internalInterfaces = [ "wg0" ];
       forwardPorts = [{
-        destination = "${haze-wg}:22";
+        destination = "${config.lib.network.hosts.haze.wg.ip}:22";
         proto = "tcp";
         sourcePort = 10293;
       }];

@@ -1,5 +1,5 @@
 { config, lib, ... }: {
-  config = {
+  config = lib.mkIf (config.elia.caddy.routes != { }) {
     elia.containers.caddy = {
       mounts."/srv" = {
         hostPath = "/containers/caddy/srv";

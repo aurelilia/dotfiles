@@ -1,13 +1,5 @@
 { config, lib, pkgs, ... }: {
-  imports = [
-    ./backup.nix
-    ./hardware.nix
-
-    # ./containers/caddy.nix
-
-    ../../fleet/modules/borg.nix
-    ../../fleet/modules/zfs.nix
-  ];
+  imports = [ ./backup.nix ./hardware.nix ];
 
   # Janky DVB card
   environment.systemPackages = [ pkgs.libreelec-dvb-firmware ];

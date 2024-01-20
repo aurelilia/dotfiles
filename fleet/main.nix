@@ -1,5 +1,5 @@
 { name, nodes, config, lib, pkgs, ... }: {
-  imports = [ ./modules/network.nix ./modules/ssh.nix ];
+  imports = [ ./library ];
 
   # Locale
   time.timeZone = "Europe/Brussels";
@@ -32,4 +32,8 @@
 
   # Misc
   zramSwap.enable = true;
+  virtualisation.libvirtd = {
+    parallelShutdown = 5;
+    qemu.runAsRoot = false;
+  };
 }

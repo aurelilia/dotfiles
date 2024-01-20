@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: {
-  config = {
+  config = lib.mkIf (config.elia.containers != { }) {
     networking.nat = {
       enable = true;
       internalInterfaces = [ "ve-+" ];
