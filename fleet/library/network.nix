@@ -140,8 +140,7 @@ in {
 
       networking.extraHosts = lib.concatStringsSep "\n" (lib.attrValues
         (lib.mapAttrs
-          (name: { wg ? { ip = "0.0.0.0"; }, ... }: "${wg.ip} ${name}.wg")
-          hosts));
+          (name: { wg ? { ip = "0.0.0.0"; }, ... }: "${wg.ip} ${name}") hosts));
     })
   ]);
 }
