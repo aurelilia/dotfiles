@@ -20,6 +20,8 @@
     chown -R 1000:1000 /ethereal
   '';
 
-  # GVFS is wanted for volume management / user mounting
+  # Misc services I want
   services.gvfs.enable = true;
+  boot.supportedFilesystems = [ "ntfs" ];
+  virtualisation.docker.enable = true;
 }
