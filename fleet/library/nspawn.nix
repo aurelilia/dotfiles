@@ -3,7 +3,7 @@
     networking.nat = {
       enable = true;
       internalInterfaces = [ "ve-+" ];
-      externalInterface = "ens3";
+      externalInterface = config.elia.natExternal;
       # Lazy IPv6 connectivity for the container
       enableIPv6 = true;
     };
@@ -64,6 +64,10 @@
     elia.containers = lib.mkOption {
       type = lib.types.attrs;
       default = { };
+    };
+    elia.natExternal = lib.mkOption {
+      type = lib.types.string;
+      default = "lan";
     };
   };
 }

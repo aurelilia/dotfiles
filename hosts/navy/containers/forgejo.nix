@@ -63,10 +63,8 @@
     };
   };
 
-  elia.caddy.routes."git.elia.garden" = {
-    extraConfig = ''
-      ${config.lib.caddy.snippets.no-robots}
-      reverse_proxy forgejo:3000
-    '';
-  };
+  elia.caddy.routes."git.elia.garden".extraConfig = ''
+    ${config.lib.caddy.snippets.no-robots}
+    reverse_proxy forgejo:3000
+  '';
 }

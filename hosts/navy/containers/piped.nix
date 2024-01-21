@@ -5,7 +5,7 @@
   # https://piped-docs.kavin.rocks/docs/self-hosting/#docker-compose-nginx-aio-script
   elia.caddy.extra = ''
     piped.elia.garden, api.piped.elia.garden, proxy.piped.elia.garden {
-        reverse_proxy http://host:13415
+        reverse_proxy http://navy:13415
     }
   '';
 }

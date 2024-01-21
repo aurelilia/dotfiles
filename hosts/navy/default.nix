@@ -11,10 +11,13 @@
     ./containers/mail.nix
     ./containers/piped.nix
     ./services/coturn.nix
-    ./services/nat.nix
+    ./services/proxy.nix
   ];
 
   # SSH
   # Port 22 is taken by Forgejo
   services.openssh.ports = [ 9022 ];
+
+  # nspawn NAT
+  elia.natExternal = "ens3";
 }
