@@ -50,7 +50,7 @@
     };
   };
 
-  programs.zsh.shellAliases = { code = "codium"; };
+  elia.shellAliases = { code = "codium"; };
   # Electron is currently broken
   # TODO: Remove once Electron supports Wayland properly
   # https://github.com/electron/electron/issues/39449

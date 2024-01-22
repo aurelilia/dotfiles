@@ -32,4 +32,11 @@
       ncdu
     ];
   };
+
+  options = {
+    elia.shellAliases = lib.mkOption {
+      type = lib.types.attrs;
+      default = { };
+    };
+  };
 }

@@ -14,5 +14,5 @@
     };
   };
 
-  programs.nushell.shellAliases.ssh-unlock = "ssh -p 2222";
+  elia.shellAliases.ssh-unlock = "ssh -p 2222";
 }

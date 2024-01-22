@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   programs.atuin.enable = true;
   programs.zoxide.enable = true;
 
@@ -22,11 +22,6 @@
       ATUIN_SYNC_ADDRESS = "https://atuin.elia.garden";
     };
 
-    shellAliases = {
-      hm-switch = "home-manager --impure --flake path:. switch";
-      hm-switch-git =
-        "home-manager --impure --flake github:aurelila/dotfiles switch";
-      nulclean = ''ssh -q navy -t "rm /containers/caddy/srv/file/*"'';
-    };
+    shellAliases = config.elia.shellAliases;
   };
 }

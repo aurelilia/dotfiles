@@ -21,7 +21,7 @@
   users = {
     motd = "nixos welcomes u c:";
     users.root = {
-      shell = pkgs.nushell;
+      shell = pkgs.zsh;
       initialHashedPassword = "";
     };
   };

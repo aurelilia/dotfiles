@@ -4,7 +4,7 @@
     config.theme = "Catppuccin-mocha";
   };
 
-  programs.nushell.shellAliases = {
+  elia.shellAliases = {
     ca = "bat -pp";
     va = "bat";
   };

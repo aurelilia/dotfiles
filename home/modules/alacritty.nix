@@ -238,7 +238,7 @@
     #   - (Linux/macOS) /bin/bash --login
     #   - (Windows) powershell
     shell:
-      program: ${pkgs.nushell}/bin/nu
+      program: ${pkgs.zsh}/bin/zsh
       args: ["-l"]
 
     # Windows 10 ConPTY backend (Windows only)

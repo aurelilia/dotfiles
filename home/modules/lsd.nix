@@ -9,8 +9,12 @@
     };
   };
 
-  programs.nushell.shellAliases = {
+  elia.shellAliases = {
     lsd = "lsd -lFh";
     lad = "lsd -lFha";
+  };
+  programs.zsh.shellAliases = {
+    ls = "lsd -lFh";
+    la = "lsd -lFha";
   };
 }
