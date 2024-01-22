@@ -1,5 +1,5 @@
 let
-  config = rec {
+  conf = rec {
     networks = {
       near = {
         gateway = "192.168.0.1";
@@ -70,10 +70,10 @@ let
       celadon.address = "10.0.0.1";
     };
   };
-in { name, lib, pkgs, ... }:
+in { name, lib, pkgs, config, ... }:
 let
-  networks = config.networks;
-  hosts = config.hosts;
+  networks = conf.networks;
+  hosts = conf.hosts;
   host = (lib.getAttr name hosts);
 in {
   config = (lib.mkMerge [
@@ -125,7 +125,7 @@ in {
 
       services.wgautomesh = {
         enable = true;
-        gossipSecretFile = "/run/agenix/wg-gossip";
+        gossipSecretFile = config.age.secrets.wg-gossip.path;
 
         settings = {
           interface = "wg0";

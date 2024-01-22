@@ -1,5 +1,5 @@
-{ ... }: {
-  age.secrets."coturn-auth" = {
+{ config, ... }: {
+  age.secrets.coturn-auth = {
     file = ../../../secrets/coturn-auth.age;
     owner = "turnserver";
     group = "turnserver";
@@ -23,7 +23,7 @@
 
     realm = "navy.elia.garden";
     relay-ips = [ "202.61.255.155" ];
-    static-auth-secret-file = "/run/agenix/coturn-auth";
+    static-auth-secret-file = config.age.secrets.coturn-auth.path;
 
     extraConfig = ''
       # don't let the relay ever try to connect to private IP address ranges within your network (if any)

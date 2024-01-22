@@ -5,9 +5,11 @@
         defaultJob = {
           encryption = {
             mode = "repokey-blake2";
-            passCommand = "cat /run/agenix/borg-repokey";
+            passCommand = "cat ${config.age.secrets.borg-repokey.path}";
           };
-          environment = { BORG_RSH = "ssh -i /run/agenix/borg-ssh-id"; };
+          environment = {
+            BORG_RSH = "ssh -i ${config.age.secrets.borg-ssh-id.path}";
+          };
 
           compression = "zstd";
           extraCreateArgs = "--exclude-caches --exclude-if-present .nobackup";
@@ -115,8 +117,8 @@
 
     (lib.mkIf (config.services.borgbackup.jobs != { }) {
       # Borg secrets
-      age.secrets."borg-repokey".file = ../../secrets/borg-repokey.age;
-      age.secrets."borg-ssh-id".file = ../../secrets/borg-ssh-id.age;
+      age.secrets.borg-repokey.file = ../../secrets/borg-repokey.age;
+      age.secrets.borg-ssh-id.file = ../../secrets/borg-ssh-id.age;
     })
   ];
 }
