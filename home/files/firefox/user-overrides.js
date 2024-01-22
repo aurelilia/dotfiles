@@ -2,7 +2,7 @@
 user_pref("browser.startup.page", 3);
 
 /* 0104: Custom new tab */
-user_pref("browser.newtab.extensionControlled", true);
+user_pref("browse.newrtab.extensionControlled", true);
 user_pref("browser.newtab.privateAllowed", false);
 user_pref("browser.newtabpage.storageVersion", 1);
 

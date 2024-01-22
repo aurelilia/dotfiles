@@ -4,6 +4,7 @@
     ./modules/alacritty.nix
     ./modules/eww.nix
     ./modules/gtk.nix
+    ./modules/mozilla.nix
     ./modules/ssh.nix
     ./modules/sway.nix
     ./modules/virt.nix
@@ -25,10 +26,6 @@
       experimental-features = nix-command flakes
       warn-dirty = false
     '';
-    # Firefox
-    home.activation.copyFirefox = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      cp -r $HOME/git/public/dotfiles/home/files/firefox/* ~/.mozilla/firefox/*.*/
-    '';
     # Syncthing
     services.syncthing.enable = true;
     # OBS
@@ -39,8 +36,6 @@
 
     home.packages = with pkgs; [
       # Graphical
-      firefox
-      thunderbird
       alacritty
       gnome.eog
       gnome.evince
