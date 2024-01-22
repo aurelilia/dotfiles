@@ -29,6 +29,7 @@
   fileSystems."/persist" = {
     device = "zroot/data/persist";
     fsType = "zfs";
+    neededForBoot = true;
   };
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/0066-697F";

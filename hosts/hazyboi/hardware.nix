@@ -26,6 +26,11 @@
     device = "zroot/data/nix";
     fsType = "zfs";
   };
+  fileSystems."/persist" = {
+    device = "zroot/data/persist";
+    fsType = "zfs";
+    neededForBoot = true;
+  };
   fileSystems."/win" = {
     device = "/dev/disk/by-uuid/A0F40170F40149CC";
     fsType = "ntfs";
