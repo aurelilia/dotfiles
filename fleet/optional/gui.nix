@@ -45,7 +45,11 @@
   # Plymouth
   boot = {
     kernelParams = [ "quiet" ];
-    initrd.systemd.enable = true;
+    initrd = {
+      # We want early KMS for high-res plymouth
+      kernelModules = [ "amdgpu" ];
+      systemd.enable = true;
+    };
     plymouth = {
       enable = true;
       theme = "breeze";
