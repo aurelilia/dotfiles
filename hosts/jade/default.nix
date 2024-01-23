@@ -11,6 +11,12 @@
     ./containers/gotify.nix
     ./containers/homeassistant.nix
     ./containers/mastodon.nix
+    ./containers/matrix.nix
+    ./containers/matrix-louane.nix
+    ./containers/metube.nix
+    ./containers/navidrome.nix
+    ./containers/nextcloud.nix
+    ./containers/paperless.nix
     ./containers/vaultwarden.nix
     ./services/tvheadend.nix
   ];

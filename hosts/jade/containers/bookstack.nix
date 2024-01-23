@@ -1,4 +1,6 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let url = "books.elia.garden";
+in {
   age.secrets.bookstack-db.file = ../../../secrets/jade/bookstack-key.age;
   age.secrets.bookstack-key.file = ../../../secrets/jade/bookstack-db.age;
 
@@ -24,8 +26,8 @@
 
       services.bookstack = {
         enable = true;
-        hostname = "books.elia.garden";
-        appURL = "https://books.elia.garden";
+        hostname = url;
+        appURL = "https://${url}";
         appKeyFile = "/run/key";
 
         database = {
@@ -52,7 +54,7 @@
     };
   };
 
-  elia.caddy.routes."books.elia.garden".extraConfig = ''
+  elia.caddy.routes."${url}".extraConfig = ''
     reverse_proxy bookstack:80
   '';
 }

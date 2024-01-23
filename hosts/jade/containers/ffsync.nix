@@ -2,6 +2,7 @@
 let
   path = "/containers/ffsync";
   port = "50045";
+  url = "sync.elia.garden";
 in {
   # I would use services.firefox-syncserver here, but it sadly forces
   # MySQL and is therefore incompatible with historical data I still have.
@@ -12,7 +13,7 @@ in {
         container_name: ffsync
         environment:
           TZ: Europe/Berlin
-          SYNCSERVER_PUBLIC_URL: https://sync.elia.garden
+          SYNCSERVER_PUBLIC_URL: https://${url}
           SYNCSERVER_FORCE_WSGI_ENVIRON: "true"
           SYNCSERVER_SQLURI: 'sqlite:////data/syncserver.db'
           SYNCSERVER_BATCH_UPLOAD_ENABLED: 'true'
@@ -25,7 +26,7 @@ in {
         restart: unless-stopped
   '';
 
-  elia.caddy.routes."sync.elia.garden".extraConfig = ''
+  elia.caddy.routes."${url}".extraConfig = ''
     reverse_proxy host:${port}
   '';
 }

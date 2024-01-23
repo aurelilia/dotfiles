@@ -1,4 +1,6 @@
-{ config, ... }: {
+{ config, ... }:
+let url = "vaultwarden.elia.garden";
+in {
   elia.containers.vaultwarden = {
     mounts."/var/lib/bitwarden_rs" = {
       hostPath = "/containers/vaultwarden/data";
@@ -10,7 +12,7 @@
       services.vaultwarden = {
         enable = true;
         config = {
-          DOMAIN = "https://vaultwarden.elia.garden";
+          DOMAIN = "https://${url}";
           SIGNUPS_ALLOWED = false;
           ROCKET_PORT = 8222;
         };
@@ -18,7 +20,7 @@
     };
   };
 
-  elia.caddy.routes."vaultwarden.elia.garden".extraConfig = ''
+  elia.caddy.routes."${url}".extraConfig = ''
     ${config.lib.caddy.snippets.local-net}
     reverse_proxy vaultwarden:8222
   '';

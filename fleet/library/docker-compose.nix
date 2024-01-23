@@ -5,8 +5,10 @@
       (map ({ name, value }:
         let
           config = (pkgs.writeText (name + ".yml") value.compose);
-          env =
-            (if ((value.env or null) == null) then "" else ("--env-file" + value.env));
+          env = (if ((value.env or null) == null) then
+            ""
+          else
+            ("--env-file" + value.env));
         in {
           name = "docker-" + name;
           value = {

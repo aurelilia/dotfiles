@@ -1,5 +1,7 @@
 { config, ... }:
-let path = "/containers/mastodon";
+let
+  path = "/containers/mastodon";
+  url = "social.elia.garden";
 in {
   elia.containers.mastodon = {
     mounts."/var/lib/postgres/data" = {
@@ -25,7 +27,7 @@ in {
 
         extraEnvFiles = [ "/run/env" ];
         extraConfig = {
-          WEB_DOMAIN = "social.elia.garden";
+          WEB_DOMAIN = url;
           SINGLE_USER_MODE = "false";
 
           OIDC_ENABLED = "true";
@@ -44,7 +46,7 @@ in {
     };
   };
 
-  elia.caddy.routes."social.elia.garden".extraConfig = ''
+  elia.caddy.routes."${url}".extraConfig = ''
     reverse_proxy mastodon:55001
   '';
 }

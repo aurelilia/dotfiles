@@ -2,6 +2,7 @@
 let
   path = "/containers/drone";
   port = "50043";
+  url = "ci.elia.garden";
 in {
   elia.compose.drone.compose = ''
     services:
@@ -10,7 +11,7 @@ in {
           - "${path}/data:/data"
         environment:
           - DRONE_GITEA_SERVER=https://git.elia.garden
-          - DRONE_SERVER_HOST=ci.elia.garden
+          - DRONE_SERVER_HOST=${url}
           - DRONE_SERVER_PROTO=https
           - DRONE_USER_CREATE=username:leela,admin:true
         env_file:
@@ -26,7 +27,7 @@ in {
           - "/var/run/docker.sock:/var/run/docker.sock"
         environment:
           - DRONE_RPC_PROTO=https
-          - DRONE_RPC_HOST=ci.elia.garden
+          - DRONE_RPC_HOST=${url}
           - DRONE_RUNNER_CAPACITY=2
           - DRONE_RUNNER_NAME=jade
         env_file:
@@ -38,7 +39,7 @@ in {
         image: "drone/drone-runner-docker:1"
   '';
 
-  elia.caddy.routes."ci.elia.garden".extraConfig = ''
+  elia.caddy.routes."${url}".extraConfig = ''
     reverse_proxy host:${port}
   '';
 }
