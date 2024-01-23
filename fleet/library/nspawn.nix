@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+margs@{ config, lib, pkgs, ... }: {
   config = lib.mkIf (config.elia.containers != { }) {
     networking.nat = {
       enable = true;
@@ -30,25 +30,39 @@
                 system.stateVersion = "23.11";
 
                 networking = {
-                  firewall = {
+                  hostName = "${margs.name}-${name}";
+                  firewall = let
+                    ports = (map (port: port.containerPort or port.hostPort)
+                      value.ports or [ ]);
+                  in {
                     enable = true;
-                    allowedTCPPorts =
-                      (map (port: port.containerPort or port.hostPort)
-                        value.ports or [ ]);
-                    allowedUDPPorts =
-                      (map (port: port.containerPort or port.hostPort)
-                        value.ports or [ ]);
+                    allowedTCPPorts = ports;
+                    allowedUDPPorts = ports;
                   };
                   # Use systemd-resolved inside the container
                   # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
                   useHostResolvConf = lib.mkForce false;
                   extraHosts = lib.concatStringsSep "\n"
-                    ([ "192.168.47.1 host" ] ++ lib.attrValues (lib.mapAttrs
-                      (name: { localAddress, ... }: "${localAddress} ${name}")
-                      config.containers));
+                    ([ "192.168.47.1 host ${margs.name}" ] ++ lib.attrValues
+                      (lib.mapAttrs
+                        (name: { localAddress, ... }: "${localAddress} ${name}")
+                        config.containers));
                 };
-
                 services.resolved.enable = true;
+
+                # Some useful aliases for working in these minimal containers,
+                # and a shell whose defaults aren't garbage
+                programs.fish.enable = true;
+                users.users.root.shell = pkgs.fish;
+                environment.shellAliases = {
+                  log = "journalctl -xeu";
+                  slog = "journalctl -e";
+                  ll = "ls -lh";
+                  la = "ls -lha";
+                  ctl = "systemctl";
+                  ctls = "systemctl status";
+                  ctlr = "systemctl restart";
+                };
               }) args)
             ]));
         };
