@@ -1,6 +1,7 @@
 { pkgs, config, ... }: {
   programs.atuin.enable = true;
   programs.zoxide.enable = true;
+  programs.carapace.enable = true;
 
   programs.direnv = {
     enable = true;

@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
   programs.fzf.enable = true;
   programs.zoxide.enable = true;
+  programs.carapace.enable = true;
 
   programs.direnv = {
     enable = true;
