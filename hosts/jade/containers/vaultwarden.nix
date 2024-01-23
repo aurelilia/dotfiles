@@ -1,18 +1,25 @@
-{ ... }:
-let caddySnippets = import ../../../fleet/mixins/caddy.nix;
-in {
-  virtualisation.oci-containers.containers.actual = {
-    image = "vaultwarden/server:latest";
-    autoStart = true;
-    extraOptions = [ "--network=web" ];
-    environment.WEBSOCKET_ENABLED = "true";
-    volumes = [ "/containers/vaultwarden:/data" ];
+{ config, ... }: {
+  elia.containers.vaultwarden = {
+    mounts."/var/lib/bitwarden_rs" = {
+      hostPath = "/containers/vaultwarden/data";
+      isReadOnly = false;
+    };
+
+    config = { ... }: {
+      networking.firewall.allowedTCPPorts = [ 8222 ];
+      services.vaultwarden = {
+        enable = true;
+        config = {
+          DOMAIN = "https://vaultwarden.elia.garden";
+          SIGNUPS_ALLOWED = false;
+          ROCKET_PORT = 8222;
+        };
+      };
+    };
   };
 
-  environment.etc."caddy/Caddyfile".text = ''
-    vaultwarden.elia.garden {
-      ${caddySnippets.sso-proxy}
-      reverse_proxy actual:5006
-    }
+  elia.caddy.routes."vaultwarden.elia.garden".extraConfig = ''
+    ${config.lib.caddy.snippets.local-net}
+    reverse_proxy vaultwarden:8222
   '';
 }

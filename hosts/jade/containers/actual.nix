@@ -1,17 +1,15 @@
-{ ... }:
-let caddySnippets = import ../../../fleet/mixins/caddy.nix;
+{ config, ... }:
+let web-port = "50041";
 in {
   virtualisation.oci-containers.containers.actual = {
     image = "actualbudget/actual-server:latest-alpine";
     autoStart = true;
-    extraOptions = [ "--network=web" ];
+    ports = [ "${web-port}:5006" ];
     volumes = [ "/containers/actual:/data" ];
   };
 
-  environment.etc."caddy/Caddyfile".text = ''
-    actual.elia.garden {
-      ${caddySnippets.sso-proxy}
-      reverse_proxy actual:5006
-    }
+  elia.caddy.routes."actual.elia.garden".extraConfig = ''
+    ${config.lib.caddy.snippets.sso-proxy}
+    reverse_proxy host:${web-port}
   '';
 }

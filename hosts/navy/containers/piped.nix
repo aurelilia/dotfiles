@@ -6,7 +6,7 @@ in {
   # https://piped-docs.kavin.rocks/docs/self-hosting/#docker-compose-nginx-aio-script
   # Yes, the postgres password is bad. This runs in it's own network and is not
   # something I consider sensitive data whatsoever, so eh.
-  elia.compose.piped = ''
+  elia.compose.piped.compose = ''
     version: "3"
 
     services:

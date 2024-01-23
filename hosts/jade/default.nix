@@ -1,5 +1,19 @@
 { config, lib, pkgs, ... }: {
-  imports = [ ./backup.nix ./hardware.nix ./services/tvheadend.nix ];
+  imports = [
+    ./backup.nix
+    ./hardware.nix
+    ./containers/actual.nix
+    ./containers/authentik.nix
+    ./containers/bookstack.nix
+    ./containers/ddclient.nix
+    ./containers/drone.nix
+    ./containers/ffsync.nix
+    ./containers/gotify.nix
+    ./containers/homeassistant.nix
+    ./containers/mastodon.nix
+    ./containers/vaultwarden.nix
+    ./services/tvheadend.nix
+  ];
 
   # Caddy, for now, until it's migrated into a NixOS container
   networking.firewall.allowedTCPPorts = [ 80 443 8448 ];

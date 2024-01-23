@@ -23,6 +23,15 @@
               trusted_proxies 10.0.1.0/16 172.16.0.0/16 fc00::/7
           }
         '';
+
+        local-net = ''
+          @not-allowed {
+              not {
+                  remote_ip 10.0.0.0/8 172.16.0.0/12
+              }
+          }
+          redir @not-allowed https://www.youtube.com/watch?v=dQw4w9WgXcQ
+        '';
       };
     }
     (lib.mkIf (config.elia.caddy.bare) {
