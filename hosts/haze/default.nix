@@ -1,5 +1,10 @@
 { config, lib, pkgs, ... }: {
-  imports = [ ./backup.nix ./hardware.nix ./containers/jellyfin.nix  ./containers/pihole.nix ];
+  imports = [
+    ./backup.nix
+    ./hardware.nix
+    ./containers/jellyfin.nix
+    ./containers/pihole.nix
+  ];
 
   # Initrd networking kernel drivers
   boot.kernelModules = [ "igb" ];
