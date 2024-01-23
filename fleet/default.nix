@@ -3,10 +3,10 @@ let
     deployment.tags = [ "prod" "server" "swarm" ];
     imports = [ ../hosts/haze-swarm ./server.nix ];
   };
-in { home-manager, nixpkgs, agenix, disko, ... }: {
+in { home-manager, nixpkgs, nixpkgs-unstable, agenix, disko, nixgl, ... }: {
   meta = { nixpkgs = import nixpkgs { system = "x86_64-linux"; }; };
 
-  defaults = { name, nodes, pkgs, ... }: {
+  defaults = { name, nodes, pkgs, lib, ... }: {
     imports = [
       home-manager.nixosModules.home-manager
       agenix.nixosModules.default
@@ -14,6 +14,12 @@ in { home-manager, nixpkgs, agenix, disko, ... }: {
       ./main.nix
     ];
 
+    _module.args = {
+      pkgs-unstable = import nixpkgs-unstable {
+        system = "x86_64-linux";
+        overlays = [ nixgl.overlay ];
+      };
+    };
     deployment.buildOnTarget = true;
   };
 

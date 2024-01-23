@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,9 +17,14 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixgl = {
+      url = "github:guibou/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
-  outputs = { home-manager, nixpkgs, agenix, disko, ... }:
+  outputs =
+    { home-manager, nixpkgs, nixpkgs-unstable, agenix, disko, nixgl, ... }:
     let
       hostSystem = "x86_64-linux";
       nixpkgsHost = import nixpkgs { system = hostSystem; };
@@ -31,6 +37,8 @@
         ];
       };
 
-      colmena = import ./fleet { inherit nixpkgs home-manager agenix disko; };
+      colmena = import ./fleet {
+        inherit nixpkgs nixpkgs-unstable home-manager agenix disko nixgl;
+      };
     };
 }
