@@ -1,4 +1,11 @@
 { ... }: {
-  imports =
-    [ ./borg.nix ./caddy.nix ./network.nix ./nspawn.nix ./ssh.nix ./zfs.nix ];
+  imports = [
+    ./borg.nix
+    ./caddy.nix
+    ./docker-compose.nix
+    ./network.nix
+    ./nspawn.nix
+    ./ssh.nix
+    ./zfs.nix
+  ];
 }
