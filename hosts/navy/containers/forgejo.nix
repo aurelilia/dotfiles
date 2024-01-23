@@ -4,6 +4,10 @@
       hostPath = "/containers/forgejo/data/gitea";
       isReadOnly = false;
     };
+    mounts."/etc/ssh" = {
+      hostPath = "/persist/secrets/forgejo/";
+      isReadOnly = false;
+    };
     ports = [{ hostPort = 22; }];
 
     config = { ... }: {

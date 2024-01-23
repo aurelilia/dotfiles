@@ -1,7 +1,7 @@
 { ... }:
 let
   base-dir = "/containers/piped";
-  web-port = 13415;
+  web-port = "13415";
 in {
   # https://piped-docs.kavin.rocks/docs/self-hosting/#docker-compose-nginx-aio-script
   # Yes, the postgres password is bad. This runs in it's own network and is not
