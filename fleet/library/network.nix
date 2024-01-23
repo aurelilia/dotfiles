@@ -79,7 +79,7 @@ in {
   config = (lib.mkMerge [
     # General config
     {
-      lib.network = config;
+      lib.network = conf;
       networking = {
         hostName = name;
         fqdn = name + ".elia.garden";
@@ -94,7 +94,7 @@ in {
       networking = {
         useDHCP = false;
         defaultGateway = host.gateway;
-        nameservers = host.nameservers;
+        nameservers = host.nameservers ++ [ "9.9.9.9" ];
         interfaces.lan.ipv4.addresses = [{
           address = host.address;
           prefixLength = host.prefix;
