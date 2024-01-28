@@ -1,11 +1,18 @@
 { config, pkgs, ... }: {
   programs.fzf.enable = true;
   programs.zoxide.enable = true;
-  programs.carapace.enable = true;
+
+  programs.atuin = {
+    enable = true;
+    settings = {
+      sync_frequency = "5m";
+      sync_address = "https://atuin.elia.garden";
+      enter_accept = false;
+    };
+  };
 
   programs.direnv = {
     enable = true;
-    enableZshIntegration = true;
     nix-direnv.enable = true;
   };
 

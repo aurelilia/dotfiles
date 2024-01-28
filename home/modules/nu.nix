@@ -1,11 +1,7 @@
 { pkgs, config, ... }: {
-  programs.atuin.enable = true;
-  programs.zoxide.enable = true;
-  programs.carapace.enable = true;
-
-  programs.direnv = {
+  programs.carapace = {
     enable = true;
-    nix-direnv.enable = true;
+    enableZshIntegration = false;
   };
 
   programs.nushell = {
@@ -19,8 +15,6 @@
     environmentVariables = {
       # Quiet direnv
       DIRENV_LOG_FORMAT = "''";
-      # Atuin sync
-      ATUIN_SYNC_ADDRESS = "https://atuin.elia.garden";
     };
 
     shellAliases = config.elia.shellAliases;
