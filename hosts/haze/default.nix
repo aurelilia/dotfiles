@@ -22,4 +22,7 @@
   services.nfs.server.exports = ''
     /media          *(rw,fsid=0,async,no_subtree_check,crossmnt,no_root_squash)
   '';
+
+  # Wanted for hypervisor access
+  services.tailscale.enable = true;
 }

@@ -1,6 +1,6 @@
 { ... }: {
-  network.firewall.allowedTCPPorts = [ 53 8083 ];
-  network.firewall.allowedUDPPorts = [ 53 ];
+  networking.firewall.allowedTCPPorts = [ 53 8083 ];
+  networking.firewall.allowedUDPPorts = [ 53 ];
 
   virtualisation.oci-containers.containers.pihole = {
     image = "pihole/pihole:latest";

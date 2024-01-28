@@ -1,6 +1,6 @@
 { config, ... }: {
   age.secrets.coturn-auth = {
-    file = ../../../secrets/coturn-auth.age;
+    file = ../../../secrets/navy/coturn-auth.age;
     owner = "turnserver";
     group = "turnserver";
   };
