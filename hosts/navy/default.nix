@@ -7,11 +7,11 @@
     ./containers/caddy.nix
     ./containers/element.nix
     ./containers/forgejo.nix
-    ./containers/headscale.nix
     ./containers/kuma.nix
     ./containers/mail.nix
     ./containers/piped.nix
     ./services/coturn.nix
+    ./services/headscale.nix
     ./services/proxy.nix
   ];
 
