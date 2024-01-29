@@ -5,6 +5,7 @@
     ./docker-compose.nix
     ./network.nix
     ./nspawn.nix
+    ./packages.nix
     ./ssh.nix
     ./zfs.nix
   ];

@@ -67,7 +67,7 @@ in {
         restart: unless-stopped
 
       postgres:
-        image: postgres:14
+        image: postgres:14-alpine
         restart: always
         container_name: nextcloud-sql
         environment:

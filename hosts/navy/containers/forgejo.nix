@@ -1,4 +1,6 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+let url = "git.elia.garden";
+in {
   elia.containers.forgejo = {
     mounts."/var/lib/forgejo" = {
       hostPath = "/containers/forgejo/data/gitea";
@@ -29,10 +31,10 @@
             RUN_MODE = "prod";
           };
           server = {
-            DOMAIN = "git.elia.garden";
+            DOMAIN = url;
             SSH_USER = "git";
-            SSH_DOMAIN = "git.elia.garden";
-            ROOT_URL = "https://git.elia.garden/";
+            SSH_DOMAIN = url;
+            ROOT_URL = "https://${url}/";
           };
 
           avatar.PATH = "/var/lib/forgejo/avatars";
@@ -67,7 +69,7 @@
     };
   };
 
-  elia.caddy.routes."git.elia.garden".extraConfig = ''
+  elia.caddy.routes."${url}".extraConfig = ''
     ${config.lib.caddy.snippets.no-robots}
     reverse_proxy forgejo:3000
   '';

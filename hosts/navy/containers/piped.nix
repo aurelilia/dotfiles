@@ -51,7 +51,7 @@ in {
             ports:
                 - "${web-port}:80"
         postgres:
-            image: postgres:15
+            image: postgres:15-alpine
             restart: unless-stopped
             volumes:
                 - ${base-dir}/data/db:/var/lib/postgresql/data
