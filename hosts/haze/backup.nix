@@ -25,5 +25,6 @@ in {
     "zroot/system/nixos".useTemplate = [ "tempDir" ];
     "zroot/data/vms".useTemplate = [ "tempDir" ];
     "zroot/data/personal".useTemplate = [ "hasBackup" ];
+    "zroot/data/persist".useTemplate = [ "hasBackup" ];
   };
 }

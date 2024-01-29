@@ -8,8 +8,8 @@ in {
 
   # Sanoid
   services.sanoid.datasets = {
-    "zroot/data/persist".useTemplate = [ "tempDir" ];
-    "zroot/data/ethereal".useTemplate = [ "tempDir" ];
-    "zroot/data/home".useTemplate = [ "hasBackup" ];
+    "zroot/keep/persist".useTemplate = [ "tempDir" ];
+    "zroot/local/ethereal".useTemplate = [ "tempDir" ];
+    "zroot/keep/home".useTemplate = [ "hasBackup" ];
   };
 }

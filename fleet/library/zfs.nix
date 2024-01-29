@@ -45,7 +45,7 @@ in {
         # We keep root from the last 3 boots
         # Any command except the create can fail in case the system has not
         # booted that often yet
-        zfs destroy ${root}-minus-3 || true
+        zfs destroy -r ${root}-minus-3 || true
         zfs rename ${root}-minus-2 ${root}-minus-3 || true
         zfs rename ${root}-minus-1 ${root}-minus-2 || true
         zfs rename ${root} ${root}-minus-1 || true

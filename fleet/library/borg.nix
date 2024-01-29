@@ -36,7 +36,7 @@
         };
 
         systemJob = defaultJob // {
-          paths = [ "/boot" "/persist" ];
+          paths = [ "/persist" ];
 
           prune.keep = {
             within = "1d";
@@ -46,7 +46,7 @@
         };
 
         mediaWorkstationJob = defaultJob // {
-          paths = [ "home" ];
+          paths = [ "/home" ];
           exclude = [
             "/home/*/.thumbnails"
             "/home/*/.cache"
@@ -62,6 +62,7 @@
             "/home/*/.config/Code - OSS"
             "/home/*/.config/JetBrains"
             "/home/*/.vscode-oss"
+            "/home/*/.var"
             "/home/*/download"
             "/home/*/downloads"
             "/home/*/Download"
@@ -89,7 +90,6 @@
 
             # Misc files
             "*.ignore"
-            "/oldold"
           ];
         };
 

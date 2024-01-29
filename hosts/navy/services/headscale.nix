@@ -80,6 +80,7 @@ in {
 
   elia.caddy.routes = {
     "headscale.elia.garden".extraConfig = ''
+      redir / https://elia.garden/blog/headscale.html
       reverse_proxy localhost:50013
     '';
   };

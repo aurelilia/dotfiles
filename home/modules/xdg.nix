@@ -4,7 +4,7 @@
 
     GRADLE_USER_HOME = "/ethereal/cache/gradle";
     CARGO_HOME = "/ethereal/cache/cargo";
-    RUSTUP_HOME = "/ethereal/cache/rustup";
+    CARGO_TARGET_DIR = "/ethereal/cache/rust-target";
     GNUPGHOME = "/ethereal/cache/gnupg";
     WINEPREFIX = "/ethereal/cache/wineprefix";
 
@@ -14,6 +14,7 @@
   };
 
   xdg = {
+    cacheHome = "/ethereal/cache/xdg";
     configFile = {
       "npm/npmrc".text = ''
         prefix=/ethereal/cache/npm-prefix
