@@ -6,7 +6,7 @@ in {
       hostPath = "/media/personal/music";
       isReadOnly = true;
     };
-    mounts."/var/lib/navidrome" = {
+    mounts."/var/lib/navidrome/data" = {
       hostPath = "/containers/navidrome/data";
       isReadOnly = false;
     };
@@ -19,7 +19,7 @@ in {
           Address = "0.0.0.0";
           ScanSchedule = "@every 2h";
           MusicFolder = "/music";
-          DataFolder = "/var/lib/navidrome";
+          DataFolder = "/var/lib/navidrome/data";
         };
       };
     };

@@ -4,8 +4,9 @@ let
   url = "matrix.louane.xyz";
   port = "51001";
 in {
+  # TODO
   /* elia.containers.matrix-louane = {
-       mounts."/var/lib/postgres/data" = {
+       mounts."/var/lib/postgres" = {
          hostPath = "${path}/postgres";
          isReadOnly = false;
        };

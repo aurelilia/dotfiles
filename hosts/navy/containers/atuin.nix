@@ -1,7 +1,7 @@
 { config, ... }: {
   elia.containers.atuin = {
     mounts."/var/lib/postgresql" = {
-      hostPath = "/containers/atuin/db";
+      hostPath = "/containers/atuin/postgres";
       isReadOnly = false;
     };
 

@@ -1,7 +1,7 @@
 { config, ... }:
 let
   path = "/containers/ffsync";
-  port = "50045";
+  port = "50075";
   url = "sync.elia.garden";
 in {
   # I would use services.firefox-syncserver here, but it sadly forces

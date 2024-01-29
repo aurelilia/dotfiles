@@ -1,60 +1,98 @@
 { config, pkgs, ... }:
 let url = "books.elia.garden";
 in {
-  age.secrets.bookstack-db.file = ../../../secrets/jade/bookstack-key.age;
-  age.secrets.bookstack-key.file = ../../../secrets/jade/bookstack-db.age;
+  # TODO
+  /* age.secrets.bookstack-key = {
+       file = ../../../secrets/jade/bookstack-key.age;
+       owner = "999";
+     };
 
-  elia.containers.bookstack = {
-    mounts."/var/lib/bookstack" = {
-      hostPath = "/containers/bookstack/data";
-      isReadOnly = false;
-    };
-    mounts."/var/lib/mysql" = {
-      hostPath = "/containers/bookstack/sql";
-      isReadOnly = false;
-    };
-    mounts."/run/db".hostPath = config.age.secrets.bookstack-db.path;
-    mounts."/run/key".hostPath = config.age.secrets.bookstack-key.path;
+     elia.containers.bookstack = {
+       mounts."/var/lib/bookstack" = {
+         hostPath = "/containers/bookstack/data";
+         isReadOnly = false;
+       };
+       mounts."/var/lib/mysql" = {
+         hostPath = "/containers/bookstack/sql";
+         isReadOnly = false;
+       };
+       mounts."/run/key".hostPath = config.age.secrets.bookstack-key.path;
 
-    config = { ... }: {
-      networking.firewall.allowedTCPPorts = [ 80 ];
+       config = { ... }: {
+         networking.firewall.allowedTCPPorts = [ 80 ];
 
-      services.mysql = {
-        enable = true;
-        package = pkgs.mariadb;
-      };
+         services.bookstack = {
+           enable = true;
+           hostname = "bookstack";
+           appURL = "https://${url}";
+           appKeyFile = "/run/key";
 
-      services.bookstack = {
-        enable = true;
-        hostname = url;
-        appURL = "https://${url}";
-        appKeyFile = "/run/key";
+           database = {
+             user = "bookstack";
+             name = "bookstackapp";
+             createLocally = true;
+           };
 
-        database = {
-          user = "bookstack";
-          passwordFile = "/run/db";
-          name = "bookstackapp";
-        };
+           config = {
+             AUTH_METHOD = "saml2";
+             AUTH_AUTO_INITIATE = true;
+             SAML2_NAME = "authentik";
+             SAML2_EMAIL_ATTRIBUTE = "email";
+             SAML2_EXTERNAL_ID_ATTRIBUTE = "uid";
+             SAML2_USER_TO_GROUPS = true;
+             SAML2_GROUP_ATTRIBUTE = "http://schemas.xmlsoap.org/claims/Group";
+             SAML2_DISPLAY_NAME_ATTRIBUTES =
+               "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname";
+             SAML2_IDP_ENTITYID =
+               "https://sso.elia.garden/api/v3/providers/saml/2/metadata/?download";
+             SAML2_AUTOLOAD_METADATA = true;
+           };
+         };
+       };
+     };
+  */
 
-        config = {
-          AUTH_METHOD = "saml2";
-          AUTH_AUTO_INITIATE = true;
-          SAML2_NAME = "authentik";
-          SAML2_EMAIL_ATTRIBUTE = "email";
-          SAML2_EXTERNAL_ID_ATTRIBUTE = "uid";
-          SAML2_USER_TO_GROUPS = true;
-          SAML2_GROUP_ATTRIBUTE = "http://schemas.xmlsoap.org/claims/Group";
-          SAML2_DISPLAY_NAME_ATTRIBUTES =
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname";
-          SAML2_IDP_ENTITYID =
-            "https://sso.elia.garden/api/v3/providers/saml/2/metadata/?download";
-          SAML2_AUTOLOAD_METADATA = true;
-        };
-      };
-    };
-  };
+  elia.compose.bookstack.compose = ''
+    version: "2.2"
+
+    services:
+      bookstack:
+        image: lscr.io/linuxserver/bookstack
+        container_name: bookstack
+        environment:
+          - PUID=1000
+          - PGID=1000
+          - APP_URL=https://books.elia.garden
+          - DB_HOST=bookstack_db
+          - DB_PORT=3306
+          - DB_USER=bookstack
+          - DB_PASS=somerandompasswordidfk
+          - DB_DATABASE=bookstackapp
+        volumes:
+          - /containers/bookstack/data:/config
+        restart: unless-stopped
+        ports:
+          - "50100:80"
+        depends_on:
+          - bookstack_db
+
+      bookstack_db:
+        image: lscr.io/linuxserver/mariadb
+        container_name: bookstack_db
+        environment:
+          - PUID=1000
+          - PGID=1000
+          - MYSQL_ROOT_PASSWORD=somerandompasswordidfk
+          - TZ=Europe/Brussels
+          - MYSQL_DATABASE=bookstackapp
+          - MYSQL_USER=bookstack
+          - MYSQL_PASSWORD=somerandompasswordidfk
+        volumes:
+          - /containers/bookstack/sql:/config
+        restart: unless-stopped
+  '';
 
   elia.caddy.routes."${url}".extraConfig = ''
-    reverse_proxy bookstack:80
+    reverse_proxy host:50100
   '';
 }

@@ -1,7 +1,8 @@
 { config, lib, ... }: {
   config = lib.mkIf (config.elia.caddy.routes != { }) (lib.mkMerge [
     {
-      lib.caddy.snippets = rec {
+      networking.firewall.allowedTCPPorts = [ 80 443 ];
+      lib.caddy.snippets = {
         no-robots = ''
             respond /robots.txt `User-agent: *
           Disallow: /`
@@ -11,13 +12,12 @@
             redir @not-allowed https://www.youtube.com/watch?v=dQw4w9WgXcQ
         '';
 
-        sso = "https://sso.elia.garden";
         sso-proxy = ''
           # always forward outpost path to actual outpost
-          reverse_proxy /outpost.goauthentik.io/* ${sso}
+          reverse_proxy /outpost.goauthentik.io/* ${config.lib.sso-host}
           # forward authentication to outpost
           @extern not client_ip private_ranges
-          forward_auth @extern ${sso} {
+          forward_auth @extern ${config.lib.sso-host} {
               uri /outpost.goauthentik.io/auth/caddy
               copy_headers X-Authentik-Username X-Authentik-Groups X-Authentik-Email X-Authentik-Name X-Authentik-Uid X-Authentik-Jwt X-Authentik-Meta-Jwks X-Authentik-Meta-Outpost X-Authentik-Meta-Provider X-Authentik-Meta-App X-Authentik-Meta-Version
               trusted_proxies 10.0.1.0/16 172.16.0.0/16 fc00::/7
@@ -42,12 +42,10 @@
         dataDir = "/containers/caddy/data";
       };
 
-      fileSystems."/srv" = {
+      fileSystems."/srv/caddy" = {
         device = "/containers/caddy/srv";
         options = [ "bind" ];
       };
-
-      networking.firewall.allowedTCPPorts = [ 80 443 ];
     })
     (lib.mkIf (!config.elia.caddy.bare) {
       elia.containers.caddy = {

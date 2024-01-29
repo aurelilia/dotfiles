@@ -2,8 +2,6 @@
 let
   borg = config.lib.borg;
   mediaDirs = [ "/containers" "/media" "/srv/nextcloud" ];
-  mediaPre = "find /media/media | cut -b 14- > /media/.media-list";
-  mediaPost = "rm /media/.media-list";
 in {
   programs.ssh.knownHosts = borg.hosts;
 
@@ -14,8 +12,6 @@ in {
     borgbaseMedia = borg.defaultJob // {
       paths = mediaDirs;
       repo = borg.borgbaseMediaUrl;
-      preHook = mediaPre;
-      postCreate = mediaPost;
 
       prune.keep = {
         within = "1d";
@@ -26,8 +22,6 @@ in {
     localMedia = borg.defaultJob // {
       paths = mediaDirs;
       repo = "/backup/media";
-      preHook = mediaPre;
-      postCreate = mediaPost;
 
       prune.keep = {
         within = "1d";

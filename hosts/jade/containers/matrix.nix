@@ -4,6 +4,7 @@ let
   url = "matrix.elia.garden";
   port = "51003";
 in {
+  # TODO
   elia.compose.matrix = {
     env = "${path}/env";
     compose = ''
@@ -14,6 +15,8 @@ in {
           volumes:
             - ${path}/data:/data
             - ${path}/media:/media
+          ports:
+            - "${port}:8008"
           restart: unless-stopped
 
         postgresql:

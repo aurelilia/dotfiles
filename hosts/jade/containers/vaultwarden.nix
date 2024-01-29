@@ -14,6 +14,7 @@ in {
         config = {
           DOMAIN = "https://${url}";
           SIGNUPS_ALLOWED = false;
+          ROCKET_ADDRESS = "0.0.0.0";
           ROCKET_PORT = 8222;
         };
       };

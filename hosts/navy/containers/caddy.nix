@@ -19,35 +19,35 @@ with config.lib.caddy.snippets; {
       redir /.well-known/webfinger https://social.elia.garden{uri}
 
       ${no-robots}
-      root * /srv/html
+      root * /srv/caddy/html
       file_server
     '';
 
     "gelix.elia.garden".extraConfig = ''
-      root * /srv/gelix
+      root * /srv/caddy/gelix
       file_server
     '';
 
     "study-notes.elia.garden".extraConfig = ''
-      root * /srv/tud-notes
+      root * /srv/caddy/tud-notes
       file_server
     '';
 
     "gamelin.elia.garden".extraConfig = ''
-      root * /srv/gamelin
+      root * /srv/caddy/gamelin
       file_server
     '';
 
     "gg.elia.garden" = {
       serverAliases = [ "gamegirl.elia.garden" ];
       extraConfig = ''
-        root * /srv/gamegirl
+        root * /srv/caddy/gamegirl
         file_server
       '';
     };
 
     "file.elia.garden".extraConfig = ''
-      root * /srv/file
+      root * /srv/caddy/file
       basicauth /hidden/* {
         aurelia $2a$14$HDTVj/YGiEtAA7nICvlSxeEivE3HryuQ9dnFChHGbXYqnDtFVMMba
       }
@@ -55,7 +55,7 @@ with config.lib.caddy.snippets; {
     '';
 
     "browse.elia.garden".extraConfig = ''
-      root * /srv/browse
+      root * /srv/caddy/browse
       file_server browse
     '';
 

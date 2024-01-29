@@ -28,7 +28,7 @@ in {
           restart: unless-stopped
           container_name: authentik-redis
           volumes:
-            - ./redis:/data
+            - ${path}/redis:/data
 
         server:
           image: ${image}:${version}
@@ -40,7 +40,7 @@ in {
             AUTHENTIK_POSTGRESQL__USER: authentik
             AUTHENTIK_POSTGRESQL__NAME: authentik
             AUTHENTIK_POSTGRESQL__PASSWORD: ''${PG_PASS}
-            AUTHENTIK_SECRET_KEY=''${AUTHENTIK_SECRET_KEY}
+            AUTHENTIK_SECRET_KEY: ''${AUTHENTIK_SECRET_KEY}
           volumes:
             - ${path}/media:/media
             - ${path}/custom-templates:/templates
@@ -61,7 +61,7 @@ in {
             AUTHENTIK_POSTGRESQL__USER: authentik
             AUTHENTIK_POSTGRESQL__NAME: authentik
             AUTHENTIK_POSTGRESQL__PASSWORD: ''${PG_PASS}
-            AUTHENTIK_SECRET_KEY=''${AUTHENTIK_SECRET_KEY}
+            AUTHENTIK_SECRET_KEY: ''${AUTHENTIK_SECRET_KEY}
           # `user: root` and the docker socket volume are optional.
           # See more for the docker socket integration here:
           # https://goauthentik.io/docs/outposts/integrations/docker
@@ -81,6 +81,7 @@ in {
     '';
   };
 
+  lib.sso-host = "http://host:${port}";
   elia.caddy.routes."sso.elia.garden".extraConfig = ''
     reverse_proxy host:${port}
   '';

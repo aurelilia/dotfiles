@@ -8,7 +8,7 @@
           env = (if ((value.env or null) == null) then
             ""
           else
-            ("--env-file" + value.env));
+            ("--env-file=" + value.env));
         in {
           name = "docker-" + name;
           value = {
