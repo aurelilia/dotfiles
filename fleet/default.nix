@@ -20,7 +20,11 @@ in { home-manager, nixpkgs, nixpkgs-unstable, agenix, disko, nixgl, ... }: {
         overlays = [ nixgl.overlay ];
       };
     };
-    deployment.buildOnTarget = true;
+
+    deployment = {
+      buildOnTarget = true;
+      allowLocalDeployment = true;
+    };
   };
 
   navy = { name, nodes, pkgs, ... }: {

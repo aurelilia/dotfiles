@@ -1,5 +1,6 @@
 { lib, config, ... }: {
   imports = [
+    ./auto-deploy.nix
     ./borg.nix
     ./caddy.nix
     ./docker-compose.nix

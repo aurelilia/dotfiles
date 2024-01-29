@@ -7,11 +7,12 @@
 
   # Nix(OS) config
   system.stateVersion = "23.11";
-  system.autoUpgrade.enable = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.gc = {
-    automatic = true;
-    options = "--delete-older-than 7d";
+  nix = {
+    settings.experimental-features = [ "nix-command" "flakes" ];
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 7d";
+    };
   };
   # This does not get set automatically for some reason?
   environment.variables.NIX_REMOTE = "daemon";
