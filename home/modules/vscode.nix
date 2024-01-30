@@ -17,6 +17,8 @@
       mkhl.direnv
 
       thenuprojectcontributors.vscode-nushell-lang
+      mgt19937.typst-preview
+      nvarner.typst-lsp
     ];
 
     userSettings = {
