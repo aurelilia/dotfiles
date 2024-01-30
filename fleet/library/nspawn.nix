@@ -80,7 +80,7 @@ margs@{ config, lib, pkgs, ... }: {
       default = { };
     };
     elia.natExternal = lib.mkOption {
-      type = lib.types.string;
+      type = lib.types.str;
       default = "lan";
     };
   };
