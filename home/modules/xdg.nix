@@ -14,7 +14,6 @@
   };
 
   xdg = {
-    cacheHome = "/ethereal/cache/xdg";
     configFile = {
       "npm/npmrc".text = ''
         prefix=/ethereal/cache/npm-prefix
@@ -34,6 +33,6 @@
   };
 
   home.activation.linkCache = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ln -sf /ethereal/cache/cache $HOME/.cache
+    ln -sf /ethereal/cache/xdg $HOME/.cache
   '';
 }
