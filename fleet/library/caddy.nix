@@ -14,10 +14,10 @@
 
         sso-proxy = ''
           # always forward outpost path to actual outpost
-          reverse_proxy /outpost.goauthentik.io/* ${config.lib.sso-host}
+          reverse_proxy /outpost.goauthentik.io/* ${config.elia.caddy.sso}
           # forward authentication to outpost
           @extern not client_ip private_ranges
-          forward_auth @extern ${config.lib.sso-host} {
+          forward_auth @extern ${config.elia.caddy.sso} {
               uri /outpost.goauthentik.io/auth/caddy
               copy_headers X-Authentik-Username X-Authentik-Groups X-Authentik-Email X-Authentik-Name X-Authentik-Uid X-Authentik-Jwt X-Authentik-Meta-Jwks X-Authentik-Meta-Outpost X-Authentik-Meta-Provider X-Authentik-Meta-App X-Authentik-Meta-Version
               trusted_proxies 10.0.1.0/16 172.16.0.0/16 fc00::/7
@@ -88,6 +88,10 @@
       bare = lib.mkOption {
         type = lib.types.bool;
         default = false;
+      };
+      sso = lib.mkOption {
+        type = lib.types.str;
+        default = "https://sso.elia.garden";
       };
     };
   };
