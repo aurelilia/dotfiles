@@ -37,7 +37,6 @@ in {
   services.gvfs.enable = true;
   boot.supportedFilesystems = [ "ntfs" ];
   virtualisation.docker.enable = true;
-  services.tailscale.enable = true;
 
   # Packages I want from unstable, whose version in stable is too outdated
   users.users.leela.packages = with pkgs-unstable; [ (wrapWithNixGL logseq) ];

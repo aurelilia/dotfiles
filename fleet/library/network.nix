@@ -142,5 +142,20 @@ in {
         (lib.mapAttrs
           (name: { wg ? { ip = "0.0.0.0"; }, ... }: "${wg.ip} ${name}") hosts));
     })
+
+    # Tailscale
+    (lib.mkIf (config.elia.tailscale.enable) {
+      services.tailscale.enable = true;
+      # Persist tailscale
+      systemd.tmpfiles.rules = [
+        "L /var/lib/tailscale - - - - /persist/data/tailscale"
+      ];
+    })
   ]);
+
+  options.elia.tailscale.enable = lib.mkOption {
+    type = lib.types.bool;
+    description = "Enable Tailscale Mesh VPN";
+    default = true;
+  };
 }
