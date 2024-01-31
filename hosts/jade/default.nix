@@ -20,5 +20,6 @@
     ./services/ddclient.nix
     ./services/nfs.nix
     ./services/tvheadend.nix
+    ./services/vivi.nix
   ];
 }
