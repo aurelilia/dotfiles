@@ -2,7 +2,8 @@
 let
   url = "cloud.elia.garden";
   path = "/containers/nextcloud";
-in {
+in
+{
   # TODO
   /* elia.containers.nextcloud = {
        mounts."/var/lib/nextcloud" = {
@@ -80,8 +81,8 @@ in {
 
   elia.caddy.routes."${url}" = {
     extra = ''
-        redir /.well-known/carddav /remote.php/dav 301
-        redir /.well-known/caldav /remote.php/dav 301
+      redir /.well-known/carddav /remote.php/dav 301
+      redir /.well-known/caldav /remote.php/dav 301
     '';
     host = "localhost:40013";
   };

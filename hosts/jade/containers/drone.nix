@@ -3,7 +3,8 @@ let
   path = "/containers/drone";
   port = "50043";
   url = "ci.elia.garden";
-in {
+in
+{
   elia.compose.drone.compose = ''
     services:
       drone:

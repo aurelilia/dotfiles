@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   virtualisation.docker = {
     enable = true;
     listenOptions = [ "/run/docker.sock" ];
@@ -15,7 +21,10 @@
     containers.watchtower = {
       image = "containrrr/watchtower";
       volumes = [ "/run/docker.sock:/var/run/docker.sock" ];
-      cmd = [ "--interval" "7200" ];
+      cmd = [
+        "--interval"
+        "7200"
+      ];
       autoStart = true;
     };
   };

@@ -1,4 +1,10 @@
-{ lib, pkgs, config, ... }: {
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+{
   systemd.services.colmena-autodeploy = {
     description = "Automatic Colmena Deploy";
 

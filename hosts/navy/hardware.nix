@@ -1,8 +1,20 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
+{
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
-  boot.initrd.availableKernelModules =
-    [ "ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_blk" ];
+  boot.initrd.availableKernelModules = [
+    "ata_piix"
+    "uhci_hcd"
+    "virtio_pci"
+    "sr_mod"
+    "virtio_blk"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
@@ -20,7 +32,11 @@
   fileSystems."/" = {
     device = "/dev/mapper/root";
     fsType = "btrfs";
-    options = [ "subvol=/" "compress=zstd" "noatime" ];
+    options = [
+      "subvol=/"
+      "compress=zstd"
+      "noatime"
+    ];
   };
   services.btrfs.autoScrub.enable = true;
 

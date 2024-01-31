@@ -3,7 +3,8 @@ let
   path = "/containers/homeassistant";
   port = "50045";
   port-esp = "50046";
-in {
+in
+{
   elia.compose.homeassistant.compose = ''
     services:
       homeassistant:

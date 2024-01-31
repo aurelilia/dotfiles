@@ -1,9 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
 let
   dataDir = "/var/lib/headscale";
   runDir = "/run/headscale";
-in {
+in
+{
   age.secrets.headscale-config = {
     file = ../../../secrets/navy/headscale-config.age;
     owner = "headscale";
@@ -34,48 +40,55 @@ in {
       exec ${pkgs.headscale}/bin/headscale serve
     '';
 
-    serviceConfig = let capabilityBoundingSet = [ "CAP_CHOWN" ];
-    in {
-      Restart = "always";
-      Type = "simple";
-      User = "headscale";
-      Group = "headscale";
+    serviceConfig =
+      let
+        capabilityBoundingSet = [ "CAP_CHOWN" ];
+      in
+      {
+        Restart = "always";
+        Type = "simple";
+        User = "headscale";
+        Group = "headscale";
 
-      # Hardening options
-      RuntimeDirectory = "headscale";
-      # Allow headscale group access so users can be added and use the CLI.
-      RuntimeDirectoryMode = "0750";
+        # Hardening options
+        RuntimeDirectory = "headscale";
+        # Allow headscale group access so users can be added and use the CLI.
+        RuntimeDirectoryMode = "0750";
 
-      StateDirectory = "headscale";
-      StateDirectoryMode = "0750";
+        StateDirectory = "headscale";
+        StateDirectoryMode = "0750";
 
-      ProtectSystem = "strict";
-      ProtectHome = true;
-      PrivateTmp = true;
-      PrivateDevices = true;
-      ProtectKernelTunables = true;
-      ProtectControlGroups = true;
-      RestrictSUIDSGID = true;
-      PrivateMounts = true;
-      ProtectKernelModules = true;
-      ProtectKernelLogs = true;
-      ProtectHostname = true;
-      ProtectClock = true;
-      ProtectProc = "invisible";
-      ProcSubset = "pid";
-      RestrictNamespaces = true;
-      RemoveIPC = true;
-      UMask = "0077";
+        ProtectSystem = "strict";
+        ProtectHome = true;
+        PrivateTmp = true;
+        PrivateDevices = true;
+        ProtectKernelTunables = true;
+        ProtectControlGroups = true;
+        RestrictSUIDSGID = true;
+        PrivateMounts = true;
+        ProtectKernelModules = true;
+        ProtectKernelLogs = true;
+        ProtectHostname = true;
+        ProtectClock = true;
+        ProtectProc = "invisible";
+        ProcSubset = "pid";
+        RestrictNamespaces = true;
+        RemoveIPC = true;
+        UMask = "0077";
 
-      CapabilityBoundingSet = capabilityBoundingSet;
-      AmbientCapabilities = capabilityBoundingSet;
-      NoNewPrivileges = true;
-      LockPersonality = true;
-      RestrictRealtime = true;
-      SystemCallFilter = [ "@system-service" "~@privileged" "@chown" ];
-      SystemCallArchitectures = "native";
-      RestrictAddressFamilies = "AF_INET AF_INET6 AF_UNIX";
-    };
+        CapabilityBoundingSet = capabilityBoundingSet;
+        AmbientCapabilities = capabilityBoundingSet;
+        NoNewPrivileges = true;
+        LockPersonality = true;
+        RestrictRealtime = true;
+        SystemCallFilter = [
+          "@system-service"
+          "~@privileged"
+          "@chown"
+        ];
+        SystemCallArchitectures = "native";
+        RestrictAddressFamilies = "AF_INET AF_INET6 AF_UNIX";
+      };
   };
 
   elia.caddy.routes."headscale.elia.garden" = {
@@ -84,8 +97,7 @@ in {
   };
 
   # Persist files
-  systemd.tmpfiles.rules =
-    [ "L /var/lib/headscale - - - - /persist/data/headscale" ];
+  systemd.tmpfiles.rules = [ "L /var/lib/headscale - - - - /persist/data/headscale" ];
 
   # In case the module MIGHT get fixed at some point:
   /* services.headscale = {

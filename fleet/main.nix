@@ -1,4 +1,12 @@
-{ name, nodes, config, lib, pkgs, ... }: {
+{
+  name,
+  nodes,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   imports = [ ./library ];
 
   # Locale
@@ -8,7 +16,10 @@
   # Nix(OS) config
   system.stateVersion = "23.11";
   nix = {
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     gc = {
       automatic = true;
       options = "--delete-older-than 7d";

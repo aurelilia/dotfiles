@@ -1,10 +1,17 @@
 { ... }:
 let
-  ports = [ 25 143 465 587 993 ];
+  ports = [
+    25
+    143
+    465
+    587
+    993
+  ];
   caddyDir = "/containers/caddy/";
   mailDir = "/containers/mail/";
   fqdn = "mail.elia.garden";
-in {
+in
+{
   # Network
   networking.firewall = {
     allowedTCPPorts = ports;

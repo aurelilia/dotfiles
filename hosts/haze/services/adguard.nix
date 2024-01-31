@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   networking.firewall.allowedTCPPorts = [ 53 ];
   networking.firewall.allowedUDPPorts = [ 53 ];
 
@@ -8,6 +9,5 @@
   };
 
   # Persist files
-  systemd.tmpfiles.rules =
-    [ "L /var/lib/AdGuardHome - - - - /persist/data/adguardhome" ];
+  systemd.tmpfiles.rules = [ "L /var/lib/AdGuardHome - - - - /persist/data/adguardhome" ];
 }

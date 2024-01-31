@@ -48,7 +48,15 @@ let
       };
     };
   };
-in { nixosConfig, config, pkgs, lib, ... }: {
+in
+{
+  nixosConfig,
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
   # Sway itself. Package is managed by NixOS
   wayland.windowManager.sway = {
     enable = true;
@@ -67,7 +75,9 @@ in { nixosConfig, config, pkgs, lib, ... }: {
         workspaceAutoBackAndForth = true;
 
         # Assigns
-        assigns = { "10" = [{ app_id = "thunderbird"; }]; };
+        assigns = {
+          "10" = [ { app_id = "thunderbird"; } ];
+        };
 
         # Appearance
         fonts = {
@@ -89,10 +99,14 @@ in { nixosConfig, config, pkgs, lib, ... }: {
         window = {
           border = 1;
           titlebar = false;
-          commands = [{
-            command = "border none";
-            criteria = { app_id = "ulauncher"; };
-          }];
+          commands = [
+            {
+              command = "border none";
+              criteria = {
+                app_id = "ulauncher";
+              };
+            }
+          ];
         };
 
         # Keymap
@@ -124,8 +138,7 @@ in { nixosConfig, config, pkgs, lib, ... }: {
           "${modifier}+l" = "swaylock";
           # Screenshots
           "${modifier}+q" = "exec ~/.config/sway/scripts/screenshot.sh";
-          "${modifier}+Shift+q" =
-            "exec ~/.config/sway/scripts/screenshot-delay.sh";
+          "${modifier}+Shift+q" = "exec ~/.config/sway/scripts/screenshot-delay.sh";
           # Pick a colour
           "${modifier}+p" = "exec ~/.config/sway/scripts/picker.sh";
 
@@ -153,8 +166,7 @@ in { nixosConfig, config, pkgs, lib, ... }: {
           "${modifier}+7" = "exec ~/.config/sway/scripts/switch_workspace.nu 7";
           "${modifier}+8" = "exec ~/.config/sway/scripts/switch_workspace.nu 8";
           "${modifier}+9" = "exec ~/.config/sway/scripts/switch_workspace.nu 9";
-          "${modifier}+0" =
-            "exec ~/.config/sway/scripts/switch_workspace.nu 10";
+          "${modifier}+0" = "exec ~/.config/sway/scripts/switch_workspace.nu 10";
           # Move focused container to workspace
           "${modifier}+Shift+1" = "move container to workspace number 1";
           "${modifier}+Shift+2" = "move container to workspace number 2";
@@ -206,7 +218,7 @@ in { nixosConfig, config, pkgs, lib, ... }: {
         # No bars!
         bars = [ ];
 
-        startup = [{ command = "~/.config/sway/scripts/autostart.sh"; }];
+        startup = [ { command = "~/.config/sway/scripts/autostart.sh"; } ];
       }
     ];
 
@@ -319,7 +331,14 @@ in { nixosConfig, config, pkgs, lib, ... }: {
     playerctl
     swww
     ulauncher
-    (python3.withPackages
-      (ps: with ps; [ requests pint simpleeval parsedatetime pytz ]))
+    (python3.withPackages (
+      ps: with ps; [
+        requests
+        pint
+        simpleeval
+        parsedatetime
+        pytz
+      ]
+    ))
   ];
 }

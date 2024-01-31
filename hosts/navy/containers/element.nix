@@ -121,7 +121,8 @@ let
         }
     }
   '';
-in {
+in
+{
   elia.caddy.routes."element.elia.garden" = {
     aliases = [ "element.louane.xyz" ];
     no-robots = true;

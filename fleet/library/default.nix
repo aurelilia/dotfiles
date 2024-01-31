@@ -1,4 +1,5 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+{
   imports = [
     # ./auto-deploy.nix
     ./borg.nix
@@ -14,8 +15,7 @@
   # Random misc things.
   config = lib.mkMerge [
     (lib.mkIf (config.services.tailscale.enable) {
-      environment.shellAliases."headscale-connect" =
-        "tailscale up --login-server https://headscale.elia.garden";
+      environment.shellAliases."headscale-connect" = "tailscale up --login-server https://headscale.elia.garden";
     })
   ];
 }

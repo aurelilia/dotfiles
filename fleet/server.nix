@@ -1,4 +1,5 @@
-{ name, nodes, config, lib, pkgs, ... }: {
+{ ... }:
+{
   imports = [ ./optional/docker.nix ];
 
   nix.settings.allowed-users = [ "root" ];

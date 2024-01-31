@@ -70,88 +70,104 @@ let
       celadon.address = "10.0.0.1";
     };
   };
-in { name, lib, pkgs, config, ... }:
+in
+{
+  name,
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   networks = conf.networks;
   hosts = conf.hosts;
   host = (lib.getAttr name hosts);
-in {
-  config = (lib.mkMerge [
-    # General config
-    {
-      lib.network = conf;
-      networking = {
-        hostName = name;
-        fqdn = name + ".elia.garden";
-        firewall.enable = lib.mkDefault true;
-        extraHosts = lib.concatStringsSep "\n" (lib.attrValues
-          (lib.mapAttrs (name: { address, ... }: "${address} ${name}") hosts));
-      };
-    }
-
-    # Static IPv4
-    (lib.mkIf (host ? gateway) {
-      networking = {
-        useDHCP = false;
-        defaultGateway = host.gateway;
-        nameservers = host.nameservers ++ [ "9.9.9.9" ];
-        interfaces.lan.ipv4.addresses = [{
-          address = host.address;
-          prefixLength = host.prefix;
-        }];
-      };
-
-      systemd.network.links."10-lan" = {
-        matchConfig.PermanentMACAddress = host.mac;
-        linkConfig.Name = "lan";
-      };
-    })
-
-    # Wireguard
-    (lib.mkIf (host ? wg) {
-      age.secrets."wg-gossip".file = ../../secrets/wg-gossip.age;
-
-      networking.firewall = {
-        allowedUDPPorts = [ 50220 ];
-        trustedInterfaces = [ "wg0" ];
-      };
-
-      networking.wireguard.interfaces.wg0 = {
-        ips = [ "${host.wg.ip}/24" ];
-        listenPort = 50220;
-        privateKeyFile = "/persist/secrets/wireguard/wireguard-private";
-        mtu = 1400;
-      };
-
-      services.wgautomesh = {
-        enable = true;
-        gossipSecretFile = config.age.secrets.wg-gossip.path;
-
-        settings = {
-          interface = "wg0";
-          peers = map (args@{ key, ip, ... }: {
-            pubkey = key;
-            address = ip;
-            endpoint = args.endpoint or null;
-          }) (map (host: host.wg) (lib.filter (host: host ? wg)
-            (lib.attrValues (removeAttrs hosts [ name ]))));
+in
+{
+  config = (
+    lib.mkMerge [
+      # General config
+      {
+        lib.network = conf;
+        networking = {
+          hostName = name;
+          fqdn = name + ".elia.garden";
+          firewall.enable = lib.mkDefault true;
+          extraHosts = lib.concatStringsSep "\n" (
+            lib.attrValues (lib.mapAttrs (name: { address, ... }: "${address} ${name}") hosts)
+          );
         };
-      };
+      }
 
-      networking.extraHosts = lib.concatStringsSep "\n" (lib.attrValues
-        (lib.mapAttrs
-          (name: { wg ? { ip = "0.0.0.0"; }, ... }: "${wg.ip} ${name}") hosts));
-    })
+      # Static IPv4
+      (lib.mkIf (host ? gateway) {
+        networking = {
+          useDHCP = false;
+          defaultGateway = host.gateway;
+          nameservers = host.nameservers ++ [ "9.9.9.9" ];
+          interfaces.lan.ipv4.addresses = [
+            {
+              address = host.address;
+              prefixLength = host.prefix;
+            }
+          ];
+        };
 
-    # Tailscale
-    (lib.mkIf (config.elia.tailscale.enable) {
-      services.tailscale.enable = true;
-      # Persist tailscale
-      systemd.tmpfiles.rules = [
-        "L /var/lib/tailscale - - - - /persist/data/tailscale"
-      ];
-    })
-  ]);
+        systemd.network.links."10-lan" = {
+          matchConfig.PermanentMACAddress = host.mac;
+          linkConfig.Name = "lan";
+        };
+      })
+
+      # Wireguard
+      (lib.mkIf (host ? wg) {
+        age.secrets."wg-gossip".file = ../../secrets/wg-gossip.age;
+
+        networking.firewall = {
+          allowedUDPPorts = [ 50220 ];
+          trustedInterfaces = [ "wg0" ];
+        };
+
+        networking.wireguard.interfaces.wg0 = {
+          ips = [ "${host.wg.ip}/24" ];
+          listenPort = 50220;
+          privateKeyFile = "/persist/secrets/wireguard/wireguard-private";
+          mtu = 1400;
+        };
+
+        services.wgautomesh = {
+          enable = true;
+          gossipSecretFile = config.age.secrets.wg-gossip.path;
+
+          settings = {
+            interface = "wg0";
+            peers =
+              map
+                (
+                  args@{ key, ip, ... }:
+                  {
+                    pubkey = key;
+                    address = ip;
+                    endpoint = args.endpoint or null;
+                  }
+                )
+                (map (host: host.wg) (lib.filter (host: host ? wg) (lib.attrValues (removeAttrs hosts [ name ]))));
+          };
+        };
+
+        networking.extraHosts = lib.concatStringsSep "\n" (
+          lib.mapAttrsToList (name: host: "${host.wg.ip or ""} ${name}") hosts
+        );
+      })
+
+      # Tailscale
+      (lib.mkIf (config.elia.tailscale.enable) {
+        services.tailscale.enable = true;
+        # Persist tailscale
+        systemd.tmpfiles.rules = [ "L /var/lib/tailscale - - - - /persist/data/tailscale" ];
+      })
+    ]
+  );
 
   options.elia.tailscale.enable = lib.mkOption {
     type = lib.types.bool;

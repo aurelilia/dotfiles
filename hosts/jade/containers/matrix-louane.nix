@@ -3,7 +3,8 @@ let
   path = "/containers/matrix-dendrite";
   url = "matrix.louane.xyz";
   port = "51001";
-in {
+in
+{
   # TODO
   /* elia.containers.matrix-louane = {
        mounts."/var/lib/postgres" = {

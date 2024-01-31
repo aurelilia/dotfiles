@@ -3,7 +3,8 @@ let
   path = "/containers/matrix";
   url = "matrix.elia.garden";
   port = "51003";
-in {
+in
+{
   # TODO
   elia.compose.matrix = {
     env = "${path}/env";

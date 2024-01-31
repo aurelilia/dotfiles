@@ -1,4 +1,5 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+{
   config = lib.mkMerge [
     {
       lib.borg = rec {
@@ -96,7 +97,9 @@
         borgbaseMediaUrl = "t5z1y940@t5z1y940.repo.borgbase.com:repo";
         borgbaseSystemUrl = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
 
-        systemBorgbase = systemJob // { repo = borgbaseSystemUrl; };
+        systemBorgbase = systemJob // {
+          repo = borgbaseSystemUrl;
+        };
 
         mediaWorkstationBorgbase = mediaWorkstationJob // {
           repo = borgbaseMediaUrl;
@@ -107,10 +110,8 @@
         };
 
         hosts = {
-          "c689j5a8.repo.borgbase.com".publicKey =
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
-          "t5z1y940.repo.borgbase.com".publicKey =
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
+          "c689j5a8.repo.borgbase.com".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
+          "t5z1y940.repo.borgbase.com".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
         };
       };
     }

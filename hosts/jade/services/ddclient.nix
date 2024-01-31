@@ -2,7 +2,8 @@
 # Based on https://github.com/NixOS/nixpkgs/blob/nixos-23.11/nixos/modules/services/networking/ddclient.nix
 # Cannot use it directly since jade has to run multiple ddclient configurations
 let
-  mkService = (config:
+  mkService = (
+    config:
     let
       dataDir = "/var/lib/ddclient-${config}";
       StateDirectory = builtins.baseNameOf dataDir;
@@ -10,7 +11,8 @@ let
       preStart = ''
         install --mode=600 --owner=$USER /persist/data/ddclient-${config}.conf /run/${RuntimeDirectory}/ddclient.conf
       '';
-    in {
+    in
+    {
       description = "Dynamic DNS Client";
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
@@ -22,11 +24,10 @@ let
         inherit StateDirectory;
         Type = "oneshot";
         ExecStartPre = "!${pkgs.writeShellScript "ddclient-prestart" preStart}";
-        ExecStart = "${
-            lib.getExe pkgs.ddclient
-          } -file /run/${RuntimeDirectory}/ddclient.conf";
+        ExecStart = "${lib.getExe pkgs.ddclient} -file /run/${RuntimeDirectory}/ddclient.conf";
       };
-    });
+    }
+  );
   timer = {
     description = "Run ddclient";
     wantedBy = [ "timers.target" ];
@@ -35,7 +36,8 @@ let
       OnUnitInactiveSec = "10min";
     };
   };
-in {
+in
+{
   systemd.services = {
     ddclient-garden = mkService "garden";
     ddclient-louane = mkService "louane";

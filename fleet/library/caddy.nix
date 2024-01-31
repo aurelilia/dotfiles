@@ -28,25 +28,35 @@ let
     }
     redir @not-allowed https://www.youtube.com/watch?v=dQw4w9WgXcQ
   '';
-in {
-  config = lib.mkIf (cfg.routes != { }) { 
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+in
+{
+  config = lib.mkIf (cfg.routes != { }) {
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
 
     services.caddy = {
       enable = true;
       extraConfig = cfg.extra;
-      virtualHosts = (lib.mapAttrs (name: route: {
-        serverAliases = route.aliases;
-        extraConfig = (lib.concatStringsSep "\n" ([ route.extra ]
-          ++ lib.optionals route.no-robots [ no-robots ]
-          ++ lib.optionals (route.mode == "sso") [ sso ]
-          ++ lib.optionals (route.mode == "local") [ local ]
-          ++ lib.optionals (route.host != null) [ "reverse_proxy ${route.host}" ]
-          ++ lib.optionals (route.root != null) [
-            "root * ${route.root}"
-            "file_server"
-          ]));
-      }) cfg.routes);
+      virtualHosts = (
+        lib.mapAttrs
+          (name: route: {
+            serverAliases = route.aliases;
+            extraConfig = lib.concatStringsSep "\n" (
+              [ route.extra ]
+              ++ lib.optionals route.no-robots [ no-robots ]
+              ++ lib.optionals (route.mode == "sso") [ sso ]
+              ++ lib.optionals (route.mode == "local") [ local ]
+              ++ lib.optionals (route.host != null) [ "reverse_proxy ${route.host}" ]
+              ++ lib.optionals (route.root != null) [
+                "root * ${route.root}"
+                "file_server"
+              ]
+            );
+          })
+          cfg.routes
+      );
       dataDir = "/containers/caddy/data";
     };
 
@@ -59,8 +69,14 @@ in {
       # New file permissions
       UMask = "0027"; # 0640 / 0750
       # Capabilities
-      AmbientCapabilities = [ "CAP_NET_BIND_SERVICE" "CAP_SYS_RESOURCE" ];
-      CapabilityBoundingSet = [ "CAP_NET_BIND_SERVICE" "CAP_SYS_RESOURCE" ];
+      AmbientCapabilities = [
+        "CAP_NET_BIND_SERVICE"
+        "CAP_SYS_RESOURCE"
+      ];
+      CapabilityBoundingSet = [
+        "CAP_NET_BIND_SERVICE"
+        "CAP_SYS_RESOURCE"
+      ];
       # Security
       NoNewPrivileges = true;
       # Sandboxing (sorted by occurrence in https://www.freedesktop.org/software/systemd/man/systemd.exec.html)
@@ -74,7 +90,11 @@ in {
       ProtectKernelModules = true;
       ProtectKernelLogs = true;
       ProtectControlGroups = true;
-      RestrictAddressFamilies = [ "AF_UNIX" "AF_INET" "AF_INET6" ];
+      RestrictAddressFamilies = [
+        "AF_UNIX"
+        "AF_INET"
+        "AF_INET6"
+      ];
       RestrictNamespaces = true;
       LockPersonality = true;
       MemoryDenyWriteExecute = true;
@@ -84,9 +104,7 @@ in {
       PrivateMounts = true;
       # System Call Filtering
       SystemCallArchitectures = "native";
-      SystemCallFilter = [
-        "~@cpu-emulation @debug @keyring @mount @obsolete @privileged @setuid"
-      ];
+      SystemCallFilter = [ "~@cpu-emulation @debug @keyring @mount @obsolete @privileged @setuid" ];
     };
 
     fileSystems."/containers/caddy/srv" = {
@@ -106,41 +124,51 @@ in {
     };
 
     routes = lib.mkOption {
-      type = with lib.types;
-        attrsOf (submodule ({ lib, ... }: {
-          options = {
-            root = lib.mkOption {
-              type = nullOr path;
-              description = "Root path for a file server.";
-              default = null;
-            };
-            host = lib.mkOption {
-              type = nullOr str;
-              description = "Host to reverse proxy.";
-              default = null;
-            };
-            mode = lib.mkOption {
-              type = enum [ "public" "sso" "local" ];
-              description = "Mode to run the route with.";
-              default = "public";
-            };
-            no-robots = lib.mkOption {
-              type = bool;
-              description = "Disable robots.";
-              default = false;
-            };
-            aliases = lib.mkOption {
-              type = listOf str;
-              default = [ ];
-              description = "Additional places to serve the route at.";
-            };
-            extra = lib.mkOption {
-              type = lines;
-              default = "";
-              description = "Additional configuration to add to the host.";
-            };
-          };
-        }));
+      type =
+        with lib.types;
+        attrsOf (
+          submodule (
+            { lib, ... }:
+            {
+              options = {
+                root = lib.mkOption {
+                  type = nullOr path;
+                  description = "Root path for a file server.";
+                  default = null;
+                };
+                host = lib.mkOption {
+                  type = nullOr str;
+                  description = "Host to reverse proxy.";
+                  default = null;
+                };
+                mode = lib.mkOption {
+                  type = enum [
+                    "public"
+                    "sso"
+                    "local"
+                  ];
+                  description = "Mode to run the route with.";
+                  default = "public";
+                };
+                no-robots = lib.mkOption {
+                  type = bool;
+                  description = "Disable robots.";
+                  default = false;
+                };
+                aliases = lib.mkOption {
+                  type = listOf str;
+                  default = [ ];
+                  description = "Additional places to serve the route at.";
+                };
+                extra = lib.mkOption {
+                  type = lines;
+                  default = "";
+                  description = "Additional configuration to add to the host.";
+                };
+              };
+            }
+          )
+        );
       description = "Routes to be served.";
       default = { };
     };

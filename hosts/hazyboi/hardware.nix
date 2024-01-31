@@ -1,7 +1,18 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
+{
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" ];
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "usbhid"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
@@ -12,10 +23,12 @@
     enable = true;
     zfsSupport = true;
     efiSupport = true;
-    mirroredBoots = [{
-      devices = [ "nodev" ];
-      path = "/boot";
-    }];
+    mirroredBoots = [
+      {
+        devices = [ "nodev" ];
+        path = "/boot";
+      }
+    ];
   };
 
   fileSystems."/" = {
@@ -34,7 +47,10 @@
   fileSystems."/win" = {
     device = "/dev/disk/by-uuid/A0F40170F40149CC";
     fsType = "ntfs";
-    options = [ "uid=1000" "gid=1000" ];
+    options = [
+      "uid=1000"
+      "gid=1000"
+    ];
   };
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/69DB-CD68";
@@ -43,7 +59,11 @@
   fileSystems."/haze" = {
     device = "haze:/";
     fsType = "nfs4";
-    options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
+    options = [
+      "x-systemd.automount"
+      "noauto"
+      "x-systemd.idle-timeout=600"
+    ];
   };
 
   swapDevices = [ ];
@@ -56,6 +76,5 @@
   networking.wireless.iwd.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

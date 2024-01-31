@@ -1,60 +1,175 @@
 let
-  haze-swarm = { name, nodes, pkgs, ... }: {
-    deployment.tags = [ "prod" "server" "swarm" ];
-    imports = [ ../hosts/haze-swarm ./server.nix ];
+  haze-swarm =
+    {
+      name,
+      nodes,
+      pkgs,
+      ...
+    }:
+    {
+      deployment.tags = [
+        "prod"
+        "server"
+        "swarm"
+      ];
+      imports = [
+        ../hosts/haze-swarm
+        ./server.nix
+      ];
+    };
+in
+{
+  home-manager,
+  nixpkgs,
+  nixpkgs-unstable,
+  agenix,
+  disko,
+  nixgl,
+  ...
+}:
+{
+  meta = {
+    nixpkgs = import nixpkgs { system = "x86_64-linux"; };
   };
-in { home-manager, nixpkgs, nixpkgs-unstable, agenix, disko, nixgl, ... }: {
-  meta = { nixpkgs = import nixpkgs { system = "x86_64-linux"; }; };
 
-  defaults = { name, nodes, pkgs, lib, ... }: {
-    imports = [
-      home-manager.nixosModules.home-manager
-      agenix.nixosModules.default
-      disko.nixosModules.disko
-      ./main.nix
-    ];
+  defaults =
+    {
+      name,
+      nodes,
+      pkgs,
+      lib,
+      ...
+    }:
+    {
+      imports = [
+        home-manager.nixosModules.home-manager
+        agenix.nixosModules.default
+        disko.nixosModules.disko
+        ./main.nix
+      ];
 
-    _module.args = {
-      pkgs-unstable = import nixpkgs-unstable {
-        system = "x86_64-linux";
-        overlays = [ nixgl.overlay ];
+      _module.args = {
+        pkgs-unstable = import nixpkgs-unstable {
+          system = "x86_64-linux";
+          overlays = [ nixgl.overlay ];
+        };
+      };
+
+      deployment = {
+        buildOnTarget = true;
+        allowLocalDeployment = true;
       };
     };
 
-    deployment = {
-      buildOnTarget = true;
-      allowLocalDeployment = true;
+  navy =
+    {
+      name,
+      nodes,
+      pkgs,
+      ...
+    }:
+    {
+      deployment.tags = [
+        "prod"
+        "server"
+      ];
+      imports = [
+        ../hosts/navy
+        ./server.nix
+      ];
     };
-  };
 
-  navy = { name, nodes, pkgs, ... }: {
-    deployment.tags = [ "prod" "server" ];
-    imports = [ ../hosts/navy ./server.nix ];
-  };
+  jade =
+    {
+      name,
+      nodes,
+      pkgs,
+      ...
+    }:
+    {
+      deployment.tags = [
+        "prod"
+        "server"
+        "far"
+      ];
+      imports = [
+        ../hosts/jade
+        ./server.nix
+      ];
+    };
 
-  jade = { name, nodes, pkgs, ... }: {
-    deployment.tags = [ "prod" "server" "far" ];
-    imports = [ ../hosts/jade ./server.nix ];
-  };
-
-  haze = { name, nodes, pkgs, ... }: {
-    deployment.tags = [ "prod" "server" ];
-    imports = [ ../hosts/haze ./server.nix ];
-  };
+  haze =
+    {
+      name,
+      nodes,
+      pkgs,
+      ...
+    }:
+    {
+      deployment.tags = [
+        "prod"
+        "server"
+      ];
+      imports = [
+        ../hosts/haze
+        ./server.nix
+      ];
+    };
   haze-swarm1 = haze-swarm;
   haze-swarm2 = haze-swarm;
   haze-swarm3 = haze-swarm;
 
-  mauve = { name, nodes, pkgs, ... }: {
-    deployment.tags = [ "prod" "workstation" "laptop" ];
-    imports = [ ../hosts/mauve ./laptop.nix ];
-  };
-  coral = { name, nodes, pkgs, ... }: {
-    deployment.tags = [ "prod" "workstation" "laptop" ];
-    imports = [ ../hosts/coral ./laptop.nix ];
-  };
-  hazyboi = { name, nodes, pkgs, ... }: {
-    deployment.tags = [ "prod" "workstation" ];
-    imports = [ ../hosts/hazyboi ./workstation.nix ];
-  };
+  mauve =
+    {
+      name,
+      nodes,
+      pkgs,
+      ...
+    }:
+    {
+      deployment.tags = [
+        "prod"
+        "workstation"
+        "laptop"
+      ];
+      imports = [
+        ../hosts/mauve
+        ./laptop.nix
+      ];
+    };
+  coral =
+    {
+      name,
+      nodes,
+      pkgs,
+      ...
+    }:
+    {
+      deployment.tags = [
+        "prod"
+        "workstation"
+        "laptop"
+      ];
+      imports = [
+        ../hosts/coral
+        ./laptop.nix
+      ];
+    };
+  hazyboi =
+    {
+      name,
+      nodes,
+      pkgs,
+      ...
+    }:
+    {
+      deployment.tags = [
+        "prod"
+        "workstation"
+      ];
+      imports = [
+        ../hosts/hazyboi
+        ./workstation.nix
+      ];
+    };
 }

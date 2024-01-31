@@ -1,8 +1,17 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   borg = config.lib.borg;
-  mediaDirs = [ "/containers" "/media" ];
-in {
+  mediaDirs = [
+    "/containers"
+    "/media"
+  ];
+in
+{
   # Borg
   programs.ssh.knownHosts = borg.hosts;
   services.borgbackup.jobs = {

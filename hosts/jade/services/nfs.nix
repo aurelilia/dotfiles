@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   services.nfs.server.enable = true;
   networking.firewall.allowedTCPPorts = [ 2049 ];
   fileSystems."/run/nfs/media" = {

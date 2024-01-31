@@ -1,4 +1,5 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+{
   programs.thunderbird = {
     enable = true;
     profiles.default.isDefault = true;
@@ -42,58 +43,56 @@
           "Amazon".metaData.hidden = true;
 
           "Nix Packages" = {
-            urls = [{
-              template = "https://search.nixos.org/packages";
-              params = [
-                {
-                  name = "type";
-                  value = "packages";
-                }
-                {
-                  name = "query";
-                  value = "{searchTerms}";
-                }
-              ];
-            }];
+            urls = [
+              {
+                template = "https://search.nixos.org/packages";
+                params = [
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
 
-            icon =
-              "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@np" ];
           };
 
           "NixOS Options" = {
-            urls = [{
-              template = "https://search.nixos.org/options";
-              params = [
-                {
-                  name = "type";
-                  value = "packages";
-                }
-                {
-                  name = "query";
-                  value = "{searchTerms}";
-                }
-              ];
-            }];
+            urls = [
+              {
+                template = "https://search.nixos.org/options";
+                params = [
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
 
-            icon =
-              "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@no" ];
           };
 
           "NixOS Wiki" = {
-            urls = [{
-              template = "https://nixos.wiki/index.php?search={searchTerms}";
-            }];
-            icon =
-              "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@nw" ];
           };
 
           "Noogle" = {
-            urls = [{ template = "https://noogle.dev/q?term={searchTerms}"; }];
-            icon =
-              "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            urls = [ { template = "https://noogle.dev/q?term={searchTerms}"; } ];
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@ng" ];
           };
         };
@@ -101,8 +100,8 @@
 
       userChrome = lib.readFile ../files/firefox/userChrome.css;
       userContent = lib.readFile ../files/firefox/userContent.css;
-      extraConfig = (lib.readFile ../files/firefox/user.js)
-        + (lib.readFile ../files/firefox/user-overrides.js);
+      extraConfig =
+        (lib.readFile ../files/firefox/user.js) + (lib.readFile ../files/firefox/user-overrides.js);
 
       containers = {
         testing = {

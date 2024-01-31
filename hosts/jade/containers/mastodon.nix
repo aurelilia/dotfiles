@@ -1,8 +1,14 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   path = "/containers/mastodon";
   url = "social.elia.garden";
-in {
+in
+{
   # TODO
   /* elia.containers.mastodon = {
        mounts."/var/lib/postgres" = {

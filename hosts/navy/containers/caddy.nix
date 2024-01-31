@@ -1,12 +1,15 @@
 { config, ... }:
 let
   root = "/persist/data/caddy";
-  mkMatrixWellKnown = (name: ''
-    header /.well-known/matrix/* Access-Control-Allow-Origin "*"
-    respond /.well-known/matrix/client `{"m.homeserver":{"base_url":"https://matrix.${name}/"}}`
-    respond /.well-known/matrix/server `{"m.server":"matrix.${name}:443"}`
-  '');
-in {
+  mkMatrixWellKnown = (
+    name: ''
+      header /.well-known/matrix/* Access-Control-Allow-Origin "*"
+      respond /.well-known/matrix/client `{"m.homeserver":{"base_url":"https://matrix.${name}/"}}`
+      respond /.well-known/matrix/server `{"m.server":"matrix.${name}:443"}`
+    ''
+  );
+in
+{
   # Drone CI wants to push some static files
   # TODO Maybe integrate this into Nix better?
   users.users.drone = {
@@ -21,7 +24,9 @@ in {
   elia.caddy.routes = {
     "elia.garden" = {
       root = "${root}/html";
-      extra = (mkMatrixWellKnown "elia.garden") + "\n"
+      extra =
+        (mkMatrixWellKnown "elia.garden")
+        + "\n"
         + "redir /.well-known/webfinger https://social.elia.garden{uri}";
     };
 

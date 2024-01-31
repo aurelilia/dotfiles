@@ -1,9 +1,15 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   variant = "Mocha";
   color = "Red";
   lower = lib.strings.toLower;
-in {
+in
+{
   gtk = {
     enable = true;
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";

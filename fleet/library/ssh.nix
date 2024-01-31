@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let ed-key = "/persist/secrets/ssh/ssh_host_ed25519_key";
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  ed-key = "/persist/secrets/ssh/ssh_host_ed25519_key";
+in
+{
   config = lib.mkMerge [
     {
       services.openssh = {
@@ -21,8 +28,7 @@ in {
         ];
       };
 
-      users.users.root.openssh.authorizedKeys.keys =
-        (import ../../secrets/keys.nix).ssh;
+      users.users.root.openssh.authorizedKeys.keys = (import ../../secrets/keys.nix).ssh;
 
       # ZnapZend uses SSH to transfer ZFS datasets, which requires using the
       # correct identity file. For some reason this is not done by default?

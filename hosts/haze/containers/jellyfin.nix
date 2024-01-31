@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   elia.containers.jellyfin = {
     mounts."/media" = {
       hostPath = "/media/media";
@@ -16,9 +17,7 @@
     ports = [
       # Web UIs
       { hostPort = 8096; }
-      {
-        hostPort = 5055;
-      }
+      { hostPort = 5055; }
       # Jellyfin discovery
       {
         hostPort = 1900;
@@ -30,13 +29,15 @@
       }
     ];
 
-    config = { ... }: {
-      services.jellyfin = {
-        enable = true;
-        openFirewall = true;
-      };
+    config =
+      { ... }:
+      {
+        services.jellyfin = {
+          enable = true;
+          openFirewall = true;
+        };
 
-      services.jellyseerr.enable = true;
-    };
+        services.jellyseerr.enable = true;
+      };
   };
 }

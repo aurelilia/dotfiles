@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   age.secrets.coturn-auth = {
     file = ../../../secrets/navy/coturn-auth.age;
     owner = "turnserver";
@@ -6,12 +7,20 @@
   };
 
   networking.firewall = {
-    allowedTCPPorts = [ 3478 5349 ];
-    allowedUDPPorts = [ 3478 5349 ];
-    allowedUDPPortRanges = [{
-      from = 49152;
-      to = 65535;
-    }];
+    allowedTCPPorts = [
+      3478
+      5349
+    ];
+    allowedUDPPorts = [
+      3478
+      5349
+    ];
+    allowedUDPPortRanges = [
+      {
+        from = 49152;
+        to = 65535;
+      }
+    ];
   };
 
   services.coturn = {

@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
-let url = "books.elia.garden";
-in {
+let
+  url = "books.elia.garden";
+in
+{
   # TODO
   /* age.secrets.bookstack-key = {
        file = ../../../secrets/jade/bookstack-key.age;

@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   disko.devices = {
     disk = {
       vda = {
@@ -7,16 +8,18 @@
         content = {
           type = "table";
           format = "msdos";
-          partitions = [{
-            name = "root";
-            end = "100%";
-            bootable = true;
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/";
-            };
-          }];
+          partitions = [
+            {
+              name = "root";
+              end = "100%";
+              bootable = true;
+              content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/";
+              };
+            }
+          ];
         };
       };
     };

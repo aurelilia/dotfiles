@@ -4,7 +4,8 @@ let
   image = "ghcr.io/goauthentik/server";
   version = "2023.10.6";
   port = "50042";
-in {
+in
+{
   elia.compose.authentik = {
     env = "/containers/authentik/.env";
     compose = ''

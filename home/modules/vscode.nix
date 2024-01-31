@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium.fhs;
@@ -52,7 +53,9 @@
     };
   };
 
-  elia.shellAliases = { code = "codium"; };
+  elia.shellAliases = {
+    code = "codium";
+  };
   # Electron is currently broken
   # TODO: Remove once Electron supports Wayland properly
   # https://github.com/electron/electron/issues/39449

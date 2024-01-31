@@ -1,1 +1,7 @@
-{ config, lib, pkgs, ... }: { imports = [ ./hardware.nix ./disko.nix ]; }
+{ ... }:
+{
+  imports = [
+    ./hardware.nix
+    ./disko.nix
+  ];
+}

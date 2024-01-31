@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   programs.carapace = {
     enable = true;
     enableZshIntegration = false;

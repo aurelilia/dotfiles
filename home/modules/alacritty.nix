@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   # Package handled separately, by nixos/arch modules
 
   xdg.configFile."alacritty/alacritty.yml".text = ''

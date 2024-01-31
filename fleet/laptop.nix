@@ -1,4 +1,12 @@
-{ name, nodes, config, lib, pkgs, ... }: {
+{
+  name,
+  nodes,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   imports = [ ./workstation.nix ];
   environment.systemPackages = [ pkgs.brightnessctl ];
 

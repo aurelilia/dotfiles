@@ -1,9 +1,16 @@
-{ lib, config, pkgs, name, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  name,
+  ...
+}:
 let
   root-mnt = config.fileSystems."/";
   root = root-mnt.device;
   cfg = config.elia.zfs;
-in {
+in
+{
   config = lib.mkMerge [
     (lib.mkIf (root-mnt.fsType == "zfs") {
       # General config
@@ -48,16 +55,18 @@ in {
         group = "zend";
         shell = pkgs.bash;
         packages = [ pkgs.mbuffer ];
-        openssh.authorizedKeys.keys =
-          (import ../../secrets/keys.nix).zfs-sender;
+        openssh.authorizedKeys.keys = (import ../../secrets/keys.nix).zfs-sender;
       };
       users.groups.zend = { };
 
-      system.activationScripts."Allow ZFS send to datasets".text =
-        (lib.concatStringsSep "\n" (map (dataset: ''
-          ${pkgs.zfs}/bin/zfs create -o canmount=off ${dataset} || true
-          ${pkgs.zfs}/bin/zfs allow zend mount,create,receive,destroy ${dataset}
-        '') cfg.receive-datasets));
+      system.activationScripts."Allow ZFS send to datasets".text = lib.concatStringsSep "\n" (
+        map
+          (dataset: ''
+            ${pkgs.zfs}/bin/zfs create -o canmount=off ${dataset} || true
+            ${pkgs.zfs}/bin/zfs allow zend mount,create,receive,destroy ${dataset}
+          '')
+          cfg.receive-datasets
+      );
     })
 
     (lib.mkIf cfg.znap.enable {
@@ -74,24 +83,35 @@ in {
           zfsGetType = true;
         };
 
-        zetup = (lib.concatMapAttrs (pool: value: {
-          "${pool}-keep" = value // {
-            dataset = "${pool}/${cfg.znap.paths.keep}";
-            plan = "1h=>5min,1d=>1h,2w=>1d,2m=>1w,1y=>1m";
-            destinations = cfg.znap.destinations
-              // (lib.genAttrs cfg.znap.remotes (remote: {
-                host = "zend@${remote}";
-                dataset = "zbackup/zend/${name}";
-              }));
-          };
-          "${pool}-local" = value // {
-            dataset = "${pool}/${cfg.znap.paths.local}";
-            plan = "1h=>5min,1d=>1h,1w=>1d";
-          };
-        }) (lib.genAttrs cfg.znap.pools (pool: {
-          recursive = true;
-          mbuffer.enable = true;
-        })));
+        zetup = (
+          lib.concatMapAttrs
+            (pool: value: {
+              "${pool}-keep" = value // {
+                dataset = "${pool}/${cfg.znap.paths.keep}";
+                plan = "1h=>5min,1d=>1h,2w=>1d,2m=>1w,1y=>1m";
+                destinations =
+                  cfg.znap.destinations
+                  // (lib.genAttrs cfg.znap.remotes (
+                    remote: {
+                      host = "zend@${remote}";
+                      dataset = "zbackup/zend/${name}";
+                    }
+                  ));
+              };
+              "${pool}-local" = value // {
+                dataset = "${pool}/${cfg.znap.paths.local}";
+                plan = "1h=>5min,1d=>1h,1w=>1d";
+              };
+            })
+            (
+              lib.genAttrs cfg.znap.pools (
+                pool: {
+                  recursive = true;
+                  mbuffer.enable = true;
+                }
+              )
+            )
+        );
       };
 
       systemd.services.znapzend.after = [ "wgautomesh.service" ];

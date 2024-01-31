@@ -1,1 +1,1 @@
-args@{ config, lib, pkgs, ... }: { imports = [ ./hardware.nix ]; }
+{ ... }: { imports = [ ./hardware.nix ]; }

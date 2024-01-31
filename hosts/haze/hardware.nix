@@ -1,9 +1,25 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
+{
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "nvme"
+    "usbhid"
+  ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" "nfs" "nfsd" ];
+  boot.kernelModules = [
+    "kvm-intel"
+    "nfs"
+    "nfsd"
+  ];
   boot.extraModulePackages = [ ];
 
   boot.loader.efi.canTouchEfiVariables = true;
@@ -11,10 +27,12 @@
     enable = true;
     zfsSupport = true;
     efiSupport = true;
-    mirroredBoots = [{
-      devices = [ "nodev" ];
-      path = "/boot";
-    }];
+    mirroredBoots = [
+      {
+        devices = [ "nodev" ];
+        path = "/boot";
+      }
+    ];
   };
 
   fileSystems."/" = {

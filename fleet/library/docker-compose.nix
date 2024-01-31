@@ -1,26 +1,34 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   config = {
     systemd.services = lib.pipe config.elia.compose [
       lib.attrsToList
-      (map ({ name, value }:
+      (map (
+        { name, value }:
         let
           config = (pkgs.writeText (name + ".yml") value.compose);
-          env = (if ((value.env or null) == null) then
-            ""
-          else
-            ("--env-file=" + value.env));
-        in {
+          env = (if ((value.env or null) == null) then "" else ("--env-file=" + value.env));
+        in
+        {
           name = "docker-" + name;
           value = {
             serviceConfig = {
-              ExecStart =
-                "${pkgs.docker}/bin/docker compose -p ${name} ${env} -f ${config} up";
+              ExecStart = "${pkgs.docker}/bin/docker compose -p ${name} ${env} -f ${config} up";
               ExecStop = "${pkgs.docker}/bin/docker compose -f ${config} down";
             };
             wantedBy = [ "multi-user.target" ];
-            after = [ "docker.service" "docker.socket" ];
+            after = [
+              "docker.service"
+              "docker.socket"
+            ];
           };
-        }))
+        }
+      ))
       lib.listToAttrs
     ];
   };

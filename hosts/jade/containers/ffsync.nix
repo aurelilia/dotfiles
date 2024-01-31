@@ -3,7 +3,8 @@ let
   path = "/containers/ffsync";
   port = "50075";
   url = "sync.elia.garden";
-in {
+in
+{
   # I would use services.firefox-syncserver here, but it sadly forces
   # MySQL and is therefore incompatible with historical data I still have.
   elia.compose.ffsync.compose = ''

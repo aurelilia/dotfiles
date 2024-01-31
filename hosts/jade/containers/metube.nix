@@ -1,6 +1,8 @@
 { config, ... }:
-let web-port = "50051";
-in {
+let
+  web-port = "50051";
+in
+{
   virtualisation.oci-containers.containers.metube = {
     image = "ghcr.io/alexta69/metube";
     autoStart = true;
