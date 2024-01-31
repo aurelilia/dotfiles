@@ -1,7 +1,4 @@
 {
-  name,
-  nodes,
-  config,
   lib,
   pkgs,
   pkgs-unstable,
@@ -50,5 +47,6 @@ in
   virtualisation.docker.enable = true;
 
   # Packages I want from unstable, whose version in stable is too outdated
+  lib.pkgs-unstable = pkgs-unstable;
   users.users.leela.packages = with pkgs-unstable; [ (wrapWithNixGL logseq) ];
 }

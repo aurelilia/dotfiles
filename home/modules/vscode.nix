@@ -1,8 +1,22 @@
-{ config, pkgs, ... }:
+{
+  nixosConfig,
+  pkgs,
+  lib,
+  ...
+}:
+let
+  hostCfg = {
+    hazyboi = {
+      # TODO not necessary once VSC FINALLY gets away from Electron 25
+      "window.zoomLevel" = 2;
+    };
+    mauve = { };
+  };
+in
 {
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium.fhs;
+    package = nixosConfig.lib.pkgs-unstable.vscodium.fhsWithPackages (ps: with ps; [ nil ]);
 
     extensions = with pkgs.vscode-extensions; [
       catppuccin.catppuccin-vsc-icons
@@ -14,7 +28,7 @@
       streetsidesoftware.code-spell-checker
       yzhang.markdown-all-in-one
 
-      bbenoist.nix
+      jnoortheen.nix-ide
       mkhl.direnv
 
       thenuprojectcontributors.vscode-nushell-lang
@@ -41,6 +55,9 @@
       "rust-analyzer.inlayHints.parameterHints" = false;
       "rust-analyzer.inlayHints.typeHints" = false;
 
+      "nix.enableLanguageServer" = true;
+      "nix.serverPath" = "nil";
+
       "files.autoSave" = "onFocusChange";
       "editor.rulers" = [ 80 ];
       "editor.minimap.enabled" = true;
@@ -50,7 +67,7 @@
 
       "files.insertFinalNewline" = true;
       "files.trimFinalNewlines" = true;
-    };
+    } // (lib.getAttr nixosConfig.networking.hostName hostCfg);
   };
 
   elia.shellAliases = {
