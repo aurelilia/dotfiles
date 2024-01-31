@@ -33,13 +33,13 @@ in {
   '';
 
   elia.caddy.routes = {
-    "homeassistant.elia.garden".extraConfig = ''
-      ${config.lib.caddy.snippets.sso-proxy}
-      reverse_proxy host:${port}
-    '';
-    "ha-esphome.elia.garden".extraConfig = ''
-      ${config.lib.caddy.snippets.local-net}
-      reverse_proxy host:${port-esp}
-    '';
+    "homeassistant.elia.garden" = {
+      mode = "sso";
+      host = "localhost:${port}";
+    };
+    "ha-esphome.elia.garden" = {
+      mode = "local";
+      host = "localhost:${port-esp}";
+    };
   };
 }

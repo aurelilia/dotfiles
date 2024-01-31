@@ -20,8 +20,8 @@ in {
     };
   };
 
-  elia.caddy.routes."${url}".extraConfig = ''
-    ${config.lib.caddy.snippets.sso-proxy}
-    reverse_proxy paperless:28981
-  '';
+  elia.caddy.routes."${url}" = {
+    mode = "sso";
+    host = "paperless:28981";
+  };
 }

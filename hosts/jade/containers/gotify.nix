@@ -14,7 +14,5 @@
     };
   };
 
-  elia.caddy.routes."notify.elia.garden".extraConfig = ''
-    reverse_proxy gotify:80
-  '';
+  elia.caddy.routes."notify.elia.garden".host = "gotify:80";
 }

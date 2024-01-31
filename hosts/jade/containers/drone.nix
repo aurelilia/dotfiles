@@ -39,7 +39,5 @@ in {
         image: "drone/drone-runner-docker:1"
   '';
 
-  elia.caddy.routes."${url}".extraConfig = ''
-    reverse_proxy host:${port}
-  '';
+  elia.caddy.routes."${url}".host = "localhost:${port}";
 }

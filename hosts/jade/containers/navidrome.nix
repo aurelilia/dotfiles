@@ -34,7 +34,5 @@ in {
     };
   };
 
-  elia.caddy.routes."${url}".extraConfig = ''
-    reverse_proxy navidrome:4533
-  '';
+  elia.caddy.routes."${url}".host = "navidrome:4533";
 }

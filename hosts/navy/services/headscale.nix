@@ -78,11 +78,9 @@ in {
     };
   };
 
-  elia.caddy.routes = {
-    "headscale.elia.garden".extraConfig = ''
-      redir / https://elia.garden/blog/headscale.html
-      reverse_proxy localhost:50013
-    '';
+  elia.caddy.routes."headscale.elia.garden" = {
+    host = "localhost:50013";
+    extra = "redir / https://elia.garden/blog/headscale.html";
   };
 
   # Persist files

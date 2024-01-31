@@ -20,9 +20,8 @@
     };
   };
 
-  elia.caddy.bare = true; # Needed to access haze through WG mesh... TODO
-  elia.caddy.routes."media.elia.garden".extraConfig = ''
-    ${config.lib.caddy.snippets.no-robots}
-    reverse_proxy haze:8096
-  '';
+  elia.caddy.routes."media.elia.garden" = {
+    no-robots = true;
+    host = "haze:8096";
+  };
 }

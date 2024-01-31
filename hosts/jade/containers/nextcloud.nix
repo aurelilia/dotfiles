@@ -78,9 +78,11 @@ in {
           - "${path}/postgres:/var/lib/postgresql/data"
   '';
 
-  elia.caddy.routes."${url}".extraConfig = ''
+  elia.caddy.routes."${url}" = {
+    extra = ''
         redir /.well-known/carddav /remote.php/dav 301
         redir /.well-known/caldav /remote.php/dav 301
-    	  reverse_proxy host:40013
-  '';
+    '';
+    host = "localhost:40013";
+  };
 }

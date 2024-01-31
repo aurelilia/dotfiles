@@ -69,8 +69,8 @@ in {
     };
   };
 
-  elia.caddy.routes."${url}".extraConfig = ''
-    ${config.lib.caddy.snippets.no-robots}
-    reverse_proxy forgejo:3000
-  '';
+  elia.caddy.routes."${url}" = {
+    no-robots = true;
+    host = "forgejo:3000";
+  };
 }

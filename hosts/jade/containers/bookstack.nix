@@ -92,7 +92,5 @@ in {
         restart: unless-stopped
   '';
 
-  elia.caddy.routes."${url}".extraConfig = ''
-    reverse_proxy host:50100
-  '';
+  elia.caddy.routes."${url}".host = "localhost:50100";
 }

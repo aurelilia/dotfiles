@@ -17,8 +17,8 @@
     };
   };
 
-  elia.caddy.routes."atuin.elia.garden".extraConfig = ''
-    ${config.lib.caddy.snippets.no-robots}
-    reverse_proxy atuin:8888
-  '';
+  elia.caddy.routes."atuin.elia.garden" = {
+    no-robots = true;
+    host = "atuin:8888";
+  };
 }

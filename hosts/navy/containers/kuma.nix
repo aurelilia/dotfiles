@@ -15,8 +15,8 @@
     };
   };
 
-  elia.caddy.routes."uptime.elia.garden".extraConfig = ''
-    ${config.lib.caddy.snippets.no-robots}
-    reverse_proxy kuma:3001
-  '';
+  elia.caddy.routes."uptime.elia.garden" = {
+    no-robots = true;
+    host = "kuma:3001";
+  };
 }

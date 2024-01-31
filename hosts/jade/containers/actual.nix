@@ -8,8 +8,8 @@ in {
     volumes = [ "/containers/actual:/data" ];
   };
 
-  elia.caddy.routes."actual.elia.garden".extraConfig = ''
-    ${config.lib.caddy.snippets.sso-proxy}
-    reverse_proxy host:${web-port}
-  '';
+  elia.caddy.routes."actual.elia.garden" = {
+    mode = "sso";
+    host = "localhost:${web-port}";
+  };
 }

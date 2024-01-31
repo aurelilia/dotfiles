@@ -123,12 +123,8 @@ let
   '';
 in {
   elia.caddy.routes."element.elia.garden" = {
-    serverAliases = [ "element.louane.xyz" ];
-    extraConfig = ''
-      ${config.lib.caddy.snippets.no-robots}
-      respond /config.json `${element-config}`
-      root * ${pkgs.element-web}
-      file_server
-    '';
+    aliases = [ "element.louane.xyz" ];
+    no-robots = true;
+    root = "${pkgs.element-web}";
   };
 }

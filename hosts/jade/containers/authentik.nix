@@ -81,8 +81,8 @@ in {
     '';
   };
 
-  elia.caddy.sso = "http://host:${port}";
-  elia.caddy.routes."sso.elia.garden".extraConfig = ''
-    reverse_proxy host:${port}
-  '';
+  elia.caddy = {
+    sso = "http://host:${port}";
+    routes."sso.elia.garden".host = "localhost:${port}";
+  };
 }

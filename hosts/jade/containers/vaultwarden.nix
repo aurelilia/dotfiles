@@ -21,8 +21,8 @@ in {
     };
   };
 
-  elia.caddy.routes."${url}".extraConfig = ''
-    ${config.lib.caddy.snippets.local-net}
-    reverse_proxy vaultwarden:8222
-  '';
+  elia.caddy.routes."${url}" = {
+    mode = "sso";
+    host = "vaultwarden:8222";
+  };
 }

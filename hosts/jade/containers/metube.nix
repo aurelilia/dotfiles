@@ -8,8 +8,8 @@ in {
     volumes = [ "/media/.parent/music:/downloads" ];
   };
 
-  elia.caddy.routes."tube.elia.garden".extraConfig = ''
-    ${config.lib.caddy.snippets.local-net}
-    reverse_proxy host:${web-port}
-  '';
+  elia.caddy.routes."tube.elia.garden" = {
+    mode = "local";
+    host = "localhost:${web-port}";
+  };
 }

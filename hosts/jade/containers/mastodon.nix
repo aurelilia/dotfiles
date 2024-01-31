@@ -124,8 +124,8 @@ in {
           - ${path}/public/system:/mastodon/public/system
   '';
 
-  elia.caddy.routes."${url}".extraConfig = ''
-    reverse_proxy /api/v1/streaming* host:40001
-    reverse_proxy host:30001
-  '';
+  elia.caddy.routes."${url}" = {
+    extra = "reverse_proxy /api/v1/streaming* host:40001";
+    host = "localhost:30001";
+  };
 }
