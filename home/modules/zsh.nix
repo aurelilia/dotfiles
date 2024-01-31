@@ -5,7 +5,7 @@
   programs.atuin = {
     enable = true;
     settings = {
-      sync_frequency = "5m";
+      auto_sync = false;
       sync_address = "https://atuin.elia.garden";
       enter_accept = false;
     };
