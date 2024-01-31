@@ -11,6 +11,7 @@
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
       inputs.darwin.follows = "";
     };
     disko = {
@@ -27,13 +28,13 @@
     { home-manager, nixpkgs, nixpkgs-unstable, agenix, disko, nixgl, ... }:
     let
       hostSystem = "x86_64-linux";
-      nixpkgsHost = import nixpkgs { system = hostSystem; };
+      nixpkgsHost = import nixpkgs-unstable { system = hostSystem; };
     in {
       devShells.${hostSystem}.default = nixpkgsHost.mkShell {
         buildInputs = [
           nixpkgsHost.colmena
           agenix.packages.${hostSystem}.default
-          nixpkgsHost.nixfmt
+          nixpkgsHost.nixfmt-rfc-style
         ];
       };
 
