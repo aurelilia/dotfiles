@@ -19,20 +19,25 @@
   };
 
   fileSystems."/" = {
-    device = "zroot/root/nixos";
+    device = "zroot/system/root";
     fsType = "zfs";
   };
   fileSystems."/nix" = {
-    device = "zroot/data/nix";
+    device = "zroot/system/store";
     fsType = "zfs";
+  };
+  fileSystems."/persist" = {
+    device = "zroot/keep/persist";
+    fsType = "zfs";
+    neededForBoot = true;
   };
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/22D9-D363";
     fsType = "vfat";
   };
   fileSystems."/backup" = {
-    device = "/dev/disk/by-uuid/b7f3e4f8-2288-487f-8044-9be371209b92";
-    fsType = "ext4";
+    device = "zbackup/local";
+    fsType = "zfs";
   };
 
   boot.zfs.extraPools = [ "zdata" ];

@@ -19,15 +19,15 @@
   };
 
   fileSystems."/" = {
-    device = "zroot/root/nixos";
+    device = "zroot/system/root";
     fsType = "zfs";
   };
   fileSystems."/nix" = {
-    device = "zroot/data/nix";
+    device = "zroot/system/store";
     fsType = "zfs";
   };
   fileSystems."/persist" = {
-    device = "zroot/data/persist";
+    device = "zroot/keep/persist";
     fsType = "zfs";
     neededForBoot = true;
   };
