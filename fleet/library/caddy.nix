@@ -63,6 +63,10 @@ in
     # Hardening, based on:
     # https://github.com/NixOS/nixpkgs/blob/nixos-23.11/nixos/modules/services/web-servers/nginx/default.nix
     systemd.services.caddy.serviceConfig = {
+      # Static file access
+      ReadOnlyPaths =
+        cfg.readDirs
+        ++ lib.filter (x: x != null) (lib.mapAttrsToList (route: { root, ... }: root) cfg.routes);
       # Proc
       ProcSubset = "pid";
       ProtectProc = "invisible";
@@ -106,21 +110,23 @@ in
       SystemCallArchitectures = "native";
       SystemCallFilter = [ "~@cpu-emulation @debug @keyring @mount @obsolete @privileged @setuid" ];
     };
-
-    fileSystems."/containers/caddy/srv" = {
-      device = "/persist/caddy/srv";
-      options = [ "bind" ];
-    };
   };
 
   options.elia.caddy = {
     extra = lib.mkOption {
       type = lib.types.lines;
+      description = "Extra configuration to add to the generated Caddyfile.";
       default = ''
         http://*.elia.garden {
           redir https://{host}{uri}
         }
       '';
+    };
+
+    readDirs = lib.mkOption {
+      type = lib.types.listOf lib.types.path;
+      description = "Additional paths to give the Caddy server RO access to.";
+      default = [ ];
     };
 
     routes = lib.mkOption {

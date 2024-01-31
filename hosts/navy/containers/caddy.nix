@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  root = "/persist/data/caddy";
+  root = "/persist/data/caddy/srv";
   mkMatrixWellKnown = (
     name: ''
       header /.well-known/matrix/* Access-Control-Allow-Origin "*"
@@ -21,6 +21,7 @@ in
   };
 
   # Static public pages are defined here.
+  elia.caddy.readDirs = [ "${root}/browse" ];
   elia.caddy.routes = {
     "elia.garden" = {
       root = "${root}/html";
