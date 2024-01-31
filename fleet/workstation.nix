@@ -30,7 +30,7 @@ in {
       "$y$j9T$sHyEvuQc0WD/wi5fxThVv.$tSJK5ie2wmohukSp7tOIEwiOmTF/BPe7u2l/c.L0O79";
     openssh.authorizedKeys.keys = (import ../secrets/keys.nix).ssh;
   };
-  users.groups.leela = {};
+  users.groups.leela = { };
   home-manager.users.leela = import ../home/workstation.nix;
 
   # Misc services I want
