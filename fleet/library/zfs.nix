@@ -93,6 +93,8 @@ in {
           mbuffer.enable = true;
         })));
       };
+
+      systemd.services.znapzend.after = [ "wgautomesh.service" ];
     })
   ];
 
