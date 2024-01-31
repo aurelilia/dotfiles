@@ -6,10 +6,6 @@ in {
   services.borgbackup.jobs.systemBorgbase = borg.systemBorgbase;
   services.borgbackup.jobs.mediaBorgbase = borg.mediaWorkstationBorgbase;
 
-  # Sanoid
-  services.sanoid.datasets = {
-    "zroot/data/persist".useTemplate = [ "tempDir" ];
-    "zroot/data/ethereal".useTemplate = [ "tempDir" ];
-    "zroot/data/home".useTemplate = [ "hasBackup" ];
-  };
+  # ZnapZend
+  elia.zfs.znap.remotes = [ "jade" ];
 }

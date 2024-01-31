@@ -1,4 +1,6 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }:
+let ed-key = "/persist/secrets/ssh/ssh_host_ed25519_key";
+in {
   config = lib.mkMerge [
     {
       services.openssh = {
@@ -13,7 +15,7 @@
             type = "rsa";
           }
           {
-            path = "/persist/secrets/ssh/ssh_host_ed25519_key";
+            path = ed-key;
             type = "ed25519";
           }
         ];
@@ -21,7 +23,15 @@
 
       users.users.root.openssh.authorizedKeys.keys =
         (import ../../secrets/keys.nix).ssh;
+
+      # ZnapZend uses SSH to transfer ZFS datasets, which requires using the
+      # correct identity file. For some reason this is not done by default?
+      system.activationScripts."Add SSH identity to root".text = ''
+        mkdir -p /root/.ssh/
+        echo "IdentityFile ${ed-key}" > /root/.ssh/config
+      '';
     }
+
     (lib.mkIf (!config.boot.initrd.systemd.enable) {
       # Initrd SSH with ZFS unlock on port 2222.
       boot.initrd.network = {

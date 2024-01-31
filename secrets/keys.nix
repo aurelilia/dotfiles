@@ -16,5 +16,7 @@ rec {
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBTTaHIF2zQr6uNVSWcZdL+Ld8/yKBzn6WyGXvQlUNb/";
 
   all = [ leela mauve hazyboi navy haze jade ];
+  zfs-sender = [ mauve hazyboi haze jade ];
+  zfs-receiver.jade.publicKey = jade;
   ssh = [ leela ];
 }

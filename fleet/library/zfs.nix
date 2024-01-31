@@ -1,56 +1,137 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, name, ... }:
 let
   root-mnt = config.fileSystems."/";
   root = root-mnt.device;
 in {
-  config = lib.mkIf (root-mnt.fsType == "zfs") {
-    # General config
-    networking.hostId = lib.mkDefault "00000000";
-    virtualisation.docker.storageDriver = lib.mkDefault "zfs";
-    virtualisation.docker.extraPackages = [ pkgs.zfs ];
+  config = lib.mkMerge [
+    (lib.mkIf (root-mnt.fsType == "zfs") {
+      # General config
+      networking.hostId = lib.mkDefault "00000000";
+      virtualisation.docker.storageDriver = lib.mkDefault "zfs";
+      virtualisation.docker.extraPackages = [ pkgs.zfs ];
 
-    services.zfs.autoScrub.enable = true;
-    services.zfs.trim.enable = true;
-    systemd.services.zfs-mount.enable = true;
+      services.zfs.autoScrub.enable = true;
+      services.zfs.trim.enable = true;
+      systemd.services.zfs-mount.enable = true;
+    })
 
-    services.sanoid = {
-      enable = true;
-
-      templates.hasBackup = {
-        autoprune = true;
-        autosnap = true;
-        hourly = 48;
+    (lib.mkIf config.elia.zfs.lustrate {
+      # NixOS 'lustration'
+      # Heavily inspired by https://grahamc.com/blog/erase-your-darlings/,
+      # as well as examples in the ZFS manual pages
+      # as well as https://discourse.nixos.org/t/zfs-rollback-not-working-using-boot-initrd-systemd/37195/2
+      boot.initrd.systemd.services.rollback = {
+        description = "Lustrate root filesystem";
+        wantedBy = [ "initrd.target" ];
+        after = [ "zfs-import-zroot.service" ];
+        before = [ "sysroot.mount" ];
+        path = with pkgs; [ zfs ];
+        unitConfig.DefaultDependencies = "no";
+        serviceConfig.Type = "oneshot";
+        script = ''
+          # We keep root from the last 3 boots
+          # Any command except the create can fail in case the system has not
+          # booted that often yet
+          zfs destroy -r ${root}-minus-3 || true
+          zfs rename ${root}-minus-2 ${root}-minus-3 || true
+          zfs rename ${root}-minus-1 ${root}-minus-2 || true
+          zfs rename ${root} ${root}-minus-1 || true
+          zfs create -o mountpoint=legacy ${root}
+        '';
       };
-      templates.tempDir = {
-        autoprune = true;
-        autosnap = true;
-        hourly = 24;
-        daily = 10;
+    })
+
+    (lib.mkIf (config.elia.zfs.receive-datasets != [ ]) {
+      users.users.zend = {
+        isSystemUser = true;
+        group = "zend";
+        shell = pkgs.bash;
+        packages = [ pkgs.mbuffer ];
+        openssh.authorizedKeys.keys =
+          (import ../../secrets/keys.nix).zfs-sender;
       };
+      users.groups.zend = { };
+
+      system.activationScripts."Allow ZFS send to datasets".text =
+        (lib.concatStringsSep "\n" (map (dataset: ''
+          ${pkgs.zfs}/bin/zfs create -o canmount=off ${dataset} || true
+          ${pkgs.zfs}/bin/zfs allow zend mount,create,receive,destroy ${dataset}
+        '') config.elia.zfs.receive-datasets));
+    })
+
+    (lib.mkIf config.elia.zfs.znap.enable {
+      programs.ssh.knownHosts = (import ../../secrets/keys.nix).zfs-receiver;
+      services.znapzend = {
+        enable = true;
+        autoCreation = true;
+        pure = true;
+
+        features = {
+          compressed = true;
+          recvu = true;
+          sendRaw = true;
+          zfsGetType = true;
+        };
+
+        zetup = (lib.concatMapAttrs (pool: value: {
+          "${pool}-keep" = value // {
+            dataset = "${pool}/keep";
+            plan = "1h=>5min,1d=>1h,2w=>1d,2m=>1w,1y=>1m";
+            destinations = config.elia.zfs.znap.destinations
+              // (lib.genAttrs config.elia.zfs.znap.remotes (remote: {
+                host = "zend@${remote}";
+                dataset = "zbackup/zend/${name}";
+              }));
+          };
+          "${pool}-local" = value // {
+            dataset = "${pool}/local";
+            plan = "1h=>5min,1d=>1h,1w=>1d";
+          };
+        }) (lib.genAttrs config.elia.zfs.znap.pools (pool: {
+          recursive = true;
+          mbuffer.enable = true;
+        })));
+      };
+    })
+  ];
+
+  options.elia.zfs = {
+    lustrate = lib.mkOption {
+      type = lib.types.bool;
+      description = "Lustrate the root filesystem on boot.";
+      default = true;
     };
 
-    # NixOS 'lustration'
-    # Heavily inspired by https://grahamc.com/blog/erase-your-darlings/,
-    # as well as examples in the ZFS manual pages
-    # as well as https://discourse.nixos.org/t/zfs-rollback-not-working-using-boot-initrd-systemd/37195/2
-    boot.initrd.systemd.services.rollback = {
-      description = "Lustrate root filesystem";
-      wantedBy = [ "initrd.target" ];
-      after = [ "zfs-import-zroot.service" ];
-      before = [ "sysroot.mount" ];
-      path = with pkgs; [ zfs ];
-      unitConfig.DefaultDependencies = "no";
-      serviceConfig.Type = "oneshot";
-      script = ''
-        # We keep root from the last 3 boots
-        # Any command except the create can fail in case the system has not
-        # booted that often yet
-        zfs destroy -r ${root}-minus-3 || true
-        zfs rename ${root}-minus-2 ${root}-minus-3 || true
-        zfs rename ${root}-minus-1 ${root}-minus-2 || true
-        zfs rename ${root} ${root}-minus-1 || true
-        zfs create -o mountpoint=legacy ${root}
-      '';
+    receive-datasets = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      description = "Datasets to allow other systems to send snapshots to.";
+      default = [ ];
+    };
+
+    znap = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        description = "Enable backup of datasets with ZnapZend.";
+        default = true;
+      };
+
+      pools = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        description = "Pools to back up.";
+        default = [ "zroot" ];
+      };
+
+      remotes = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        description = "Known remotes to back up to.";
+        default = [ ];
+      };
+
+      destinations = lib.mkOption {
+        type = lib.types.attrs;
+        description = "Additional destinations to back up to.";
+        default = { };
+      };
     };
   };
 }
