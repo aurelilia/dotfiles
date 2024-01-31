@@ -20,11 +20,12 @@ in {
     };
   };
 
-  # Sanoid
-  services.sanoid.datasets = {
-    "zroot/system/nixos".useTemplate = [ "tempDir" ];
-    "zroot/data/vms".useTemplate = [ "tempDir" ];
-    "zroot/data/personal".useTemplate = [ "hasBackup" ];
-    "zroot/data/persist".useTemplate = [ "hasBackup" ];
+  # ZnapZend
+  elia.zfs.znap = {
+    remotes = [ "jade" ];
+    paths = {
+      local = "data/local";
+      keep = "data/keep";
+    };
   };
 }

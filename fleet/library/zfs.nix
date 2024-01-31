@@ -2,6 +2,7 @@
 let
   root-mnt = config.fileSystems."/";
   root = root-mnt.device;
+  cfg = config.elia.zfs;
 in {
   config = lib.mkMerge [
     (lib.mkIf (root-mnt.fsType == "zfs") {
@@ -15,7 +16,7 @@ in {
       systemd.services.zfs-mount.enable = true;
     })
 
-    (lib.mkIf config.elia.zfs.lustrate {
+    (lib.mkIf cfg.lustrate {
       # NixOS 'lustration'
       # Heavily inspired by https://grahamc.com/blog/erase-your-darlings/,
       # as well as examples in the ZFS manual pages
@@ -41,7 +42,7 @@ in {
       };
     })
 
-    (lib.mkIf (config.elia.zfs.receive-datasets != [ ]) {
+    (lib.mkIf (cfg.receive-datasets != [ ]) {
       users.users.zend = {
         isSystemUser = true;
         group = "zend";
@@ -56,10 +57,10 @@ in {
         (lib.concatStringsSep "\n" (map (dataset: ''
           ${pkgs.zfs}/bin/zfs create -o canmount=off ${dataset} || true
           ${pkgs.zfs}/bin/zfs allow zend mount,create,receive,destroy ${dataset}
-        '') config.elia.zfs.receive-datasets));
+        '') cfg.receive-datasets));
     })
 
-    (lib.mkIf config.elia.zfs.znap.enable {
+    (lib.mkIf cfg.znap.enable {
       programs.ssh.knownHosts = (import ../../secrets/keys.nix).zfs-receiver;
       services.znapzend = {
         enable = true;
@@ -75,19 +76,19 @@ in {
 
         zetup = (lib.concatMapAttrs (pool: value: {
           "${pool}-keep" = value // {
-            dataset = "${pool}/keep";
+            dataset = "${pool}/${cfg.znap.paths.keep}";
             plan = "1h=>5min,1d=>1h,2w=>1d,2m=>1w,1y=>1m";
-            destinations = config.elia.zfs.znap.destinations
-              // (lib.genAttrs config.elia.zfs.znap.remotes (remote: {
+            destinations = cfg.znap.destinations
+              // (lib.genAttrs cfg.znap.remotes (remote: {
                 host = "zend@${remote}";
                 dataset = "zbackup/zend/${name}";
               }));
           };
           "${pool}-local" = value // {
-            dataset = "${pool}/local";
+            dataset = "${pool}/${cfg.znap.paths.local}";
             plan = "1h=>5min,1d=>1h,1w=>1d";
           };
-        }) (lib.genAttrs config.elia.zfs.znap.pools (pool: {
+        }) (lib.genAttrs cfg.znap.pools (pool: {
           recursive = true;
           mbuffer.enable = true;
         })));
@@ -119,6 +120,18 @@ in {
         type = lib.types.listOf lib.types.str;
         description = "Pools to back up.";
         default = [ "zroot" ];
+      };
+
+      paths.keep = lib.mkOption {
+        type = lib.types.str;
+        description = "Path of the 'keep' dataset in the pools.";
+        default = "keep";
+      };
+
+      paths.local = lib.mkOption {
+        type = lib.types.str;
+        description = "Path of the 'local' dataset in the pools.";
+        default = "local";
       };
 
       remotes = lib.mkOption {

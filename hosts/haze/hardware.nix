@@ -18,12 +18,17 @@
   };
 
   fileSystems."/" = {
-    device = "zroot/system/nixos";
+    device = "zroot/system/root";
     fsType = "zfs";
   };
   fileSystems."/nix" = {
-    device = "zroot/system/nixstore";
+    device = "zroot/system/store";
     fsType = "zfs";
+  };
+  fileSystems."/persist" = {
+    device = "zroot/data/keep/persist";
+    fsType = "zfs";
+    neededForBoot = true;
   };
   fileSystems."/var/lib/docker" = {
     device = "zroot/system/docker";
