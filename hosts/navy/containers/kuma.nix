@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ ... }:
 {
   elia.containers.kuma = {
     mounts."/var/lib/private/uptime-kuma" = {

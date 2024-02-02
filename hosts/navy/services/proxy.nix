@@ -2,10 +2,7 @@
 {
   # Haze is behind NAT. We therefore proxy to it where relevant
   networking = {
-    nftables = {
-      enable = false;
-    };
-
+    nftables.enable = false;
     firewall = {
       enable = true;
       allowedTCPPorts = [ 10293 ];

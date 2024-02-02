@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 let
   path = "/containers/matrix-dendrite";
   url = "matrix.louane.xyz";

@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ ... }:
 let
   url = "git.elia.garden";
 in

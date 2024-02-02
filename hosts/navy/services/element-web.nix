@@ -1,6 +1,6 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
-  element-config = ''
+  conf = ''
     {
         "default_server_config": {
             "m.homeserver": {
@@ -126,7 +126,7 @@ in
   elia.caddy.routes."element.elia.garden" = {
     aliases = [ "element.louane.xyz" ];
     no-robots = true;
-    extra = "respond /config.json `${element-config}`";
+    extra = "respond /config.json `${conf}`";
     root = "${pkgs.element-web}";
   };
 }

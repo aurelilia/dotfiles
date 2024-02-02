@@ -1,13 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-with lib;
+{ pkgs, ... }:
 let
   dataDir = "/var/lib/headscale";
-  runDir = "/run/headscale";
 in
 {
   age.secrets.headscale-config = {

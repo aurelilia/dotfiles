@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  ...
-}:
+{ lib, modulesPath, ... }:
 {
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
@@ -28,7 +22,6 @@
     preLVM = true;
     allowDiscards = true;
   };
-  boot.initrd.network.ssh.enable = true;
   fileSystems."/" = {
     device = "/dev/mapper/root";
     fsType = "btrfs";

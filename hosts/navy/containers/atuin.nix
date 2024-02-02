@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 {
   elia.containers.atuin = {
     mounts."/var/lib/postgresql" = {

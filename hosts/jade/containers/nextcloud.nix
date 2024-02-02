@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 let
   url = "cloud.elia.garden";
   path = "/containers/nextcloud";

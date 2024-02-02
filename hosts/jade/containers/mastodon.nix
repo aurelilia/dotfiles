@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ ... }:
 let
   path = "/containers/mastodon";
   url = "social.elia.garden";

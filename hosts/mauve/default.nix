@@ -1,9 +1,4 @@
-args@{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ ... }:
 {
   imports = [
     ./backup.nix

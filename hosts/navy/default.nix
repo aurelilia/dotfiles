@@ -1,22 +1,18 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ ... }:
 {
   imports = [
     ./backup.nix
     ./hardware.nix
 
     ./containers/atuin.nix
-    ./containers/caddy.nix
-    ./containers/element.nix
     ./containers/forgejo.nix
     ./containers/kuma.nix
     ./containers/mail.nix
     ./containers/piped.nix
+
+    ./services/caddy.nix
     ./services/coturn.nix
+    ./services/element-web.nix
     ./services/headscale.nix
     ./services/proxy.nix
   ];

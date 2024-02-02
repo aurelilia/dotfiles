@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 let
   path = "/containers/matrix";
   url = "matrix.elia.garden";

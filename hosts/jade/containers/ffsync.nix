@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 let
   path = "/containers/ffsync";
   port = "50075";

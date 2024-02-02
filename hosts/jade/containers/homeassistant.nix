@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 let
   path = "/containers/homeassistant";
   port = "50045";

@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 let
   root = "/persist/data/caddy/srv";
   mkMatrixWellKnown = (
@@ -11,7 +11,6 @@ let
 in
 {
   # Drone CI wants to push some static files
-  # TODO Maybe integrate this into Nix better?
   users.users.drone = {
     isNormalUser = true;
     uid = 1000;

@@ -8,7 +8,6 @@
     ./containers/bookstack.nix
     ./containers/drone.nix
     ./containers/ffsync.nix
-    ./containers/gotify.nix
     ./containers/homeassistant.nix
     ./containers/mastodon.nix
     ./containers/matrix.nix
@@ -18,6 +17,7 @@
     ./containers/nextcloud.nix
     ./containers/paperless.nix
     ./containers/vaultwarden.nix
+
     ./services/ddclient.nix
     ./services/nfs.nix
     ./services/tvheadend.nix

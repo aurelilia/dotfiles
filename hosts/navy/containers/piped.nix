@@ -1,6 +1,7 @@
 { ... }:
 let
   base-dir = "/containers/piped";
+  url = "piped.elia.garden";
   web-port = "13415";
 in
 {
@@ -65,9 +66,11 @@ in
         piped-proxy: null
   '';
 
-  elia.caddy.extra = ''
-    piped.elia.garden, api.piped.elia.garden, proxy.piped.elia.garden {
-        reverse_proxy http://navy:${web-port}
-    }
-  '';
+  elia.caddy.routes."${url}" = {
+    aliases = [
+      "api.${url}"
+      "proxy.${url}"
+    ];
+    host = "localhost:${web-port}";
+  };
 }

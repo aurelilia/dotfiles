@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 let
   url = "music.elia.garden";
 in

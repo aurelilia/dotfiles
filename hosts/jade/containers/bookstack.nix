@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 let
   url = "books.elia.garden";
 in
