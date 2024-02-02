@@ -25,11 +25,20 @@
   };
 
   outputs =
-    { home-manager, nixpkgs, nixpkgs-unstable, agenix, disko, nixgl, ... }:
+    {
+      home-manager,
+      nixpkgs,
+      nixpkgs-unstable,
+      agenix,
+      disko,
+      nixgl,
+      ...
+    }:
     let
       hostSystem = "x86_64-linux";
       nixpkgsHost = import nixpkgs-unstable { system = hostSystem; };
-    in {
+    in
+    {
       devShells.${hostSystem}.default = nixpkgsHost.mkShell {
         buildInputs = [
           nixpkgsHost.colmena
@@ -38,8 +47,15 @@
         ];
       };
 
-      colmena = import ./fleet {
-        inherit nixpkgs nixpkgs-unstable home-manager agenix disko nixgl;
+      colmena = import ./fleet.nix {
+        inherit
+          nixpkgs
+          nixpkgs-unstable
+          home-manager
+          agenix
+          disko
+          nixgl
+          ;
       };
     };
 }

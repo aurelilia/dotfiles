@@ -83,7 +83,7 @@ in
   };
 
   elia.caddy = {
-    sso = "http://host:${port}";
+    sso = "http://localhost:${port}";
     routes."sso.elia.garden".host = "localhost:${port}";
   };
 }

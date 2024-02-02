@@ -23,4 +23,5 @@
     ./services/tvheadend.nix
     ./services/vivi.nix
   ];
+  elia.systemType = "server";
 }

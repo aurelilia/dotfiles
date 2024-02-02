@@ -1,21 +1,16 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 {
   imports = [
-    ./home.nix
-    ./modules/alacritty.nix
-    ./modules/eww.nix
-    ./modules/gtk.nix
-    ./modules/mozilla.nix
-    ./modules/ssh.nix
-    ./modules/sway.nix
-    ./modules/virt.nix
-    ./modules/vscode.nix
-    ./modules/xdg.nix
+    ./default.nix
+    ./library/alacritty.nix
+    ./library/eww.nix
+    ./library/gtk.nix
+    ./library/mozilla.nix
+    ./library/ssh.nix
+    ./library/sway.nix
+    ./library/virt.nix
+    ./library/vscode.nix
+    ./library/xdg.nix
   ];
 
   config = {

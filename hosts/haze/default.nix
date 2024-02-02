@@ -6,6 +6,7 @@
     ./containers/jellyfin.nix
     ./containers/pihole.nix
   ];
+  elia.systemType = "server";
 
   # Initrd networking kernel drivers
   boot.kernelModules = [ "igb" ];

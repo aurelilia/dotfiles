@@ -17,7 +17,7 @@
       internalInterfaces = [ "wg0" ];
       forwardPorts = [
         {
-          destination = "${config.lib.network.hosts.haze.wg.ip}:22";
+          destination = "${config.lib.network.haze.wg.address}:22";
           proto = "tcp";
           sourcePort = 10293;
         }

@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 let
   web-port = "50041";
 in

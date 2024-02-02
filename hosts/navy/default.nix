@@ -20,6 +20,7 @@
     ./services/headscale.nix
     ./services/proxy.nix
   ];
+  elia.systemType = "server";
 
   # SSH
   # Port 22 is taken by Forgejo
