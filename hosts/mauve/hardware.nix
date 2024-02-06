@@ -47,6 +47,15 @@
     device = "/dev/disk/by-uuid/0066-697F";
     fsType = "vfat";
   };
+  fileSystems."/haze" = {
+    device = "haze:/";
+    fsType = "nfs4";
+    options = [
+      "x-systemd.automount"
+      "noauto"
+      "x-systemd.idle-timeout=600"
+    ];
+  };
 
   swapDevices = [ { device = "/dev/disk/by-uuid/ede3da59-d13a-49fa-8b04-1caa1d0892bc"; } ];
 
