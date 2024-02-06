@@ -48,7 +48,7 @@ in
               PASSWORD_HASH_ALGO = "pbkdf2";
             };
             service = {
-              DISABLE_REGISTRATION = true;
+              DISABLE_REGISTRATION = false;
               ENABLE_NOTIFY_MAIL = false;
               ENABLE_CAPTCHA = false;
               DEFAULT_KEEP_EMAIL_PRIVATE = false;
