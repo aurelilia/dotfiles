@@ -11,6 +11,7 @@
     ./network.nix
     ./nspawn.nix
     ./packages.nix
+    ./persist.nix
     ./ssh.nix
     ./users.nix
     ./zfs.nix

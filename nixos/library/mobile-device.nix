@@ -38,10 +38,16 @@
     };
 
     # Persist IWD/BT files and upower data
-    systemd.tmpfiles.rules = [
-      "L /var/lib/bluetooth - - - - /persist/config/bluetooth"
-      "L /var/lib/iwd - - - - /persist/config/iwd"
-      "L /var/lib/upower - - - - /persist/data/upower"
-    ];
+    elia.persist = {
+      "bluetooth" = {
+        path = "/var/lib/bluetooth";
+        kind = "config";
+      };
+      "iwd" = {
+        path = "/var/lib/iwd";
+        kind = "config";
+      };
+      "upower".path = "/var/lib/upower";
+    };
   };
 }
