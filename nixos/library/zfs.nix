@@ -114,7 +114,7 @@ in
         );
       };
 
-      systemd.services.znapzend.after = [ "wgautomesh.service" ];
+      systemd.services.znapzend.after = [ "tailscaled.service" ];
     })
   ];
 

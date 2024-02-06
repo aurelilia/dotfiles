@@ -72,6 +72,7 @@ in
   name,
   lib,
   config,
+  pkgs,
   ...
 }:
 let
@@ -149,10 +150,34 @@ in
       # Tailscale
       (lib.mkIf (config.elia.tailscale.enable) {
         services.tailscale.enable = true;
-        # Persist
-        systemd.tmpfiles.rules = [ "L /var/lib/tailscale - - - - /persist/data/tailscale" ];
-        # Shell alias for easy login
-        environment.shellAliases."headscale-connect" = "tailscale up --login-server https://headscale.elia.garden";
+        networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
+        elia.persist.tailscale.path = "/var/lib/tailscale";
+
+        # Automatic login
+        # Loosely based on:
+        # https://blog.carrio.dev/nixos-agenix-systemd-secrets/
+        age.secrets.tailscale.file = ../../secrets/tailscale-preauth.age;
+        systemd.services.tailscale-autoconnect = {
+          description = "Automatic connection to Headscale";
+          after = [ "network-pre.target" "tailscale.service" "run-agenix.d.mount" ];
+          wants = [ "network-pre.target" "tailscale.service" "run-agenix.d.mount" ];
+          wantedBy = [ "multi-user.target" ];
+
+          serviceConfig.Type = "oneshot";
+          script = with pkgs; ''
+            # wait for tailscaled to settle
+            sleep 2
+
+            # check if we are already authenticated to headscale
+            status="$(${tailscale}/bin/tailscale status -json | ${jq}/bin/jq -r .BackendState)"
+            if [ $status = "Running" ]; then # if so, then do nothing
+              exit 0
+            fi
+
+            # otherwise authenticate with tailscale
+            ${tailscale}/bin/tailscale up --login-server https://headscale.elia.garden -authkey "$(cat "${config.age.secrets.tailscale.path}")"
+          '';
+        };
       })
     ]
   );
