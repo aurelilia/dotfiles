@@ -1,10 +1,7 @@
 { ... }:
 {
   elia = {
-    borg.media = [
-      "/containers"
-      "/media"
-    ];
+    borg.media = [ "/media" ];
     zfs.znap = {
       remotes = [ "jade" ];
       paths = {

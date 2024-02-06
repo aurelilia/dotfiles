@@ -6,11 +6,11 @@
       isReadOnly = false;
     };
     mounts."/var/lib/jellyfin" = {
-      hostPath = "/containers/jellyfin";
+      hostPath = "/persist/data/jellyfin";
       isReadOnly = false;
     };
     mounts."/var/lib/jellyseerr" = {
-      hostPath = "/containers/jellyseerr";
+      hostPath = "/persist/data/jellyseerr";
       isReadOnly = false;
     };
 

@@ -1,4 +1,7 @@
 { ... }:
+let
+  path = "/persist/data/pihole";
+in
 {
   networking.firewall.allowedTCPPorts = [
     53
@@ -14,8 +17,8 @@
       "--cap-add=NET_ADMIN"
     ];
     volumes = [
-      "/containers/pihole/pihole:/etc/pihole"
-      "/containers/pihole/dnsmasq:/etc/dnsmasq.d"
+      "${path}/pihole:/etc/pihole"
+      "${path}/dnsmasq:/etc/dnsmasq.d"
     ];
     environment = {
       TZ = "Europe/Brussels";
