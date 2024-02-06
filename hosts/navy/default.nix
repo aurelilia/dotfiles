@@ -4,16 +4,14 @@
     ./backup.nix
     ./hardware.nix
 
-    ./containers/atuin.nix
     ./containers/forgejo.nix
-    ./containers/kuma.nix
-    ./containers/mail.nix
     ./containers/piped.nix
 
     ./services/caddy.nix
     ./services/coturn.nix
     ./services/element-web.nix
     ./services/headscale.nix
+    ./services/kuma.nix
     ./services/proxy.nix
   ];
   elia.systemType = "server";
