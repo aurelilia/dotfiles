@@ -6,7 +6,10 @@
 }:
 {
   config = lib.mkMerge [
-    { programs.zsh.enable = true; }
+    {
+      programs.zsh.enable = true;
+      users.users.root.shell = pkgs.zsh;
+    }
 
     (lib.mkIf config.elia.graphical {
       users.users.leela = {
