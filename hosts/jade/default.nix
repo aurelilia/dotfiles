@@ -9,6 +9,7 @@
     ./containers/drone.nix
     ./containers/ffsync.nix
     ./containers/homeassistant.nix
+    ./containers/joplin.nix
     ./containers/mastodon.nix
     ./containers/matrix.nix
     ./containers/matrix-louane.nix
