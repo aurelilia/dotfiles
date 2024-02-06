@@ -91,8 +91,6 @@ in
 
   # Persist files
   elia.persist.headscale.path = "/var/lib/headscale";
-  # Disable tailscale itself.
-  elia.tailscale.enable = false;
 
   # In case the module MIGHT get fixed at some point:
   /* services.headscale = {

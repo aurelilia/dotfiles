@@ -183,7 +183,7 @@ in
             fi
 
             # otherwise authenticate with tailscale
-            ${tailscale}/bin/tailscale up --login-server https://headscale.elia.garden -authkey "$(cat "${config.age.secrets.tailscale.path}")"
+            ${tailscale}/bin/tailscale up --login-server https://headscale.elia.garden -authkey file:${config.age.secrets.tailscale.path} --timeout 30s
           '';
         };
       })
