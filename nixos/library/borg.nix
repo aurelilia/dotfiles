@@ -82,7 +82,8 @@ in
     (lib.mkIf (cfg.media != [ ]) {
       services.borgbackup.jobs.media = job // {
         paths = cfg.media;
-        repo = "t5z1y940@t5z1y940.repo.borgbase.com:repo";
+        repo = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
+        startAt = "03:00";
       };
     })
     (lib.mkIf (config.services.borgbackup.jobs != { }) {
@@ -92,7 +93,6 @@ in
       # Hosts
       programs.ssh.knownHosts = {
         "c689j5a8.repo.borgbase.com".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
-        "t5z1y940.repo.borgbase.com".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
       };
     })
   ];
