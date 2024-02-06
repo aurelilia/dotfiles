@@ -6,19 +6,20 @@
 }:
 let
   transform =
-    { services, volumes }:
-    {
+    args@{ services, ... }:
+    args // {
       version = "3";
-      inherit volumes;
       services =
         builtins.mapAttrs
           (
             name: value:
-            value
-            // {
-              container_name = name;
-              restart = "unless-stopped";
-            }
+            (
+              {
+                container_name = name;
+                restart = "unless-stopped";
+              }
+              // value
+            )
           )
           services;
     };
@@ -31,14 +32,13 @@ in
       (map (
         { name, value }:
         let
-          config = pkgs.writeText (name + ".yml") (builtins.toJSON (transform value.compose));
-          env = (if (value.env == null) then "" else "--env-file=${value.env}");
+          config = pkgs.writeText (name + ".yml") (builtins.toJSON (transform value));
         in
         {
           name = "docker-${name}";
           value = {
             serviceConfig = {
-              ExecStart = "${pkgs.docker}/bin/docker compose -p ${name} ${env} -f ${config} up";
+              ExecStart = "${pkgs.docker}/bin/docker compose -p ${name} -f ${config} up";
               ExecStop = "${pkgs.docker}/bin/docker compose -f ${config} down";
             };
             wantedBy = [ "multi-user.target" ];
@@ -55,28 +55,8 @@ in
 
   options = {
     elia.compose = lib.mkOption {
-      type =
-        with lib.types;
-        attrsOf (
-          submodule (
-            { lib, ... }:
-            {
-              options = {
-                env = lib.mkOption {
-                  type = nullOr str;
-                  description = "Environment file for the compose file.";
-                  default = null;
-                };
-                compose = lib.mkOption {
-                  type = attrs;
-                  description = "Actual compose file.";
-                  default = { };
-                };
-              };
-            }
-          )
-        );
-      description = "Docker Compose projects to run.";
+      type = lib.types.attrs;
+      description = "Docker Compose projects to run, defined using DC project files.";
       default = { };
     };
   };

@@ -8,14 +8,15 @@ in
   # https://piped-docs.kavin.rocks/docs/self-hosting/#docker-compose-nginx-aio-script
   # Yes, the postgres password is bad. This runs in it's own network and is not
   # something I consider sensitive data whatsoever, so eh.
-  elia.compose.piped.compose = {
+  elia.compose.piped = {
     services = {
-      piped-nginx = {
+      nginx = {
         image = "nginx:mainline-alpine";
+        container_name = "piped-nginx";
         depends_on = [
           "piped"
           "piped-proxy"
-          "piped-frontend"
+          "pipedfrontend"
         ];
         ports = [ "${toString port}:80" ];
         volumes = [
@@ -29,7 +30,7 @@ in
       };
       piped = {
         image = "1337kavin/piped:latest";
-        depends_on = [ "piped-postgres" ];
+        depends_on = [ "postgres" ];
         volumes = [ "${base-dir}/config/config.properties:/app/config.properties:ro" ];
       };
       piped-proxy = {
@@ -37,13 +38,14 @@ in
         environment = [ "UDS=1" ];
         volumes = [ "piped-proxy:/app/socket" ];
       };
-      piped-frontend = {
+      pipedfrontend = {
         image = "1337kavin/piped-frontend:latest";
         depends_on = [ "piped" ];
         entrypoint = "ash -c 'sed -i s/pipedapi.kavin.rocks/api.piped.elia.garden/g /usr/share/nginx/html/assets/* && /docker-entrypoint.sh && nginx -g \"daemon off;\"'";
       };
-      piped-postgres = {
+      postgres = {
         image = "postgres:15-alpine";
+        container_name = "piped-postgres";
         environment = [
           "POSTGRES_DB=piped"
           "POSTGRES_USER=piped"
