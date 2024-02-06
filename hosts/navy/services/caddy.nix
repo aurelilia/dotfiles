@@ -30,8 +30,6 @@ in
         + "redir /.well-known/webfinger https://social.elia.garden{uri}";
     };
 
-    "gelix.elia.garden".root = "${root}/gelix";
-    "study-notes.elia.garden".root = "${root}/tud-notes";
     "gamelin.elia.garden".root = "${root}/gamelin";
     "gg.elia.garden" = {
       aliases = [ "gamegirl.elia.garden" ];
@@ -48,7 +46,7 @@ in
     };
 
     "browse.elia.garden".extra = ''
-      root * /srv/caddy/browse
+      root * ${root}/browse
       file_server browse
     '';
 

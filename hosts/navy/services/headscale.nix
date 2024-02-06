@@ -85,12 +85,14 @@ in
   };
 
   elia.caddy.routes."headscale.elia.garden" = {
-    host = "localhost:50013";
+    port = 50013;
     extra = "redir / https://elia.garden/blog/headscale.html";
   };
 
   # Persist files
-  systemd.tmpfiles.rules = [ "L /var/lib/headscale - - - - /persist/data/headscale" ];
+  elia.persist.headscale.path = "/var/lib/headscale";
+  # Disable tailscale itself.
+  elia.tailscale.enable = false;
 
   # In case the module MIGHT get fixed at some point:
   /* services.headscale = {

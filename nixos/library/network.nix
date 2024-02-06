@@ -159,8 +159,16 @@ in
         age.secrets.tailscale.file = ../../secrets/tailscale-preauth.age;
         systemd.services.tailscale-autoconnect = {
           description = "Automatic connection to Headscale";
-          after = [ "network-pre.target" "tailscale.service" "run-agenix.d.mount" ];
-          wants = [ "network-pre.target" "tailscale.service" "run-agenix.d.mount" ];
+          after = [
+            "network-pre.target"
+            "tailscale.service"
+            "run-agenix.d.mount"
+          ];
+          wants = [
+            "network-pre.target"
+            "tailscale.service"
+            "run-agenix.d.mount"
+          ];
           wantedBy = [ "multi-user.target" ];
 
           serviceConfig.Type = "oneshot";

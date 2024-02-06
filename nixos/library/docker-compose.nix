@@ -4,6 +4,25 @@
   pkgs,
   ...
 }:
+let
+  transform =
+    { services, volumes }:
+    {
+      version = "3";
+      inherit volumes;
+      services =
+        builtins.mapAttrs
+          (
+            name: value:
+            value
+            // {
+              container_name = name;
+              restart = "unless-stopped";
+            }
+          )
+          services;
+    };
+in
 {
   config = lib.mkIf (config.elia.compose != { }) {
     virtualisation.docker.enable = true;
@@ -12,7 +31,7 @@
       (map (
         { name, value }:
         let
-          config = (pkgs.writeText (name + ".yml") value.compose);
+          config = pkgs.writeText (name + ".yml") (builtins.toJSON (transform value.compose));
           env = (if (value.env == null) then "" else "--env-file=${value.env}");
         in
         {
@@ -49,9 +68,9 @@
                   default = null;
                 };
                 compose = lib.mkOption {
-                  type = lines;
+                  type = attrs;
                   description = "Actual compose file.";
-                  default = "";
+                  default = { };
                 };
               };
             }

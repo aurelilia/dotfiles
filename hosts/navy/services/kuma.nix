@@ -9,4 +9,6 @@
     no-robots = true;
     port = 3001;
   };
+
+  elia.persist.kuma.path = "/var/lib/private/uptime-kuma";
 }

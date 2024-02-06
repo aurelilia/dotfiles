@@ -58,7 +58,6 @@ in
           })
           cfg.routes
       );
-      dataDir = "/containers/caddy/data";
     };
 
     # Hardening, based on:
@@ -101,7 +100,11 @@ in
       RemoveIPC = true;
     };
 
-    systemd.tmpfiles.rules = [ "D /persist/data/caddy - caddy caddy" ];
+    elia.persist.caddy = {
+      path = "/var/lib/caddy";
+      owner = "caddy";
+      group = "caddy";
+    };
   };
 
   options.elia.caddy = {
