@@ -3,7 +3,6 @@ let
     { name, tag }:
     args: {
       deployment.tags = [ tag ];
-      deployment.targetHost = "10.0.1.1";
       imports = [ ./hosts/${name} ];
     };
   haze-swarm = mkHost {
