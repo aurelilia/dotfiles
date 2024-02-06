@@ -49,6 +49,7 @@ in
               ++ lib.optionals (route.mode == "sso") [ sso ]
               ++ lib.optionals (route.mode == "local") [ local ]
               ++ lib.optionals (route.host != null) [ "reverse_proxy ${route.host}" ]
+              ++ lib.optionals (route.port != null) [ "reverse_proxy localhost:${toString route.port}" ]
               ++ lib.optionals (route.root != null) [
                 "root * ${route.root}"
                 "file_server"
@@ -62,23 +63,52 @@ in
 
     # Hardening, based on:
     # https://github.com/NixOS/nixpkgs/blob/nixos-23.11/nixos/modules/services/web-servers/nginx/default.nix
+    # https://github.com/caddyserver/dist/pull/79
     systemd.services.caddy.serviceConfig = {
       # Static file access
       ReadOnlyPaths =
         cfg.readDirs
         ++ lib.filter (x: x != null) (lib.mapAttrsToList (route: { root, ... }: root) cfg.routes);
+      # Proc filesystem
+      ProtectProc = "invisible";
+      # Capabilities
+      AmbientCapabilities = [
+        "CAP_NET_BIND_SERVICE"
+        "CAP_SYS_RESOURCE"
+      ];
+      CapabilityBoundingSet = [
+        "CAP_NET_BIND_SERVICE"
+        "CAP_SYS_RESOURCE"
+      ];
+      # Security
+      NoNewPrivileges = true;
+      # Sandboxing (sorted by occurrence in https://www.freedesktop.org/software/systemd/man/systemd.exec.html)
+      ProtectSystem = "strict";
+      ProtectHome = true;
+      PrivateTmp = true;
+      PrivateDevices = true;
+      ProtectHostname = true;
+      ProtectClock = true;
+      ProtectKernelTunables = true;
+      ProtectKernelModules = true;
+      ProtectKernelLogs = true;
+      ProtectControlGroups = true;
+      RestrictNamespaces = true;
+      LockPersonality = true;
+      MemoryDenyWriteExecute = true;
+      RestrictRealtime = true;
+      RestrictSUIDSGID = true;
+      RemoveIPC = true;
     };
+
+    systemd.tmpfiles.rules = [ "D /persist/data/caddy - caddy caddy" ];
   };
 
   options.elia.caddy = {
     extra = lib.mkOption {
       type = lib.types.lines;
       description = "Extra configuration to add to the generated Caddyfile.";
-      default = ''
-        http://*.elia.garden {
-          redir https://{host}{uri}
-        }
-      '';
+      default = "";
     };
 
     readDirs = lib.mkOption {
@@ -103,6 +133,11 @@ in
                 host = lib.mkOption {
                   type = nullOr str;
                   description = "Host to reverse proxy.";
+                  default = null;
+                };
+                port = lib.mkOption {
+                  type = nullOr int;
+                  description = "Port on local host to reverse proxy.";
                   default = null;
                 };
                 mode = lib.mkOption {
