@@ -7,7 +7,8 @@
 let
   transform =
     args@{ services, ... }:
-    args // {
+    args
+    // {
       version = "3";
       services =
         builtins.mapAttrs

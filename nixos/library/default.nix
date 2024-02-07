@@ -13,6 +13,7 @@
     ./packages.nix
     ./persist.nix
     ./ssh.nix
+    ./qemu.nix
     ./users.nix
     ./zfs.nix
   ];

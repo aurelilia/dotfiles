@@ -22,8 +22,14 @@
     };
   };
 
-  elia.caddy.routes."media.elia.garden" = {
-    no-robots = true;
-    host = "haze:8096";
+  elia.caddy.routes = {
+    "media.elia.garden" = {
+      no-robots = true;
+      host = "haze:8096";
+    };
+    #"guacamole.elia.garden" = {
+    #  no-robots = true;
+    #  host = "haze:8080";
+    #};
   };
 }

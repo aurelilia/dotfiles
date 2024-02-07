@@ -5,6 +5,8 @@
     ./hardware.nix
     ./containers/jellyfin.nix
     ./containers/pihole.nix
+    ./services/guacamole.nix
+    ./vms/cauldron.nix
   ];
   elia.systemType = "server";
 
@@ -14,10 +16,9 @@
   boot.initrd.network.udhcpc.enable = false;
   boot.kernelParams = [ "ip=192.168.0.100" ];
 
-  # Libvirt
+  # QEMU
   networking.bridges.vmbr0.interfaces = [ "eno1" ];
   networking.firewall.enable = false; # uhhh? TODO
-  virtualisation.libvirtd.enable = true;
 
   # NFS
   services.nfs.server.enable = true;
