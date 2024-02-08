@@ -15,7 +15,7 @@
       (map (
         { name, value }:
         let
-          options = lib.concatLines (
+          options = lib.concatStringsSep " " (
             [
               # Base stuff
               "-name guest=${name}"
