@@ -283,7 +283,7 @@ in
   # so we start it with the sway autostart script
   xdg.configFile."swayidle/config".text = ''
     timeout 300 '${pkgs.swaylock-effects}/bin/swaylock'
-    timeout 360 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" && ~/.config/eww/init.sh' 
+    timeout 360 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" && ~/.config/eww/init.nu' 
   '';
 
   # Dunst
