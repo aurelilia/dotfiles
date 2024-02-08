@@ -16,13 +16,13 @@
     ./containers/metube.nix
     ./containers/navidrome.nix
     ./containers/nextcloud.nix
-    ./containers/paperless.nix
-    ./containers/vaultwarden.nix
 
     ./services/ddclient.nix
     ./services/nfs.nix
     ./services/tvheadend.nix
     ./services/vivi.nix
+    ./services/paperless.nix
+    ./services/vaultwarden.nix
   ];
   elia.systemType = "server";
 }

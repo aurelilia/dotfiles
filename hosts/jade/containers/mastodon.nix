@@ -66,67 +66,55 @@ in
      };
   */
 
-  elia.compose.mastodon.compose = ''
-    version: '3'
-    services:
-      db:
-        restart: unless-stopped
-        image: postgres:14-alpine
-        container_name: mastodon-postgres
-        shm_size: 256mb
-        volumes:
-          - ${path}/postgres:/var/lib/postgresql/data
-        environment:
-          - 'POSTGRES_HOST_AUTH_METHOD=trust'
-
-      redis:
-        restart: unless-stopped
-        image: redis:7-alpine
-        container_name: mastodon-redis
-        volumes:
-          - ${path}/redis:/data
-
-      web:
-        image: ghcr.io/mastodon/mastodon:latest
-        container_name: mastodon-web
-        restart: unless-stopped
-        env_file: ${path}/.env.production
-        command: bundle exec puma -C config/puma.rb
-        depends_on:
-          - db
-          - redis
-        ports:
-          - "30001:3000"
-        volumes:
-          - ${path}/public/system:/mastodon/public/system
-
-      streaming:
-        image: ghcr.io/mastodon/mastodon:latest
-        container_name: mastodon-stream
-        restart: unless-stopped
-        env_file: ${path}/.env.production
-        command: node ${path}/streaming
-        depends_on:
-          - db
-          - redis
-        ports:
-          - "40001:4000"
-
-      sidekiq:
-        image: ghcr.io/mastodon/mastodon:latest
-        container_name: mastodon-sidekiq
-        restart: unless-stopped
-        env_file: ${path}/.env.production
-        command: bundle exec sidekiq
-        depends_on:
-          - db
-          - redis
-        volumes:
-          - ${path}/public/system:/mastodon/public/system
-  '';
+  elia.compose.mastodon.services = {
+    db = {
+      image = "postgres:14-alpine";
+      container_name = "mastodon-postgres";
+      environment = [ "POSTGRES_HOST_AUTH_METHOD=trust" ];
+      shm_size = "256mb";
+      volumes = [ "${path}/postgres:/var/lib/postgresql/data" ];
+    };
+    redis = {
+      image = "redis:7-alpine";
+      container_name = "mastodon-redis";
+      volumes = [ "${path}/redis:/data" ];
+    };
+    sidekiq = {
+      image = "ghcr.io/mastodon/mastodon:latest";
+      container_name = "mastodon-sidekiq";
+      command = "bundle exec sidekiq";
+      depends_on = [
+        "db"
+        "redis"
+      ];
+      env_file = "${path}/.env.production";
+      volumes = [ "${path}/public/system:/mastodon/public/system" ];
+    };
+    mastodon-stream = {
+      image = "ghcr.io/mastodon/mastodon:latest";
+      command = "node ${path}/streaming";
+      depends_on = [
+        "db"
+        "redis"
+      ];
+      env_file = "${path}/.env.production";
+      ports = [ "40001:4000" ];
+    };
+    mastodon-web = {
+      image = "ghcr.io/mastodon/mastodon:latest";
+      command = "bundle exec puma -C config/puma.rb";
+      depends_on = [
+        "db"
+        "redis"
+      ];
+      env_file = "${path}/.env.production";
+      ports = [ "30001:3000" ];
+      volumes = [ "${path}/public/system:/mastodon/public/system" ];
+    };
+  };
 
   elia.caddy.routes."${url}" = {
     extra = "reverse_proxy /api/v1/streaming* host:40001";
-    host = "localhost:30001";
+    port = 30001;
   };
 }

@@ -54,45 +54,38 @@ in
      };
   */
 
-  elia.compose.bookstack.compose = ''
-    version: "2.2"
+  elia.compose.bookstack.services = {
+    bookstack = {
+      image = "lscr.io/linuxserver/bookstack";
+      depends_on = [ "bookstack_db" ];
+      environment = [
+        "PUID=1000"
+        "PGID=1000"
+        "APP_URL=https://${url}"
+        "DB_HOST=bookstack_db"
+        "DB_PORT=3306"
+        "DB_USER=bookstack"
+        "DB_PASS=somerandompasswordidfk"
+        "DB_DATABASE=bookstackapp"
+      ];
+      ports = [ "50100:80" ];
+      volumes = [ "/containers/bookstack/data:/config" ];
+    };
+    bookstack_db = {
+      image = "lscr.io/linuxserver/mariadb";
+      environment = [
+        "PUID=1000"
+        "PGID=1000"
+        "MYSQL_ROOT_PASSWORD=somerandompasswordidfk"
+        "TZ=Europe/Brussels"
+        "MYSQL_DATABASE=bookstackapp"
+        "MYSQL_USER=bookstack"
+        "MYSQL_PASSWORD=somerandompasswordidfk"
+      ];
+      volumes = [ "/containers/bookstack/sql:/config" ];
+    };
+  }
 
-    services:
-      bookstack:
-        image: lscr.io/linuxserver/bookstack
-        container_name: bookstack
-        environment:
-          - PUID=1000
-          - PGID=1000
-          - APP_URL=https://books.elia.garden
-          - DB_HOST=bookstack_db
-          - DB_PORT=3306
-          - DB_USER=bookstack
-          - DB_PASS=somerandompasswordidfk
-          - DB_DATABASE=bookstackapp
-        volumes:
-          - /containers/bookstack/data:/config
-        restart: unless-stopped
-        ports:
-          - "50100:80"
-        depends_on:
-          - bookstack_db
-
-      bookstack_db:
-        image: lscr.io/linuxserver/mariadb
-        container_name: bookstack_db
-        environment:
-          - PUID=1000
-          - PGID=1000
-          - MYSQL_ROOT_PASSWORD=somerandompasswordidfk
-          - TZ=Europe/Brussels
-          - MYSQL_DATABASE=bookstackapp
-          - MYSQL_USER=bookstack
-          - MYSQL_PASSWORD=somerandompasswordidfk
-        volumes:
-          - /containers/bookstack/sql:/config
-        restart: unless-stopped
-  '';
-
-  elia.caddy.routes."${url}".host = "localhost:50100";
+  ;
+  elia.caddy.routes."${url}".port = 50100;
 }

@@ -2,6 +2,7 @@
 let
   url = "cloud.elia.garden";
   path = "/containers/nextcloud";
+  port = 40013;
 in
 {
   # TODO
@@ -53,37 +54,33 @@ in
      };
   */
 
-  elia.compose.nextcloud.compose = ''
-    services:
-      nextcloud:
-        image: nextcloud:stable
-        container_name: nextcloud
-        volumes:
-          - ${path}/www:/var/www/html
-          - /srv/nextcloud:/data
-        environment:
-          NEXTCLOUD_DATA_DIR: /data
-        ports:
-          - "40013:80"
-        restart: unless-stopped
-
-      postgres:
-        image: postgres:14-alpine
-        restart: always
-        container_name: nextcloud-sql
-        environment:
-          POSTGRES_PASSWORD: "WbU6!m4B$Z^&bZfS5eGa"
-          POSTGRES_USER: nextcloud
-          POSTGRES_DB: nextcloud
-        volumes:
-          - "${path}/postgres:/var/lib/postgresql/data"
-  '';
+  elia.compose.nextcloud.services = {
+    nextcloud = {
+      image = "nextcloud:stable";
+      environment.NEXTCLOUD_DATA_DIR = "/data";
+      ports = [ "${toString port}:80" ];
+      volumes = [
+        "${path}/www:/var/www/html"
+        "/srv/nextcloud:/data"
+      ];
+    };
+    postgres = {
+      image = "postgres:14-alpine";
+      container_name = "nextcloud-sql";
+      environment = {
+        POSTGRES_DB = "nextcloud";
+        POSTGRES_PASSWORD = "WbU6!m4B$Z^&bZfS5eGa";
+        POSTGRES_USER = "nextcloud";
+      };
+      volumes = [ "${path}/postgres:/var/lib/postgresql/data" ];
+    };
+  };
 
   elia.caddy.routes."${url}" = {
     extra = ''
       redir /.well-known/carddav /remote.php/dav 301
       redir /.well-known/caldav /remote.php/dav 301
     '';
-    host = "localhost:40013";
+    inherit port;
   };
 }
