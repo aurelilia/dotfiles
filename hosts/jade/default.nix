@@ -14,10 +14,10 @@
     ./containers/matrix.nix
     ./containers/matrix-louane.nix
     ./containers/metube.nix
-    ./containers/navidrome.nix
     ./containers/nextcloud.nix
 
     ./services/ddclient.nix
+    ./services/navidrome.nix
     ./services/nfs.nix
     ./services/tvheadend.nix
     ./services/vivi.nix
