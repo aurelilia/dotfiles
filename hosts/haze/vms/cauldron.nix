@@ -5,5 +5,6 @@
     ram = 8192;
     disks = [ "/var/lib/libvirt/cauldron.qcow2" ];
     vncSlot = 0;
+    vncListen = "0.0.0.0";
   };
 }
