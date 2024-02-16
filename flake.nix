@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-streamrip.url = "github:paveloom/nixpkgs/streamrip";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,6 +31,7 @@
       home-manager,
       nixpkgs,
       nixpkgs-unstable,
+      nixpkgs-streamrip,
       agenix,
       disko,
       nixgl,
@@ -51,6 +54,7 @@
         inherit
           nixpkgs
           nixpkgs-unstable
+          nixpkgs-streamrip
           home-manager
           agenix
           disko

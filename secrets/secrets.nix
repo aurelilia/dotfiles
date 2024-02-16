@@ -19,4 +19,8 @@ in
     leela
     jade
   ];
+  "jade/streamrip.age".publicKeys = with keys; [
+    leela
+    jade
+  ];
 }

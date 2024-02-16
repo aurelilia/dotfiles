@@ -117,6 +117,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-streamrip": {
+      "locked": {
+        "lastModified": 1706195055,
+        "narHash": "sha256-FKwb5yCdZO9WxsUDRyrbmjv+CtQpbMEGXzBanJnJbuU=",
+        "owner": "paveloom",
+        "repo": "nixpkgs",
+        "rev": "57dc26ae7e6e723ab559a9bcf4a2fffb19e57737",
+        "type": "github"
+      },
+      "original": {
+        "owner": "paveloom",
+        "ref": "streamrip",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1706550542,
@@ -140,6 +156,7 @@
         "home-manager": "home-manager",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-streamrip": "nixpkgs-streamrip",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
     },

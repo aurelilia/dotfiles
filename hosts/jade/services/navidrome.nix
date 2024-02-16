@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs-streamrip, ... }:
 let
   url = "music.elia.garden";
 in
@@ -19,4 +19,11 @@ in
 
   elia.persist.navidrome.path = "/var/lib/private/navidrome";
   elia.caddy.routes."${url}".port = 4533;
+
+  # I want streamrip
+  age.secrets.streamrip = {
+    file = ../../../secrets/jade/streamrip.age;
+    path = "/root/.config/streamrip/config.toml";
+  };
+  environment.systemPackages = [ pkgs-streamrip.streamrip ];
 }
