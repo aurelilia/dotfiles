@@ -54,11 +54,21 @@
   boot.zfs.extraPools = [ "zdata" ];
   swapDevices = [ ];
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
+  networking = {
+    useDHCP = false;
+    defaultGateway = "10.0.0.1";
+    nameservers = [ "10.0.1.10" "9.9.9.9" ];
+    interfaces.lan.ipv4.addresses = [
+      {
+        address = "10.0.1.1";
+        prefixLength = 16;
+      }
+    ];
+  };
+  systemd.network.links."10-lan" = {
+    matchConfig.PermanentMACAddress = "94:de:80:21:d2:08";
+    linkConfig.Name = "lan";
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = true;
