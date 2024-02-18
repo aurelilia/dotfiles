@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [ ./library ];
 
@@ -32,6 +37,7 @@
       qemu.runAsRoot = false;
     };
     boot.supportedFilesystems = [ "ntfs" ];
+    environment.systemPackages = [ pkgs.python3 ];
   };
 
   options = {
