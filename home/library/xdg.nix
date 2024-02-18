@@ -29,9 +29,16 @@
     mime.enable = true;
     userDirs = {
       enable = true;
+
+      documents = "${config.home.homeDirectory}/personal/documents";
       download = "${config.home.homeDirectory}/download";
-      music = "${config.home.homeDirectory}/personal/music";
       pictures = "${config.home.homeDirectory}/personal/images";
+
+      desktop = null;
+      music = null;
+      publicShare = null;
+      templates = null;
+      videos = null;
     };
   };
 
