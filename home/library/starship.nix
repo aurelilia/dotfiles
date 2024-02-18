@@ -6,7 +6,7 @@
     enableZshIntegration = true;
 
     settings = {
-      format = "$directory$hostname$character";
+      format = "$directory$nix_shell$hostname$character";
       right_format = "$cmd_duration";
       add_newline = false;
 
@@ -27,10 +27,9 @@
         min_time = 100000;
         format = "[]($style)[in (bg:#24263a fg:#eba0ac bold)$duration](bg:#24263a fg:#BBC3DF)[ ]($style)";
         style = "bg:none fg:#24263a";
-        min_time_to_notify = 250000;
-        show_notifications = true;
       };
 
+      nix_shell.format = "❄️(bold blue) ";
       hostname.format = "[$hostname](bold red) ";
     };
   };

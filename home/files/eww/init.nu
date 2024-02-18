@@ -5,7 +5,10 @@ source scripts/screen.nu
 let hostname = sys | get host.hostname
 let config = open --raw $"~/.config/eww/config/(sys | get host.hostname).json"
 
-try { pkill eww }
+try {
+    pkill eww
+    sleep 2sec
+}
 eww daemon
 eww update $"config=($config)"
 

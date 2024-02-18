@@ -70,6 +70,7 @@
       zip
       scc
       sshuttle
+      rustup
     ];
   };
 }

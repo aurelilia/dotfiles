@@ -1,4 +1,3 @@
-(defvar left_visible false)
 (defvar user "leela")
 
 (defwindow left-closer [monitor]
@@ -20,25 +19,23 @@
     (left-widget))
 
 (defwidget left-widget []
-  (revealer :transition "crossfade" 
-            :reveal left_visible
-    (box :orientation "vertical"
-        :halign "center"
-        :class "left-box"
-        :hexpand true
-        :vexpand true
-        :space-evenly false
-      (clock)
-      (sysinfo)
-      (netinfo)
-      (player)
-      (musicvolume)
-      (volume)
-      (literal :content "${config['brightness']}")
-      (notifs)
-      (workspaces-top)
-      (workspaces-bottom)
-      (misc-btns))))
+  (box :orientation "vertical"
+      :halign "center"
+      :class "left-box"
+      :hexpand true
+      :vexpand true
+      :space-evenly false
+    (clock)
+    (sysinfo)
+    (netinfo)
+    (player)
+    (musicvolume)
+    (volume)
+    (literal :content "${config['brightness']}")
+    (notifs)
+    (workspaces-top)
+    (workspaces-bottom)
+    (misc-btns)))
 
 
 (defwidget clock []

@@ -6,6 +6,7 @@
     GRADLE_USER_HOME = "/ethereal/cache/gradle";
     CARGO_HOME = "/ethereal/cache/cargo";
     CARGO_TARGET_DIR = "/ethereal/cache/rust-target";
+    RUSTUP_HOME = "/ethereal/cache/rustup";
     GNUPGHOME = "/ethereal/cache/gnupg";
     WINEPREFIX = "/ethereal/cache/wineprefix";
 
