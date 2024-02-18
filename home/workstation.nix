@@ -41,11 +41,7 @@
       gnome.eog
       gnome.evince
       gnome.file-roller
-      xfce.thunar
-      xfce.thunar-archive-plugin
-      xfce.thunar-media-tags-plugin
-      xfce.thunar-volman
-      xfce.tumbler
+      gnome.nautilus
       flameshot
       pavucontrol
       hotspot
