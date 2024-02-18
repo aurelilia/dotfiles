@@ -115,6 +115,7 @@ in
       };
 
       systemd.services.znapzend.after = [ "tailscaled.service" ];
+      elia.notify = [ "znapzend" ];
     })
   ];
 

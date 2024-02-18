@@ -22,5 +22,12 @@
           --old-bindir $OLDBIN --new-bindir $NEWBIN \
           "$@"
       '');
+
+    matrix-notify = pkgs.writeShellScript "matrix-notify-service" ''
+      #!/run/current-system/sw/bin/bash
+      ${pkgs.curl}/bin/curl -X PUT -H "Authorization: Bearer $ACCESS_TOKEN" \
+        --data "{\"msgtype\":\"m.text\",\"body\":\"$1\"}" \
+        https://matrix.elia.garden/_matrix/client/r0/rooms/$ROOM/send/m.room.message/$RANDOM$RANDOM$RANDOM$RANDOM 
+    '';
   };
 }

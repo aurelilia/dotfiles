@@ -78,6 +78,7 @@ in
         repo = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
         paths = [ "/persist" ];
       };
+      elia.notify = [ "borgbackup-job-persist" ];
     })
     (lib.mkIf (cfg.media != [ ]) {
       services.borgbackup.jobs.media = job // {
@@ -85,6 +86,7 @@ in
         repo = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
         startAt = "03:00";
       };
+      elia.notify = [ "borgbackup-job-media" ];
     })
     (lib.mkIf (config.services.borgbackup.jobs != { }) {
       # Borg secrets

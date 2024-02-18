@@ -9,6 +9,7 @@
     ./gui.nix
     ./mobile-device.nix
     ./network.nix
+    ./notify.nix
     ./nspawn.nix
     ./packages.nix
     ./persist.nix

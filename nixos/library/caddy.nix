@@ -105,6 +105,7 @@ in
       owner = "caddy";
       group = "caddy";
     };
+    elia.notify = [ "caddy" ];
   };
 
   options.elia.caddy = {
