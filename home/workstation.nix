@@ -69,6 +69,7 @@
       unzip
       zip
       scc
+      sshuttle
     ];
   };
 }
