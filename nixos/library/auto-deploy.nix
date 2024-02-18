@@ -24,7 +24,11 @@
     ];
 
     script = ''
-      colmena apply-local -f git+https://git.elia.garden/leela/dotfiles.git
+      rm -rf /tmp/dotfiles
+      git clone https://git.elia.garden/leela/dotfiles.git /tmp/dotfiles
+      cd /tmp/dotfiles
+      nix flake update
+      colmena apply-local
     '';
 
     startAt = "04:27";
@@ -33,4 +37,5 @@
   };
 
   systemd.timers.colmena-autodeploy.timerConfig.Persistent = true;
+  elia.notify = [ "colmena-autodeploy" ];
 }
