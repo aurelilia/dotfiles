@@ -15,6 +15,7 @@
     ./persist.nix
     ./ssh.nix
     ./qemu.nix
+    ./smart-metrics.nix
     ./users.nix
     ./zfs.nix
   ];

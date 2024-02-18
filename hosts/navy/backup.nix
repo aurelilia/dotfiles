@@ -1,1 +1,4 @@
-{ ... }: { elia.borg.media = [ "/containers" ]; }
+{ ... }:
+{
+  elia.borg.media = [ "/containers" ];
+}

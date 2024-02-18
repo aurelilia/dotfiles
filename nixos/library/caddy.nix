@@ -17,13 +17,13 @@ let
     forward_auth @extern ${cfg.sso} {
         uri /outpost.goauthentik.io/auth/caddy
         copy_headers X-Authentik-Username X-Authentik-Groups X-Authentik-Email X-Authentik-Name X-Authentik-Uid X-Authentik-Jwt X-Authentik-Meta-Jwks X-Authentik-Meta-Outpost X-Authentik-Meta-Provider X-Authentik-Meta-App X-Authentik-Meta-Version
-        trusted_proxies 10.0.1.0/16 172.16.0.0/16 fc00::/7
+        trusted_proxies 10.0.1.0/16 172.16.0.0/16 fc00::/7 100.64.0.0/16
     }
   '';
   local = ''
     @not-allowed {
         not {
-            remote_ip 10.0.0.0/8 192.168.0.0/16 172.16.0.0/12
+            remote_ip 10.0.0.0/8 192.168.0.0/16 172.16.0.0/12 100.64.0.0/16
         }
     }
     redir @not-allowed https://www.youtube.com/watch?v=dQw4w9WgXcQ
