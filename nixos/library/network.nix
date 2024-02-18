@@ -27,8 +27,10 @@
           openFirewall = true;
           authKeyFile = config.age.secrets.tailscale.path;
           extraUpFlags = [
-            "--login-server" "https://headscale.elia.garden"
-            "--timeout" "30s"
+            "--login-server"
+            "https://headscale.elia.garden"
+            "--timeout"
+            "30s"
           ];
         };
 

@@ -4,8 +4,8 @@ in
 {
   "borg-repokey.age".publicKeys = keys.all;
   "borg-ssh-id.age".publicKeys = keys.all;
-  "wg-gossip.age".publicKeys = keys.all;
   "tailscale-preauth.age".publicKeys = keys.all;
+  "matrix-notify.age".publicKeys = keys.all;
 
   "navy/coturn-auth.age".publicKeys = with keys; [
     leela
