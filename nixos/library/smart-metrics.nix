@@ -1,6 +1,6 @@
 # https://jnsgr.uk/2024/02/packaging-scrutiny-for-nixos
 # Thank you!
-{ lib, pkgs, ... }:
+{ lib, pkgs, name, ... }:
 let
   collector = pkgs.buildGoModule rec {
     repo = pkgs.fetchFromGitHub {
@@ -55,7 +55,10 @@ in
 
   systemd.services.scrutiny-collector = {
     description = "Scrutiny Collector Service";
-    environment.COLLECTOR_API_ENDPOINT = "http://jade:53042";
+    environment = {
+      COLLECTOR_API_ENDPOINT = "http://jade:53042";
+      COLLECTOR_HOST_ID = "${name}";
+    };
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${collector}/bin/scrutiny-collector-metrics run";
