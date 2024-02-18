@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   programs.fzf.enable = true;
   programs.zoxide.enable = true;
@@ -6,10 +6,30 @@
   programs.atuin = {
     enable = true;
     settings = {
-      auto_sync = false;
+      db_path = "/tmp/atuin-db/history.db";
       sync_address = "https://atuin.elia.garden";
-      enter_accept = false;
     };
+  };
+  # Inspired by https://github.com/atuinsh/atuin/issues/952#issuecomment-1878161057
+  systemd.user.services.atuin-sync = {
+    Install.WantedBy = [ "default.target" ];
+    Service.ExecStart = "${pkgs.writeShellScript "atuin-litestream" ''
+      tmpfs_db_path="/tmp/atuin-db"
+      tmpfs_db_file="$tmpfs_db_path/history.db"
+      litestream_backup_path="${config.xdg.dataHome}/atuin/history-db-litestream"
+
+      # Need to copy over the DB to tmp dir + run litestream
+      if [ -d "$litestream_backup_path" ]; then
+        # We've already been using litestream, use it as the source of truth for history.db
+        ${pkgs.litestream}/bin/litestream restore -o "$tmpfs_db_file" "file://$litestream_backup_path" > /dev/null 2>&1
+      else
+        # Migrate over the initial history.db from atuin to tmpfs
+        ${pkgs.coreutils}/bin/cp ~/.local/share/atuin/history.db* "$tmpfs_db_path/"
+      fi
+
+      # Run litestream replication in the background
+      ${pkgs.litestream}/bin/litestream replicate "$tmpfs_db_file" "file://$litestream_backup_path"
+    ''}";
   };
 
   programs.direnv = {
