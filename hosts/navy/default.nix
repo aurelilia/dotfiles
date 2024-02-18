@@ -7,6 +7,7 @@
     ./containers/forgejo.nix
     ./containers/piped.nix
 
+    ./services/atuin.nix
     ./services/caddy.nix
     ./services/coturn.nix
     ./services/element-web.nix

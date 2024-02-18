@@ -3,43 +3,54 @@ let
   cfg = config.elia.persist;
 in
 {
-  config = {
-    systemd.tmpfiles.rules =
-      lib.mapAttrsToList
-        (
-          name: rule:
-          let
-            ppath = "/persist/${rule.kind}/${name}";
-          in
-          "L ${rule.path} - - - - ${ppath}"
-        )
-        cfg;
-
-    systemd.services.tmp-target-create = {
-      description = "Create target directories for temp files";
-      after = [ "systemd-tmpfiles-setup.service" ];
-      wants = [ "systemd-tmpfiles-setup.service" ];
-      wantedBy = [ "multi-user.target" ];
-
-      serviceConfig.Type = "oneshot";
-      script = lib.concatStringsSep "\n" (
+  config = lib.mkMerge [
+    {
+      systemd.tmpfiles.rules =
         lib.mapAttrsToList
           (
             name: rule:
             let
               ppath = "/persist/${rule.kind}/${name}";
             in
-            ''
-              if [ ! -d ${ppath} ]; then
-                mkdir -m ${rule.mode} -p ${ppath}
-                chown ${rule.owner}:${rule.group} ${ppath}
-              fi
-            ''
+            "L ${rule.path} - - - - ${ppath}"
           )
-          cfg
-      );
-    };
-  };
+          cfg;
+
+      systemd.services.tmp-target-create = {
+        description = "Create target directories for temp files";
+        after = [ "systemd-tmpfiles-setup.service" ];
+        wants = [ "systemd-tmpfiles-setup.service" ];
+        wantedBy = [ "multi-user.target" ];
+
+        serviceConfig.Type = "oneshot";
+        script = lib.concatStringsSep "\n" (
+          lib.mapAttrsToList
+            (
+              name: rule:
+              let
+                ppath = "/persist/${rule.kind}/${name}";
+              in
+              ''
+                if [ ! -d ${ppath} ]; then
+                  mkdir -m ${rule.mode} -p ${ppath}
+                  chown ${rule.owner}:${rule.group} ${ppath}
+                fi
+              ''
+            )
+            cfg
+        );
+      };
+    }
+    (lib.mkIf (config.services.postgresql.enable) {
+      elia.persist.postgres = {
+        path = "/var/lib/postgresql";
+        kind = "data";
+        owner = "postgres";
+        group = "postgres";
+        mode = "700";
+      };
+    })
+  ];
 
   options.elia.persist = lib.mkOption {
     type =
