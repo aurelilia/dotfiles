@@ -1,6 +1,11 @@
 # https://jnsgr.uk/2024/02/packaging-scrutiny-for-nixos
 # Thank you!
-{ lib, pkgs, name, ... }:
+{
+  lib,
+  pkgs,
+  name,
+  ...
+}:
 let
   collector = pkgs.buildGoModule rec {
     repo = pkgs.fetchFromGitHub {
