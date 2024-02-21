@@ -13,9 +13,10 @@
     ./nspawn.nix
     ./packages.nix
     ./persist.nix
-    ./ssh.nix
     ./qemu.nix
     ./smart-metrics.nix
+    ./ssh.nix
+    ./steamcmd.nix
     ./users.nix
     ./zfs.nix
   ];

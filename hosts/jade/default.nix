@@ -24,6 +24,7 @@
     ./services/vivi.nix
     ./services/paperless.nix
     ./services/vaultwarden.nix
+    ./services/zomboid.nix
   ];
   elia.systemType = "server";
 }
