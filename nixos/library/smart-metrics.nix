@@ -65,9 +65,11 @@ in
     };
   };
 
-  systemd.timers.scrutiny-collector.timerConfig = {
-    OnBootSec = "5m";
-    OnUnitActiveSec = "1h";
-    Unit = "scrutiny-collector.service";
+  systemd.timers.scrutiny-collector = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnUnitActiveSec = "1h";
+      Unit = "scrutiny-collector.service";
+    };
   };
 }
