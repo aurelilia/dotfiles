@@ -5,7 +5,7 @@ in
 {
   services.paperless = {
     enable = true;
-    dataDir = "/media/personal/documents/paperless";
+    dataDir = "/persist/data/paperless";
     extraConfig = {
       PAPERLESS_OCR_LANGUAGE = "deu+eng";
       PAPERLESS_URL = "https://${url}";
