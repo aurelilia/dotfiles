@@ -70,6 +70,17 @@ let
       "*.ignore"
     ];
   };
+
+  serviceCfg = {
+    serviceConfig = {
+      Restart = "always";
+      RestartSec = "300";
+    };
+    unitConfig = {
+      StartLimitInterval = "7200";
+      StartLimitBurst = 15;
+    };
+  };
 in
 {
   config = lib.mkMerge [
@@ -79,6 +90,7 @@ in
         paths = [ "/persist" ];
       };
       elia.notify = [ "borgbackup-job-persist" ];
+      systemd.services.borgbackup-job-persist = serviceCfg;
     })
     (lib.mkIf (cfg.media != [ ]) {
       services.borgbackup.jobs.media = job // {
@@ -87,6 +99,7 @@ in
         startAt = "03:00";
       };
       elia.notify = [ "borgbackup-job-media" ];
+      systemd.services.borgbackup-job-media = serviceCfg;
     })
     (lib.mkIf (config.services.borgbackup.jobs != { }) {
       # Borg secrets
