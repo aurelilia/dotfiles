@@ -92,7 +92,7 @@ in
     };
     mastodon-stream = {
       image = "ghcr.io/mastodon/mastodon:latest";
-      command = "node ${path}/streaming";
+      command = "node ./streaming";
       depends_on = [
         "db"
         "redis"
