@@ -111,7 +111,7 @@ in
         # Keymap
         input."*" = {
           xkb_layout = "us";
-          xkb_variant = "minimak-8";
+          xkb_variant = "altgr-intl";
         };
 
         # Keybinds

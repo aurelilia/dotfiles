@@ -7,6 +7,7 @@
     ./docker.nix
     ./docker-compose.nix
     ./gui.nix
+    ./keymap.nix
     ./mobile-device.nix
     ./network.nix
     ./notify.nix
