@@ -4,7 +4,7 @@
     ./backup.nix
     ./hardware.nix
     ./containers/jellyfin.nix
-    ./containers/pihole.nix
+    ./services/adguard.nix
     ./services/guacamole.nix
     ./vms/cauldron.nix
   ];
