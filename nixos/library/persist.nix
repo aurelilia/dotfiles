@@ -51,15 +51,15 @@ in
         mode = "700";
       };
     })
-    (lib.mkIf (config.services.redis.servers != {}) {
-      elia.persist = lib.mapAttrs (name: conf: lib.nameValuePair "redis-${name}" {
-        path = "/var/lib/redis-${name}";
-        kind = "data";
-        owner = "redis";
-        group = "redis";
-        mode = "700";
-      }) config.services.redis.servers;
-    })
+    # (lib.mkIf (config.services.redis.servers != {}) {
+    #   elia.persist = lib.mapAttrs (name: conf: lib.nameValuePair "redis-${name}" {
+    #     path = "/var/lib/redis-${name}";
+    #     kind = "data";
+    #     owner = "redis";
+    #     group = "redis";
+    #     mode = "700";
+    #   }) config.services.redis.servers;
+    # })
   ];
 
   options.elia.persist = lib.mkOption {
