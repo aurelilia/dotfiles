@@ -91,8 +91,8 @@
 
       # Atuin.
       # Inspired by https://github.com/atuinsh/atuin/issues/952#issuecomment-1878161057
+      tmpfs_db_path="/tmp/atuin-db"
       if mkdir "$tmpfs_db_path" 2>/dev/null; then
-        tmpfs_db_path="/tmp/atuin-db"
         tmpfs_db_file="$tmpfs_db_path/history.db"
         litestream_backup_path="${config.xdg.dataHome}/atuin/history-db-litestream"
 
@@ -106,7 +106,7 @@
         fi
 
         # Run litestream replication in the background
-        ${pkgs.litestream}/bin/litestream replicate "$tmpfs_db_file" "file://$litestream_backup_path" & > /dev/null 2>&1
+        ${pkgs.litestream}/bin/litestream replicate "$tmpfs_db_file" "file://$litestream_backup_path" > /dev/null 2>&1 &
       fi
     '';
   };
