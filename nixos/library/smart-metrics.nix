@@ -73,7 +73,7 @@ in
   systemd.timers.scrutiny-collector = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnUnitActiveSec = "1h";
+      OnCalendar = "hourly";
       Unit = "scrutiny-collector.service";
     };
   };
