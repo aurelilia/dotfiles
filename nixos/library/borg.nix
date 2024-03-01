@@ -73,7 +73,7 @@ let
 
   serviceCfg = {
     serviceConfig = {
-      Restart = "always";
+      Restart = "on-failure";
       RestartSec = "300";
     };
     unitConfig = {
