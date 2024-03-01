@@ -37,7 +37,6 @@
 
     home.packages = with pkgs; [
       # Graphical
-      alacritty
       gnome.eog
       gnome.evince
       gnome.file-roller

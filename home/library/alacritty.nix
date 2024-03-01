@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  # Package handled separately
+  home.packages = [ pkgs.alacritty ];
   xdg.configFile."alacritty/alacritty.yml".text = ''
     # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
