@@ -77,26 +77,27 @@ let
       RestartSec = "300";
     };
     unitConfig = {
-      StartLimitInterval = "7200";
-      StartLimitBurst = 15;
+      StartLimitInterval = "3600";
+      StartLimitBurst = 3;
     };
   };
 in
 {
   config = lib.mkMerge [
-    (lib.mkIf (cfg.persist) {
+    (lib.mkIf (cfg.persist.enable) {
       services.borgbackup.jobs.persist = job // {
-        repo = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
         paths = [ "/persist" ];
+        repo = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
+        startAt = cfg.persist.time;
       };
       elia.notify = [ "borgbackup-job-persist" ];
       systemd.services.borgbackup-job-persist = serviceCfg;
     })
-    (lib.mkIf (cfg.media != [ ]) {
+    (lib.mkIf (cfg.media.dirs != [ ]) {
       services.borgbackup.jobs.media = job // {
-        paths = cfg.media;
+        paths = cfg.media.dirs;
         repo = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
-        startAt = "03:00";
+        startAt = cfg.media.time;
       };
       elia.notify = [ "borgbackup-job-media" ];
       systemd.services.borgbackup-job-media = serviceCfg;
@@ -113,16 +114,30 @@ in
   ];
 
   options.elia.borg = {
-    persist = lib.mkOption {
-      type = lib.types.bool;
-      description = "Enable backup of /persist to BorgBase.";
-      default = true;
+    persist = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        description = "Enable backup of /persist to BorgBase.";
+        default = true;
+      };
+
+      time = lib.mkOption {
+        type = lib.types.str;
+        description = "Time of backup of /persist to BorgBase.";
+      };
     };
 
-    media = lib.mkOption {
-      type = lib.types.listOf lib.types.path;
-      description = "Media directories to backup to BorgBase.";
-      default = [ ];
+    media = {
+      dirs = lib.mkOption {
+        type = lib.types.listOf lib.types.path;
+        description = "Media directories to backup to BorgBase.";
+        default = [ ];
+      };
+
+      time = lib.mkOption {
+        type = lib.types.str;
+        description = "Time of backup of media directories to BorgBase.";
+      };
     };
   };
 }
