@@ -28,16 +28,14 @@ in
 {
   config = lib.mkIf (config.elia.compose != { }) {
     virtualisation.docker.enable = true;
-    systemd.services = lib.pipe config.elia.compose [
-      lib.attrsToList
-      (map (
-        { name, value }:
-        let
-          config = pkgs.writeText (name + ".yml") (builtins.toJSON (transform value));
-        in
-        {
-          name = "docker-${name}";
-          value = {
+    systemd.services =
+      lib.mapAttrs'
+        (
+          name: value:
+          let
+            config = pkgs.writeText (name + ".yml") (builtins.toJSON (transform value));
+          in
+          lib.nameValuePair "docker-${name}" {
             serviceConfig = {
               ExecStart = "${pkgs.docker}/bin/docker compose -p ${name} -f ${config} up";
               ExecStop = "${pkgs.docker}/bin/docker compose -f ${config} down";
@@ -47,11 +45,9 @@ in
               "docker.service"
               "docker.socket"
             ];
-          };
-        }
-      ))
-      lib.listToAttrs
-    ];
+          }
+        )
+        config.elia.compose;
   };
 
   options = {
