@@ -9,7 +9,7 @@
       hostPath = "/persist/data/jellyfin";
       isReadOnly = false;
     };
-    mounts."/var/lib/jellyseerr" = {
+    mounts."/var/lib/private/jellyseerr" = {
       hostPath = "/persist/data/jellyseerr";
       isReadOnly = false;
     };
