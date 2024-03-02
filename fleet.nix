@@ -18,6 +18,7 @@ in
   agenix,
   disko,
   nixgl,
+  microvm,
   ...
 }:
 {
@@ -30,6 +31,7 @@ in
       home-manager.nixosModules.home-manager
       agenix.nixosModules.default
       disko.nixosModules.disko
+      microvm.nixosModules.host
       ./nixos
     ];
 

@@ -24,6 +24,10 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -35,6 +39,7 @@
       agenix,
       disko,
       nixgl,
+      microvm,
       ...
     }:
     let
@@ -59,6 +64,7 @@
           agenix
           disko
           nixgl
+          microvm
           ;
       };
     };

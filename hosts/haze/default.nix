@@ -7,6 +7,7 @@
     ./services/adguard.nix
     ./services/guacamole.nix
     ./vms/cauldron.nix
+    ./vms/k3s.nix
   ];
   elia.systemType = "server";
 
