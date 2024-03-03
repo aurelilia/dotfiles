@@ -33,7 +33,7 @@ in
         (
           name: value:
           let
-            config = pkgs.writeText (name + ".yml") (builtins.toJSON (transform value));
+            config = pkgs.writeText (name + ".yml") (builtins.toJSON ((transform value) // { inherit name; }));
           in
           lib.nameValuePair "docker-${name}" {
             serviceConfig = {
