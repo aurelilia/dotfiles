@@ -6,5 +6,9 @@
       no-robots = true;
       host = "haze:8096";
     };
+    "photos.elia.garden" = {
+      no-robots = true;
+      host = "haze:2283";
+    };
   };
 }

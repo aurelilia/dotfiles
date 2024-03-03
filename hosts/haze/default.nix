@@ -3,6 +3,7 @@
   imports = [
     ./backup.nix
     ./hardware.nix
+    ./containers/immich.nix
     ./containers/jellyfin.nix
     ./services/adguard.nix
     ./services/guacamole.nix
