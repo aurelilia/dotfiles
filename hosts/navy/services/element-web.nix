@@ -83,6 +83,49 @@ let
           is_dark = true;
           name = "Catppuccin Mocha";
         }
+        {
+          colors = {
+            accent-color = "#7287fd";
+            alert = "#df8e1d";
+            avatar-background-colors = [
+              "#1e66f5"
+              "#8839ef"
+              "#40a02b"
+            ];
+            focus-bg-color = "#acb0be";
+            menu-selected-color = "#bcc0cc";
+            other-user-pill-bg-color = "#04a5e5";
+            primary-color = "#7287fd";
+            reaction-row-button-selected-bg-color = "#bcc0cc";
+            room-highlight-color = "#04a5e5";
+            roomlist-background-color = "#e6e9ef";
+            roomlist-highlights-color = "#bcc0cc";
+            roomlist-separator-color = "#8c8fa1";
+            roomlist-text-color = "#4c4f69";
+            roomlist-text-secondary-color = "#4c4f69";
+            secondary-content = "#4c4f69";
+            sidebar-color = "#dce0e8";
+            tertiary-content = "#4c4f69";
+            timeline-background-color = "#eff1f5";
+            timeline-highlights-color = "#bcc0cc";
+            timeline-text-color = "#4c4f69";
+            timeline-text-secondary-color = "#6c6f85";
+            togglesw-off-color = "#7c7f93";
+            username-colors = [
+              "#8839ef"
+              "#e64553"
+              "#fe640b"
+              "#40a02b"
+              "#179299"
+              "#04a5e5"
+              "#209fb5"
+              "#7287fd"
+            ];
+            warning-color = "#d20f39";
+          };
+          is_dark = false;
+          name = "Catppuccin Latte";
+        }
       ];
     };
     showLabsSettings = true;
