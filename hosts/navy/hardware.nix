@@ -40,11 +40,30 @@
 
   swapDevices = [ { device = "/@swap/swapfile"; } ];
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
+  networking = {
+    useDHCP = false;
+    nameservers = [ "9.9.9.9" ];
+    defaultGateway = "202.61.252.1";
+    defaultGateway6 = {
+      address = "fe80::1";
+      interface = "ens3";
+    };
+
+    interfaces.ens3 = {
+      ipv6.addresses = [
+        {
+          address = "2a03:4000:55:f57::1";
+          prefixLength = 64;
+        }
+      ];
+      ipv4.addresses = [
+        {
+          address = "202.61.255.155";
+          prefixLength = 22;
+        }
+      ];
+    };
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
