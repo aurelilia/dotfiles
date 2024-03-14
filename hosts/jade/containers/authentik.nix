@@ -2,7 +2,7 @@
 let
   path = "/containers/authentik";
   image = "ghcr.io/goauthentik/server";
-  version = "2023.10.7";
+  version = "2024.2.2";
   port = 50042;
 in
 {
