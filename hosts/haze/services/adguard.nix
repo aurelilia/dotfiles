@@ -28,7 +28,7 @@
       };
 
       dhcp = {
-        enabled = true;
+        enabled = false;
         interface_name = "lan";
         dhcpv4 = {
           gateway_ip = "192.168.0.1";
