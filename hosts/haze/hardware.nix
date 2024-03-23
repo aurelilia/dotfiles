@@ -55,17 +55,10 @@
 
   networking = {
     useDHCP = true;
-    #defaultGateway = "192.168.0.1";
-    #nameservers = [
-    #  "192.168.0.100"
-    #  "9.9.9.9"
-    #];
-    #interfaces.lan.ipv4.addresses = [
-    #  {
-    #    address = "192.168.0.100";
-    #    prefixLength = 24;
-    #  }
-    #];
+    nameservers = [
+      "192.168.0.100"
+      "9.9.9.9"
+    ];
   };
   systemd.network.links."10-lan" = {
     matchConfig.PermanentMACAddress = "3c:ec:ef:ea:f4:67";

@@ -60,12 +60,10 @@ in
       users.groups.zend = { };
 
       system.activationScripts."Allow ZFS send to datasets".text = lib.concatStringsSep "\n" (
-        map
-          (dataset: ''
-            ${pkgs.zfs}/bin/zfs create -o canmount=off ${dataset} || true
-            ${pkgs.zfs}/bin/zfs allow zend mount,create,receive,destroy ${dataset}
-          '')
-          cfg.receive-datasets
+        map (dataset: ''
+          ${pkgs.zfs}/bin/zfs create -o canmount=off ${dataset} || true
+          ${pkgs.zfs}/bin/zfs allow zend mount,create,receive,destroy ${dataset}
+        '') cfg.receive-datasets
       );
     })
 
@@ -91,12 +89,10 @@ in
                 plan = "1h=>5min,1d=>1h,2w=>1d,2m=>1w,1y=>1m";
                 destinations =
                   cfg.znap.destinations
-                  // (lib.genAttrs cfg.znap.remotes (
-                    remote: {
-                      host = "zend@${remote}";
-                      dataset = "zbackup/zend/${name}";
-                    }
-                  ));
+                  // (lib.genAttrs cfg.znap.remotes (remote: {
+                    host = "zend@${remote}";
+                    dataset = "zbackup/zend/${name}";
+                  }));
               };
               "${pool}-local" = value // {
                 dataset = "${pool}/${cfg.znap.paths.local}";
@@ -104,12 +100,10 @@ in
               };
             })
             (
-              lib.genAttrs cfg.znap.pools (
-                pool: {
-                  recursive = true;
-                  mbuffer.enable = true;
-                }
-              )
+              lib.genAttrs cfg.znap.pools (pool: {
+                recursive = true;
+                mbuffer.enable = true;
+              })
             )
         );
       };

@@ -50,7 +50,9 @@ in
     # SwayFX
     programs.sway = {
       enable = true;
-      package = pkgs.swayfx.overrideAttrs (old: { passthru.providedSessions = [ "sway" ]; });
+      package = pkgs.swayfx.overrideAttrs (old: {
+        passthru.providedSessions = [ "sway" ];
+      });
       wrapperFeatures.gtk = true;
     };
     programs.xwayland.enable = true;

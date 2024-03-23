@@ -6,52 +6,53 @@ let
 in
 {
   # TODO
-  /* elia.containers.nextcloud = {
-       mounts."/var/lib/nextcloud" = {
-         hostPath = "${path}/www";
-         isReadOnly = false;
-       };
-       mounts."/run/secrets" = {
-         hostPath = "/persist/secrets/nextcloud";
-         isReadOnly = true;
-       };
-       mounts."/data" = {
-         hostPath = "/srv/nextcloud";
-         isReadOnly = false;
-       };
-       mounts."/var/lib/postgres" = {
-         hostPath = "${path}/postgres";
-         isReadOnly = false;
-       };
+  /*
+    elia.containers.nextcloud = {
+      mounts."/var/lib/nextcloud" = {
+        hostPath = "${path}/www";
+        isReadOnly = false;
+      };
+      mounts."/run/secrets" = {
+        hostPath = "/persist/secrets/nextcloud";
+        isReadOnly = true;
+      };
+      mounts."/data" = {
+        hostPath = "/srv/nextcloud";
+        isReadOnly = false;
+      };
+      mounts."/var/lib/postgres" = {
+        hostPath = "${path}/postgres";
+        isReadOnly = false;
+      };
 
-       config = { ... }: {
-         networking.firewall.allowedTCPPorts = [ 80 ];
-         services.nextcloud = {
-           enable = true;
-           appstoreEnable = true;
-           autoUpdateApps.enable = true;
-           database.createLocally = true;
+      config = { ... }: {
+        networking.firewall.allowedTCPPorts = [ 80 ];
+        services.nextcloud = {
+          enable = true;
+          appstoreEnable = true;
+          autoUpdateApps.enable = true;
+          database.createLocally = true;
 
-           hostName = url;
-           datadir = "/data";
-           https = true;
-           secretFile = "/run/secrets/secrets.json";
+          hostName = url;
+          datadir = "/data";
+          https = true;
+          secretFile = "/run/secrets/secrets.json";
 
-           config = {
-             adminpassFile = "/run/secrets/adminpass";
-             trustedProxies = [ "10.0.0.0/8" ];
-             defaultPhoneRegion = "DE";
+          config = {
+            adminpassFile = "/run/secrets/adminpass";
+            trustedProxies = [ "10.0.0.0/8" ];
+            defaultPhoneRegion = "DE";
 
-             dbtype = "pgsql";
-             dbuser = "nextcloud";
-             dbname = "nextcloud";
-             dbtableprefix = "oc_";
-           };
-         };
+            dbtype = "pgsql";
+            dbuser = "nextcloud";
+            dbname = "nextcloud";
+            dbtableprefix = "oc_";
+          };
+        };
 
-         services.postgresql.package = pkgs.postgresql_14;
-       };
-     };
+        services.postgresql.package = pkgs.postgresql_14;
+      };
+    };
   */
 
   elia.compose.nextcloud.services = {

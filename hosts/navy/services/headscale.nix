@@ -93,34 +93,35 @@ in
   elia.persist.headscale.path = "/var/lib/headscale";
 
   # In case the module MIGHT get fixed at some point:
-  /* services.headscale = {
-       enable = true;
-       port = 50013;
-       address = "0.0.0.0";
-       settings = {
-         server_url = "https://headscale.elia.garden:443";
-         metrics_listen_addr = "127.0.01:50014";
-         grpc_listen_addr = "0.0.0.0:50015";
+  /*
+    services.headscale = {
+      enable = true;
+      port = 50013;
+      address = "0.0.0.0";
+      settings = {
+        server_url = "https://headscale.elia.garden:443";
+        metrics_listen_addr = "127.0.01:50014";
+        grpc_listen_addr = "0.0.0.0:50015";
 
-         dns_config = {
-           base_domain = "elia.garden";
-           nameservers = [ "9.9.9.9" ];
-           magic_dns = true;
-         };
+        dns_config = {
+          base_domain = "elia.garden";
+          nameservers = [ "9.9.9.9" ];
+          magic_dns = true;
+        };
 
-         oidc = {
-           only_start_if_oidc_is_available = true;
-           issuer = "https://sso.elia.garden/application/o/headscale/";
-           client_id = "headscale";
-           scope = ["openid" "profile" "email"];
-           extra_params = {
-             domain_hint = "elia.garden";
-           };
-           client_secret_path = config.age.secrets.headscale-oidc.path;
-           allowed_groups = [ "headscale" ];
-           strip_email_domain = false;
-         };
-       };
-     };
+        oidc = {
+          only_start_if_oidc_is_available = true;
+          issuer = "https://sso.elia.garden/application/o/headscale/";
+          client_id = "headscale";
+          scope = ["openid" "profile" "email"];
+          extra_params = {
+            domain_hint = "elia.garden";
+          };
+          client_secret_path = config.age.secrets.headscale-oidc.path;
+          allowed_groups = [ "headscale" ];
+          strip_email_domain = false;
+        };
+      };
+    };
   */
 }

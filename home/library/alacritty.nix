@@ -544,49 +544,50 @@
   '';
 }
 
-/* settings = {
-        env.TERM = "xterm-256color";
-        window = {
-            padding = { x = 2; y = 2; };
-            dynamic_padding = false;
-            decorations = "none";
-            opacity = 0.7;
-        };
+/*
+  settings = {
+       env.TERM = "xterm-256color";
+       window = {
+           padding = { x = 2; y = 2; };
+           dynamic_padding = false;
+           decorations = "none";
+           opacity = 0.7;
+       };
 
-        scrolling = {
-            history = 10000;
-            multiplier = 3;
-            scrolling_multiplier = 3;
-        };
+       scrolling = {
+           history = 10000;
+           multiplier = 3;
+           scrolling_multiplier = 3;
+       };
 
-        font = {
-            normal.family = "Fira Code Nerd Font";
-            bold = {
-                family = "DejaVu Sans Mono";
-                style = "Bold";
-            };
-            size = 12.0;
-        };
+       font = {
+           normal.family = "Fira Code Nerd Font";
+           bold = {
+               family = "DejaVu Sans Mono";
+               style = "Bold";
+           };
+           size = 12.0;
+       };
 
-        bell.duration = 0;
+       bell.duration = 0;
 
-        mouse_bindings = [
-            { mouse = "Middle"; action = "PasteSelection"; }
-        ];
+       mouse_bindings = [
+           { mouse = "Middle"; action = "PasteSelection"; }
+       ];
 
-        mouse = {
-            double_click.threshold = 300;
-            triple_click.threshold = 300;
-            hide_when_typing = false;
-            hints = {
-                launcher = "None";
-                modifiers = "None";
-            };
-        };
+       mouse = {
+           double_click.threshold = 300;
+           triple_click.threshold = 300;
+           hide_when_typing = false;
+           hints = {
+               launcher = "None";
+               modifiers = "None";
+           };
+       };
 
-        selection = {
-            semantic_escape_chars = ",│`|:\"' ()[]{}<>";
-            save_to_clipboard = false;
-        };
-    };
+       selection = {
+           semantic_escape_chars = ",│`|:\"' ()[]{}<>";
+           save_to_clipboard = false;
+       };
+   };
 */

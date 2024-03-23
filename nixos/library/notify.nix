@@ -9,12 +9,10 @@
     age.secrets.matrix-notify.file = ../../secrets/matrix-notify.age;
     systemd.services =
       (lib.listToAttrs (
-        map
-          (name: {
-            inherit name;
-            value.onFailure = [ "matrix-notify@${name}.service" ];
-          })
-          config.elia.notify
+        map (name: {
+          inherit name;
+          value.onFailure = [ "matrix-notify@${name}.service" ];
+        }) config.elia.notify
       ))
       // {
         "matrix-notify@" = {

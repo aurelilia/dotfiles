@@ -41,23 +41,21 @@ in
       enable = true;
       extraConfig = cfg.extra;
       virtualHosts = (
-        lib.mapAttrs
-          (name: route: {
-            serverAliases = route.aliases;
-            extraConfig = lib.concatStringsSep "\n" (
-              [ route.extra ]
-              ++ lib.optionals route.no-robots [ no-robots ]
-              ++ lib.optionals (route.mode == "sso") [ sso ]
-              ++ lib.optionals (route.mode == "local") [ local ]
-              ++ lib.optionals (route.host != null) [ "reverse_proxy ${route.host}" ]
-              ++ lib.optionals (route.port != null) [ "reverse_proxy localhost:${toString route.port}" ]
-              ++ lib.optionals (route.root != null) [
-                "root * ${route.root}"
-                "file_server"
-              ]
-            );
-          })
-          cfg.routes
+        lib.mapAttrs (name: route: {
+          serverAliases = route.aliases;
+          extraConfig = lib.concatStringsSep "\n" (
+            [ route.extra ]
+            ++ lib.optionals route.no-robots [ no-robots ]
+            ++ lib.optionals (route.mode == "sso") [ sso ]
+            ++ lib.optionals (route.mode == "local") [ local ]
+            ++ lib.optionals (route.host != null) [ "reverse_proxy ${route.host}" ]
+            ++ lib.optionals (route.port != null) [ "reverse_proxy localhost:${toString route.port}" ]
+            ++ lib.optionals (route.root != null) [
+              "root * ${route.root}"
+              "file_server"
+            ]
+          );
+        }) cfg.routes
       );
     };
 

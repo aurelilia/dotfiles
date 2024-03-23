@@ -23,4 +23,8 @@ in
     leela
     jade
   ];
+  "haze/mullvad.age".publicKeys = with keys; [
+    leela
+    haze
+  ];
 }

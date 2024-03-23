@@ -35,9 +35,9 @@
             ]
             ++ (map (disk: "-drive file=${disk},media=disk,if=virtio") value.disks)
             ++ (map (disk: "-drive file=${disk},media=cdrom") value.cdroms)
-            ++ (lib.optional (value.vncSlot != null)
-              "-display vnc=${value.vncListen}:${toString value.vncSlot}"
-            )
+            ++ (lib.optional (
+              value.vncSlot != null
+            ) "-display vnc=${value.vncListen}:${toString value.vncSlot}")
             ++ [ (lib.escapeShellArgs value.extraQemuArgs) ]
           );
         in

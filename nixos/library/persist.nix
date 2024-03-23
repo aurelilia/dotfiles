@@ -5,16 +5,13 @@ in
 {
   config = lib.mkMerge [
     {
-      systemd.tmpfiles.rules =
-        lib.mapAttrsToList
-          (
-            name: rule:
-            let
-              ppath = "/persist/${rule.kind}/${name}";
-            in
-            "L ${rule.path} - - - - ${ppath}"
-          )
-          cfg;
+      systemd.tmpfiles.rules = lib.mapAttrsToList (
+        name: rule:
+        let
+          ppath = "/persist/${rule.kind}/${name}";
+        in
+        "L ${rule.path} - - - - ${ppath}"
+      ) cfg;
 
       systemd.services.tmp-target-create = {
         description = "Create target directories for temp files";
@@ -24,20 +21,18 @@ in
 
         serviceConfig.Type = "oneshot";
         script = lib.concatStringsSep "\n" (
-          lib.mapAttrsToList
-            (
-              name: rule:
-              let
-                ppath = "/persist/${rule.kind}/${name}";
-              in
-              ''
-                if [ ! -d ${ppath} ]; then
-                  mkdir -m ${rule.mode} -p ${ppath}
-                  chown ${rule.owner}:${rule.group} ${ppath}
-                fi
-              ''
-            )
-            cfg
+          lib.mapAttrsToList (
+            name: rule:
+            let
+              ppath = "/persist/${rule.kind}/${name}";
+            in
+            ''
+              if [ ! -d ${ppath} ]; then
+                mkdir -m ${rule.mode} -p ${ppath}
+                chown ${rule.owner}:${rule.group} ${ppath}
+              fi
+            ''
+          ) cfg
         );
       };
     }
