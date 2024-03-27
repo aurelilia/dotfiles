@@ -56,7 +56,6 @@
   networking = {
     useDHCP = true;
     nameservers = [
-      "192.168.0.100"
       "9.9.9.9"
     ];
   };
