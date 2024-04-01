@@ -30,9 +30,13 @@ in
 {
   config = lib.mkIf (config.elia.graphical) {
     environment.systemPackages = with pkgs; [
-      alsa-utils
       greetd.tuigreet
+      lutris-free
+      wineWowPackages.waylandFull
     ];
+
+    # I want Mullvad on GUI systems
+    services.mullvad-vpn.enable = true;
 
     # Greeter 
     services.greetd = {
