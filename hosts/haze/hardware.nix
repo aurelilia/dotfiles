@@ -55,9 +55,7 @@
 
   networking = {
     useDHCP = true;
-    nameservers = [
-      "9.9.9.9"
-    ];
+    nameservers = [ "9.9.9.9" ];
   };
   systemd.network.links."10-lan" = {
     matchConfig.PermanentMACAddress = "3c:ec:ef:ea:f4:67";
