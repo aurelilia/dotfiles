@@ -328,6 +328,7 @@ in
     playerctl
     swww
     ulauncher
+    alsamixer
     (python3.withPackages (
       ps: with ps; [
         requests
