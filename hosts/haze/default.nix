@@ -6,9 +6,10 @@
     ./containers/immich.nix
     ./containers/jellyfin.nix
     ./services/adguard.nix
-    ./services/guacamole.nix
+    # ./services/guacamole.nix
+    ./services/vikunja.nix
     ./vms/cauldron.nix
-    ./vms/k3s.nix
+    # ./vms/k3s.nix
   ];
   elia.systemType = "server";
 
