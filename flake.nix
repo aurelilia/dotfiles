@@ -28,10 +28,14 @@
       url = "github:astro/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-dns = {
+      url = "github:Janik-Haag/nixos-dns";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    {
+    inputs@{
       home-manager,
       nixpkgs,
       nixpkgs-unstable,
@@ -40,11 +44,16 @@
       disko,
       nixgl,
       microvm,
+      nixos-dns,
       ...
     }:
     let
       hostSystem = "x86_64-linux";
       nixpkgsHost = import nixpkgs-unstable { system = hostSystem; };
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
     in
     {
       devShells.${hostSystem}.default = nixpkgsHost.mkShell {
@@ -52,20 +61,75 @@
           nixpkgsHost.colmena
           agenix.packages.${hostSystem}.default
           nixpkgsHost.nixfmt-rfc-style
+          (nixpkgsHost.octodns.withProviders (
+            ps:
+            with nixpkgsHost;
+            with python3Packages;
+            [
+              octodns-providers.bind
+              (buildPythonPackage
+              rec {
+                pname = "octodns-gcore";
+                version = "0.0.5-unstable";
+                pyproject = true;
+
+                src = fetchFromGitHub {
+                  owner = "octodns";
+                  repo = "octodns-gcore";
+                  rev = "84ce0854a9a27cee9a00cae62049c402eb47c719";
+                  hash = "sha256-v+NLsBSoTRUB35sxeF824v6uOcWK8/pCZTc9k3NH50A=";
+                };
+
+                nativeBuildInputs = [ setuptools ];
+
+                propagatedBuildInputs = [
+                  octodns
+                  requests
+                ];
+
+                pythonImportsCheck = [ "octodns_gcore" ];
+                nativeCheckInputs = [
+                  pytestCheckHook
+                  requests-mock
+                ];
+
+                meta = with lib; {
+                  description = "GCore DNS provider for octoDNS";
+                  homepage = "https://github.com/octodns/octodns-gcore/";
+                  changelog = "https://github.com/octodns/octodns-gcore/blob/${src.rev}/CHANGELOG.md";
+                  license = licenses.mit;
+                };
+              })
+            ]
+          ))
         ];
       };
 
-      colmena = import ./fleet.nix {
-        inherit
-          nixpkgs
-          nixpkgs-unstable
-          nixpkgs-streamrip
-          home-manager
-          agenix
-          disko
-          nixgl
-          microvm
-          ;
-      };
+      colmena = import ./fleet.nix inputs;
+
+      packages = forAllSystems (
+        system:
+        let
+          generate = nixos-dns.utils.generate nixpkgs.legacyPackages.${system};
+          dnsConfig.extraConfig = import ./dns.nix;
+        in
+        {
+          zoneFiles = generate.zoneFiles dnsConfig;
+          octodns = generate.octodnsConfig {
+            inherit dnsConfig;
+            config.providers = {
+              gcore = {
+                class = "octodns_gcore.GCoreProvider";
+                token = "env/GCORE_TOKEN";
+              };
+              config.check_origin = false;
+            };
+            zones = {
+              "kitten.works." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
+              "theria.nl." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
+            };
+          };
+        }
+      );
     };
 }

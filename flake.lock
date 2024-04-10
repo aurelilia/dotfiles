@@ -45,6 +45,22 @@
         "type": "github"
       }
     },
+    "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696426674,
+        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems_2"
@@ -141,6 +157,27 @@
         "type": "github"
       }
     },
+    "nixos-dns": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1708022692,
+        "narHash": "sha256-T2o3XwFWK5bYNnVqEYdW9JqmOtgpn26/GCgbrVJ47ls=",
+        "owner": "Janik-Haag",
+        "repo": "nixos-dns",
+        "rev": "0205c8cc6b4f7f75689a922b0bf20730c64a51f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Janik-Haag",
+        "repo": "nixos-dns",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1712168706,
@@ -196,6 +233,7 @@
         "home-manager": "home-manager",
         "microvm": "microvm",
         "nixgl": "nixgl",
+        "nixos-dns": "nixos-dns",
         "nixpkgs": "nixpkgs",
         "nixpkgs-streamrip": "nixpkgs-streamrip",
         "nixpkgs-unstable": "nixpkgs-unstable"

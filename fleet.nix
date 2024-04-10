@@ -1,15 +1,3 @@
-let
-  mkHost =
-    { name, tag }:
-    args: {
-      deployment.tags = [ tag ];
-      imports = [ ./hosts/${name} ];
-    };
-  haze-swarm = mkHost {
-    name = "haze-swarm";
-    tag = "swarm";
-  };
-in
 {
   home-manager,
   nixpkgs,
@@ -21,7 +9,11 @@ in
   microvm,
   ...
 }:
-{
+(builtins.mapAttrs (name: host: {
+  deployment.tags = [ host.tag ];
+  imports = [ ./hosts/${host.config or name} ];
+}) (import ./meta.nix).nodes)
+// {
   meta = {
     nixpkgs = import nixpkgs { system = "x86_64-linux"; };
     nodeNixpkgs.haze = import nixpkgs-unstable { system = "x86_64-linux"; };
@@ -48,34 +40,5 @@ in
       buildOnTarget = true;
       allowLocalDeployment = true;
     };
-  };
-
-  navy = mkHost {
-    name = "navy";
-    tag = "server";
-  };
-  jade = mkHost {
-    name = "jade";
-    tag = "server";
-  };
-  haze = mkHost {
-    name = "haze";
-    tag = "server";
-  };
-  haze-swarm1 = haze-swarm;
-  haze-swarm2 = haze-swarm;
-  haze-swarm3 = haze-swarm;
-
-  mauve = mkHost {
-    name = "mauve";
-    tag = "workstation";
-  };
-  coral = mkHost {
-    name = "coral";
-    tag = "workstation";
-  };
-  hazyboi = mkHost {
-    name = "hazyboi";
-    tag = "workstation";
   };
 }
