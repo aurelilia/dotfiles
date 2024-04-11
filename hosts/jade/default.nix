@@ -8,7 +8,6 @@
     ./containers/bookstack.nix
     ./containers/drone.nix
     ./containers/ffsync.nix
-    ./containers/homeassistant.nix
     ./containers/joplin.nix
     ./containers/mastodon.nix
     ./containers/matrix.nix
@@ -23,7 +22,6 @@
     ./services/tvheadend.nix
     ./services/vivi.nix
     ./services/paperless.nix
-    ./services/vaultwarden.nix
     ./services/zomboid.nix
   ];
   elia.systemType = "server";

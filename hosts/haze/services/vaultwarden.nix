@@ -1,7 +1,8 @@
-{ ... }:
+{ lib, ... }:
 let
-  url = "vaultwarden.elia.garden";
+  url = "vault.feline.works";
   port = 8222;
+  dir = "/persist/data/vaultwarden";
 in
 {
   services.vaultwarden = {
@@ -9,12 +10,11 @@ in
     config = {
       DOMAIN = "https://${url}";
       SIGNUPS_ALLOWED = false;
-      ROCKET_ADDRESS = "0.0.0.0";
       ROCKET_PORT = port;
+      DATA_FOLDER = dir;
     };
   };
 
-  elia.persist.vaultwarden.path = "/var/lib/bitwarden_rs";
   elia.caddy.routes."${url}" = {
     mode = "sso";
     inherit port;

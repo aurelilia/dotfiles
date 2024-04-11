@@ -69,4 +69,9 @@
         #};
       };
   };
+
+  elia.caddy.routes."media.kitten.works" = {
+    no-robots = true;
+    port = 8096;
+  };
 }

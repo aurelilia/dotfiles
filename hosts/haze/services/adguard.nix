@@ -27,18 +27,6 @@
         enable_dnssec = true;
       };
 
-      dhcp = {
-        enabled = false;
-        interface_name = "lan";
-        dhcpv4 = {
-          gateway_ip = "192.168.0.1";
-          subnet_mask = "255.255.255.0";
-          range_start = "192.168.0.50";
-          range_end = "192.168.0.254";
-        };
-        local_domain_name = "sondercat.net";
-      };
-
       filtering = {
         protection_enabled = true;
         filtering_enabled = true;

@@ -6,7 +6,8 @@
     ./containers/immich.nix
     ./containers/jellyfin.nix
     ./services/adguard.nix
-    # ./services/guacamole.nix
+    ./services/ddclient.nix
+    ./services/vaultwarden.nix
     ./services/vikunja.nix
     ./vms/cauldron.nix
     # ./vms/k3s.nix

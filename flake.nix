@@ -126,6 +126,7 @@
             };
             zones = {
               "kitten.works." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
+              "feline.works." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
               "theria.nl." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
             };
           };

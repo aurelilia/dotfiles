@@ -155,7 +155,7 @@ in
                 no-robots = lib.mkOption {
                   type = bool;
                   description = "Disable robots.";
-                  default = false;
+                  default = true;
                 };
                 aliases = lib.mkOption {
                   type = listOf str;

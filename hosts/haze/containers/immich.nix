@@ -55,4 +55,9 @@ in
       volumes = [ "/var/lib/immich-cache:/cache" ];
     };
   };
+
+  elia.caddy.routes."photos.kitten.works" = {
+    no-robots = true;
+    port = 2283;
+  };
 }
