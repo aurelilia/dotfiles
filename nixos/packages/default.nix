@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+args@{ pkgs, pkgs-unstable, ... }:
 {
   lib.pkgs = {
     postgres-upgrade =
@@ -29,5 +29,7 @@
         --data "{\"msgtype\":\"m.text\",\"body\":\"$1\"}" \
         https://matrix.elia.garden/_matrix/client/r0/rooms/$ROOM/send/m.room.message/$RANDOM$RANDOM$RANDOM$RANDOM 
     '';
+
+    streamrip = (import ./streamrip.nix) args;
   };
 }

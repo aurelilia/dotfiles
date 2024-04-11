@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 let
   url = "vault.feline.works";
   port = 8222;

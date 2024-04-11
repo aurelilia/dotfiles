@@ -38,7 +38,6 @@
   # Persist files
   elia.persist."adguard" = {
     path = "/var/lib/private/AdGuardHome";
-    kind = "data";
     owner = "adguardhome";
     group = "adguardhome";
   };

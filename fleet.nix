@@ -2,7 +2,6 @@
   home-manager,
   nixpkgs,
   nixpkgs-unstable,
-  nixpkgs-streamrip,
   agenix,
   disko,
   nixgl,
@@ -33,7 +32,6 @@
         system = "x86_64-linux";
         overlays = [ nixgl.overlay ];
       };
-      pkgs-streamrip = import nixpkgs-streamrip { system = "x86_64-linux"; };
     };
 
     deployment = {

@@ -1,4 +1,4 @@
-{ pkgs-streamrip, ... }:
+{ config, ... }:
 let
   url = "music.elia.garden";
 in
@@ -25,5 +25,5 @@ in
     file = ../../../secrets/jade/streamrip.age;
     path = "/root/.config/streamrip/config.toml";
   };
-  environment.systemPackages = [ pkgs-streamrip.streamrip ];
+  environment.systemPackages = [ config.lib.pkgs.streamrip ];
 }

@@ -12,7 +12,6 @@
     ./network.nix
     ./notify.nix
     ./nspawn.nix
-    ./packages.nix
     ./persist.nix
     ./qemu.nix
     ./smart-metrics.nix
