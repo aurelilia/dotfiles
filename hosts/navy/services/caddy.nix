@@ -51,7 +51,7 @@ in
     '';
 
     "louane.xyz".extra = (mkMatrixWellKnown "louane.xyz");
-    "tessa.dog".extra = "redir https://queer.group/@tessa";
+    "tessa.dog".root = "${root}/tessa";
 
     # Google telemetry workaround for some networks
     "http://connectivitycheck.gstatic.com".extra = "respond /generate_204 204";
