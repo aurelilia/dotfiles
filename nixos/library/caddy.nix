@@ -21,12 +21,12 @@ let
     }
   '';
   local = ''
-    @not-allowed {
+    @not-allowed-local {
         not {
             remote_ip 10.0.0.0/8 192.168.0.0/16 172.16.0.0/12 100.64.0.0/16
         }
     }
-    redir @not-allowed https://www.youtube.com/watch?v=dQw4w9WgXcQ
+    redir @not-allowed-local https://www.youtube.com/watch?v=dQw4w9WgXcQ
   '';
 in
 {
