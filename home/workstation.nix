@@ -45,6 +45,7 @@
       pavucontrol
       hotspot
       mpv
+      logseq
       # Steam
       flatpak
 

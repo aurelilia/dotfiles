@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ nixosConfig, ... }:
 {
   programs.eww = {
     enable = true;
-    package = pkgs.eww-wayland;
+    package = nixosConfig.lib.pkgs-unstable.eww;
     configDir = ../files/eww;
   };
 
