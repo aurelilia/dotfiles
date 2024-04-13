@@ -56,8 +56,5 @@ in
     };
   };
 
-  elia.caddy.routes."photos.kitten.works" = {
-    no-robots = true;
-    port = 2283;
-  };
+  elia.caddy.routes."photos.kitten.works".port = 2283;
 }

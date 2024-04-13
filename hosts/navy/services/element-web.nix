@@ -135,7 +135,6 @@ in
 {
   elia.caddy.routes."element.elia.garden" = {
     aliases = [ "element.louane.xyz" ];
-    no-robots = true;
     extra = "respond /config.json `${builtins.toJSON conf}`";
     root = "${pkgs.element-web}";
   };

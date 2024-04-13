@@ -72,8 +72,5 @@ in
       };
   };
 
-  elia.caddy.routes."${url}" = {
-    no-robots = true;
-    host = "forgejo:3000";
-  };
+  elia.caddy.routes."${url}".host = "forgejo:3000";
 }

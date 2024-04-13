@@ -8,9 +8,6 @@
     };
   };
 
-  elia.caddy.routes."ntfy.elia.garden" = {
-    no-robots = true;
-    port = 2586;
-  };
+  elia.caddy.routes."ntfy.elia.garden".port = 2586;
   elia.persist.ntfy.path = "/var/lib/ntfy-sh";
 }

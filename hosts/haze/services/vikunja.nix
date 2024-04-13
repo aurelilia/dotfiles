@@ -32,9 +32,5 @@ in
   systemd.services.vikunja.serviceConfig.ReadWriteDirectories = [ path ];
   environment.etc."vikunja/config.yaml".enable = false;
   systemd.tmpfiles.rules = [ "L /etc/vikunja/config.yaml - - - - /persist/secrets/vikunja.yaml" ];
-
-  elia.caddy.routes."vikunja.elia.garden" = {
-    no-robots = true;
-    port = 3456;
-  };
+  elia.caddy.routes."vikunja.elia.garden".port = 3456;
 }

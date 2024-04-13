@@ -70,8 +70,5 @@
       };
   };
 
-  elia.caddy.routes."media.kitten.works" = {
-    no-robots = true;
-    port = 8096;
-  };
+  elia.caddy.routes."media.kitten.works".port = 8096;
 }
