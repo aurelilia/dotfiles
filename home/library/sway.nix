@@ -246,6 +246,7 @@ in
   programs.swaylock = {
     enable = true;
     package = pkgs.swaylock-effects;
+    catppuccin.enable = true;
     settings = {
       screenshots = true;
       clock = true;
@@ -257,24 +258,6 @@ in
       effect-greyscale = true;
       grace = "5";
       fade-in = "0.2";
-      color = "00000000";
-      inside-color = "1e1e2e";
-      inside-clear-color = "1e1e2e";
-      inside-ver-color = "1e1e2e";
-      inside-wrong-color = "1e1e2e";
-      line-color = "11111b";
-      line-ver-color = "11111b";
-      line-clear-color = "11111b";
-      line-wrong-color = "11111b";
-      ring-color = "cba6f7";
-      ring-clear-color = "cba6f7";
-      ring-ver-color = "cba6f7";
-      ring-wrong-color = "f38ba8";
-      separator-color = "00000000";
-      text-color = "cdd6f4";
-      text-clear-color = "cdd6f4";
-      text-ver-color = "cdd6f4";
-      text-wrong-color = "f38ba8";
     };
   };
 
@@ -328,7 +311,7 @@ in
     playerctl
     swww
     ulauncher
-    alsamixer
+    alsa-utils
     (python3.withPackages (
       ps: with ps; [
         requests

@@ -99,7 +99,7 @@ in
 
     # (Graphical) packages I want from unstable, whose version in stable is too outdated
     lib.pkgs-unstable = pkgs-unstable;
-    users.users.leela.packages = with pkgs-unstable; [ (wrapWithNixGL logseq) ];
+    # users.users.leela.packages = with pkgs-unstable; [ (wrapWithNixGL logseq) ]; TODO version in unstable is broken
   };
 
   options = {

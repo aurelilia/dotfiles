@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  catppuccin,
   ...
 }:
 {
@@ -21,9 +22,17 @@
         openssh.authorizedKeys.keys = (import ../../secrets/keys.nix).ssh;
       };
       users.groups.leela = { };
-      home-manager.users.leela = import ../../home/workstation.nix;
+      home-manager.users.leela.imports = [
+        ../../home/workstation.nix
+        catppuccin.homeManagerModules.catppuccin
+      ];
     })
 
-    (lib.mkIf (!config.elia.graphical) { home-manager.users.root = import ../../home; })
+    (lib.mkIf (!config.elia.graphical) {
+      home-manager.users.root.imports = [
+        ../../home
+        catppuccin.homeManagerModules.catppuccin
+      ];
+    })
   ];
 }

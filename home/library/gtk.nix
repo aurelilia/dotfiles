@@ -1,37 +1,22 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, ... }:
 let
-  variant = "Mocha";
-  color = "Red";
-  lower = lib.strings.toLower;
+  theme = config.catppuccin;
 in
 {
   gtk = {
     enable = true;
+    catppuccin = {
+      enable = true;
+      cursor.enable = true;
+    };
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
-    theme = {
-      name = "Catppuccin-${variant}-Standard-${color}-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ (lower color) ];
-        tweaks = [ "rimless" ];
-        variant = (lower variant);
-      };
-    };
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.catppuccin-papirus-folders.override {
-        accent = (lower color);
-        flavor = (lower variant);
+        inherit (theme) accent;
+        flavor = theme.flavour; # why
       };
-    };
-    cursorTheme = {
-      package = pkgs.catppuccin-cursors.mochaRed;
-      name = "Catppuccin-${variant}-${color}-Cursors";
     };
 
     font = {
@@ -82,7 +67,7 @@ in
   };
 
   systemd.user.sessionVariables = {
-    GTK_THEME = "Catppuccin-${variant}-Standard-${color}-Dark";
+    GTK_THEME = config.gtk.theme.name;
     QT_QPA_PLATFORMTHEME = "gtk2";
   };
   home.packages = [ pkgs.libsForQt5.qtstyleplugins ];

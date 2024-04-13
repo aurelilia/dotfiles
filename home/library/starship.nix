@@ -2,8 +2,7 @@
 {
   programs.starship = {
     enable = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
+    catppuccin.enable = true;
 
     settings = {
       format = "$directory$nix_shell$hostname$character";

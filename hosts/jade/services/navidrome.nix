@@ -10,7 +10,6 @@ in
       ScanSchedule = "@every 2h";
       MusicFolder = "/media/personal/music";
       LastFM = {
-        # TODO lol, secrets in public git repo
         ApiKey = "7215047f29bbb24662ef06f59c3c9fae";
         Secret = "0945b41f371b9f5acf3d3ceb0107b157";
       };

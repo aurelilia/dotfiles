@@ -5,7 +5,10 @@
   ...
 }:
 {
-  imports = [ ./library ./packages ];
+  imports = [
+    ./library
+    ./packages
+  ];
 
   config = {
     # Locale

@@ -2565,13 +2565,6 @@ menuitem.openintabs-menuitem,
   cursor: pointer !important;
 }
 
-/* TODO: For now, fxa-menu doesn't show any status.
-           (JS required, observe .syncNowBtn status)
-  #PanelUI-fxa-menu-syncnow-button[syncstatus="active"] {
-    cursor: progress !important;
-  }
-  */
-
 /*= Animate ==================================================================*/
 @media (prefers-reduced-motion: no-preference) {
   /*- Background Color -------------------------------------------------------*/
@@ -6063,4 +6056,3 @@ menupopup menuseparator {
 .urlbarView-url {
 	color: #f38ba8 !important;
 }
-

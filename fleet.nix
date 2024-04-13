@@ -6,6 +6,7 @@
   disko,
   nixgl,
   microvm,
+  catppuccin,
   ...
 }:
 (builtins.mapAttrs (name: host: {
@@ -24,10 +25,12 @@
       agenix.nixosModules.default
       disko.nixosModules.disko
       microvm.nixosModules.host
+      catppuccin.nixosModules.catppuccin
       ./nixos
     ];
 
     _module.args = {
+      inherit catppuccin;
       pkgs-unstable = import nixpkgs-unstable {
         system = "x86_64-linux";
         overlays = [ nixgl.overlay ];

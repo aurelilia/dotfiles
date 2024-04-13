@@ -27,6 +27,11 @@
       less
       ncdu
     ];
+
+    catppuccin = {
+      flavour = "mocha";
+      accent = "red";
+    };
   };
 
   options = {

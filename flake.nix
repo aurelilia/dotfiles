@@ -31,6 +31,7 @@
       url = "github:Janik-Haag/nixos-dns";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
@@ -43,6 +44,7 @@
       nixgl,
       microvm,
       nixos-dns,
+      catppuccin,
       ...
     }:
     let
