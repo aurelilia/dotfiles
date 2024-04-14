@@ -70,5 +70,5 @@
       };
   };
 
-  elia.caddy.routes."media.kitten.works".port = 8096;
+  elia.caddy.routes."media.kitten.works".host = "jellyfin:8096";
 }

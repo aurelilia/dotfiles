@@ -50,6 +50,8 @@ in
       file_server browse
     '';
 
+    "branding.feline.works".root = ../../../branding;
+
     "louane.xyz".extra = (mkMatrixWellKnown "louane.xyz");
     "tessa.dog".root = "${root}/tessa";
 

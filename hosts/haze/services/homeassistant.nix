@@ -9,18 +9,21 @@ in
     configDir = "/persist/data/hassio";
 
     config = {
-      default_config = {};
+      default_config = { };
       homeassistant.time_zone = "Europe/Brussels";
       http = {
         server_host = "127.0.0.1";
         server_port = port;
         use_x_forwarded_for = true;
-        trusted_proxies = [ "127.0.0.1" "::1" ];
-      }; 
+        trusted_proxies = [
+          "127.0.0.1"
+          "::1"
+        ];
+      };
 
       lovelace = {
         mode = "storage";
-        resources = [];
+        resources = [ ];
       };
 
       sensor = "!include sensor.yaml";

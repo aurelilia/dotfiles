@@ -26,10 +26,11 @@ in
     };
     "feline.works" = {
       "" = navy // gcore-ns;
+      "branding" = navy;
       "vault" = haze;
       "home" = haze;
-      "id" = haze;
       "todo" = haze;
+      "auth" = jade;
     };
     "theria.nl" = {
       "" = navy // gcore-ns;

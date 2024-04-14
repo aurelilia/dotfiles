@@ -71,5 +71,9 @@ in
   elia.caddy = {
     sso = "http://localhost:${toString port}";
     routes."sso.elia.garden".port = port;
+    routes."auth.feline.works" = {
+      inherit port;
+      extra = "respond /static/dist/custom.css `${builtins.readFile ../../../branding/auth.css}`";
+    };
   };
 }

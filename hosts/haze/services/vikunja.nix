@@ -1,12 +1,13 @@
 { ... }:
 let
+  url = "todo.feline.works";
   path = "/persist/data/vikunja";
 in
 {
   services.vikunja = {
     enable = true;
     frontendScheme = "https";
-    frontendHostname = "vikunja.elia.garden";
+    frontendHostname = url;
     database.path = "${path}/vikunja.db";
     environmentFiles = [ "/persist/secrets/vikunja.env" ];
 
@@ -14,7 +15,7 @@ in
       local.enabled = false;
       openid = {
         enabled = true;
-        redirecturl = "https://vikunja.elia.garden/auth/openid/";
+        redirecturl = "https://${url}/auth/openid/";
         providers = [
           {
             name = "authentik";
@@ -32,5 +33,5 @@ in
   systemd.services.vikunja.serviceConfig.ReadWriteDirectories = [ path ];
   environment.etc."vikunja/config.yaml".enable = false;
   systemd.tmpfiles.rules = [ "L /etc/vikunja/config.yaml - - - - /persist/secrets/vikunja.yaml" ];
-  elia.caddy.routes."todo.feline.works".port = 3456;
+  elia.caddy.routes.${url}.port = 3456;
 }

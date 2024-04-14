@@ -1,5 +1,8 @@
 { ... }:
-let url = "id.feline.works"; port = 53124; tls_chain = "/persist/data/kanidm/chain.pem";
+let
+  url = "id.feline.works";
+  port = 53124;
+  tls_chain = "/persist/data/kanidm/chain.pem";
 in
 {
   services.kanidm = {
