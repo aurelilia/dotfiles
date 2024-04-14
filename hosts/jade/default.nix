@@ -3,7 +3,6 @@
   imports = [
     ./backup.nix
     ./hardware.nix
-    ./containers/actual.nix
     ./containers/authentik.nix
     ./containers/bookstack.nix
     ./containers/drone.nix

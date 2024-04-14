@@ -7,10 +7,10 @@ in
     image = "actualbudget/actual-server:latest-alpine";
     autoStart = true;
     ports = [ "${toString port}:5006" ];
-    volumes = [ "/containers/actual:/data" ];
+    volumes = [ "/persist/data/actual:/data" ];
   };
 
-  elia.caddy.routes."actual.elia.garden" = {
+  elia.caddy.routes."budget.feline.works" = {
     mode = "sso";
     inherit port;
   };

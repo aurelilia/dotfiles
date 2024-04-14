@@ -30,6 +30,7 @@ in
       "vault" = haze;
       "home" = haze;
       "todo" = haze;
+      "budget" = haze;
       "auth" = jade;
 
       # SMTP2GO

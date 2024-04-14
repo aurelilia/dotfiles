@@ -3,13 +3,17 @@
   imports = [
     ./backup.nix
     ./hardware.nix
+
+    ./containers/actual.nix
     ./containers/immich.nix
     ./containers/jellyfin.nix
+
     ./services/adguard.nix
     ./services/ddclient.nix
     ./services/homeassistant.nix
     ./services/vaultwarden.nix
     ./services/vikunja.nix
+
     ./vms/cauldron.nix
     # ./vms/k3s.nix
   ];
