@@ -28,6 +28,8 @@ in
       "" = navy // gcore-ns;
       "vault" = haze;
       "home" = haze;
+      "id" = haze;
+      "todo" = haze;
     };
     "theria.nl" = {
       "" = navy // gcore-ns;
