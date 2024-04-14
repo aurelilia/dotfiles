@@ -7,6 +7,7 @@
     ./containers/jellyfin.nix
     ./services/adguard.nix
     ./services/ddclient.nix
+    ./services/homeassistant.nix
     ./services/vaultwarden.nix
     ./services/vikunja.nix
     ./vms/cauldron.nix

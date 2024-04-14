@@ -27,6 +27,7 @@ in
     "feline.works" = {
       "" = navy // gcore-ns;
       "vault" = haze;
+      "home" = haze;
     };
     "theria.nl" = {
       "" = navy // gcore-ns;
