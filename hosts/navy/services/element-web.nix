@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   conf = {
-    brand = "Element";
+    brand = "feline chat";
     bug_report_endpoint_url = "https://riot.im/bugreports/submit";
     defaultCountryCode = "GB";
     default_federate = true;
@@ -59,7 +59,7 @@ let
             roomlist-highlights-color = "#45475a";
             roomlist-separator-color = "#7f849c";
             roomlist-text-color = "#cdd6f4";
-            roomlist-text-secondary-color = "#1e1e2e";
+            roomlist-text-secondary-color = "#313234";
             secondary-content = "#cdd6f4";
             sidebar-color = "#11111b";
             tertiary-content = "#cdd6f4";
@@ -134,7 +134,7 @@ let
 in
 {
   elia.caddy.routes."element.elia.garden" = {
-    aliases = [ "element.louane.xyz" ];
+    aliases = [ "element.louane.xyz" "chat.feline.works" ];
     extra = "respond /config.json `${builtins.toJSON conf}`";
     root = "${pkgs.element-web}";
   };

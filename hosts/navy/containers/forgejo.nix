@@ -1,6 +1,6 @@
 { ... }:
 let
-  url = "git.elia.garden";
+  url = "forge.feline.works";
 in
 {
   elia.containers.forgejo = {
@@ -31,7 +31,7 @@ in
           database.path = "/var/lib/forgejo/gitea.db";
           settings = {
             DEFAULT = {
-              APP_NAME = "the git garden";
+              APP_NAME = "feline forge";
               RUN_MODE = "prod";
             };
             server = {

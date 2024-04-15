@@ -27,10 +27,14 @@ in
     "feline.works" = {
       "" = navy // gcore-ns;
       "branding" = navy;
+      "forge" = navy;
+      "chat" = navy;
+
       "vault" = haze;
       "home" = haze;
       "todo" = haze;
       "budget" = haze;
+
       "auth" = jade;
 
       # SMTP2GO
@@ -40,6 +44,7 @@ in
     };
     "theria.nl" = {
       "" = navy // gcore-ns;
+      "docs" = haze;
     };
   };
 }
