@@ -92,6 +92,7 @@ in
                   // (lib.genAttrs cfg.znap.remotes (remote: {
                     host = "zend@${remote}";
                     dataset = "zbackup/zend/${name}";
+                    plan = "1d=>1h,2w=>1d,2m=>1w,1y=>1m";
                   }));
               };
               "${pool}-local" = value // {
