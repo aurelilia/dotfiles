@@ -27,6 +27,8 @@ in
       };
 
       sensor = "!include sensor.yaml";
+      "automation ui" = "!include automations.yaml";
+      "scene ui" = "!include scenes.yaml";
     };
 
     package = (
