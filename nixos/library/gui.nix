@@ -5,28 +5,6 @@
   lib,
   ...
 }:
-let
-  # Thank you, piegames!
-  # https://git.darmstadt.ccc.de/piegames/home-config/-/blob/master/main.nix?ref_type=heads 
-  wrapWithNixGL =
-    package:
-    let
-      binFiles = lib.pipe "${lib.getBin package}/bin" [
-        builtins.readDir
-        builtins.attrNames
-        (builtins.filter (n: builtins.match "^\\..*" n == null))
-      ];
-      wrapBin =
-        name:
-        pkgs-unstable.writeShellScriptBin name ''
-          exec ${pkgs-unstable.nixgl.nixGLIntel}/bin/nixGLIntel ${package}/bin/${name} "$@"
-        '';
-    in
-    pkgs-unstable.symlinkJoin {
-      name = "${package.name}-nixgl";
-      paths = (map wrapBin binFiles) ++ [ package ];
-    };
-in
 {
   config = lib.mkIf (config.elia.graphical) {
     environment.systemPackages = with pkgs; [
@@ -96,10 +74,7 @@ in
     # Misc.
     services.gvfs.enable = true;
     virtualisation.docker.enable = true;
-
-    # (Graphical) packages I want from unstable, whose version in stable is too outdated
     lib.pkgs-unstable = pkgs-unstable;
-    # users.users.leela.packages = with pkgs-unstable; [ (wrapWithNixGL logseq) ]; TODO version in unstable is broken
   };
 
   options = {

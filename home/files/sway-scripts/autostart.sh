@@ -1,4 +1,5 @@
 #!/bin/sh
+export NIXOS_OZONE_WL=1
 
 # Environment
 # Apply user

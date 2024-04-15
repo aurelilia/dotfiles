@@ -1,4 +1,26 @@
-{ config, pkgs, ... }:
+{ nixosConfig, config, pkgs, lib, ... }:let
+  # Thank you, piegames!
+  # https://git.darmstadt.ccc.de/piegames/home-config/-/blob/master/main.nix?ref_type=heads 
+  wrapWithNixGL =
+    package:
+    let
+      binFiles = lib.pipe "${lib.getBin package}/bin" [
+        builtins.readDir
+        builtins.attrNames
+        (builtins.filter (n: builtins.match "^\\..*" n == null))
+      ];
+      wrapBin =
+        name:
+        nixosConfig.lib.pkgs-unstable.writeShellScriptBin name ''
+          exec ${nixosConfig.lib.pkgs-unstable.nixgl.nixGLIntel}/bin/nixGLIntel ${package}/bin/${name} "$@"
+        '';
+    in
+    nixosConfig.lib.pkgs-unstable.symlinkJoin {
+      name = "${package.name}-nixgl";
+      paths = (map wrapBin binFiles) ++ [ package ];
+    };
+in
+
 {
   imports = [
     ./default.nix
@@ -46,6 +68,7 @@
       hotspot
       mpv
       logseq
+      (wrapWithNixGL nixosConfig.lib.pkgs-unstable.feishin)
       # Steam
       flatpak
 
