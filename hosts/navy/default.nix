@@ -17,6 +17,9 @@
   ];
   elia.systemType = "server";
 
+  # VPS, no SMART available.
+  elia.smartd.enable = false;
+
   # SSH
   # Port 22 is taken by Forgejo
   services.openssh.ports = [ 9022 ];

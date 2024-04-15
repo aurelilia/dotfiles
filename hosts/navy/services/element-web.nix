@@ -134,7 +134,10 @@ let
 in
 {
   elia.caddy.routes."element.elia.garden" = {
-    aliases = [ "element.louane.xyz" "chat.feline.works" ];
+    aliases = [
+      "element.louane.xyz"
+      "chat.feline.works"
+    ];
     extra = "respond /config.json `${builtins.toJSON conf}`";
     root = "${pkgs.element-web}";
   };

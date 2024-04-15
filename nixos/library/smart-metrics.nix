@@ -4,6 +4,7 @@
   lib,
   pkgs,
   name,
+  config,
   ...
 }:
 let
@@ -50,31 +51,38 @@ let
   };
 in
 {
-  services.smartd = {
-    enable = true;
-    extraOptions = [
-      "-A /var/log/smartd/"
-      "--interval=3600"
-    ];
-  };
+  config = lib.mkIf config.elia.smartd.enable {
+    services.smartd = {
+      enable = true;
+      extraOptions = [
+        "-A /var/log/smartd/"
+        "--interval=3600"
+      ];
+    };
 
-  systemd.services.scrutiny-collector = {
-    description = "Scrutiny Collector Service";
-    environment = {
-      COLLECTOR_API_ENDPOINT = "http://jade:53042";
-      COLLECTOR_HOST_ID = "${name}";
+    systemd.services.scrutiny-collector = {
+      description = "Scrutiny Collector Service";
+      environment = {
+        COLLECTOR_API_ENDPOINT = "http://jade:53042";
+        COLLECTOR_HOST_ID = "${name}";
+      };
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${collector}/bin/scrutiny-collector-metrics run";
+      };
     };
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${collector}/bin/scrutiny-collector-metrics run";
+
+    systemd.timers.scrutiny-collector = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnCalendar = "hourly";
+        Unit = "scrutiny-collector.service";
+      };
     };
   };
-
-  systemd.timers.scrutiny-collector = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "hourly";
-      Unit = "scrutiny-collector.service";
-    };
+  options.elia.smartd.enable = lib.mkOption {
+    type = lib.types.bool;
+    description = "Enable smartd monitoring with Scrutiny.";
+    default = true;
   };
 }

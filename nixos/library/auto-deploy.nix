@@ -41,10 +41,20 @@ in
             nix flake update
           ''
         ]
-        ++ (lib.optional cfg.local "colmena apply-local")
         ++ (lib.optional (cfg.remotes != [ ]) (
           "colmena apply --on " + (lib.concatStringsSep "," cfg.remotes)
         ))
+        ++ (lib.optional cfg.local ''
+          CURRENT="$(readlink -f /run/current-system/bin/switch-to-configuration)"
+          if colmena apply-local ; then
+            echo "Deployed!"
+            exit 0
+          fi
+
+          echo "Deploy failed, switching back to previous"
+          $CURRENT switch
+        '')
+        
       );
 
       startAt = "04:27";
