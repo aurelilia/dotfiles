@@ -16,7 +16,6 @@
 // {
   meta = {
     nixpkgs = import nixpkgs { system = "x86_64-linux"; };
-    nodeNixpkgs.haze = import nixpkgs-unstable { system = "x86_64-linux"; };
   };
 
   defaults = args: {

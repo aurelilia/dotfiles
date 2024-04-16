@@ -54,7 +54,7 @@ in
           echo "Deploy failed, switching back to previous"
           $CURRENT switch
         '')
-        
+
       );
 
       startAt = "04:27";

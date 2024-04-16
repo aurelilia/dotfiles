@@ -1,4 +1,11 @@
-{ nixosConfig, config, pkgs, lib, ... }:let
+{
+  nixosConfig,
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+let
   # Thank you, piegames!
   # https://git.darmstadt.ccc.de/piegames/home-config/-/blob/master/main.nix?ref_type=heads 
   wrapWithNixGL =

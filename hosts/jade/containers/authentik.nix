@@ -74,9 +74,9 @@ in
     routes."auth.feline.works" = {
       inherit port;
       extra = ''
-      	header /static/dist/custom.css Content-Type text/css
-        respond /static/dist/custom.css `${builtins.readFile ../../../branding/auth.css}`
-        redir /static/dist/assets/images/flow_background.jpg https://branding.feline.works/background.jpg
+        	header /static/dist/custom.css Content-Type text/css
+          respond /static/dist/custom.css `${builtins.readFile ../../../branding/auth.css}`
+          redir /static/dist/assets/images/flow_background.jpg https://branding.feline.works/background.jpg
       '';
     };
   };
