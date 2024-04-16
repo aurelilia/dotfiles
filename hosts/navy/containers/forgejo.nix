@@ -72,8 +72,8 @@ in
       };
   };
 
-  elia.caddy.routes.${url} = {
-    aliases = [ "git.elia.garden" ];
-    host = "forgejo:3000";
+  elia.caddy.routes = {
+    ${url}.host = "forgejo:3000";
+    "git.elia.garden".redir = url;
   };
 }

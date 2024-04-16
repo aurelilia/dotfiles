@@ -49,6 +49,7 @@ in
             ++ lib.optionals (route.mode == "sso") [ sso ]
             ++ lib.optionals (route.mode == "local") [ local ]
             ++ lib.optionals (route.host != null) [ "reverse_proxy ${route.host}" ]
+            ++ lib.optionals (route.redir != null) [ "redir https://${route.redir}{uri}" ]
             ++ lib.optionals (route.port != null) [ "reverse_proxy localhost:${toString route.port}" ]
             ++ lib.optionals (route.root != null) [
               "root * ${route.root}"
@@ -161,6 +162,11 @@ in
                   type = listOf str;
                   default = [ ];
                   description = "Additional places to serve the route at.";
+                };
+                redir = lib.mkOption {
+                  type = nullOr str;
+                  default = null;
+                  description = "URL to redirect to.";
                 };
                 extra = lib.mkOption {
                   type = lines;
