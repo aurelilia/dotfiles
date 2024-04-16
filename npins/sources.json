@@ -1,0 +1,79 @@
+{
+  "pins": {
+    "agenix": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ryantm",
+        "repo": "agenix"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "version": "0.15.0",
+      "revision": "564595d0ad4be7277e07fa63b5a991b3c645655d",
+      "url": "https://api.github.com/repos/ryantm/agenix/tarball/0.15.0",
+      "hash": "01dhrghwa7zw93cybvx4gnrskqk97b004nfxgsys0736823956la"
+    },
+    "catppuccin": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "catppuccin",
+        "repo": "nix"
+      },
+      "branch": "main",
+      "revision": "d2f4a13bd9a4926f90ad80df1c3539e45102f135",
+      "url": "https://github.com/catppuccin/nix/archive/d2f4a13bd9a4926f90ad80df1c3539e45102f135.tar.gz",
+      "hash": "1jqm588hxxdnmwdjrwibc6y061gw57ggaxcqa64jg6icw34pwhl5"
+    },
+    "disko": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "disko"
+      },
+      "branch": "master",
+      "revision": "d51114dc1bf3cfaba2b6644aabd16ff0c9909af5",
+      "url": "https://github.com/nix-community/disko/archive/d51114dc1bf3cfaba2b6644aabd16ff0c9909af5.tar.gz",
+      "hash": "0bc1jrkv7mmr6iw3w452gn23fzvrq71p3klvj2bl4rc52mh8fb77"
+    },
+    "home-manager": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "home-manager"
+      },
+      "branch": "release-23.11",
+      "revision": "d6bb9f934f2870e5cbc5b94c79e9db22246141ff",
+      "url": "https://github.com/nix-community/home-manager/archive/d6bb9f934f2870e5cbc5b94c79e9db22246141ff.tar.gz",
+      "hash": "0r19x4n1wlsr9i3w4rlc4jc5azhv2yq1n3qb624p0dhhwfj3c3vl"
+    },
+    "nixgl": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "nixgl"
+      },
+      "branch": "main",
+      "revision": "d709a8abcde5b01db76ca794280745a43c8662be",
+      "url": "https://github.com/nix-community/nixgl/archive/d709a8abcde5b01db76ca794280745a43c8662be.tar.gz",
+      "hash": "11g411shkbxl4wxcj01dqa698hip0jg5dq2czy7q4yax4rn3cnjp"
+    },
+    "nixpkgs": {
+      "type": "Channel",
+      "name": "nixos-23.11",
+      "url": "https://releases.nixos.org/nixos/23.11/nixos-23.11.6359.53a2c32bc66f/nixexprs.tar.xz",
+      "hash": "1r04n150zcnfy6axcynhx5wc840y13747azb6sz2fnv0czi1iwsx"
+    },
+    "nixpkgs-unstable": {
+      "type": "Channel",
+      "name": "nixpkgs-unstable",
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-24.05pre612448.2fd19c8be255/nixexprs.tar.xz",
+      "hash": "0gflai1vfcjqh9mhdjx31n1wfnx9dk2nrc3rb7rrrwf1m3xdqqy9"
+    }
+  },
+  "version": 3
+}

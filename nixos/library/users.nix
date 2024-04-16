@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  catppuccin,
+  catppuccin-hm,
   ...
 }:
 {
@@ -24,14 +24,14 @@
       users.groups.leela = { };
       home-manager.users.leela.imports = [
         ../../home/workstation.nix
-        catppuccin.homeManagerModules.catppuccin
+        catppuccin-hm
       ];
     })
 
     (lib.mkIf (!config.elia.graphical) {
       home-manager.users.root.imports = [
         ../../home
-        catppuccin.homeManagerModules.catppuccin
+        catppuccin-hm
       ];
     })
   ];

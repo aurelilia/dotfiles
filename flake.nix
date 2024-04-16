@@ -6,7 +6,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {
@@ -23,10 +23,6 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    microvm = {
-      url = "github:astro/microvm.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-dns = {
       url = "github:Janik-Haag/nixos-dns";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,7 +38,6 @@
       agenix,
       disko,
       nixgl,
-      microvm,
       nixos-dns,
       catppuccin,
       ...
@@ -67,8 +62,7 @@
             with python3Packages;
             [
               octodns-providers.bind
-              (buildPythonPackage
-              rec {
+              (buildPythonPackage rec {
                 pname = "octodns-gcore";
                 version = "0.0.5-unstable";
                 pyproject = true;
@@ -105,7 +99,21 @@
         ];
       };
 
-      colmena = import ./fleet.nix inputs;
+      colmena = import ./nixos/entry.nix {
+        nixpkgs = import nixpkgs { system = "x86_64-linux"; };
+        nixpkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
+
+        imports = [
+          home-manager.nixosModules.home-manager
+          agenix.nixosModules.default
+          disko.nixosModules.disko
+          catppuccin.nixosModules.catppuccin
+          ./nixos
+        ];
+
+        catppuccin-hm = catppuccin.homeManagerModules.catppuccin;
+        nixgl = nixgl.packages.x86_64-linux;
+      };
 
       packages = forAllSystems (
         system:

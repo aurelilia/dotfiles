@@ -2,6 +2,7 @@
   config,
   pkgs,
   pkgs-unstable,
+  nixgl,
   lib,
   ...
 }:
@@ -75,6 +76,7 @@
     services.gvfs.enable = true;
     virtualisation.docker.enable = true;
     lib.pkgs-unstable = pkgs-unstable;
+    lib.nixgl = nixgl;
   };
 
   options = {

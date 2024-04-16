@@ -19,7 +19,7 @@ let
       wrapBin =
         name:
         nixosConfig.lib.pkgs-unstable.writeShellScriptBin name ''
-          exec ${nixosConfig.lib.pkgs-unstable.nixgl.nixGLIntel}/bin/nixGLIntel ${package}/bin/${name} "$@"
+          exec ${nixosConfig.lib.nixgl.nixGLIntel}/bin/nixGLIntel ${package}/bin/${name} "$@"
         '';
     in
     nixosConfig.lib.pkgs-unstable.symlinkJoin {
