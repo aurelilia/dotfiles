@@ -20,7 +20,6 @@
     ./services/nfs.nix
     ./services/tvheadend.nix
     ./services/vivi.nix
-    ./services/paperless.nix
     ./services/zomboid.nix
   ];
   elia.systemType = "server";

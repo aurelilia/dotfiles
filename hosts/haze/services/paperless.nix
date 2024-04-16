@@ -1,6 +1,6 @@
 { ... }:
 let
-  url = "docs.elia.garden";
+  url = "docs.theria.nl";
 in
 {
   services.paperless = {
@@ -12,7 +12,7 @@ in
     };
   };
 
-  elia.caddy.routes."${url}" = {
+  elia.caddy.routes.${url} = {
     mode = "sso";
     port = 28981;
   };

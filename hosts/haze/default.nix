@@ -11,6 +11,7 @@
     ./services/adguard.nix
     ./services/ddclient.nix
     ./services/homeassistant.nix
+    ./services/paperless.nix
     ./services/vaultwarden.nix
     ./services/vikunja.nix
 
