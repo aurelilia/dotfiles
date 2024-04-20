@@ -23,6 +23,7 @@ in
       "" = navy // gcore-ns;
       "photos" = haze;
       "media" = haze;
+      "music" = haze;
     };
     "feline.works" = {
       "" = navy // gcore-ns;

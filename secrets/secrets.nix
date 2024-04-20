@@ -19,9 +19,9 @@ in
     leela
     jade
   ];
-  "jade/streamrip.age".publicKeys = with keys; [
+  "haze/streamrip.age".publicKeys = with keys; [
     leela
-    jade
+    haze
   ];
   "haze/mullvad.age".publicKeys = with keys; [
     leela

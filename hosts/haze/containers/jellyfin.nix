@@ -1,12 +1,29 @@
 { pkgs, ... }:
 {
-  elia.containers.jellyfin = {
+  services.jellyfin = {
+    enable = true;
+    openFirewall = true;
+  };
+  users.users.jellyfin.extraGroups = [ "render" ];
+
+  elia.persist."jellyfin".path = "/var/lib/jellyfin";
+  elia.caddy.routes."media.kitten.works".port = 8096;
+
+  boot.kernelParams = [
+    "i915.enable_guc=2"
+  ];
+
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      intel-compute-runtime
+    ];
+  };
+
+  elia.containers.jellyseerr = {
     mounts."/media" = {
       hostPath = "/media/media";
-      isReadOnly = false;
-    };
-    mounts."/var/lib/jellyfin" = {
-      hostPath = "/persist/data/jellyfin";
       isReadOnly = false;
     };
     mounts."/var/lib/radarr" = {
@@ -20,18 +37,8 @@
 
     ports = [
       # Web UIs
-      { hostPort = 8096; }
       { hostPort = 5055; }
       { hostPort = 7878; }
-      # Jellyfin discovery
-      {
-        hostPort = 1900;
-        protocol = "udp";
-      }
-      {
-        hostPort = 7359;
-        protocol = "udp";
-      }
     ];
 
     config =
@@ -53,11 +60,6 @@
         #    ${mullvad}/bin/mullvad account login $(cat ${config.age.secrets.mullvad.path})
         #  '';
 
-        services.jellyfin = {
-          enable = true;
-          openFirewall = true;
-        };
-
         services.jellyseerr = {
           enable = true;
           openFirewall = true;
@@ -69,6 +71,4 @@
         #};
       };
   };
-
-  elia.caddy.routes."media.kitten.works".host = "jellyfin:8096";
 }

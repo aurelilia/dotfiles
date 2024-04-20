@@ -1,4 +1,4 @@
-{ lib, modulesPath, ... }:
+{ config, lib, modulesPath, ... }:
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
@@ -15,6 +15,7 @@
     "nfsd"
   ];
   boot.extraModulePackages = [ ];
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub = {

@@ -16,11 +16,10 @@
     ./containers/scrutiny.nix
 
     ./services/ddclient.nix
-    ./services/navidrome.nix
     ./services/nfs.nix
     ./services/tvheadend.nix
     ./services/vivi.nix
-    ./services/zomboid.nix
+    # ./services/zomboid.nix
   ];
   elia.systemType = "server";
 }

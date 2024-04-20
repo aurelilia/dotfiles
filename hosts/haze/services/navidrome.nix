@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  url = "music.elia.garden";
+  url = "music.kitten.works";
 in
 {
   services.navidrome = {
@@ -21,7 +21,7 @@ in
 
   # I want streamrip
   age.secrets.streamrip = {
-    file = ../../../secrets/jade/streamrip.age;
+    file = ../../../secrets/haze/streamrip.age;
     path = "/root/.config/streamrip/config.toml";
   };
   environment.systemPackages = [ config.lib.pkgs.streamrip ];

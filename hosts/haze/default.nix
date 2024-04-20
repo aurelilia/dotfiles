@@ -11,12 +11,13 @@
     ./services/adguard.nix
     ./services/ddclient.nix
     ./services/homeassistant.nix
+    ./services/navidrome.nix
     ./services/paperless.nix
     ./services/vaultwarden.nix
     ./services/vikunja.nix
 
     ./vms/cauldron.nix
-    # ./vms/k3s.nix
+    # ./vms/swarm.nix
   ];
   elia.systemType = "server";
 
