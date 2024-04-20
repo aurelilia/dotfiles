@@ -8,6 +8,6 @@
         time = "19:00";
       };
     };
-    zfs.znap.remotes = [ "jade" ];
+    zfs.znap.remotes = [ "haze" ];
   };
 }

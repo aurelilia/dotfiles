@@ -23,6 +23,12 @@ rec {
     haze
     jade
   ];
-  zfs-receiver.jade.publicKey = jade;
-  ssh = [ leela ];
+  zfs-receiver = {
+    jade.publicKey = jade;
+    haze.publicKey = haze;
+  };
+  ssh = [
+    leela
+    haze
+  ];
 }

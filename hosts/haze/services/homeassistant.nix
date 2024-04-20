@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs-unstable, ... }:
 let
   url = "home.feline.works";
   port = 51321;
@@ -7,6 +7,7 @@ in
   services.home-assistant = {
     enable = true;
     configDir = "/persist/data/hassio";
+    package = pkgs-unstable.home-assistant;
 
     config = {
       default_config = { };
@@ -31,21 +32,21 @@ in
       "scene ui" = "!include scenes.yaml";
     };
 
-    package = (
-      pkgs.home-assistant.override {
-        # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/home-assistant/component-packages.nix
-        extraComponents = [
-          "default_config"
-          "esphome"
-          "met"
-          "zha"
-          "speedtestdotnet"
-          "adguard"
-          "jellyfin"
-          "rmvtransport"
-        ];
-      }
-    );
+    # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/home-assistant/component-packages.nix
+    extraComponents = [
+      "default_config"
+      "esphome"
+      "met"
+      "zha"
+      "speedtestdotnet"
+      "adguard"
+      "jellyfin"
+      "rmvtransport"
+    ];
+
+    extraPackages = python3Packages: with python3Packages; [
+      aiogithubapi # HACS
+    ];
   };
 
   elia.caddy.routes."${url}" = {

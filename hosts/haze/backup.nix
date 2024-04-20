@@ -8,9 +8,12 @@
         time = "06:30";
       };
     };
-    zfs.znap = {
-      remotes = [ "jade" ];
-      paths = {
+    zfs = {
+      receive-datasets = [ "zbackup/zend" ];
+      znap.destinations.haze = {
+        dataset = "zbackup/zend/haze";
+      };
+      znap.paths = {
         local = "data/local";
         keep = "data/keep";
       };
