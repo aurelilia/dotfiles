@@ -312,14 +312,5 @@ in
     swww
     ulauncher
     alsa-utils
-    (python3.withPackages (
-      ps: with ps; [
-        requests
-        pint
-        simpleeval
-        parsedatetime
-        pytz
-      ]
-    ))
   ];
 }
