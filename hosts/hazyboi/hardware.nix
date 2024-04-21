@@ -56,7 +56,7 @@
     fsType = "vfat";
   };
   fileSystems."/haze" = {
-    device = "haze:/";
+    device = "haze:/media";
     fsType = "nfs4";
     options = [
       "x-systemd.automount"

@@ -192,7 +192,7 @@ in
           transition: all 0.3s ease-in-out;
       }
 
-      #workspaces button.focused {
+      #workspaces button.visible {
           background-color: #f38ba8;
           color: #11111b;
           border-radius: 16px;
