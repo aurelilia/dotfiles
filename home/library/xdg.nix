@@ -26,6 +26,7 @@
       '';
     };
 
+    cacheHome = "/ethereal/cache/xdg";
     mime.enable = true;
     userDirs = {
       enable = true;

@@ -1,5 +1,0 @@
-{
-    "brightness": "(box)",
-    "temp_sensor": "K10TEMP_TCTL",
-    "scroll_regions": [["workspace"], ["workspace"], ["volume"]]
-}

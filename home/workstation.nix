@@ -32,13 +32,13 @@ in
   imports = [
     ./default.nix
     ./library/alacritty.nix
-    ./library/eww.nix
     ./library/gtk.nix
     ./library/mozilla.nix
     ./library/ssh.nix
     ./library/sway.nix
     ./library/virt.nix
     ./library/vscode.nix
+    ./library/waybar.nix
     ./library/xdg.nix
   ];
 

@@ -1,1 +1,0 @@
-playerctl -p Feishin -f '{"volume": "{{volume}}", "album": "{{album}}", "song": "{{title}}", "artist": "{{artist}}", "length": "{{duration(mpris:length)}}", "position": "{{duration(position)}}", "status": "{{status}}", "cover": "{{mpris:artUrl}}"}' metadata -F

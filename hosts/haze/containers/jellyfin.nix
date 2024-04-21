@@ -9,9 +9,7 @@
   elia.persist."jellyfin".path = "/var/lib/jellyfin";
   elia.caddy.routes."media.kitten.works".port = 8096;
 
-  boot.kernelParams = [
-    "i915.enable_guc=2"
-  ];
+  boot.kernelParams = [ "i915.enable_guc=2" ];
 
   hardware.opengl = {
     enable = true;

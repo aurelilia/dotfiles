@@ -44,9 +44,10 @@ in
       "rmvtransport"
     ];
 
-    extraPackages = python3Packages: with python3Packages; [
-      aiogithubapi # HACS
-    ];
+    extraPackages =
+      python3Packages: with python3Packages; [
+        aiogithubapi # HACS
+      ];
   };
 
   elia.caddy.routes."${url}" = {

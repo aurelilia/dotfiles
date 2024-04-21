@@ -11,11 +11,8 @@ sway-audio-idle-inhibit &
 autotiling-rs &
 ydotoold &
 dunst -conf ~/.config/dunstrc &
+waybar &
 
 # Apps
 ulauncher &
 thunderbird &
-
-# Eww needs a moment, otherwise SWWW ends up on top...
-sleep 1
-~/.config/eww/init.nu
