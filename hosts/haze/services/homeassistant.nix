@@ -47,6 +47,7 @@ in
       "adguard"
       "jellyfin"
       "rmvtransport"
+      "mqtt"
     ];
 
     extraPackages =
@@ -54,6 +55,20 @@ in
         aiogithubapi # HACS
       ];
   };
+
+  services.mosquitto = {
+      enable = true;
+      listeners = [ {
+        port = 1883;
+        address = "localhost";
+        users = {
+          "home-assistant" = {
+            acl = [ "readwrite #" ];
+            password = "localhost";
+          };
+        };
+      } ];
+    };
 
   elia.caddy.routes."${url}" = {
     mode = "sso";
