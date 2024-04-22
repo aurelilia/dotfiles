@@ -35,6 +35,7 @@ in
       "home" = haze;
       "todo" = haze;
       "budget" = haze;
+      "firefox" = haze;
 
       "auth" = jade;
 
