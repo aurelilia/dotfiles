@@ -24,7 +24,12 @@ in
 
       lovelace = {
         mode = "storage";
-        resources = [ ];
+        resources = [
+          {
+            type = "module";
+            url = "/local/check-button-card.js";
+          }
+        ];
       };
 
       sensor = "!include sensor.yaml";
