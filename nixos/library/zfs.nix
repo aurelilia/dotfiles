@@ -76,7 +76,6 @@ in
 
         features = {
           compressed = true;
-          recvu = true;
           sendRaw = true;
           zfsGetType = true;
         };
@@ -86,18 +85,18 @@ in
             (pool: value: {
               "${pool}-keep" = value // {
                 dataset = "${pool}/${cfg.znap.paths.keep}";
-                plan = "1h=>5min,1d=>1h,2w=>1d,2m=>1w,1y=>1m";
+                plan = "1hour=>5min,1day=>1hour,2week=>1day,2month=>1week,1year=>1month,10year=>3month";
                 destinations =
                   cfg.znap.destinations
                   // (lib.genAttrs cfg.znap.remotes (remote: {
                     host = "zend@${remote}";
                     dataset = "zbackup/zend/${name}";
-                    plan = "1d=>1h,2w=>1d,2m=>1w,1y=>1m";
+                    plan = "1day=>1hour,2week=>1day,2month=>1week,1year=>1month,10year=>3month";
                   }));
               };
               "${pool}-local" = value // {
                 dataset = "${pool}/${cfg.znap.paths.local}";
-                plan = "1h=>5min,1d=>1h,1w=>1d";
+                plan = "1hour=>5min,1day=>1hour,2week=>1day";
               };
             })
             (
