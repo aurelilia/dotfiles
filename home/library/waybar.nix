@@ -100,8 +100,8 @@ in
       "custom/playerlabel" = {
         format = "<span>󰎈 {} 󰎈</span>";
         return-type = "json";
-        max-length = 40;
-        exec = "playerctl -p Feishin -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
+        max-length = 80;
+        exec = "playerctl -p Feishin -a metadata --format '{\"text\": \"{{markup_escape(artist)}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
         on-click = "";
       };
       battery = {
