@@ -46,6 +46,7 @@ in
     "theria.nl" = {
       "" = navy // gcore-ns;
       "docs" = haze;
+      "smart" = haze;
     };
   };
 }

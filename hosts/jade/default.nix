@@ -12,7 +12,6 @@
     ./containers/matrix-louane.nix
     ./containers/metube.nix
     ./containers/nextcloud.nix
-    ./containers/scrutiny.nix
 
     ./services/ddclient.nix
     ./services/nfs.nix

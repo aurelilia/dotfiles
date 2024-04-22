@@ -63,7 +63,7 @@ in
     systemd.services.scrutiny-collector = {
       description = "Scrutiny Collector Service";
       environment = {
-        COLLECTOR_API_ENDPOINT = "http://jade:53042";
+        COLLECTOR_API_ENDPOINT = "http://haze:53042";
         COLLECTOR_HOST_ID = "${name}";
       };
       serviceConfig = {

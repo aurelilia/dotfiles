@@ -1,6 +1,7 @@
+# TODO: Move to NixOS module with 24.05
 { ... }:
 let
-  path = "/containers/scrutiny";
+  path = "/persist/data/scrutiny";
   port = 53042;
 in
 {
@@ -20,7 +21,7 @@ in
   };
 
   networking.firewall.allowedTCPPorts = [ port ];
-  elia.caddy.routes."scrutiny.elia.garden" = {
+  elia.caddy.routes."smart.theria.nl" = {
     inherit port;
     mode = "local";
   };

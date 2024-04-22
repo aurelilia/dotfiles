@@ -7,6 +7,7 @@
     ./containers/actual.nix
     ./containers/immich.nix
     ./containers/jellyfin.nix
+    ./containers/scrutiny.nix
 
     ./services/adguard.nix
     ./services/ddclient.nix
