@@ -4,7 +4,6 @@
     ./backup.nix
     ./hardware.nix
     ./containers/authentik.nix
-    ./containers/joplin.nix
     ./containers/mastodon.nix
     ./containers/matrix.nix
     ./containers/matrix-louane.nix
@@ -24,5 +23,6 @@
     "music.elia.garden".redir = "music.kitten.works";
     "ci.elia.garden".redir = "anvil.feline.works";
     "sync.elia.garden".redir = "firefox.feline.works";
+    "joplin.elia.garden".redir = "notes.feline.works";
   };
 }

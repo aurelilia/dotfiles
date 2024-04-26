@@ -9,6 +9,7 @@
     ./containers/ffsync.nix
     ./containers/immich.nix
     ./containers/jellyfin.nix
+    ./containers/joplin.nix
     ./containers/scrutiny.nix
 
     ./services/adguard.nix

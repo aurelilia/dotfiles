@@ -1,8 +1,8 @@
 { ... }:
 let
-  path = "/containers/joplin";
-  port = "50143";
-  url = "joplin.elia.garden";
+  path = "/persist/data/joplin";
+  port = 50143;
+  url = "notes.feline.works";
 in
 {
   elia.compose.joplin.services = {
@@ -20,7 +20,7 @@ in
         "POSTGRES_HOST=db"
         "MAILER_ENABLED=0"
       ];
-      ports = [ "${port}:22300" ];
+      ports = [ "${toString port}:22300" ];
     };
     db = {
       image = "postgres:15";
@@ -34,5 +34,5 @@ in
     };
   };
 
-  elia.caddy.routes."${url}".host = "localhost:${port}";
+  elia.caddy.routes."${url}".port = port;
 }
