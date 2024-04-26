@@ -27,7 +27,6 @@ in
         "DRONE_RUNNER_CAPACITY=2"
         "DRONE_RUNNER_NAME=jade"
       ];
-      ports = [ "3000:3000" ];
       volumes = [ "/var/run/docker.sock:/var/run/docker.sock" ];
     };
   };

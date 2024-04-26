@@ -4,7 +4,6 @@
     ./backup.nix
     ./hardware.nix
     ./containers/authentik.nix
-    ./containers/ffsync.nix
     ./containers/joplin.nix
     ./containers/mastodon.nix
     ./containers/matrix.nix
@@ -24,5 +23,6 @@
   elia.caddy.routes = {
     "music.elia.garden".redir = "music.kitten.works";
     "ci.elia.garden".redir = "anvil.feline.works";
+    "sync.elia.garden".redir = "firefox.feline.works";
   };
 }
