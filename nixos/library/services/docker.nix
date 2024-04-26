@@ -9,7 +9,7 @@
     };
   };
 
-  virtualisation.oci-containers = lib.mkIf (config.elia.systemType == "server") {
+  virtualisation.oci-containers = lib.mkIf (config.kit.systemType == "server") {
     # If we're on a server: Configure oci-containers to use docker and
     # add watchtower for automatic updates
     backend = "docker";

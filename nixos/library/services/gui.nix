@@ -83,7 +83,7 @@
     elia.graphical = lib.mkOption {
       type = lib.types.bool;
       description = "If a graphical shell is to be installed.";
-      default = config.elia.systemType == "workstation";
+      default = config.kit.systemType == "workstation";
     };
   };
 }

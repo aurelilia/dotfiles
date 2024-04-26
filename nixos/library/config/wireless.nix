@@ -1,25 +1,10 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
-  config = lib.mkIf config.elia.mobile {
-    environment.systemPackages = [ pkgs.brightnessctl ];
-
-    # Power management
-    services.logind = {
-      powerKey = "ignore";
-      hibernateKey = "ignore";
-      suspendKey = "ignore";
-      suspendKeyLongPress = "ignore";
-      lidSwitch = "ignore";
-      lidSwitchExternalPower = "ignore";
-    };
-    services.upower.enable = true;
-    services.auto-cpufreq.enable = true;
-
+  config = lib.mkIf config.kit.wireless {
     # WiFi + Bluetooth
     networking.wireless.iwd.enable = true;
     hardware.bluetooth = {
@@ -37,7 +22,7 @@
       '';
     };
 
-    # Persist IWD/BT files and upower data
+    # Persist IWD/BT files
     elia.persist = {
       "bluetooth" = {
         path = "/var/lib/bluetooth";
@@ -47,7 +32,12 @@
         path = "/var/lib/iwd";
         kind = "config";
       };
-      "upower".path = "/var/lib/upower";
     };
   };
+
+  options.kit.wireless = lib.mkOption {
+      type = lib.types.bool;
+      description = "If this device supports WiFi and Bluetooth.";
+      default = false;
+    };
 }

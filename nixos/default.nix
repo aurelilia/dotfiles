@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./archetypes.nix
     ./backports
     ./library
     ./packages
@@ -20,7 +21,7 @@
     system.stateVersion = "23.11";
     nix = {
       settings = {
-        allowed-users = [ "root" ] ++ (lib.optionals (config.elia.systemType == "workstation") [ "leela" ]);
+        allowed-users = [ "root" ] ++ (lib.optionals (config.kit.systemType == "workstation") [ "leela" ]);
         experimental-features = [
           "nix-command"
           "flakes"
@@ -45,7 +46,7 @@
   };
 
   options = {
-    elia.systemType = lib.mkOption {
+    kit.systemType = lib.mkOption {
       type = lib.types.enum [
         "server"
         "workstation"

@@ -1,23 +1,26 @@
 { ... }:
 {
   imports = [
-    ./auto-deploy.nix
-    ./borg.nix
-    ./caddy.nix
-    ./docker.nix
-    ./docker-compose.nix
-    ./gui.nix
-    ./keymap.nix
-    ./mobile-device.nix
-    ./network.nix
-    ./notify.nix
-    ./nspawn.nix
-    ./persist.nix
-    ./qemu.nix
-    ./smart-metrics.nix
-    ./ssh.nix
-    ./steamcmd.nix
-    ./users.nix
-    ./zfs.nix
+    ./config/keymap.nix
+    ./config/power-management.nix
+    ./config/network.nix
+    ./config/users.nix
+    ./config/zfs.nix
+    ./config/wireless.nix
+    
+    ./modules/notify.nix
+    ./modules/nspawn.nix
+    ./modules/persist.nix
+    ./modules/qemu.nix
+    ./modules/steamcmd.nix
+  
+    ./services/auto-deploy.nix
+    ./services/borg.nix
+    ./services/caddy.nix
+    ./services/docker.nix
+    ./services/docker-compose.nix
+    ./services/gui.nix
+    ./services/smart-metrics.nix
+    ./services/ssh.nix
   ];
 }
