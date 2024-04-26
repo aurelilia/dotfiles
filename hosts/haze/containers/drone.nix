@@ -5,7 +5,7 @@ let
   url = "anvil.feline.works";
 in
 {
-  elia.compose.drone.services = {
+  feline.compose.drone.services = {
     drone = {
       image = "drone/drone:2";
       env_file = [ "${path}/env" ];
@@ -31,5 +31,5 @@ in
     };
   };
 
-  elia.caddy.routes."${url}".port = port;
+  feline.caddy.routes."${url}".port = port;
 }

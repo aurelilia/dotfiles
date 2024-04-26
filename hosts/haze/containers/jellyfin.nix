@@ -6,8 +6,8 @@
   };
   users.users.jellyfin.extraGroups = [ "render" ];
 
-  elia.persist."jellyfin".path = "/var/lib/jellyfin";
-  elia.caddy.routes."media.kitten.works".port = 8096;
+  feline.persist."jellyfin".path = "/var/lib/jellyfin";
+  feline.caddy.routes."media.kitten.works".port = 8096;
 
   boot.kernelParams = [ "i915.enable_guc=2" ];
 
@@ -19,7 +19,7 @@
     ];
   };
 
-  elia.containers.jellyseerr = {
+  feline.containers.jellyseerr = {
     mounts."/media" = {
       hostPath = "/media/media";
       isReadOnly = false;

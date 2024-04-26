@@ -5,7 +5,7 @@ let
   port = 51001;
 in
 {
-  elia.compose.matrix-louane.services = {
+  feline.compose.matrix-louane.services = {
     dendrite = {
       image = "matrixdotorg/dendrite-monolith:latest";
       ports = [ "${toString port}:8008" ];
@@ -24,5 +24,5 @@ in
     };
   };
 
-  elia.caddy.routes."${url}".port = port;
+  feline.caddy.routes."${url}".port = port;
 }

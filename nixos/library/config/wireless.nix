@@ -1,10 +1,6 @@
+{ config, lib, ... }:
 {
-  config,
-  lib,
-  ...
-}:
-{
-  config = lib.mkIf config.kit.wireless {
+  config = lib.mkIf config.feline.wireless.enable {
     # WiFi + Bluetooth
     networking.wireless.iwd.enable = true;
     hardware.bluetooth = {
@@ -23,7 +19,7 @@
     };
 
     # Persist IWD/BT files
-    elia.persist = {
+    feline.persist = {
       "bluetooth" = {
         path = "/var/lib/bluetooth";
         kind = "config";
@@ -35,9 +31,5 @@
     };
   };
 
-  options.kit.wireless = lib.mkOption {
-      type = lib.types.bool;
-      description = "If this device supports WiFi and Bluetooth.";
-      default = false;
-    };
+  options.feline.wireless.enable = lib.mkEnableOption "WiFi and Bluetooth";
 }

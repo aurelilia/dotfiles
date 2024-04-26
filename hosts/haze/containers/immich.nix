@@ -3,7 +3,7 @@ let
   path = "/persist/data/immich";
 in
 {
-  elia.compose.immich.services = {
+  feline.compose.immich.services = {
     database = {
       image = "registry.hub.docker.com/tensorchord/pgvecto-rs:pg14-v0.2.0";
       container_name = "immich-postgres";
@@ -56,5 +56,5 @@ in
     };
   };
 
-  elia.caddy.routes."photos.kitten.works".port = 2283;
+  feline.caddy.routes."photos.kitten.works".port = 2283;
 }

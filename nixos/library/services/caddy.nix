@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  cfg = config.elia.caddy;
+  cfg = config.feline.caddy;
   no-robots = ''
       respond /robots.txt `User-agent: *
     Disallow: /`
@@ -100,15 +100,15 @@ in
       RemoveIPC = true;
     };
 
-    elia.persist.caddy = {
+    feline.persist.caddy = {
       path = "/var/lib/caddy";
       owner = "caddy";
       group = "caddy";
     };
-    elia.notify = [ "caddy" ];
+    feline.notify = [ "caddy" ];
   };
 
-  options.elia.caddy = {
+  options.feline.caddy = {
     extra = lib.mkOption {
       type = lib.types.lines;
       description = "Extra configuration to add to the generated Caddyfile.";

@@ -36,7 +36,7 @@ in
       ];
       modules-center = [ "sway/workspaces" ];
       modules-right =
-        if nixosConfig.elia.mobile then
+        if nixosConfig.feline.power-management.enable then
           [
             "sway/window"
             "battery"

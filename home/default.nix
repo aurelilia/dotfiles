@@ -35,7 +35,7 @@
   };
 
   options = {
-    elia.shellAliases = lib.mkOption {
+    feline.shellAliases = lib.mkOption {
       type = lib.types.attrs;
       default = { };
     };

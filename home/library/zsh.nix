@@ -21,7 +21,7 @@
       share = true;
     };
 
-    shellAliases = config.elia.shellAliases;
+    shellAliases = config.feline.shellAliases;
     initExtra = ''
       # Quiet direnv
       export DIRENV_LOG_FORMAT=""

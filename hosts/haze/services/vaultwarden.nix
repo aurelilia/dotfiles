@@ -15,7 +15,7 @@ in
     };
   };
 
-  elia.caddy.routes."${url}" = {
+  feline.caddy.routes."${url}" = {
     mode = "sso";
     inherit port;
   };

@@ -30,7 +30,6 @@ in
 
 {
   imports = [
-    ./default.nix
     ./library/alacritty.nix
     ./library/gtk.nix
     ./library/mozilla.nix

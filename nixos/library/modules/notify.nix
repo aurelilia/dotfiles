@@ -6,13 +6,13 @@
 }:
 {
   config = {
-    age.secrets.matrix-notify.file = ../../secrets/matrix-notify.age;
+    age.secrets.matrix-notify.file = ../../../secrets/matrix-notify.age;
     systemd.services =
       (lib.listToAttrs (
         map (name: {
           inherit name;
           value.onFailure = [ "matrix-notify@${name}.service" ];
-        }) config.elia.notify
+        }) config.feline.notify
       ))
       // {
         "matrix-notify@" = {
@@ -25,7 +25,7 @@
       };
   };
 
-  options.elia.notify = lib.mkOption {
+  options.feline.notify = lib.mkOption {
     type = lib.types.listOf lib.types.str;
     description = "List of services to notify on failure for.";
     default = [ ];

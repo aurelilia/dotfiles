@@ -15,5 +15,5 @@
     };
   };
 
-  elia.shellAliases.ssh-unlock = "ssh -p 2222";
+  feline.shellAliases.ssh-unlock = "ssh -p 2222";
 }

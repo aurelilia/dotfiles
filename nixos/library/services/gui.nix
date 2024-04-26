@@ -7,15 +7,12 @@
   ...
 }:
 {
-  config = lib.mkIf (config.elia.graphical) {
+  config = lib.mkIf (config.feline.gui.enable) {
     environment.systemPackages = with pkgs; [
       greetd.tuigreet
       lutris-free
       wineWowPackages.waylandFull
     ];
-
-    # I want Mullvad on GUI systems
-    services.mullvad-vpn.enable = true;
 
     # Greeter 
     services.greetd = {
@@ -74,16 +71,9 @@
 
     # Misc.
     services.gvfs.enable = true;
-    virtualisation.docker.enable = true;
     lib.pkgs-unstable = pkgs-unstable;
     lib.nixgl = nixgl;
   };
 
-  options = {
-    elia.graphical = lib.mkOption {
-      type = lib.types.bool;
-      description = "If a graphical shell is to be installed.";
-      default = config.kit.systemType == "workstation";
-    };
-  };
+  options.feline.gui.enable = lib.mkEnableOption "GUI";
 }

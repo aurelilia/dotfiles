@@ -7,7 +7,7 @@
   ...
 }:
 {
-  config = lib.mkIf config.elia.steamcmd {
+  config = lib.mkIf config.feline.steamcmd {
     nixpkgs.config.allowUnfreePredicate =
       pkg:
       builtins.elem (lib.getName pkg) [
@@ -88,9 +88,5 @@
     };
   };
 
-  options.elia.steamcmd = lib.mkOption {
-    type = lib.types.bool;
-    description = "Enable the steam@ service for downloading steam apps.";
-    default = false;
-  };
+  options.feline.steamcmd = lib.mkEnableOption "steam@ service for downloading steam apps";
 }

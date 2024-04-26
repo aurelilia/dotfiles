@@ -27,7 +27,7 @@
     ./vms/cauldron.nix
     # ./vms/swarm.nix
   ];
-  elia.systemType = "server";
+  feline.archetype = "server";
 
   # Initrd networking kernel drivers
   boot.kernelModules = [ "igb" ];

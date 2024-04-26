@@ -7,7 +7,7 @@ in
 {
   # I would use services.firefox-syncserver here, but it sadly forces
   # MySQL and is therefore incompatible with historical data I still have.
-  elia.compose.ffsync.services.ffsync = {
+  feline.compose.ffsync.services.ffsync = {
     image = "mozilla/syncserver";
     env_file = [ "${path}/env" ];
     environment = {
@@ -21,5 +21,5 @@ in
     volumes = [ "${path}/data:/data" ];
   };
 
-  elia.caddy.routes."${url}".port = port;
+  feline.caddy.routes."${url}".port = port;
 }

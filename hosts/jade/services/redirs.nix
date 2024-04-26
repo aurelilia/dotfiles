@@ -1,6 +1,6 @@
 { ... }:
 {
-  elia.caddy.routes = {
+  feline.caddy.routes = {
     "music.elia.garden".redir = "music.kitten.works";
     "ci.elia.garden".redir = "anvil.feline.works";
     "sync.elia.garden".redir = "firefox.feline.works";

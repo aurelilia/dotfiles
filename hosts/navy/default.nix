@@ -14,15 +14,16 @@
     ./services/kuma.nix
     ./services/redirs.nix
   ];
-  elia.systemType = "server";
-
-  # VPS, no SMART available.
-  elia.smartd.enable = false;
+  feline = {
+    archetype = "server";
+    # VPS, no SMART available.
+    smartd.enable = false;
+  };
 
   # SSH
   # Port 22 is taken by Forgejo
   services.openssh.ports = [ 9022 ];
 
   # nspawn NAT
-  elia.natExternal = "ens3";
+  feline.natExternal = "ens3";
 }

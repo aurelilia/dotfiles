@@ -5,7 +5,7 @@ let
   port = 53042;
 in
 {
-  elia.compose.scrutiny.services = {
+  feline.compose.scrutiny.services = {
     influx = {
       image = "influxdb:2.2";
       container_name = "scrutiny-influx";
@@ -21,7 +21,7 @@ in
   };
 
   networking.firewall.allowedTCPPorts = [ port ];
-  elia.caddy.routes."smart.theria.nl" = {
+  feline.caddy.routes."smart.theria.nl" = {
     inherit port;
     mode = "local";
   };

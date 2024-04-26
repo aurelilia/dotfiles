@@ -5,7 +5,7 @@ let
   port = 40013;
 in
 {
-  elia.compose.nextcloud.services = {
+  feline.compose.nextcloud.services = {
     nextcloud = {
       image = "nextcloud:stable";
       environment.NEXTCLOUD_DATA_DIR = "/data";
@@ -27,7 +27,7 @@ in
     };
   };
 
-  elia.caddy.routes."${url}" = {
+  feline.caddy.routes."${url}" = {
     extra = ''
       redir /.well-known/carddav /remote.php/dav 301
       redir /.well-known/caldav /remote.php/dav 301

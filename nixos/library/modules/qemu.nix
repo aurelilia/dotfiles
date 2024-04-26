@@ -7,10 +7,10 @@
 {
   config = {
     environment.etc."qemu/bridge.conf".text = lib.concatLines (
-      lib.mapAttrsToList (name: value: "allow ${value.bridge}") config.elia.qemu
+      lib.mapAttrsToList (name: value: "allow ${value.bridge}") config.feline.qemu
     );
 
-    systemd.services = lib.pipe config.elia.qemu [
+    systemd.services = lib.pipe config.feline.qemu [
       lib.attrsToList
       (map (
         { name, value }:
@@ -55,7 +55,7 @@
     ];
   };
 
-  options.elia.qemu = lib.mkOption {
+  options.feline.qemu = lib.mkOption {
     type =
       with lib.types;
       attrsOf (

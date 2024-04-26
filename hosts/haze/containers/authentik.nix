@@ -6,7 +6,7 @@ let
   port = 50042;
 in
 {
-  elia.compose.authentik.services = {
+  feline.compose.authentik.services = {
     postgresql = {
       image = "docker.io/library/postgres:12-alpine";
       container_name = "authentik-postgres";
@@ -68,7 +68,7 @@ in
     };
   };
 
-  elia.caddy = {
+  feline.caddy = {
     sso = "http://localhost:${toString port}";
     routes."sso.elia.garden".port = port;
     routes."auth.feline.works" = {

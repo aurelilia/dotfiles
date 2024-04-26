@@ -23,7 +23,7 @@ in
         ];
       };
 
-      users.users.root.openssh.authorizedKeys.keys = (import ../../secrets/keys.nix).ssh;
+      users.users.root.openssh.authorizedKeys.keys = (import ../../../secrets/keys.nix).ssh;
 
       # I want mosh for times where my connection isn't great
       # This is a simple blanket enable on all systems since all either

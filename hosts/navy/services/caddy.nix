@@ -20,8 +20,8 @@ in
   };
 
   # Static public pages are defined here.
-  elia.caddy.readDirs = [ "${root}/browse" ];
-  elia.caddy.routes = {
+  feline.caddy.readDirs = [ "${root}/browse" ];
+  feline.caddy.routes = {
     "elia.garden" = {
       root = "${root}/html";
       extra =

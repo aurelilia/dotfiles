@@ -51,7 +51,7 @@ let
   };
 in
 {
-  config = lib.mkIf config.elia.smartd.enable {
+  config = lib.mkIf config.feline.smartd.enable {
     services.smartd = {
       enable = true;
       extraOptions = [
@@ -80,9 +80,6 @@ in
       };
     };
   };
-  options.elia.smartd.enable = lib.mkOption {
-    type = lib.types.bool;
-    description = "Enable smartd monitoring with Scrutiny.";
-    default = true;
-  };
+
+  options.feline.smartd.enable = lib.mkEnableOption "smartd monitoring with Scrutiny";
 }

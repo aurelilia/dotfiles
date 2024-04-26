@@ -5,7 +5,7 @@ let
   url = "notes.feline.works";
 in
 {
-  elia.compose.joplin.services = {
+  feline.compose.joplin.services = {
     joplin = {
       image = "joplin/server:latest";
       depends_on = [ "db" ];
@@ -34,5 +34,5 @@ in
     };
   };
 
-  elia.caddy.routes."${url}".port = port;
+  feline.caddy.routes."${url}".port = port;
 }

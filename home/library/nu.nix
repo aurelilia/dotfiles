@@ -18,6 +18,6 @@
       DIRENV_LOG_FORMAT = "''";
     };
 
-    shellAliases = config.elia.shellAliases;
+    shellAliases = config.feline.shellAliases;
   };
 }

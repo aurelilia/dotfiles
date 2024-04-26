@@ -133,7 +133,7 @@ let
   };
 in
 {
-  elia.caddy.routes."element.elia.garden" = {
+  feline.caddy.routes."element.elia.garden" = {
     aliases = [
       "element.louane.xyz"
       "chat.feline.works"

@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.elia.autodeploy;
+  cfg = config.feline.autodeploy;
 in
 {
   config = lib.mkIf (cfg.local or (cfg.remotes != [ ])) {
@@ -63,15 +63,11 @@ in
     };
 
     systemd.timers.colmena-autodeploy.timerConfig.Persistent = true;
-    elia.notify = [ "colmena-autodeploy" ];
+    feline.notify = [ "colmena-autodeploy" ];
   };
 
-  options.elia.autodeploy = {
-    local = lib.mkOption {
-      type = lib.types.bool;
-      description = "Automatically deploy the current configuration locally.";
-      default = true;
-    };
+  options.feline.autodeploy = {
+    local = lib.mkEnableOption "Automatically deploying the current configuration locally";
     remotes = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       description = "Remote hosts to deploy their configuration to.";

@@ -3,7 +3,7 @@ let
   url = "forge.feline.works";
 in
 {
-  elia.containers.forgejo = {
+  feline.containers.forgejo = {
     mounts."/var/lib/forgejo" = {
       hostPath = "/containers/forgejo/data/gitea";
       isReadOnly = false;
@@ -72,7 +72,7 @@ in
       };
   };
 
-  elia.caddy.routes = {
+  feline.caddy.routes = {
     ${url}.host = "forgejo:3000";
     "git.elia.garden".redir = url;
   };

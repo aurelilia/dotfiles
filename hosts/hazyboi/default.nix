@@ -4,12 +4,18 @@
     ./backup.nix
     ./hardware.nix
   ];
-  elia.systemType = "workstation";
+  feline.archetype = "desktop";
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    parallelShutdown = 5;
+    qemu.runAsRoot = false;
+  };
 
-  hardware.sane.enable = true;
-  hardware.sane.extraBackends = [ pkgs.epkowa ];
+  hardware.sane = {
+    enable = true;
+    extraBackends = [ pkgs.epkowa ];
+  };
   users.users.leela.extraGroups = [ "scanner" ];
   environment.systemPackages = [ pkgs.skanlite ];
   nixpkgs.config.allowUnfreePredicate = pkg: lib.hasPrefix "iscan" (lib.getName pkg);

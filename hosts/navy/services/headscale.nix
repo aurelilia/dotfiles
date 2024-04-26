@@ -84,13 +84,13 @@ in
       };
   };
 
-  elia.caddy.routes."headscale.elia.garden" = {
+  feline.caddy.routes."headscale.elia.garden" = {
     port = 50013;
     extra = "redir / https://elia.garden/blog/headscale.html";
   };
 
   # Persist files
-  elia.persist.headscale.path = "/var/lib/headscale";
+  feline.persist.headscale.path = "/var/lib/headscale";
 
   # In case the module MIGHT get fixed at some point:
   /*

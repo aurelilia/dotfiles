@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  cfg = config.elia.persist;
+  cfg = config.feline.persist;
 in
 {
   config = lib.mkMerge [
@@ -38,16 +38,15 @@ in
     }
 
     (lib.mkIf (config.services.postgresql.enable) {
-      elia.persist.postgres = {
+      feline.persist.postgres = {
         path = "/var/lib/postgresql";
-        kind = "data";
         owner = "postgres";
         group = "postgres";
         mode = "700";
       };
     })
     # (lib.mkIf (config.services.redis.servers != {}) {
-    #   elia.persist = lib.mapAttrs (name: conf: lib.nameValuePair "redis-${name}" {
+    #   feline.persist = lib.mapAttrs (name: conf: lib.nameValuePair "redis-${name}" {
     #     path = "/var/lib/redis-${name}";
     #     kind = "data";
     #     owner = "redis";
@@ -57,7 +56,7 @@ in
     # })
   ];
 
-  options.elia.persist = lib.mkOption {
+  options.feline.persist = lib.mkOption {
     type =
       with lib.types;
       attrsOf (

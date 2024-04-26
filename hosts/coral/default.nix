@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [ ./hardware.nix ];
-  elia = {
+  feline = {
     systemType = "workstation";
     mobile = true;
   };

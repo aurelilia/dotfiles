@@ -23,7 +23,7 @@ let
     };
 in
 {
-  config = lib.mkIf (config.elia.compose != { }) {
+  config = lib.mkIf (config.feline.compose != { }) {
     virtualisation.docker.enable = true;
     systemd.services = lib.mapAttrs' (
       name: value:
@@ -41,14 +41,12 @@ in
           "docker.socket"
         ];
       }
-    ) config.elia.compose;
+    ) config.feline.compose;
   };
 
-  options = {
-    elia.compose = lib.mkOption {
-      type = lib.types.attrs;
-      description = "Docker Compose projects to run, defined using DC project files.";
-      default = { };
-    };
+  options.feline.compose = lib.mkOption {
+    type = lib.types.attrs;
+    description = "Docker Compose projects to run, defined using DC project files.";
+    default = { };
   };
 }

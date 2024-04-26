@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  cfg = config.elia.borg;
+  cfg = config.feline.borg;
   job = {
     encryption = {
       mode = "repokey-blake2";
@@ -90,22 +90,22 @@ in
         repo = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
         startAt = cfg.persist.time;
       };
-      elia.notify = [ "borgbackup-job-persist" ];
+      feline.notify = [ "borgbackup-job-persist" ];
       systemd.services.borgbackup-job-persist = serviceCfg;
     })
-    (lib.mkIf (cfg.media.dirs != [ ]) {
+    (lib.mkIf (cfg.media.enable) {
       services.borgbackup.jobs.media = job // {
         paths = cfg.media.dirs;
         repo = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
         startAt = cfg.media.time;
       };
-      elia.notify = [ "borgbackup-job-media" ];
+      feline.notify = [ "borgbackup-job-media" ];
       systemd.services.borgbackup-job-media = serviceCfg;
     })
     (lib.mkIf (config.services.borgbackup.jobs != { }) {
       # Borg secrets
-      age.secrets.borg-repokey.file = ../../secrets/borg-repokey.age;
-      age.secrets.borg-ssh-id.file = ../../secrets/borg-ssh-id.age;
+      age.secrets.borg-repokey.file = ../../../secrets/borg-repokey.age;
+      age.secrets.borg-ssh-id.file = ../../../secrets/borg-ssh-id.age;
       # Hosts
       programs.ssh.knownHosts = {
         "c689j5a8.repo.borgbase.com".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
@@ -113,14 +113,9 @@ in
     })
   ];
 
-  options.elia.borg = {
+  options.feline.borg = {
     persist = {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        description = "Enable backup of /persist to BorgBase.";
-        default = true;
-      };
-
+      enable = lib.mkEnableOption "backup of /persist to BorgBase.";
       time = lib.mkOption {
         type = lib.types.str;
         description = "Time of backup of /persist to BorgBase.";
@@ -128,6 +123,8 @@ in
     };
 
     media = {
+      enable = lib.mkEnableOption "backup of media to BorgBase.";
+
       dirs = lib.mkOption {
         type = lib.types.listOf lib.types.path;
         description = "Media directories to backup to BorgBase.";

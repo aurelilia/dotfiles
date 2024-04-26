@@ -1,6 +1,6 @@
 { ... }:
 {
-  elia.borg = {
+  feline.borg = {
     persist.time = "00:30";
     media = {
       dirs = [ "/containers" ];

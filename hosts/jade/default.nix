@@ -13,5 +13,5 @@
     ./services/vivi.nix
     # ./services/zomboid.nix
   ];
-  elia.systemType = "server";
+  feline.archetype = "server";
 }

@@ -1,6 +1,6 @@
 { ... }:
 {
-  elia = {
+  feline = {
     borg = {
       persist.time = "18:30";
       media = {

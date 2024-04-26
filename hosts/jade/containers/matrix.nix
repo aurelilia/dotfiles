@@ -5,8 +5,7 @@ let
   port = 51003;
 in
 {
-  # TODO
-  elia.compose.matrix.services = {
+  feline.compose.matrix.services = {
     mautrix-discord = {
       image = "dock.mau.dev/mautrix/discord";
       volumes = [ "${path}/discord_data:/data" ];
@@ -38,5 +37,5 @@ in
     };
   };
 
-  elia.caddy.routes."${url}".port = port;
+  feline.caddy.routes."${url}".port = port;
 }

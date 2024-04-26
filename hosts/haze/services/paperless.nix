@@ -12,7 +12,7 @@ in
     };
   };
 
-  elia.caddy.routes.${url} = {
+  feline.caddy.routes.${url} = {
     mode = "sso";
     port = 28981;
   };

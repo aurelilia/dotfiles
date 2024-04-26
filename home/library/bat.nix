@@ -5,7 +5,7 @@
     catppuccin.enable = true;
   };
 
-  elia.shellAliases = {
+  feline.shellAliases = {
     ca = "bat -pp";
     va = "bat";
   };

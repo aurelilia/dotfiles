@@ -5,7 +5,7 @@ margs@{
   ...
 }:
 let
-  cfg = config.elia.containers;
+  cfg = config.feline.containers;
 in
 {
   # TODO Refactor, probably
@@ -14,7 +14,7 @@ in
       enable = true;
       enableIPv6 = true;
       internalInterfaces = [ "ve-+" ];
-      externalInterface = config.elia.natExternal;
+      externalInterface = config.feline.natExternal;
     };
 
     containers = lib.pipe cfg [
@@ -94,11 +94,11 @@ in
   };
 
   options = {
-    elia.containers = lib.mkOption {
+    feline.containers = lib.mkOption {
       type = lib.types.attrs;
       default = { };
     };
-    elia.natExternal = lib.mkOption {
+    feline.natExternal = lib.mkOption {
       type = lib.types.str;
       description = "External NAT interface, used by NixOS containers";
       default = "lan";

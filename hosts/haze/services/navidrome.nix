@@ -16,8 +16,8 @@ in
     };
   };
 
-  elia.persist.navidrome.path = "/var/lib/private/navidrome";
-  elia.caddy.routes."${url}".port = 4533;
+  feline.persist.navidrome.path = "/var/lib/private/navidrome";
+  feline.caddy.routes."${url}".port = 4533;
 
   # I want streamrip
   age.secrets.streamrip = {

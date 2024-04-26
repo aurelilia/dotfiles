@@ -4,12 +4,11 @@
     ./backup.nix
     ./hardware.nix
   ];
-  elia = {
-    systemType = "workstation";
-    mobile = true;
-  };
+  feline.archetype = "mobile";
 
   # Separate Swap partition
-  boot.zfs.allowHibernation = true;
-  boot.zfs.forceImportRoot = false;
+  boot.zfs = {
+    allowHibernation = true;
+    forceImportRoot = false;
+  };
 }

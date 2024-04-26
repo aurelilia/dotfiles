@@ -36,7 +36,7 @@
   };
 
   # Persist files
-  elia.persist."adguard" = {
+  feline.persist."adguard" = {
     path = "/var/lib/private/AdGuardHome";
     owner = "adguardhome";
     group = "adguardhome";

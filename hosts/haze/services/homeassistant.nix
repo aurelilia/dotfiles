@@ -57,8 +57,9 @@ in
   };
 
   services.mosquitto = {
-      enable = true;
-      listeners = [ {
+    enable = true;
+    listeners = [
+      {
         port = 1883;
         address = "localhost";
         users = {
@@ -67,10 +68,11 @@ in
             password = "localhost";
           };
         };
-      } ];
-    };
+      }
+    ];
+  };
 
-  elia.caddy.routes."${url}" = {
+  feline.caddy.routes."${url}" = {
     mode = "sso";
     inherit port;
   };

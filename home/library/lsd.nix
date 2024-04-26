@@ -10,7 +10,7 @@
     };
   };
 
-  elia.shellAliases = {
+  feline.shellAliases = {
     lsd = "lsd -lFh";
     lad = "lsd -lFha";
   };

@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  elia = {
+  feline = {
     borg = {
       persist.time = "04:30";
       media = {
@@ -14,6 +14,7 @@
     };
     zfs = {
       receive-datasets = [ "zbackup/zend" ];
+      znap.enable = true;
       znap.pools = [
         "zroot"
         "zdata"

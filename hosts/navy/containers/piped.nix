@@ -8,7 +8,7 @@ in
   # https://piped-docs.kavin.rocks/docs/self-hosting/#docker-compose-nginx-aio-script
   # Yes, the postgres password is bad. This runs in it's own network and is not
   # something I consider sensitive data whatsoever, so eh.
-  elia.compose.piped = {
+  feline.compose.piped = {
     services = {
       nginx = {
         image = "nginx:mainline-alpine";
@@ -57,7 +57,7 @@ in
     volumes.piped-proxy = null;
   };
 
-  elia.caddy.routes."${url}" = {
+  feline.caddy.routes."${url}" = {
     aliases = [
       "api.${url}"
       "proxy.${url}"

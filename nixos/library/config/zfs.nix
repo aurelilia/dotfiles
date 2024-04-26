@@ -2,13 +2,12 @@
   lib,
   config,
   pkgs,
-  name,
   ...
 }:
 let
   root-mnt = config.fileSystems."/";
   root = root-mnt.device;
-  cfg = config.elia.zfs;
+  cfg = config.feline.zfs;
 in
 {
   config = lib.mkMerge [
@@ -55,7 +54,7 @@ in
         group = "zend";
         shell = pkgs.bash;
         packages = [ pkgs.mbuffer ];
-        openssh.authorizedKeys.keys = (import ../../secrets/keys.nix).zfs-sender;
+        openssh.authorizedKeys.keys = (import ../../../secrets/keys.nix).zfs-sender;
       };
       users.groups.zend = { };
 
@@ -66,103 +65,15 @@ in
         '') cfg.receive-datasets
       );
     })
-
-    (lib.mkIf cfg.znap.enable {
-      programs.ssh.knownHosts = (import ../../secrets/keys.nix).zfs-receiver;
-      services.znapzend = {
-        enable = true;
-        autoCreation = true;
-        pure = true;
-
-        features = {
-          compressed = true;
-          sendRaw = true;
-          zfsGetType = true;
-        };
-
-        zetup = (
-          lib.concatMapAttrs
-            (pool: value: {
-              "${pool}-keep" = value // {
-                dataset = "${pool}/${cfg.znap.paths.keep}";
-                plan = "1hour=>5min,1day=>1hour,2week=>1day,2month=>1week,1year=>1month,10year=>3month";
-                destinations =
-                  cfg.znap.destinations
-                  // (lib.genAttrs cfg.znap.remotes (remote: {
-                    host = "zend@${remote}";
-                    dataset = "zbackup/zend/${name}";
-                    plan = "1day=>1hour,2week=>1day,2month=>1week,1year=>1month,10year=>3month";
-                  }));
-              };
-              "${pool}-local" = value // {
-                dataset = "${pool}/${cfg.znap.paths.local}";
-                plan = "1hour=>5min,1day=>1hour,2week=>1day";
-              };
-            })
-            (
-              lib.genAttrs cfg.znap.pools (pool: {
-                recursive = true;
-                mbuffer.enable = true;
-              })
-            )
-        );
-      };
-
-      systemd.services.znapzend.after = [ "tailscaled.service" ];
-      elia.notify = [ "znapzend" ];
-    })
   ];
 
-  options.elia.zfs = {
-    lustrate = lib.mkOption {
-      type = lib.types.bool;
-      description = "Lustrate the root filesystem on boot.";
-      default = true;
-    };
+  options.feline.zfs = {
+    lustrate = lib.mkEnableOption "ZFS lustration";
 
     receive-datasets = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       description = "Datasets to allow other systems to send snapshots to.";
       default = [ ];
-    };
-
-    znap = {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        description = "Enable backup of datasets with ZnapZend.";
-        default = true;
-      };
-
-      pools = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        description = "Pools to back up.";
-        default = [ "zroot" ];
-      };
-
-      paths = {
-        keep = lib.mkOption {
-          type = lib.types.str;
-          description = "Path of the 'keep' dataset in the pools.";
-          default = "keep";
-        };
-        local = lib.mkOption {
-          type = lib.types.str;
-          description = "Path of the 'local' dataset in the pools.";
-          default = "local";
-        };
-      };
-
-      remotes = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        description = "Known remotes to back up to.";
-        default = [ ];
-      };
-
-      destinations = lib.mkOption {
-        type = lib.types.attrs;
-        description = "Additional destinations to back up to.";
-        default = { };
-      };
     };
   };
 }

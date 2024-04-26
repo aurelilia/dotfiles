@@ -57,6 +57,6 @@
     };
   };
 
-  elia.shellAliases.code = "codium";
+  feline.shellAliases.code = "codium";
   systemd.user.sessionVariables.NIXOS_OZONE_WL = "1";
 }
