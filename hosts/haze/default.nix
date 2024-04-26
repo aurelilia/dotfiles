@@ -10,6 +10,7 @@
     ./containers/immich.nix
     ./containers/jellyfin.nix
     ./containers/joplin.nix
+    ./containers/nextcloud.nix
     ./containers/scrutiny.nix
 
     ./services/adguard.nix

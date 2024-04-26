@@ -12,8 +12,7 @@
     ./services/element-web.nix
     ./services/headscale.nix
     ./services/kuma.nix
-    # ./services/ntfy.nix
-    ./services/proxy.nix
+    ./services/redirs.nix
   ];
   elia.systemType = "server";
 

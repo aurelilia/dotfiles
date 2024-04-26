@@ -30,6 +30,7 @@ in
       "branding" = navy;
       "forge" = navy;
       "chat" = navy;
+      "mesh" = navy;
 
       "vault" = haze;
       "home" = haze;
@@ -38,6 +39,7 @@ in
       "firefox" = haze;
       "anvil" = haze;
       "notes" = haze;
+      "cloud" = haze;
 
       "auth" = jade;
 
