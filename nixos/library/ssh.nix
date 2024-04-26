@@ -25,6 +25,11 @@ in
 
       users.users.root.openssh.authorizedKeys.keys = (import ../../secrets/keys.nix).ssh;
 
+      # I want mosh for times where my connection isn't great
+      # This is a simple blanket enable on all systems since all either
+      # need the server or client regardless
+      programs.mosh.enable = true;
+
       # ZnapZend uses SSH to transfer ZFS datasets, which requires using the
       # correct identity file. For some reason this is not done by default?
       system.activationScripts."Add SSH identity to root".text = ''
