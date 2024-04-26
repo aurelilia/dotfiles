@@ -11,6 +11,7 @@
     ./containers/immich.nix
     ./containers/jellyfin.nix
     ./containers/joplin.nix
+    ./containers/mastodon.nix
     ./containers/matrix-louane.nix
     ./containers/nextcloud.nix
     ./containers/scrutiny.nix

@@ -1,6 +1,6 @@
 { ... }:
 let
-  path = "/containers/mastodon";
+  path = "/persist/data/mastodon";
   url = "social.elia.garden";
 in
 {

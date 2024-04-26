@@ -3,7 +3,6 @@
   imports = [
     ./backup.nix
     ./hardware.nix
-    ./containers/mastodon.nix
     ./containers/matrix.nix
 
     ./services/ddclient.nix
