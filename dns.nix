@@ -36,6 +36,7 @@ in
       "todo" = haze;
       "budget" = haze;
       "firefox" = haze;
+      "anvil" = haze;
 
       "auth" = jade;
 

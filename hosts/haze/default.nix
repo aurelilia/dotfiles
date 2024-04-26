@@ -5,6 +5,7 @@
     ./hardware.nix
 
     ./containers/actual.nix
+    ./containers/drone.nix
     ./containers/ffsync.nix
     ./containers/immich.nix
     ./containers/jellyfin.nix

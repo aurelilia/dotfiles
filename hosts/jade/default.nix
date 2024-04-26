@@ -4,7 +4,6 @@
     ./backup.nix
     ./hardware.nix
     ./containers/authentik.nix
-    ./containers/drone.nix
     ./containers/ffsync.nix
     ./containers/joplin.nix
     ./containers/mastodon.nix
@@ -24,5 +23,6 @@
   # New domain and server for these.
   elia.caddy.routes = {
     "music.elia.garden".redir = "music.kitten.works";
+    "ci.elia.garden".redir = "anvil.feline.works";
   };
 }

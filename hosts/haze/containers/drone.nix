@@ -1,8 +1,8 @@
 { ... }:
 let
-  path = "/containers/drone";
+  path = "/persist/data/droneci";
   port = 50043;
-  url = "ci.elia.garden";
+  url = "anvil.feline.works";
 in
 {
   elia.compose.drone.services = {
@@ -10,7 +10,7 @@ in
       image = "drone/drone:2";
       env_file = [ "${path}/env" ];
       environment = [
-        "DRONE_GITEA_SERVER=https://git.elia.garden"
+        "DRONE_GITEA_SERVER=https://forge.feline.works"
         "DRONE_SERVER_HOST=${url}"
         "DRONE_SERVER_PROTO=https"
         "DRONE_USER_CREATE=username:leela,admin:true"
