@@ -40,8 +40,7 @@ in
       "anvil" = haze;
       "notes" = haze;
       "cloud" = haze;
-
-      "auth" = jade;
+      "auth" = haze;
 
       # SMTP2GO
       "em1293230".cname.data = "return.smtp2go.net.";

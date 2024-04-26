@@ -1,6 +1,6 @@
 { ... }:
 let
-  path = "/containers/matrix-dendrite";
+  path = "/persist/data/matrix/louane";
   url = "matrix.louane.xyz";
   port = 51001;
 in

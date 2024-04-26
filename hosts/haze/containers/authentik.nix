@@ -1,6 +1,6 @@
 { ... }:
 let
-  path = "/containers/authentik";
+  path = "/persist/data/authentik";
   image = "ghcr.io/goauthentik/server";
   version = "2024.2.2";
   port = 50042;
