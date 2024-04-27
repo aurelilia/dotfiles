@@ -24,6 +24,7 @@
     ./services/navidrome.nix
     ./services/nfs.nix
     ./services/paperless.nix
+    ./services/redirs.nix
     ./services/vaultwarden.nix
     ./services/vikunja.nix
 
