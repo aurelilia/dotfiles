@@ -53,7 +53,10 @@ in
     "branding.feline.works".root = ../../../branding;
 
     "louane.xyz".extra = (mkMatrixWellKnown "louane.xyz");
-    "tessa.dog".root = "${root}/tessa";
+    "tessa.dog" = {
+      root = "${root}/tessa";
+      extra = (mkMatrixWellKnown "tessa.dog");
+    };
 
     # Google telemetry workaround for some networks
     "http://connectivitycheck.gstatic.com".extra = "respond /generate_204 204";

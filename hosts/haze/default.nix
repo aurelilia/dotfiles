@@ -13,6 +13,7 @@
     ./containers/joplin.nix
     ./containers/mastodon.nix
     ./containers/matrix-louane.nix
+    ./containers/matrix-tessa.nix
     ./containers/nextcloud.nix
     ./containers/scrutiny.nix
 
