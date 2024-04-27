@@ -1,6 +1,6 @@
 { ... }:
 let
-  path = "/containers/matrix";
+  path = "/persist/data/matrix/garden";
   url = "matrix.elia.garden";
   port = 51003;
 in

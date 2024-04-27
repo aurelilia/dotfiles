@@ -12,6 +12,7 @@
     ./containers/jellyfin.nix
     ./containers/joplin.nix
     ./containers/mastodon.nix
+    ./containers/matrix-garden.nix
     ./containers/matrix-louane.nix
     ./containers/matrix-tessa.nix
     ./containers/nextcloud.nix
