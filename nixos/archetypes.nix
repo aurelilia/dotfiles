@@ -46,6 +46,12 @@ in
           full = true;
           create-user = true;
         };
+
+        syncthing = {
+          enable = true;
+          user = "leela";
+          dataDir = "/home/leela";
+        };
       };
     })
 

@@ -23,6 +23,7 @@
     ./services/gui.nix
     ./services/smart-metrics.nix
     ./services/ssh.nix
+    ./services/syncthing.nix
     ./services/tailscale.nix
     ./services/znapzend.nix
   ];

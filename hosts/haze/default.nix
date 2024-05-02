@@ -40,4 +40,11 @@
   # QEMU
   networking.bridges.vmbr0.interfaces = [ "eno1" ];
   networking.firewall.enable = false; # uhhh? TODO
+
+  # Syncthing
+  feline.syncthing = {
+    enable = false;
+    user = "syncthing";
+    dataDir = "/media/media/syncthing";
+  };
 }
