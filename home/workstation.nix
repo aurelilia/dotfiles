@@ -55,13 +55,16 @@ in
       experimental-features = nix-command flakes
       warn-dirty = false
     '';
-    # Syncthing
-    services.syncthing.enable = true;
-    # OBS
-    programs.obs-studio = {
-      enable = true;
-      plugins = [ pkgs.obs-studio-plugins.input-overlay ];
+    # Programs
+    programs = {
+      mpv.enable = true;
+      obs-studio = {
+        enable = true;
+        plugins = [ pkgs.obs-studio-plugins.input-overlay ];
+      };
     };
+    # Services
+    services.flameshot.enable = true;
 
     home.packages = with pkgs; [
       # Graphical
@@ -69,10 +72,8 @@ in
       gnome.evince
       gnome.file-roller
       gnome.nautilus
-      flameshot
       pavucontrol
       hotspot
-      mpv
       logseq
       kicad
       (wrapWithNixGL nixosConfig.lib.pkgs-unstable.feishin)
