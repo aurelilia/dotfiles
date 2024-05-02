@@ -63,7 +63,7 @@ in
     feline.archetype = lib.mkOption {
       type = lib.types.enum [
         "server"
-        "deskop"
+        "desktop"
         "mobile"
         "generic"
       ];
