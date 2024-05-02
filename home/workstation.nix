@@ -74,6 +74,7 @@ in
       hotspot
       mpv
       logseq
+      kicad
       (wrapWithNixGL nixosConfig.lib.pkgs-unstable.feishin)
       # Steam
       flatpak
@@ -96,6 +97,7 @@ in
       scc
       sshuttle
       rustup
+      jftui
     ];
   };
 }
