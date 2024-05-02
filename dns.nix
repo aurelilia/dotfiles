@@ -21,9 +21,11 @@ in
   zones = {
     "kitten.works" = {
       "" = navy // gcore-ns;
+      "auth" = haze;
       "photos" = haze;
       "media" = haze;
       "music" = haze;
+      "request" = haze;
     };
     "feline.works" = {
       "" = navy // gcore-ns;
@@ -49,6 +51,7 @@ in
     };
     "theria.nl" = {
       "" = navy // gcore-ns;
+      "auth" = haze;
       "docs" = haze;
       "smart" = haze;
     };

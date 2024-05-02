@@ -73,6 +73,7 @@ in
     routes."sso.elia.garden".port = port;
     routes."auth.feline.works" = {
       inherit port;
+      aliases = [ "auth.kitten.works" ];
       extra = ''
         	header /static/dist/custom.css Content-Type text/css
           respond /static/dist/custom.css `${builtins.readFile ../../../branding/auth.css}`
