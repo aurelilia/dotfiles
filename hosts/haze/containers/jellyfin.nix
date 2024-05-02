@@ -52,6 +52,14 @@
       hostPath = "/persist/data/radarr";
       isReadOnly = false;
     };
+    mounts."/var/lib/sonarr" = {
+      hostPath = "/persist/data/sonarr";
+      isReadOnly = false;
+    };
+    mounts."/var/lib/private/prowlarr" = {
+      hostPath = "/persist/data/prowlarr";
+      isReadOnly = false;
+    };
     mounts."/var/lib/private/jellyseerr" = {
       hostPath = "/persist/data/jellyseerr";
       isReadOnly = false;
@@ -76,6 +84,7 @@
       { hostPort = 7878; }
       { hostPort = 8989; }
       { hostPort = 7979; }
+      { hostPort = 9696; }
     ];
 
     config =
@@ -117,12 +126,20 @@
           enable = true;
           openFirewall = true;
         };
+        services.prowlarr = {
+          enable = true;
+          openFirewall = true;
+        };
 
         systemd.services.qbittorrent = {
           description = "qBittorrent-nox service";
           documentation = [ "man:qbittorrent-nox(1)" ];
-          after = [ "network.target" ];
+          after = [
+            "network.target"
+            "mullvad-daemon.service"
+          ];
           wantedBy = [ "multi-user.target" ];
+          bindsTo = [ "mullvad-daemon.service" ];
 
           serviceConfig = {
             Type = "simple";
