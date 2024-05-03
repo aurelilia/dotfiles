@@ -2,7 +2,7 @@
 {
   config = lib.mkIf config.feline.wireless.enable {
     # WiFi + Bluetooth
-    networking.wireless.iwd.enable = true;
+    networking.networkmanager.enable = true; 
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;
@@ -24,8 +24,8 @@
         path = "/var/lib/bluetooth";
         kind = "config";
       };
-      "iwd" = {
-        path = "/var/lib/iwd";
+      "NetworkManager" = {
+        path = "/var/lib/NetworkManager";
         kind = "config";
       };
     };
