@@ -19,6 +19,7 @@
     ./containers/scrutiny.nix
 
     ./services/adguard.nix
+    ./services/bupstash.nix
     ./services/ddclient.nix
     ./services/homeassistant.nix
     ./services/navidrome.nix
