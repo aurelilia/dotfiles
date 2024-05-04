@@ -19,6 +19,7 @@ in
     haze-swarm3 = haze-swarm;
 
     mauve.tag = "workstation";
+    bengal.tag = "workstation";
     coral.tag = "workstation";
     hazyboi.tag = "workstation";
   };
