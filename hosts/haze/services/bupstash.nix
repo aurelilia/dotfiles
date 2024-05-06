@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   users.users.piegames = {
     isSystemUser = true;
     group = "piegames";
