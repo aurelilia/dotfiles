@@ -9,7 +9,7 @@ rec {
   navy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGAeAfFlx5dwh0/NHkEoffxzcjVjG5wtsze00cANiDr";
   haze = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBXofGKR0wV5Qy0S8EWkZ7A4E15asz7wtGYhSwG14gyA";
   jade = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBTTaHIF2zQr6uNVSWcZdL+Ld8/yKBzn6WyGXvQlUNb/";
-  bengal = "<todo>";
+  bengal = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIBST5nykVjA+vC6D+RQXFR3MnEpLZnLgFKsBMlcvn28";
 
   all = [
     leela
@@ -21,6 +21,7 @@ rec {
     bengal
   ];
   zfs-sender = [
+    bengal
     mauve
     hazyboi
     haze

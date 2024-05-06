@@ -41,6 +41,17 @@ let
       };
     };
 
+    bengal = {
+      output."*" = {
+        resolution = "2560x1440";
+        scale = "1.5";
+      };
+      input."*" = {
+        middle_emulation = "enabled";
+        tap = "enabled";
+      };
+    };
+
     coral = {
       input."*" = {
         middle_emulation = "enabled";

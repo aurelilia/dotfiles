@@ -2,7 +2,7 @@
 {
   config = lib.mkIf config.feline.wireless.enable {
     # WiFi + Bluetooth
-    networking.networkmanager.enable = true; 
+    networking.networkmanager.enable = true;
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;
@@ -18,14 +18,14 @@
       '';
     };
 
-    # Persist IWD/BT files
+    # Persist NM/BT files
     feline.persist = {
       "bluetooth" = {
         path = "/var/lib/bluetooth";
         kind = "config";
       };
       "NetworkManager" = {
-        path = "/var/lib/NetworkManager";
+        path = "/etc/NetworkManager/system-connections";
         kind = "config";
       };
     };

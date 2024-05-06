@@ -17,7 +17,7 @@
               };
             };
             swap = {
-              size = "42G";
+              size = "38G";
               content = {
                 type = "swap";
                 resumeDevice = true;
@@ -37,8 +37,8 @@
     zpool = {
       zroot = {
         type = "zpool";
+        options.ashift = "12";
         rootFsOptions = {
-          ashift = "12";
           acltype = "posixacl";
           relatime = "on";
           xattr = "sa";
