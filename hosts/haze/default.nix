@@ -40,7 +40,10 @@
 
   # QEMU
   networking.bridges.vmbr0.interfaces = [ "eno1" ];
-  networking.firewall.trustedInterfaces = [ "eno1" "vmbr0" ];
+  networking.firewall.trustedInterfaces = [
+    "eno1"
+    "vmbr0"
+  ];
 
   # Syncthing
   feline.syncthing = {

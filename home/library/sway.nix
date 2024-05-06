@@ -1,65 +1,3 @@
-let
-  swayCfg = {
-    hazyboi = {
-      output = {
-        HDMI-A-1 = {
-          resolution = "2560x1440";
-          position = "0 0";
-          transform = "90";
-        };
-        DP-3 = {
-          resolution = "3840x2160";
-          position = "1440 780";
-          scale = "1.5";
-        };
-      };
-
-      workspaceOutputAssign = [
-        {
-          output = "DP-3";
-          workspace = "1";
-        }
-        {
-          output = "HDMI-A-1";
-          workspace = "2";
-        }
-        {
-          output = "DP-3";
-          workspace = "3";
-        }
-        {
-          output = "DP-3";
-          workspace = "10";
-        }
-      ];
-    };
-
-    mauve = {
-      input."*" = {
-        middle_emulation = "enabled";
-        tap = "enabled";
-      };
-    };
-
-    bengal = {
-      output."*" = {
-        resolution = "2560x1440";
-        scale = "1.5";
-      };
-      input."*" = {
-        middle_emulation = "enabled";
-        tap = "enabled";
-      };
-    };
-
-    coral = {
-      input."*" = {
-        middle_emulation = "enabled";
-        tap = "enabled";
-      };
-    };
-  };
-in
 {
   nixosConfig,
   pkgs,
@@ -73,7 +11,7 @@ in
     package = null;
 
     config = lib.mkMerge [
-      (lib.getAttr nixosConfig.networking.hostName swayCfg)
+      nixosConfig.feline.gui.extraSway
       rec {
         modifier = "Mod4";
 

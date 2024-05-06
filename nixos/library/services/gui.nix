@@ -75,5 +75,13 @@
     lib.nixgl = nixgl;
   };
 
-  options.feline.gui.enable = lib.mkEnableOption "GUI";
+  options.feline.gui = {
+    enable = lib.mkEnableOption "GUI";
+
+    extraSway = lib.mkOption {
+      type = lib.types.attrs;
+      description = "Configuration to add to Sway.";
+      default = { };
+    };
+  };
 }
