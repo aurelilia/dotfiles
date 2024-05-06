@@ -76,6 +76,7 @@ in
       hotspot
       logseq
       kicad
+      xournalpp
       (wrapWithNixGL nixosConfig.lib.pkgs-unstable.feishin)
       # Steam
       flatpak
