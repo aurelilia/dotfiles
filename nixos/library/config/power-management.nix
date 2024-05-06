@@ -3,12 +3,10 @@
   config = lib.mkIf config.feline.power-management.enable {
     services.logind = {
       powerKey = "ignore";
-      hibernateKey = "ignore";
-      suspendKey = "ignore";
-      suspendKeyLongPress = "ignore";
-      lidSwitch = "ignore";
+      lidSwitch = "suspend-then-hibernate";
       lidSwitchExternalPower = "ignore";
     };
+    systemd.sleep.extraConfig = "HibernateDelaySec=1200";
     services.upower.enable = true;
     services.auto-cpufreq.enable = true;
 
