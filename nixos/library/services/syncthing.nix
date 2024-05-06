@@ -7,8 +7,11 @@ in
     feline.syncthing.devices = {
       haze.id = "BXBEYKL-7HB2FWO-3QCUMCT-THYIAYX-3FAMON3-55VUVLT-77PGNI5-CTSIDQT";
       mauve.id = "HTOI7SH-GCGEHJU-E22T2OV-JRM3QYM-VV7FA4K-35FJMER-A3LLSDX-QTRH7QM";
+      bengal.id = "TAVWWH2-RCBPPJQ-RJZSJDR-XBVPDNC-4GJNUTQ-HODQ4LU-KU7HZR5-4SKS4A5";
+      hazyboi.id = "RMDWSUF-D2Y2FZZ-JGRYACJ-3RYI3BD-CGYGROU-JWZDW6E-MDKIWQC-ZYTDZQD";
     };
 
+    networking.firewall.allowedTCPPorts = [ 4147 ];
     services.syncthing = {
       inherit (cfg) user dataDir configDir;
 

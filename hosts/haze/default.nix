@@ -44,7 +44,7 @@
 
   # Syncthing
   feline.syncthing = {
-    enable = false;
+    enable = true;
     user = "syncthing";
     dataDir = "/media/media/syncthing";
   };
