@@ -40,7 +40,7 @@
 
   # QEMU
   networking.bridges.vmbr0.interfaces = [ "eno1" ];
-  networking.firewall.enable = false; # uhhh? TODO
+  networking.firewall.trustedInterfaces = [ "eno1" "vmbr0" ];
 
   # Syncthing
   feline.syncthing = {
