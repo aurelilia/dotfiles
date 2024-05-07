@@ -14,6 +14,7 @@ in
       programs.zsh.enable = true;
       users.users.root.shell = pkgs.zsh;
 
+      nix.settings.trusted-users = [ cfg.user ];
       home-manager.users.${cfg.user}.imports = [
         ../../../home
         catppuccin-hm
