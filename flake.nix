@@ -110,22 +110,36 @@
         ];
       };
 
-      colmena = import ./nixos/entry.nix {
-        nixpkgs = import nixpkgs { system = "x86_64-linux"; };
-        nixpkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
+      colmena =
+        (builtins.mapAttrs (name: host: {
+          deployment.tags = [ host.tag ];
+          imports = [ ./hosts/${host.config or name} ];
+        }) (import ./meta.nix).nodes)
+        // {
+          meta.nixpkgs = import nixpkgs { system = "x86_64-linux"; };
 
-        imports = [
-          home-manager.nixosModules.home-manager
-          agenix.nixosModules.default
-          disko.nixosModules.disko
-          catppuccin.nixosModules.catppuccin
-          lix-module.nixosModules.default
-          ./nixos
-        ];
+          defaults = args: {
+            imports = [
+              home-manager.nixosModules.home-manager
+              agenix.nixosModules.default
+              disko.nixosModules.disko
+              catppuccin.nixosModules.catppuccin
+              lix-module.nixosModules.default
+              ./nixos
+            ];
 
-        catppuccin-hm = catppuccin.homeManagerModules.catppuccin;
-        nixgl = nixgl.packages.x86_64-linux;
-      };
+            _module.args = {
+              pkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
+              catppuccin-hm = catppuccin.homeManagerModules.catppuccin;
+              nixgl = nixgl.packages.x86_64-linux;
+            };
+
+            deployment = {
+              buildOnTarget = true;
+              allowLocalDeployment = true;
+            };
+          };
+        };
 
       packages = forAllSystems (
         system:
