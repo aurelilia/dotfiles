@@ -1,7 +1,17 @@
 {
-  description = "aurlila's full system configurations using Nix, NixOS, and HM";
+  description = "aurlila's full system configurations using Lix, NixOS, and HM";
 
   inputs = {
+    lix = {
+      url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
+      flake = false;
+    };
+    lix-module = {
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
+      inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -40,6 +50,7 @@
       nixgl,
       nixos-dns,
       catppuccin,
+      lix-module,
       ...
     }:
     let
@@ -108,6 +119,7 @@
           agenix.nixosModules.default
           disko.nixosModules.disko
           catppuccin.nixosModules.catppuccin
+          lix-module.nixosModules.default
           ./nixos
         ];
 

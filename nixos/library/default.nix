@@ -4,7 +4,7 @@
     ./config/keymap.nix
     ./config/power-management.nix
     ./config/network.nix
-    ./config/nix.nix
+    ./config/lix.nix
     ./config/users.nix
     ./config/zfs.nix
     ./config/wireless.nix
