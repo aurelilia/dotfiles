@@ -1,4 +1,4 @@
-{ lib, modulesPath, ... }:
+{ modulesPath, ... }:
 {
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
@@ -9,12 +9,9 @@
     "sr_mod"
     "virtio_blk"
   ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "btrfs" ];
 
-  boot.loader.grub.enable = true;
+  feline.grub.enableEfi = false;
   boot.loader.grub.device = "/dev/vda";
 
   boot.initrd.luks.devices.root = {
@@ -64,6 +61,4 @@
       ];
     };
   };
-
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

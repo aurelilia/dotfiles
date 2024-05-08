@@ -13,6 +13,7 @@ in
   config = lib.mkMerge [
     (lib.mkIf (root-mnt.fsType == "zfs") {
       # General config
+      boot.loader.grub.zfsSupport = true;
       networking.hostId = lib.mkDefault "00000000";
       virtualisation.docker.storageDriver = lib.mkDefault "zfs";
       virtualisation.docker.extraPackages = [ pkgs.zfs ];
@@ -20,6 +21,13 @@ in
       services.zfs.autoScrub.enable = true;
       services.zfs.trim.enable = true;
       systemd.services.zfs-mount.enable = true;
+
+      # Systems running ZFS will have a separate /persist dataset that must
+      # be present on boot.
+      fileSystems."/persist".neededForBoot = true;
+
+      # Make sure a proper kernel is available. I want newest stable, not LTS
+      boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     })
 
     (lib.mkIf cfg.lustrate {

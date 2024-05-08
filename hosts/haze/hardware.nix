@@ -1,39 +1,12 @@
+{ ... }:
 {
-  config,
-  lib,
-  modulesPath,
-  ...
-}:
-{
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
     "nvme"
     "usbhid"
   ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [
-    "kvm-intel"
-    "nfs"
-    "nfsd"
-  ];
-  boot.extraModulePackages = [ ];
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub = {
-    enable = true;
-    zfsSupport = true;
-    efiSupport = true;
-    mirroredBoots = [
-      {
-        devices = [ "nodev" ];
-        path = "/boot";
-      }
-    ];
-  };
+  boot.kernelModules = [ "kvm-intel" ];
 
   fileSystems."/" = {
     device = "zroot/system/root";
@@ -57,17 +30,8 @@
     fsType = "vfat";
   };
 
-  swapDevices = [ ];
-
-  networking = {
-    useDHCP = true;
-    nameservers = [ "9.9.9.9" ];
-  };
   systemd.network.links."10-lan" = {
     matchConfig.PermanentMACAddress = "3c:ec:ef:ea:f4:67";
     linkConfig.Name = "lan";
   };
-
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = true;
 }

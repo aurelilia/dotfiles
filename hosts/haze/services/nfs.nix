@@ -1,5 +1,10 @@
 { ... }:
 {
+  boot.kernelModules = [
+    "nfs"
+    "nfsd"
+  ];
+
   services.nfs.server = {
     enable = true;
     exports = ''

@@ -34,6 +34,16 @@ in
       # I want a basic docker host on GUI systems
       virtualisation.docker.enable = true;
 
+      # I want my NAS NFS share available on GUI systems when needed
+      fileSystems."/haze" = {
+        device = "haze:/media";
+        fsType = "nfs4";
+        options = [
+          "noauto"
+          "x-systemd.idle-timeout=600"
+        ];
+      };
+
       feline = {
         zfs = {
           lustrate = true;
