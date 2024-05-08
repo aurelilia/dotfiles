@@ -15,6 +15,7 @@
     ./containers/matrix-garden.nix
     ./containers/matrix-louane.nix
     ./containers/matrix-tessa.nix
+    ./containers/minecraft.nix
     ./containers/nextcloud.nix
     ./containers/scrutiny.nix
 
