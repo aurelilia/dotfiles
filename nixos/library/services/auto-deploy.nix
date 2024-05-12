@@ -53,6 +53,7 @@ in
 
           echo "Deploy failed, switching back to previous"
           $CURRENT switch
+          exit 1
         '')
 
       );
