@@ -20,10 +20,13 @@
     # Hardware defaults - x86_64 with EFI
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     feline.grub.enableEfi = lib.mkDefault true;
-    hardware.cpu = {
+    fileSystems."/persist".neededForBoot = lib.mkDefault true;
+    hardware = {
       enableRedistributableFirmware = lib.mkDefault true;
-      intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-      amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+      cpu = {
+        intel.updateMicrocode = lib.mkDefault true;
+        amd.updateMicrocode = lib.mkDefault true;
+      };
     };
 
     # Misc

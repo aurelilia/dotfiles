@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./config/grub.nix
     ./config/keymap.nix
     ./config/power-management.nix
     ./config/network.nix

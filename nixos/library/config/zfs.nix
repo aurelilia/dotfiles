@@ -22,10 +22,6 @@ in
       services.zfs.trim.enable = true;
       systemd.services.zfs-mount.enable = true;
 
-      # Systems running ZFS will have a separate /persist dataset that must
-      # be present on boot.
-      fileSystems."/persist".neededForBoot = true;
-
       # Make sure a proper kernel is available. I want newest stable, not LTS
       boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     })
