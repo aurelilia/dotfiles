@@ -20,7 +20,6 @@
     # Hardware defaults - x86_64 with EFI
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     feline.grub.enableEfi = lib.mkDefault true;
-    fileSystems."/persist".neededForBoot = lib.mkDefault true;
     hardware = {
       enableRedistributableFirmware = lib.mkDefault true;
       cpu = {

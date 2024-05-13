@@ -37,6 +37,10 @@ in
       };
     }
 
+    (lib.mkIf config.feline.mountPersistAtBoot {
+      fileSystems."/persist".neededForBoot = true;
+    })
+
     (lib.mkIf (config.services.postgresql.enable) {
       feline.persist.postgres = {
         path = "/var/lib/postgresql";
@@ -45,6 +49,7 @@ in
         mode = "700";
       };
     })
+
     # (lib.mkIf (config.services.redis.servers != {}) {
     #   feline.persist = lib.mapAttrs (name: conf: lib.nameValuePair "redis-${name}" {
     #     path = "/var/lib/redis-${name}";
@@ -56,57 +61,65 @@ in
     # })
   ];
 
-  options.feline.persist = lib.mkOption {
-    type =
-      with lib.types;
-      attrsOf (
-        submodule (
-          { lib, ... }:
-          {
-            options = {
-              path = lib.mkOption {
-                type = path;
-                description = "Path to symlink into /persist.";
-              };
-              kind = lib.mkOption {
-                type = enum [
-                  "data"
-                  "config"
-                  "secrets"
-                ];
-                description = ''
-                  The kind of information that is being persisted.
-                  Changes directory inside /persist, alongside with default permissions.
-                '';
-                default = "data";
-              };
+  options.feline = {
+    mountPersistAtBoot = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "If /persist should be mounted at boot. Only use when /persist is a separate mountpoint.";
+    };
 
-              owner = lib.mkOption {
-                type = str;
-                description = "Owner of the file or directory.";
-                default = "root";
-              };
-              group = lib.mkOption {
-                type = str;
-                description = "Group of the file or directory.";
-                default = "root";
-              };
-              mode = lib.mkOption {
-                type = str;
-                description = "Mode to set the target location to.";
-                default = "755";
-              };
+    persist = lib.mkOption {
+      type =
+        with lib.types;
+        attrsOf (
+          submodule (
+            { lib, ... }:
+            {
+              options = {
+                path = lib.mkOption {
+                  type = path;
+                  description = "Path to symlink into /persist.";
+                };
+                kind = lib.mkOption {
+                  type = enum [
+                    "data"
+                    "config"
+                    "secrets"
+                  ];
+                  description = ''
+                    The kind of information that is being persisted.
+                    Changes directory inside /persist, alongside with default permissions.
+                  '';
+                  default = "data";
+                };
 
-              isDirectory = lib.mkOption {
-                type = bool;
-                description = "If the location is a directory.";
-                default = true;
+                owner = lib.mkOption {
+                  type = str;
+                  description = "Owner of the file or directory.";
+                  default = "root";
+                };
+                group = lib.mkOption {
+                  type = str;
+                  description = "Group of the file or directory.";
+                  default = "root";
+                };
+                mode = lib.mkOption {
+                  type = str;
+                  description = "Mode to set the target location to.";
+                  default = "755";
+                };
+
+                isDirectory = lib.mkOption {
+                  type = bool;
+                  description = "If the location is a directory.";
+                  default = true;
+                };
               };
-            };
-          }
-        )
-      );
-    description = "Paths to be persisted.";
-    default = { };
+            }
+          )
+        );
+      description = "Paths to be persisted.";
+      default = { };
+    };
   };
 }
