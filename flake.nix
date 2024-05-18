@@ -68,7 +68,7 @@
           agenix.nixosModules.default
           disko.nixosModules.disko
           catppuccin.nixosModules.catppuccin
-          lix-module.nixosModules.default
+          # lix-module.nixosModules.default
           nixos-dns.nixosModules.dns
           ./nixos
         ];
