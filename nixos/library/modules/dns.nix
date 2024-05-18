@@ -16,6 +16,8 @@ in
         "kitten.works" = cfg.baseRecord;
         "feline.works" = cfg.baseRecord;
         "theria.nl" = cfg.baseRecord;
+        "tessa.dog" = cfg.baseRecord;
+        "louane.xyz" = cfg.baseRecord;
       };
     };
   };

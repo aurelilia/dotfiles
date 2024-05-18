@@ -64,6 +64,9 @@ in
     "theria.nl".redir = "elia.garden";
 
     # Google telemetry workaround for some networks
-    "http://connectivitycheck.gstatic.com".extra = "respond /generate_204 204";
+    "http://connectivitycheck.gstatic.com" = {
+      extra = "respond /generate_204 204";
+      configureDns = false;
+    };
   };
 }
