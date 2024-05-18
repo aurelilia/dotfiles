@@ -24,7 +24,8 @@
 
         # Assigns
         assigns = {
-          "10" = [ { app_id = "thunderbird"; } ];
+          "10" = [ { app_id = "org.keepassxc.KeePassXC"; } ];
+          "11" = [ { app_id = "thunderbird"; } ];
         };
 
         # Appearance

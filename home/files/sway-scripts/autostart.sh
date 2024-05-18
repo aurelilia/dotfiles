@@ -16,3 +16,4 @@ waybar &
 # Apps
 ulauncher &
 thunderbird &
+keepassxc &
