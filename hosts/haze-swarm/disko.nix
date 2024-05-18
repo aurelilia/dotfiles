@@ -6,20 +6,18 @@
         device = "/dev/vda";
         type = "disk";
         content = {
-          type = "table";
-          format = "msdos";
-          partitions = [
-            {
+          type = "gpt";
+          partitions = {
+            root = {
               name = "root";
               end = "100%";
-              bootable = true;
               content = {
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
               };
-            }
-          ];
+            };
+          };
         };
       };
     };

@@ -58,6 +58,11 @@ in
       extra = (mkMatrixWellKnown "tessa.dog");
     };
 
+    # TODO actually do something with these base domains
+    "kitten.works".redir = "elia.garden";
+    "feline.works".redir = "elia.garden";
+    "theria.nl".redir = "elia.garden";
+
     # Google telemetry workaround for some networks
     "http://connectivitycheck.gstatic.com".extra = "respond /generate_204 204";
   };

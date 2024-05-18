@@ -42,6 +42,7 @@
 
   outputs =
     inputs@{
+      self,
       home-manager,
       nixpkgs,
       nixpkgs-unstable,
@@ -60,6 +61,24 @@
         "x86_64-linux"
         "aarch64-linux"
       ];
+
+      nixos-imports = {
+        imports = [
+          home-manager.nixosModules.home-manager
+          agenix.nixosModules.default
+          disko.nixosModules.disko
+          catppuccin.nixosModules.catppuccin
+          lix-module.nixosModules.default
+          nixos-dns.nixosModules.dns
+          ./nixos
+        ];
+
+        _module.args = {
+          pkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
+          catppuccin-hm = catppuccin.homeManagerModules.catppuccin;
+          nixgl = nixgl.packages.x86_64-linux;
+        };
+      };
     in
     {
       devShells.${hostSystem}.default = nixpkgsHost.mkShell {
@@ -118,24 +137,9 @@
         // {
           meta.nixpkgs = import nixpkgs { system = "x86_64-linux"; };
 
-          defaults = args: {
-            imports = [
-              home-manager.nixosModules.home-manager
-              agenix.nixosModules.default
-              disko.nixosModules.disko
-              catppuccin.nixosModules.catppuccin
-              lix-module.nixosModules.default
-              ./nixos
-            ];
-
-            _module.args = {
-              pkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
-              catppuccin-hm = catppuccin.homeManagerModules.catppuccin;
-              nixgl = nixgl.packages.x86_64-linux;
-            };
-
+          defaults = nixos-imports // {
             deployment = {
-              buildOnTarget = true;
+              buildOnTarget = false;
               allowLocalDeployment = true;
             };
           };
@@ -145,7 +149,22 @@
         system:
         let
           generate = nixos-dns.utils.generate nixpkgs.legacyPackages.${system};
-          dnsConfig.extraConfig = import ./dns.nix;
+          dnsConfig = {
+            nixosConfigurations = (
+              builtins.mapAttrs (
+                name: host:
+                nixpkgs.lib.nixosSystem {
+                  system = "x86_64-linux";
+                  modules = [
+                    nixos-imports
+                    ./hosts/${host.config or name}
+                    { _module.args.name = name; }
+                  ];
+                }
+              ) (import ./meta.nix).nodes
+            );
+            extraConfig = import ./dns.nix;
+          };
         in
         {
           zoneFiles = generate.zoneFiles dnsConfig;

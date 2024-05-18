@@ -10,6 +10,7 @@
     ./config/zfs.nix
     ./config/wireless.nix
 
+    ./modules/dns.nix
     ./modules/notify.nix
     ./modules/nspawn.nix
     ./modules/persist.nix

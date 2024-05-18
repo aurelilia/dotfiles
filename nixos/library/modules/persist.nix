@@ -37,9 +37,7 @@ in
       };
     }
 
-    (lib.mkIf config.feline.mountPersistAtBoot {
-      fileSystems."/persist".neededForBoot = true;
-    })
+    (lib.mkIf config.feline.mountPersistAtBoot { fileSystems."/persist".neededForBoot = true; })
 
     (lib.mkIf (config.services.postgresql.enable) {
       feline.persist.postgres = {

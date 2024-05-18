@@ -23,6 +23,7 @@ in
     (lib.mkIf (ty == "server") {
       feline = {
         docker.enable = true;
+        dns.enable = true;
         dotfiles.user = "root";
       };
     })

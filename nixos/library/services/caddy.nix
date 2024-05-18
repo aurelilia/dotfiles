@@ -60,6 +60,22 @@ in
       );
     };
 
+    # Configure DNS where wanted
+    networking.domains.subDomains =
+      let
+        routes = lib.filterAttrs (name: route: route.configureDns) cfg.routes;
+        routeDns = lib.mapAttrs (name: route: { }) routes;
+
+        aliases = lib.concatLists (lib.mapAttrsToList (name: value: value.aliases) routes);
+        aliasDns = lib.listToAttrs (
+          map (name: {
+            inherit name;
+            value = { };
+          }) aliases
+        );
+      in
+      routeDns // aliasDns;
+
     # Hardening, based on:
     # https://github.com/NixOS/nixpkgs/blob/nixos-23.11/nixos/modules/services/web-servers/nginx/default.nix
     # https://github.com/caddyserver/dist/pull/79
@@ -172,6 +188,12 @@ in
                   type = lines;
                   default = "";
                   description = "Additional configuration to add to the host.";
+                };
+
+                configureDns = lib.mkOption {
+                  type = bool;
+                  default = true;
+                  description = "Automatically add a DNS entry for the route.";
                 };
               };
             }

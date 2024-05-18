@@ -20,7 +20,6 @@ in
 
     mauve.tag = "workstation";
     bengal.tag = "workstation";
-    coral.tag = "workstation";
     hazyboi.tag = "workstation";
   };
 }

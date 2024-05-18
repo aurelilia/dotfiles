@@ -1,4 +1,7 @@
 { ... }:
+let
+  nodes = (import ../../meta.nix).nodes;
+in
 {
   imports = [
     ./backup.nix
@@ -20,6 +23,11 @@
     smartd.enable = false;
     # Persist is not a separate mountpoint
     mountPersistAtBoot = false;
+    # DNS: Direct records
+    dns.baseRecord = {
+      a.data = nodes.navy.ipv4;
+      aaaa.data = nodes.navy.ipv6;
+    };
   };
 
   # SSH
