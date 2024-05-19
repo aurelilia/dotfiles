@@ -139,7 +139,7 @@
 
           defaults = nixos-imports // {
             deployment = {
-              buildOnTarget = false;
+              buildOnTarget = true;
               allowLocalDeployment = true;
             };
           };
