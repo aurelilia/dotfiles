@@ -38,7 +38,13 @@ in
             rm -rf /tmp/dotfiles
             git clone https://git.elia.garden/leela/dotfiles.git /tmp/dotfiles
             cd /tmp/dotfiles
+
+            cp flake.lock flake.lock.old
             nix flake update
+            if diff flake.lock flake.lock.old ; then
+              echo "Nothing to update. Exiting!"
+              exit 0
+            fi
           ''
         ]
         ++ (lib.optional (cfg.remotes != [ ]) (
