@@ -24,7 +24,7 @@
 
         # Assigns
         assigns = {
-          "11" = [ { app_id = "thunderbird"; } ];
+          "10" = [ { app_id = "thunderbird"; } ];
         };
 
         # Appearance

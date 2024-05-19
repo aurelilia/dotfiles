@@ -52,7 +52,7 @@
       }
       {
         output = "HDMI-A-1";
-        workspace = "11";
+        workspace = "10";
       }
     ];
   };
