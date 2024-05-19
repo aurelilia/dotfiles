@@ -188,6 +188,10 @@
 
       # Disable swaybg
       swaybg_command -
+
+      # Tablet mode on bengal
+      bindswitch tablet:on "output eDP-1 scale 1.5"
+      bindswitch tablet:off "output eDP-1 scale 1.25"
     '';
   };
   xdg.configFile."sway/scripts".source = ../files/sway-scripts;

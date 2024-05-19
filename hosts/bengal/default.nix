@@ -16,6 +16,6 @@
   # Sway screen config
   feline.gui.extraSway.output."eDP-1" = {
     resolution = "2560x1440";
-    scale = "1.5";
+    scale = "1.25";
   };
 }
