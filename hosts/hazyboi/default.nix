@@ -51,8 +51,8 @@
         workspace = "3";
       }
       {
-        output = "DP-3";
-        workspace = "10";
+        output = "HDMI-A-1";
+        workspace = "11";
       }
     ];
   };
