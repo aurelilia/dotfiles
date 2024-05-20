@@ -4,6 +4,7 @@
     ./config/grub.nix
     ./config/keymap.nix
     ./config/power-management.nix
+    ./config/memory.nix
     ./config/network.nix
     ./config/lix.nix
     ./config/users.nix

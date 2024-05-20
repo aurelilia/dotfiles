@@ -29,7 +29,6 @@
     };
 
     # Misc
-    zramSwap.enable = true;
     boot.supportedFilesystems = [ "ntfs" ];
     environment.systemPackages = [ pkgs.python3 ];
   };
