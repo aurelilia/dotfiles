@@ -1,19 +1,2 @@
 #!/bin/sh
-export NIXOS_OZONE_WL=1
-
-# Environment
-# Apply user
-if [ -e ~/.config/environment.d/ ]; then . ~/.config/environment.d/*; fi
-# Misc env apps
-~/.config/sway/scripts/wallpaper.sh &
-swayidle &
-sway-audio-idle-inhibit &
-autotiling-rs &
-ydotoold &
-dunst -conf ~/.config/dunstrc &
-waybar &
-
-# Apps
-ulauncher &
-thunderbird &
-keepassxc &
+~/.config/sway/scripts/autoinner.sh > /tmp/sway-autostart-log 2> /tmp/sway-autostart-errlog
