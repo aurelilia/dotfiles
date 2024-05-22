@@ -28,6 +28,7 @@
     ./services/ssh.nix
     ./services/syncthing.nix
     ./services/tailscale.nix
+    ./services/tang.nix
     ./services/znapzend.nix
   ];
 }

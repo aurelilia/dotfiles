@@ -63,6 +63,7 @@ in
           user = "leela";
           dataDir = "/home/leela";
         };
+        tang.enable = true;
       };
     })
 

@@ -52,4 +52,7 @@
     user = "syncthing";
     dataDir = "/media/media/syncthing";
   };
+
+  # Tang
+  feline.tang.enable = true;
 }
