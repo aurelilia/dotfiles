@@ -6,7 +6,15 @@
     home = "/backup/piegames";
     createHome = true;
     shell = pkgs.bashInteractive;
-    openssh.authorizedKeys.keys = [ (import ../../../secrets/keys.nix).piegames ];
+    packages = [ pkgs.bupstash ];
+    openssh.authorizedKeys.keys =
+      let
+        keys = (import ../../../secrets/keys.nix);
+      in
+      [
+        keys.piegames
+        ''command="bupstash serve --allow-init --allow-put /backup/piegames/bupstash",restrict ${keys.piegames-backup}''
+      ];
   };
   users.groups.piegames = { };
 }
