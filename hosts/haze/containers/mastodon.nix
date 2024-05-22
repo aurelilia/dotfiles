@@ -18,7 +18,7 @@ in
       volumes = [ "${path}/redis:/data" ];
     };
     sidekiq = {
-      image = "ghcr.io/mastodon/mastodon:latest";
+      image = "ghcr.io/glitch-soc/mastodon:latest";
       container_name = "mastodon-sidekiq";
       command = "bundle exec sidekiq";
       depends_on = [
@@ -29,7 +29,7 @@ in
       volumes = [ "${path}/public/system:/mastodon/public/system" ];
     };
     mastodon-stream = {
-      image = "ghcr.io/mastodon/mastodon:latest";
+      image = "ghcr.io/glitch-soc/mastodon:latest";
       command = "node ./streaming";
       depends_on = [
         "db"
@@ -39,7 +39,7 @@ in
       ports = [ "40001:4000" ];
     };
     mastodon-web = {
-      image = "ghcr.io/mastodon/mastodon:latest";
+      image = "ghcr.io/glitch-soc/mastodon:latest";
       command = "bundle exec puma -C config/puma.rb";
       depends_on = [
         "db"
@@ -52,7 +52,7 @@ in
   };
 
   feline.caddy.routes."${url}" = {
-    extra = "reverse_proxy /api/v1/streaming* host:40001";
+    extra = "reverse_proxy /api/v1/streaming* localhost:40001";
     port = 30001;
   };
 }
