@@ -44,6 +44,7 @@ let
       "/home/*/.local/share/Trash"
       "/home/*/.local/share/PrismLauncher"
       "/home/*/.local/share/JetBrains"
+      "/home/*/.local/share/flatpak"
       "/home/*/.nuget"
       "/home/*/.m2"
       "/home/*/.mozilla"
@@ -51,13 +52,22 @@ let
       "/home/*/.config/chromium"
       "/home/*/.config/yarn"
       "/home/*/.config/Code - OSS"
+      "/home/*/.config/VSCodium"
       "/home/*/.config/JetBrains"
+      "/home/*/.config/feishin"
       "/home/*/.vscode-oss"
       "/home/*/.var"
+      "/home/*/.cargo"
+      "/home/*/.rustup"
+      "/home/*/.gradle"
       "/home/*/download"
       "/home/*/downloads"
       "/home/*/Download"
       "/home/*/Downloads"
+
+      # Backed up by haze
+      "/home/*/git"
+      "/home/*/personal"
 
       ## Git
       # Misc dirs
@@ -68,6 +78,7 @@ let
 
       # Misc files
       "*.ignore"
+      "kuma.db"
     ];
   };
 

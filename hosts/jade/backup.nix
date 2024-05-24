@@ -5,7 +5,7 @@
     borg = {
       persist.time = "04:30";
       media = {
-        dirs = [ "/media" ];
+        dirs = [ "/media/.parent" ];
         time = "03:00";
       };
     };
