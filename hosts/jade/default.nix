@@ -7,4 +7,7 @@
     ./services/tvheadend.nix
   ];
   feline.archetype = "server";
+
+  # Not used
+  feline.docker.enable = false;
 }

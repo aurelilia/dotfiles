@@ -4,7 +4,7 @@ let
   path = "/persist/data/vikunja";
 in
 {
-  backports.vikunja = {
+  services.vikunja = {
     enable = true;
     frontendScheme = "https";
     frontendHostname = url;

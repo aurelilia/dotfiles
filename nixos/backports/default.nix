@@ -1,1 +1,1 @@
-{ imports = [ ./vikunja.nix ]; }
+{ imports = [ ]; }

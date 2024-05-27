@@ -79,7 +79,7 @@ in
       kicad
       xournalpp
       keepassxc
-      (wrapWithNixGL nixosConfig.lib.pkgs-unstable.feishin)
+      feishin
       # Steam
       flatpak
 

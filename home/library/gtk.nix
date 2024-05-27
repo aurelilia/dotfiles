@@ -1,7 +1,4 @@
 { config, pkgs, ... }:
-let
-  theme = config.catppuccin;
-in
 {
   gtk = {
     enable = true;
