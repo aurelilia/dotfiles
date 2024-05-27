@@ -16,7 +16,7 @@
   # Scanner / SANE
   hardware.sane = {
     enable = true;
-    extraBackends = [ pkgs.epkowa ];
+    # extraBackends = [ pkgs.epkowa ]; TODO broken with 24.05
   };
   users.users.leela.extraGroups = [ "scanner" ];
   environment.systemPackages = [ pkgs.skanlite ];

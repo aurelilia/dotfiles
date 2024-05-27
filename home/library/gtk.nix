@@ -5,19 +5,7 @@ in
 {
   gtk = {
     enable = true;
-    catppuccin = {
-      enable = true;
-      cursor.enable = true;
-    };
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        inherit (theme) accent;
-        flavor = theme.flavour; # why
-      };
-    };
 
     font = {
       package = pkgs.noto-fonts;

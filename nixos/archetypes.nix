@@ -14,6 +14,7 @@ in
         autodeploy.local = true;
         borg.persist.enable = true;
         tailscale.enable = true;
+        theme.enable = true;
 
         borg.media.enable = lib.mkDefault true;
         smartd.enable = lib.mkDefault true;

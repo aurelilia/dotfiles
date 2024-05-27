@@ -2,7 +2,6 @@
 {
   programs.micro = {
     enable = true;
-    catppuccin.enable = true;
     settings = {
       autosu = false;
       clipboard = "terminal";

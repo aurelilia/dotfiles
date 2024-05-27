@@ -9,6 +9,9 @@
   wayland.windowManager.sway = {
     enable = true;
     package = null;
+    # Checks fail due to SwayFX options
+    # Setting package to SwayFX fails to due missing GLES context...
+    checkConfig = false;
 
     config = lib.mkMerge [
       nixosConfig.feline.gui.extraSway
@@ -199,7 +202,6 @@
   programs.swaylock = {
     enable = true;
     package = pkgs.swaylock-effects;
-    catppuccin.enable = true;
     settings = {
       screenshots = true;
       clock = true;

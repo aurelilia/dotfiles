@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  nixosConfig,
+  ...
+}:
 {
   imports = [
     ./library/bat.nix
@@ -28,10 +33,7 @@
       ncdu
     ];
 
-    catppuccin = {
-      flavour = "mocha";
-      accent = "red";
-    };
+    catppuccin = nixosConfig.catppuccin;
   };
 
   options = {

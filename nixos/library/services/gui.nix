@@ -41,7 +41,6 @@
       enable = true;
       wlr.enable = true;
       xdgOpenUsePortal = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-wlr ];
       config.common.default = [ "wlr" ];
     };
 
@@ -57,10 +56,7 @@
     boot = {
       kernelParams = [ "quiet" ];
       initrd.systemd.enable = true;
-      plymouth = {
-        enable = true;
-        theme = "breeze";
-      };
+      plymouth.enable = true;
     };
 
     # Misc.

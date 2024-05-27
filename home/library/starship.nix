@@ -2,7 +2,6 @@
 {
   programs.starship = {
     enable = true;
-    catppuccin.enable = true;
 
     settings = {
       format = "$directory$nix_shell$hostname$character";

@@ -3,10 +3,11 @@
   imports = [
     ./config/grub.nix
     ./config/keymap.nix
-    ./config/power-management.nix
+    ./config/lix.nix
     ./config/memory.nix
     ./config/network.nix
-    ./config/lix.nix
+    ./config/power-management.nix
+    ./config/theme.nix
     ./config/users.nix
     ./config/zfs.nix
     ./config/wireless.nix
