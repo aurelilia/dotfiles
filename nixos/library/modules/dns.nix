@@ -27,7 +27,7 @@ in
 
     baseRecord = lib.mkOption {
       type = lib.types.attrs;
-      default.cname.data = "${name}.elia.garden.";
+      default.cname.data = "${name}.elia.garden";
       description = "Base records of this host.";
     };
   };
