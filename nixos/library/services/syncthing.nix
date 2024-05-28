@@ -9,6 +9,7 @@ in
       mauve.id = "HTOI7SH-GCGEHJU-E22T2OV-JRM3QYM-VV7FA4K-35FJMER-A3LLSDX-QTRH7QM";
       bengal.id = "TAVWWH2-RCBPPJQ-RJZSJDR-XBVPDNC-4GJNUTQ-HODQ4LU-KU7HZR5-4SKS4A5";
       hazyboi.id = "RMDWSUF-D2Y2FZZ-JGRYACJ-3RYI3BD-CGYGROU-JWZDW6E-MDKIWQC-ZYTDZQD";
+      murray.id = "TKLQSL2-5ILPKT4-CHSDZ2Q-FQF4U3W-Y32KNOJ-GPKVA6P-5T4VIGU-ZWPRGAJ";
     };
 
     networking.firewall.allowedTCPPorts = [ 4147 ];
@@ -26,7 +27,7 @@ in
         folders = {
           git = {
             path = "${cfg.dataDir}/git";
-            devices = lib.attrNames cfg.devices;
+            devices = lib.filter (name: name != "murray") (lib.attrNames cfg.devices);
           };
           personal = {
             path = "${cfg.dataDir}/personal";

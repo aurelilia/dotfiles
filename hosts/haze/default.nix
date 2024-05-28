@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   imports = [
     ./backup.nix
@@ -51,6 +51,11 @@
     enable = true;
     user = "syncthing";
     dataDir = "/media/media/syncthing";
+  };
+  # Also sync photo inbox from my phone.
+  services.syncthing.settings.folders.camera-inbox = {
+    path = "/media/photo-inbox/camera-inbox";
+    devices = [ "murray" ];
   };
 
   # Tang
