@@ -5,7 +5,7 @@ in
 {
   feline.containers.forgejo = {
     mounts."/var/lib/forgejo" = {
-      hostPath = "/containers/forgejo/data/gitea";
+      hostPath = "/persist/data/forgejo";
       isReadOnly = false;
     };
     mounts."/etc/ssh" = {
