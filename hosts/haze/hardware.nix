@@ -30,6 +30,11 @@
     fsType = "vfat";
   };
 
+  boot.zfs = {
+    requestEncryptionCredentials = [ "zroot" "zmedia" ];
+    extraPools = [ "zbackup" "zmedia" ];
+  };
+
   systemd.network.links."10-lan" = {
     matchConfig.PermanentMACAddress = "3c:ec:ef:ea:f4:67";
     linkConfig.Name = "lan";
