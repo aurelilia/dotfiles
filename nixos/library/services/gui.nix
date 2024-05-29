@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-oldstable,
   pkgs-unstable,
   nixgl,
   lib,
@@ -30,7 +31,7 @@
     # SwayFX
     programs.sway = {
       enable = true;
-      package = pkgs.swayfx.overrideAttrs (old: {
+      package = pkgs-oldstable.swayfx.overrideAttrs (old: {
         passthru.providedSessions = [ "sway" ];
       });
       wrapperFeatures.gtk = true;

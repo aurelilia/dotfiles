@@ -1,1 +1,7 @@
-{ imports = [ ]; }
+{ ... }: {
+  imports = [  ];
+
+  config = {
+    lib.pkgs = {};
+  };
+}

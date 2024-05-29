@@ -14,6 +14,7 @@
 
     # TODO: s/release-24.05/nixos-24.05/ after release on 31.05.2024
     nixpkgs.url = "github:nixos/nixpkgs/release-24.05";
+    nixpkgs-oldstable.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
@@ -46,6 +47,7 @@
       self,
       home-manager,
       nixpkgs,
+      nixpkgs-oldstable,
       nixpkgs-unstable,
       agenix,
       disko,
@@ -76,6 +78,7 @@
 
         _module.args = {
           pkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
+          pkgs-oldstable = import nixpkgs-oldstable { system = "x86_64-linux"; };
           catppuccin-hm = catppuccin.homeManagerModules.catppuccin;
           nixgl = nixgl.packages.x86_64-linux;
         };
