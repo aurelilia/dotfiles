@@ -263,7 +263,7 @@
     ydotool
     ripgrep
     libnotify
-    swww
+    nixosConfig.lib.pkgs-oldstable.swww
     ulauncher
     alsa-utils
   ];

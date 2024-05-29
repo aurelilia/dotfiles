@@ -63,6 +63,7 @@
     # Misc.
     services.gvfs.enable = true;
     lib.pkgs-unstable = pkgs-unstable;
+    lib.pkgs-oldstable = pkgs-oldstable;
     lib.nixgl = nixgl;
   };
 
