@@ -101,7 +101,7 @@ in
         format = "<span>󰎈 {} 󰎈</span>";
         return-type = "json";
         max-length = 80;
-        exec = "playerctl -p Feishin -a metadata --format '{\"text\": \"{{markup_escape(artist)}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
+        exec = "playerctl -p Feishin -a metadata --format '{\"text\": \"{{markup_escape(artist)}} - {{markup_escape(title)}} [{{duration(position)}} / {{duration(mpris:length)}}]\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
         on-click = "";
       };
       battery = {
