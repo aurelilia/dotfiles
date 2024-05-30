@@ -31,8 +31,14 @@
   };
 
   boot.zfs = {
-    requestEncryptionCredentials = [ "zroot" "zmedia" ];
-    extraPools = [ "zbackup" "zmedia" ];
+    requestEncryptionCredentials = [
+      "zroot"
+      "zmedia"
+    ];
+    extraPools = [
+      "zbackup"
+      "zmedia"
+    ];
   };
 
   systemd.network.links."10-lan" = {

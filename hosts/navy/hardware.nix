@@ -10,8 +10,6 @@
     "virtio_blk"
   ];
   boot.supportedFilesystems = [ "btrfs" ];
-
-  feline.grub.enableEfi = false;
   boot.loader.grub.device = "/dev/vda";
 
   boot.initrd.luks.devices.root = {

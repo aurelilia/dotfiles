@@ -135,7 +135,7 @@
 
       colmena =
         (builtins.mapAttrs (name: host: {
-          deployment.tags = [ host.tag ];
+          deployment.tags = host.tags;
           imports = [ ./hosts/${host.config or name} ];
         }) (import ./meta.nix).nodes)
         // {

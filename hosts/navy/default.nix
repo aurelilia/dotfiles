@@ -18,9 +18,6 @@ in
     ./services/redirs.nix
   ];
   feline = {
-    archetype = "server";
-    # VPS, no SMART available.
-    smartd.enable = false;
     # Persist is not a separate mountpoint
     mountPersistAtBoot = false;
     # DNS: Direct records

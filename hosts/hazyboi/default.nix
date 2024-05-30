@@ -4,7 +4,6 @@
     ./backup.nix
     ./hardware.nix
   ];
-  feline.archetype = "desktop";
 
   # Libvirt
   virtualisation.libvirtd = {

@@ -1,15 +1,13 @@
 {
   lib,
-  config,
   pkgs,
+  name,
   ...
 }:
 let
-  ty = config.feline.archetype;
-in
-{
-  config = lib.mkMerge [
-    (lib.mkIf (ty != "generic") {
+  tags = (import ../meta.nix).nodes.${name}.tags;
+  conf = {
+    defaults = {
       feline = {
         autodeploy.local = true;
         borg.persist.enable = true;
@@ -19,17 +17,17 @@ in
         borg.media.enable = lib.mkDefault true;
         smartd.enable = lib.mkDefault true;
       };
-    })
+    };
 
-    (lib.mkIf (ty == "server") {
+    server = {
       feline = {
-        docker.enable = lib.mkDefault true;
         dns.enable = true;
         dotfiles.user = "root";
       };
-    })
+    };
+    docker.feline.docker.enable = true;
 
-    (lib.mkIf (ty == "desktop" || ty == "mobile") {
+    workstation = {
       # I want Mullvad on GUI systems
       services.mullvad-vpn.enable = true;
 
@@ -66,9 +64,9 @@ in
         };
         tang.enable = true;
       };
-    })
+    };
 
-    (lib.mkIf (ty == "mobile") {
+    mobile = {
       environment.systemPackages = [ pkgs.brightnessctl ];
 
       feline = {
@@ -82,19 +80,14 @@ in
           };
         };
       };
-    })
-  ];
+    };
 
-  options = {
-    feline.archetype = lib.mkOption {
-      type = lib.types.enum [
-        "server"
-        "desktop"
-        "mobile"
-        "generic"
-      ];
-      default = "generic";
-      description = "What archetype to use for base configuration.";
+    virtual = {
+      feline = {
+        smartd.enable = false;
+        grub.enableEfi = false;
+      };
     };
   };
-}
+in
+lib.mkMerge (builtins.map (tag: conf.${tag}) tags)

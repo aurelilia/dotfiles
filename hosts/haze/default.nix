@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 {
   imports = [
     ./backup.nix
@@ -32,7 +32,6 @@
     ./vms/cauldron.nix
     # ./vms/swarm.nix
   ];
-  feline.archetype = "server";
 
   # Initrd networking kernel drivers
   boot.kernelModules = [ "igb" ];

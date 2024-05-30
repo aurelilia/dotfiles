@@ -1,25 +1,48 @@
 let
   haze-swarm = {
     config = "haze-swarm";
-    tag = "swarm";
+    tags = [ ];
   };
 in
 {
   nodes = {
     navy = {
-      tag = "server";
+      tags = [
+        "defaults"
+        "server"
+        "docker"
+        "virtual"
+      ];
       ipv4 = "202.61.255.155";
       ipv6 = "2a03:4000:55:f57::1";
     };
-    jade.tag = "server";
-    haze.tag = "server";
+    jade.tags = [
+      "defaults"
+      "server"
+    ];
+    haze.tags = [
+      "defaults"
+      "server"
+      "docker"
+    ];
 
     haze-swarm1 = haze-swarm;
     haze-swarm2 = haze-swarm;
     haze-swarm3 = haze-swarm;
 
-    mauve.tag = "workstation";
-    bengal.tag = "workstation";
-    hazyboi.tag = "workstation";
+    mauve.tags = [
+      "defaults"
+      "workstation"
+      "mobile"
+    ];
+    bengal.tags = [
+      "defaults"
+      "workstation"
+      "mobile"
+    ];
+    hazyboi.tags = [
+      "defaults"
+      "workstation"
+    ];
   };
 }
