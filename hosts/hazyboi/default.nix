@@ -19,7 +19,10 @@
   };
   users.users.leela.extraGroups = [ "scanner" ];
   environment.systemPackages = [ pkgs.skanlite ];
-  nixpkgs.config.allowUnfreePredicate = pkg: lib.hasPrefix "iscan" (lib.getName pkg);
+
+  # Steam.
+  nixpkgs.config.allowUnfreePredicate = pkg: lib.hasPrefix "steam" (lib.getName pkg);
+  programs.steam.enable = true;
 
   # Sway configuration
   feline.gui.extraSway = {

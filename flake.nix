@@ -13,7 +13,7 @@
     };
 
     # TODO: s/release-24.05/nixos-24.05/ after release on 31.05.2024
-    nixpkgs.url = "github:nixos/nixpkgs/release-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-oldstable.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
