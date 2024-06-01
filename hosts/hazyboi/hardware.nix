@@ -5,10 +5,12 @@
     "xhci_pci"
     "usbhid"
     "amdgpu"
+    "r8169"
   ];
   boot.kernelModules = [
     "kvm-amd"
     "amdgpu"
+    "r8169"
   ];
 
   fileSystems."/" = {
@@ -37,8 +39,24 @@
     fsType = "vfat";
   };
 
+  boot.initrd.systemd.network.networks."10-lan" = {
+    matchConfig.Name = "enp4s0";
+    networkConfig = {
+      DHCP = "ipv4";
+      IPv6AcceptRA = false;
+    };
+    linkConfig.RequiredForOnline = "routable";
+  };
   networking.nameservers = [
-    "192.168.0.100"
+    "10.1.0.1"
     "9.9.9.9"
+  ];
+
+  # Clevis
+  feline.zfs.clevis = [
+    {
+      cryptroot = "zroot";
+      keyfile = "/boot/zroot.jwe";
+    }
   ];
 }

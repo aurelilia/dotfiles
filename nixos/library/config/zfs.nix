@@ -52,6 +52,51 @@ in
       };
     })
 
+    (lib.mkIf (cfg.clevis != [ ]) {
+      # Create empty filesystems entries to prevent a weird assert in the clevis
+      # module from complaining and failing the build
+      fileSystems = lib.listToAttrs (
+        builtins.map (entry: {
+          name = "/tmp/${entry.cryptroot}";
+          value = {
+            device = entry.cryptroot;
+            fsType = "zfs";
+            # ZFS Clevis decrypt module checks this
+            neededForBoot = true;
+            # Both of these are really just suggestions, systemd mount below
+            # does most of the work
+            options = [
+              "noauto"
+              "nofail"
+            ];
+          };
+        }) cfg.clevis
+      );
+      # Create disabled systemd mounts to discourage systemd from trying to actually mount these 
+      systemd.mounts = builtins.map (entry: {
+        enable = false;
+        where = "/tmp/${entry.cryptroot}";
+        what = entry.cryptroot;
+      }) cfg.clevis;
+
+      boot.initrd = {
+        systemd.network = {
+          enable = true;
+          wait-online.timeout = 20;
+        };
+        clevis = {
+          enable = true;
+          useTang = true;
+          devices = lib.listToAttrs (
+            builtins.map (entry: {
+              name = entry.cryptroot;
+              value.secretFile = entry.keyfile;
+            }) cfg.clevis
+          );
+        };
+      };
+    })
+
     (lib.mkIf (cfg.receive-datasets != [ ]) {
       users.users.zend = {
         isSystemUser = true;
@@ -73,6 +118,30 @@ in
 
   options.feline.zfs = {
     lustrate = lib.mkEnableOption "ZFS lustration";
+
+    clevis = lib.mkOption {
+      type =
+        with lib.types;
+        listOf (
+          submodule (
+            { lib, ... }:
+            {
+              options = {
+                cryptroot = lib.mkOption {
+                  type = str;
+                  description = "Root path to decrypt.";
+                };
+                keyfile = lib.mkOption {
+                  type = str;
+                  description = "Keyfile to use.";
+                };
+              };
+            }
+          )
+        );
+      description = "Datasets for Clevis unattended decryption";
+      default = [ ];
+    };
 
     receive-datasets = lib.mkOption {
       type = lib.types.listOf lib.types.str;
