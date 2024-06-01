@@ -9,6 +9,7 @@
       ];
     };
 
+    networking.firewall.allowedTCPPorts = [ 7654 ];
     feline.persist."tang".path = "/var/lib/private/tang";
   };
 
