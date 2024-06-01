@@ -4,8 +4,12 @@
     "nvme"
     "xhci_pci"
     "usbhid"
+    "amdgpu"
   ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [
+    "kvm-amd"
+    "amdgpu"
+  ];
 
   fileSystems."/" = {
     device = "zroot/system/root";
@@ -29,7 +33,7 @@
     ];
   };
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/69DB-CD68";
+    device = "/dev/disk/by-uuid/0855-195B";
     fsType = "vfat";
   };
 
