@@ -14,11 +14,13 @@ in
       enable = true;
       autoCreation = true;
       pure = true;
+      mailErrorSummaryTo = "znap@elia.garden";
 
       features = {
         compressed = true;
         sendRaw = true;
         zfsGetType = true;
+        skipIntermediates = true;
       };
 
       zetup = (
@@ -26,7 +28,7 @@ in
           (pool: value: {
             "${pool}-keep" = value // {
               dataset = "${pool}/${cfg.paths.keep}";
-              plan = "1hour=>5min,1day=>1hour,2week=>1day,2month=>1week,1year=>1month,10year=>3month";
+              plan = "1day=>1hour,2week=>1day,2month=>1week,1year=>1month,10year=>3month";
               destinations =
                 cfg.destinations
                 // (lib.genAttrs cfg.remotes (remote: {
@@ -37,13 +39,12 @@ in
             };
             "${pool}-local" = value // {
               dataset = "${pool}/${cfg.paths.local}";
-              plan = "1hour=>5min,1day=>1hour,2week=>1day";
+              plan = "1day=>1hour,2week=>1day";
             };
           })
           (
             lib.genAttrs cfg.pools (pool: {
               recursive = true;
-              mbuffer.enable = true;
             })
           )
       );
