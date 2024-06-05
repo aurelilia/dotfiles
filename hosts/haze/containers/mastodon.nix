@@ -1,7 +1,10 @@
 { ... }:
 let
   path = "/persist/data/mastodon";
+  cache = "/media/media/mastodon_cache";
   url = "social.elia.garden";
+
+  volumes = [ "${path}/public/system:/mastodon/public/system" "${cache}:/mastodon/public/system/cache" ];
 in
 {
   feline.compose.mastodon.services = {
@@ -26,7 +29,7 @@ in
         "redis"
       ];
       env_file = "${path}/.env.production";
-      volumes = [ "${path}/public/system:/mastodon/public/system" ];
+      inherit volumes;
     };
     mastodon-stream = {
       image = "ghcr.io/glitch-soc/mastodon:latest";
@@ -47,7 +50,7 @@ in
       ];
       env_file = "${path}/.env.production";
       ports = [ "30001:3000" ];
-      volumes = [ "${path}/public/system:/mastodon/public/system" ];
+      inherit volumes;
     };
   };
 
