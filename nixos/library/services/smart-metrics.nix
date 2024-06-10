@@ -8,7 +8,7 @@
   config.services.scrutiny.collector = lib.mkIf config.feline.smartd.enable {
     enable = true;
     schedule = "daily";
-    settings.options = {
+    settings = {
       host.id = name;
       api.endpoint = "http://haze:53042";
     };
