@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   imports = [
     ./backup.nix
@@ -13,9 +13,9 @@
 
   # Suspend and hibernate is broken
   services.logind = {
-    hibernateKey = "ignore";
-    suspendKey = "ignore";
-    suspendKeyLongPress = "ignore";
-    lidSwitch = "ignore";
+    hibernateKey = lib.mkForce "ignore";
+    suspendKey = lib.mkForce "ignore";
+    suspendKeyLongPress = lib.mkForce "ignore";
+    lidSwitch = lib.mkForce "ignore";
   };
 }
