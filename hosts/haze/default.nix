@@ -28,7 +28,7 @@
     ./services/redirs.nix
     ./services/vikunja.nix
 
-    ./vms/cauldron.nix
+    # ./vms/cauldron.nix
     # ./vms/swarm.nix
   ];
 
