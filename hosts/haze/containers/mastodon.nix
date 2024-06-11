@@ -32,7 +32,7 @@ in
       inherit volumes;
     };
     mastodon-stream = {
-      image = "ghcr.io/glitch-soc/mastodon:latest";
+      image = "ghcr.io/glitch-soc/mastodon-streaming:latest";
       command = "node ./streaming";
       depends_on = [
         "db"
