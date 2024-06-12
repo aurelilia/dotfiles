@@ -1,13 +1,13 @@
 { pkgs, ... }:
 let
-  conf = {
+  element-conf = server: {
     brand = "feline chat";
     bug_report_endpoint_url = "https://riot.im/bugreports/submit";
     defaultCountryCode = "GB";
     default_federate = true;
     default_server_config."m.homeserver" = {
-      base_url = "https://matrix.elia.garden";
-      server_name = "elia.garden";
+      base_url = "https://matrix.${server}";
+      server_name = server;
     };
     default_theme = "dark";
     disable_3pid_login = true;
@@ -131,15 +131,41 @@ let
     showLabsSettings = true;
     welcomeUserId = "@riot-bot:matrix.org";
   };
+  element = server: {
+    extra = "respond /config.json `${builtins.toJSON (element-conf server)}`";
+    root = "${pkgs.element-web}";
+  };
+
+  fluffy-conf =
+    { server, url }:
+    {
+      application_name = "FluffyChat";
+      application_welcome_message = "Hewwo";
+      default_homeserver = server;
+      web_base_url = "https://fluff.${url}/web";
+      privacy_url = "https://fluff.${url}/en/privacy.html";
+      render_html = false;
+      hide_redacted_events = false;
+      hide_unknown_events = false;
+    };
+  fluffy = args: {
+    extra = "respond /config.json `${builtins.toJSON (fluffy-conf args)}`";
+    root = "${pkgs.fluffychat-web}";
+  };
 in
 {
-  feline.caddy.routes."element.elia.garden" = {
-    aliases = [
-      "element.louane.xyz"
-      "chat.feline.works"
-      "element.ehir.art"
-    ];
-    extra = "respond /config.json `${builtins.toJSON conf}`";
-    root = "${pkgs.element-web}";
+  feline.caddy.routes = {
+    "element.elia.garden" = element "elia.garden";
+    "element.louane.xyz" = element "louane.xyz";
+    "chat.feline.works" = element "elia.garden";
+    "element.ehir.art" = element "ehir.art";
+    "fluff.feline.works" = fluffy {
+      server = "elia.garden";
+      url = "feline.works";
+    };
+    "fluff.ehir.art" = fluffy {
+      server = "ehir.art";
+      url = "ehir.art";
+    };
   };
 }

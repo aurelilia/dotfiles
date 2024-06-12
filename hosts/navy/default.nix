@@ -12,9 +12,9 @@ in
 
     ./services/caddy.nix
     ./services/coturn.nix
-    ./services/element-web.nix
     ./services/headscale.nix
     ./services/kuma.nix
+    ./services/matrix-client.nix
     ./services/redirs.nix
   ];
   feline = {
