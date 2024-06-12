@@ -137,6 +137,7 @@ in
     aliases = [
       "element.louane.xyz"
       "chat.feline.works"
+      "element.ehir.art"
     ];
     extra = "respond /config.json `${builtins.toJSON conf}`";
     root = "${pkgs.element-web}";

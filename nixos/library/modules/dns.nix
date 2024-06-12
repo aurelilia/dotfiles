@@ -18,6 +18,7 @@ in
         "theria.nl" = cfg.baseRecord;
         "tessa.dog" = cfg.baseRecord;
         "louane.xyz" = cfg.baseRecord;
+        "ehir.art" = cfg.baseRecord;
       };
     };
   };

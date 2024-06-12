@@ -11,6 +11,7 @@
     ./containers/immich.nix
     ./containers/jellyfin.nix
     ./containers/mastodon.nix
+    ./containers/matrix-ehira.nix
     ./containers/matrix-garden.nix
     ./containers/matrix-louane.nix
     ./containers/matrix-tessa.nix

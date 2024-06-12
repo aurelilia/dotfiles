@@ -4,7 +4,10 @@ let
   cache = "/media/media/mastodon_cache";
   url = "social.elia.garden";
 
-  volumes = [ "${path}/public/system:/mastodon/public/system" "${cache}:/mastodon/public/system/cache" ];
+  volumes = [
+    "${path}/public/system:/mastodon/public/system"
+    "${cache}:/mastodon/public/system/cache"
+  ];
 in
 {
   feline.compose.mastodon.services = {

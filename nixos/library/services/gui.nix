@@ -43,7 +43,10 @@
       wlr.enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
       xdgOpenUsePortal = true;
-      config.common.default = [ "gtk" "wlr" ];
+      config.common.default = [
+        "gtk"
+        "wlr"
+      ];
     };
 
     # Audio

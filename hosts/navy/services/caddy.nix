@@ -53,6 +53,7 @@ in
     "branding.feline.works".root = ../../../branding;
 
     "louane.xyz".extra = (mkMatrixWellKnown "louane.xyz");
+    "ehir.art".extra = (mkMatrixWellKnown "ehir.art");
     "tessa.dog" = {
       root = "${root}/tessa";
       extra = (mkMatrixWellKnown "tessa.dog");

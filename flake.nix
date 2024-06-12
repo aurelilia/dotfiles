@@ -12,7 +12,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # TODO: s/release-24.05/nixos-24.05/ after release on 31.05.2024
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-oldstable.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -39,6 +38,10 @@
       url = "github:Janik-Haag/nixos-dns";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    conduwuit = {
+      url = "github:girlbossceo/conduwuit";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     catppuccin.url = "github:catppuccin/nix";
   };
 
@@ -53,6 +56,7 @@
       disko,
       nixgl,
       nixos-dns,
+      conduwuit,
       catppuccin,
       lix-module,
       ...
@@ -81,6 +85,7 @@
           pkgs-oldstable = import nixpkgs-oldstable { system = "x86_64-linux"; };
           catppuccin-hm = catppuccin.homeManagerModules.catppuccin;
           nixgl = nixgl.packages.x86_64-linux;
+          conduwuit = conduwuit.packages.x86_64-linux;
         };
       };
     in
@@ -160,9 +165,12 @@
                 nixpkgs.lib.nixosSystem {
                   system = "x86_64-linux";
                   modules = [
+                    {
+                      _module.args.name = name;
+                      feline.dns.enable = true;
+                    }
                     nixos-imports
                     ./hosts/${host.config or name}
-                    { _module.args.name = name; }
                   ];
                 }
               ) (import ./meta.nix).nodes
@@ -185,6 +193,7 @@
               "kitten.works." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
               "feline.works." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
               "theria.nl." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
+              "ehir.art." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
             };
           };
         }

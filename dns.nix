@@ -17,5 +17,6 @@ in
       "smtplink".cname.data = "track.smtp2go.net";
     };
     "theria.nl" = gcore-ns;
+    "ehir.art" = gcore-ns;
   };
 }
