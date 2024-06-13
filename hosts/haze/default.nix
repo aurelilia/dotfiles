@@ -11,10 +11,8 @@
     ./containers/immich.nix
     ./containers/jellyfin.nix
     ./containers/mastodon.nix
-    ./containers/matrix-ehira.nix
     ./containers/matrix-garden.nix
     ./containers/matrix-louane.nix
-    ./containers/matrix-tessa.nix
     ./containers/minecraft.nix
     ./containers/nextcloud.nix
 
@@ -22,6 +20,8 @@
     ./services/bupstash.nix
     ./services/ddclient.nix
     ./services/homeassistant.nix
+    ./services/matrix-ehira.nix
+    ./services/matrix-tessa.nix
     ./services/navidrome.nix
     ./services/nfs.nix
     ./services/paperless.nix
