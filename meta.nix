@@ -1,7 +1,7 @@
 let
   haze-swarm = {
     config = "haze-swarm";
-    tags = [ ];
+    tags = [ "virtual" ];
   };
 in
 {

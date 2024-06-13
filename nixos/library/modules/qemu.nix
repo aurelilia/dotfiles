@@ -24,7 +24,7 @@
               "-cpu ${value.cpuModel}"
               "-smp ${toString value.cpus}"
               "-m ${toString value.ram}"
-              "-nic bridge,br=${value.bridge},model=virtio-net-pci"
+              "-nic bridge,br=${value.bridge},model=virtio-net-pci,mac=${value.mac}"
 
               # Some things libvirt does that seemed alright
               "-overcommit mem-lock=off"
@@ -82,6 +82,10 @@
                 type = str;
                 description = "The network device (bridge) to attach to the VM.";
                 default = "vmbr0";
+              };
+              mac = lib.mkOption {
+                type = str;
+                description = "The network device MAC.";
               };
 
               disks = lib.mkOption {

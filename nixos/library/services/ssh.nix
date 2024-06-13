@@ -38,7 +38,7 @@ in
       '';
     }
 
-    (lib.mkIf (!config.boot.initrd.systemd.enable) {
+    (lib.mkIf config.feline.initrd-ssh.enable {
       # Initrd SSH with ZFS unlock on port 2222.
       boot.initrd.network = {
         enable = true;
@@ -59,4 +59,6 @@ in
       };
     })
   ];
+
+  options.feline.initrd-ssh.enable = lib.mkEnableOption "SSH initrd unlocking";
 }

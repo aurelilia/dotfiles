@@ -10,7 +10,7 @@ let
 in
 {
   config = lib.mkMerge [
-    {
+    (lib.mkIf cfg.enable {
       programs.zsh.enable = true;
       users.users.root.shell = pkgs.zsh;
 
@@ -19,9 +19,9 @@ in
         ../../../home
         catppuccin-hm
       ] ++ lib.optional cfg.full ../../../home/workstation.nix;
-    }
+    })
 
-    (lib.mkIf (cfg.create-user) {
+    (lib.mkIf cfg.create-user {
       users.users.${cfg.user} = {
         isNormalUser = true;
         shell = pkgs.zsh;
@@ -40,6 +40,7 @@ in
       description = "User to install dotfiles for.";
     };
 
+    enable = lib.mkEnableOption "Dotfiles";
     full = lib.mkEnableOption "full dotfiles";
     create-user = lib.mkEnableOption "user creation";
   };

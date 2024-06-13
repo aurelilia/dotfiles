@@ -12,6 +12,7 @@ let
         autodeploy.local = true;
         borg.persist.enable = true;
         tailscale.enable = true;
+        dotfiles.enable = true;
         theme.enable = true;
 
         borg.media.enable = lib.mkDefault true;
@@ -22,6 +23,7 @@ let
     server = {
       feline = {
         dns.enable = true;
+        initrd-ssh.enable = true;
         dotfiles.user = "root";
       };
     };

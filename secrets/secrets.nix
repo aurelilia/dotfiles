@@ -2,8 +2,8 @@ let
   keys = import ./keys.nix;
 in
 {
-  "borg-repokey.age".publicKeys = keys.all;
-  "borg-ssh-id.age".publicKeys = keys.all;
+  "borg-repokey.age".publicKeys = keys.borg;
+  "borg-ssh-id.age".publicKeys = keys.borg;
   "tailscale-preauth.age".publicKeys = keys.all;
   "matrix-notify.age".publicKeys = keys.all;
 

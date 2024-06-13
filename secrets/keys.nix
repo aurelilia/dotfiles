@@ -11,7 +11,23 @@ rec {
   jade = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBTTaHIF2zQr6uNVSWcZdL+Ld8/yKBzn6WyGXvQlUNb/";
   bengal = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIBST5nykVjA+vC6D+RQXFR3MnEpLZnLgFKsBMlcvn28";
 
+  haze-swarm1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDnZFdRCB5lc7W9MvNE5dFn2QXDS0O0Iy8Wi7/XW/wZw";
+  haze-swarm2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO5/dSp3qU12xmlKDCnhN2SuqNKb0mSiirT1zl3W4nIQ";
+  haze-swarm3 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA85jrIMx9foP051adAE3K0vyT7OZvW8wmS0IMZE9Usc";
+
   all = [
+    leela
+    mauve
+    hazyboi
+    navy
+    haze
+    jade
+    bengal
+    haze-swarm1
+    haze-swarm2
+    haze-swarm3
+  ];
+  borg = [
     leela
     mauve
     hazyboi
