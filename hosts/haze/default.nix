@@ -17,7 +17,6 @@
     ./containers/matrix-tessa.nix
     ./containers/minecraft.nix
     ./containers/nextcloud.nix
-    ./containers/scrutiny.nix
 
     ./services/adguard.nix
     ./services/bupstash.nix
@@ -27,6 +26,7 @@
     ./services/nfs.nix
     ./services/paperless.nix
     ./services/redirs.nix
+    ./services/scrutiny.nix
     ./services/vikunja.nix
 
     # ./vms/cauldron.nix
