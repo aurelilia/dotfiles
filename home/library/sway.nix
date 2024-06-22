@@ -1,5 +1,6 @@
 {
   nixosConfig,
+  config,
   pkgs,
   lib,
   ...
@@ -53,9 +54,15 @@
           commands = [
             {
               command = "border none";
-              criteria = {
-                app_id = "ulauncher";
-              };
+              criteria.app_id = "ulauncher";
+            }
+            {
+              command = "inhibit_idle fullscreen";
+              criteria.app_id = ".*";
+            }
+            {
+              command = "inhibit_idle fullscreen";
+              criteria.class = ".*";
             }
           ];
         };
@@ -86,7 +93,7 @@
           # Dunst history
           "${modifier}+grave" = "exec dunstctl history-pop";
           # Screen locker
-          "${modifier}+l" = "swaylock";
+          "${modifier}+l" = "exec swaylock";
           # Screenshots
           "${modifier}+q" = "exec ~/.config/sway/scripts/screenshot.sh";
           "${modifier}+Shift+q" = "exec ~/.config/sway/scripts/screenshot-delay.sh";
@@ -211,18 +218,45 @@
       effect-blur = "8x5";
       effect-vignette = "0.5:0.5";
       effect-greyscale = true;
-      grace = "5";
+      grace = "0";
       fade-in = "0.2";
     };
   };
 
   # Swayidle
-  # The systemd service is a bit wonky with the path,
-  # so we start it with the sway autostart script
-  xdg.configFile."swayidle/config".text = ''
-    timeout 300 '${pkgs.swaylock-effects}/bin/swaylock'
-    timeout 360 'swaymsg "output * power off"' resume 'swaymsg "output * power on" && ~/.config/eww/init.nu' 
-  '';
+  services.swayidle =
+    let
+      lock = "'${config.programs.swaylock.package}/bin/swaylock'";
+    in
+    {
+      enable = true;
+      events = [
+        {
+          event = "before-sleep";
+          command = lock;
+        }
+        {
+          event = "lock";
+          command = lock;
+        }
+      ];
+      timeouts =
+        [
+          {
+            timeout = 300;
+            command = lock;
+          }
+          {
+            timeout = 360;
+            command = "'${pkgs.swayfx}/bin/swaymsg output * power off'";
+            resumeCommand = "'${pkgs.swayfx}/bin/swaymsg output * power on'";
+          }
+        ]
+        ++ lib.optional (nixosConfig.feline.gui.autoSuspend) {
+          timeout = 600;
+          command = "'${pkgs.systemd}/bin/systemctl suspend-then-hibernate'";
+        };
+    };
 
   # Dunst
   services.dunst = {
@@ -257,8 +291,6 @@
     jq
     inetutils
     slurp
-    swayidle
-    sway-audio-idle-inhibit
     wl-clipboard
     ydotool
     ripgrep

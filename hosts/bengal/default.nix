@@ -12,9 +12,12 @@
     forceImportRoot = false;
   };
 
-  # Sway screen config
-  feline.gui.extraSway.output."eDP-1" = {
-    resolution = "2560x1440";
-    scale = "1.25";
+  # Sway config
+  feline.gui = {
+    autoSuspend = true;
+    extraSway.output."eDP-1" = {
+      resolution = "2560x1440";
+      scale = "1.25";
+    };
   };
 }

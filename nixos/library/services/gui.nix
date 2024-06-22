@@ -73,6 +73,7 @@
 
   options.feline.gui = {
     enable = lib.mkEnableOption "GUI";
+    autoSuspend = lib.mkEnableOption "automatic suspend on idle";
 
     extraSway = lib.mkOption {
       type = lib.types.attrs;
