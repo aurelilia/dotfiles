@@ -75,7 +75,6 @@ in
       pavucontrol
       hotspot
       logseq
-      kicad
       xournalpp
       keepassxc
       feishin

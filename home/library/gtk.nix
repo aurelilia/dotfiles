@@ -2,6 +2,7 @@
 {
   gtk = {
     enable = true;
+    catppuccin.enable = true; # TODO find a replacement.
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
     font = {
