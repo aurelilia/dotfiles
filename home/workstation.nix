@@ -27,7 +27,6 @@ let
       paths = (map wrapBin binFiles) ++ [ package ];
     };
 in
-
 {
   imports = [
     ./library/alacritty.nix
@@ -101,7 +100,8 @@ in
       scc
       sshuttle
       rustup
-      jftui
+      github-cli
+      jellyfin-media-player
     ];
   };
 }
