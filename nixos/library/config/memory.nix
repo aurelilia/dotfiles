@@ -10,4 +10,5 @@
       "--prefer '^(codium|cargo|java)$'"
     ];
   };
+  services.systembus-notify.enable = true;
 }
