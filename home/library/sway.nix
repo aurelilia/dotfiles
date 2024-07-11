@@ -137,6 +137,9 @@
           "${modifier}+Shift+9" = "move container to workspace number 9";
           "${modifier}+Shift+0" = "move container to workspace number 10";
 
+          # hoho haha
+          "Control+Mod1+Mod4+Shift+E" = "exec firefox https://e621.net";
+
           # Layout stuff
           # You can "split" the current object of your focus with
           # $mod+b or $mod+v, for horizontal and vertical splits
