@@ -50,10 +50,18 @@
     user = "syncthing";
     dataDir = "/media/media/syncthing";
   };
-  # Also sync photo inbox from my phone.
-  services.syncthing.settings.folders.camera-inbox = {
-    path = "/media/photo-inbox/camera-inbox";
-    devices = [ "murray" ];
+  services.syncthing.settings.folders = {
+    # Photo inbox from my phone
+    camera-inbox = {
+      path = "/media/photo-inbox/camera-inbox";
+      devices = [ "murray" ];
+    };
+
+    # Windows VM for scans
+    scan-inbox = {
+      path = "/media/photo-inbox/scan-inbox";
+      devices = [ "hazyboi-windows" ];
+    };
   };
 
   # Tang
