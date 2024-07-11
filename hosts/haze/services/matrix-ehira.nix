@@ -9,7 +9,7 @@ let
       inherit port;
       database_path = "/var/lib/matrix-conduit-ehira";
       database_backend = "rocksdb";
-      max_request_size = 20000000;
+      max_request_size = 40000000;
       trusted_servers = [ "matrix.org" ];
       ip_range_denylist = [ ];
       allow_registration = false;
