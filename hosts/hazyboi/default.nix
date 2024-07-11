@@ -4,6 +4,7 @@
     ./backup.nix
     ./hardware.nix
   ];
+  nixpkgs.config.allowUnfreePredicate = pkg: (lib.hasPrefix "steam" (lib.getName pkg)) || (lib.hasPrefix "iscan" (lib.getName pkg));
 
   # Libvirt
   virtualisation.libvirtd = {
@@ -15,13 +16,12 @@
   # Scanner / SANE
   hardware.sane = {
     enable = true;
-    # extraBackends = [ pkgs.epkowa ]; TODO broken with 24.05
+    extraBackends = [ pkgs.epkowa ];
   };
   users.users.leela.extraGroups = [ "scanner" ];
   environment.systemPackages = [ pkgs.skanlite ];
 
   # Steam.
-  nixpkgs.config.allowUnfreePredicate = pkg: lib.hasPrefix "steam" (lib.getName pkg);
   programs.steam.enable = true;
 
   # Sway configuration
