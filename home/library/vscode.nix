@@ -1,6 +1,12 @@
-{ nixosConfig, lib, pkgs, ... }:
 {
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "vscode-extension-github-copilot" ];
+  nixosConfig,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  nixpkgs.config.allowUnfreePredicate =
+    pkg: builtins.elem (lib.getName pkg) [ "vscode-extension-github-copilot" ];
   programs.vscode = {
     enable = true;
     package = nixosConfig.lib.pkgs-unstable.vscodium.fhsWithPackages (ps: with ps; [ nil ]);
