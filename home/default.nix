@@ -31,6 +31,7 @@
       sshfs
       less
       ncdu
+      wget
     ];
 
     catppuccin = nixosConfig.catppuccin;
