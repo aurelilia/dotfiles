@@ -1,7 +1,8 @@
-{ ... }:
+{ pkgs, ... }:
 {
   system.stateVersion = "23.11";
   nix = {
+    package = pkgs.lix;
     settings = {
       experimental-features = [
         "nix-command"

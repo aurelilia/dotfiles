@@ -2,16 +2,6 @@
   description = "aurlila's full system configurations using Lix, NixOS, and HM";
 
   inputs = {
-    lix = {
-      url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
-      flake = false;
-    };
-    lix-module = {
-      url = "git+https://git.lix.systems/lix-project/nixos-module";
-      inputs.lix.follows = "lix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-oldstable.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -39,7 +29,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     conduwuit = {
-      url = "github:girlbossceo/conduwuit";
+      url = "github:girlbossceo/conduwuit/158de10fe6582b2fe3fa3e45c60edfe1626f14c0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
@@ -58,7 +48,6 @@
       nixos-dns,
       conduwuit,
       catppuccin,
-      lix-module,
       ...
     }:
     let
@@ -75,7 +64,6 @@
           agenix.nixosModules.default
           disko.nixosModules.disko
           catppuccin.nixosModules.catppuccin
-          # lix-module.nixosModules.default
           nixos-dns.nixosModules.dns
           ./nixos
         ];
