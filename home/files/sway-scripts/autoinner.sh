@@ -9,6 +9,7 @@ if [ -e ~/.config/environment.d/ ]; then . ~/.config/environment.d/*; fi
 autotiling-rs &
 dunst -conf ~/.config/dunstrc &
 waybar &
+systemctl --user restart swayidle
 
 # Apps
 ulauncher &

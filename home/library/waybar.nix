@@ -11,7 +11,10 @@ let
 in
 { pkgs, nixosConfig, ... }:
 {
-  home.packages = with pkgs; [ playerctl ];
+  home.packages = with pkgs; [
+    playerctl
+    pulseaudio
+  ];
 
   programs.waybar = {
     enable = true;
@@ -27,7 +30,7 @@ in
         "custom/launcher"
         "custom/playerctl#backward"
         "custom/playerctl#play"
-        "custom/playerctl#foward"
+        "custom/playerctl#forward"
         "custom/playerlabel"
       ];
       modules-center = [ "sway/workspaces" ];
@@ -87,7 +90,7 @@ in
           Stopped = "<span> </span>";
         };
       };
-      "custom/playerctl#foward" = {
+      "custom/playerctl#forward" = {
         format = "󰙡 ";
         on-click = "playerctl -p Feishin next";
         on-scroll-up = "playerctl -p Feishin volume .05+";
@@ -151,7 +154,7 @@ in
           ];
         };
         scroll-step = 1;
-        on-click = "pavucontrol";
+        on-click = "sh ~/.config/sway/scripts/audio-click.sh";
       };
       "custom/launcher" = {
         format = "";
@@ -205,7 +208,7 @@ in
           background-size: 400% 400%;
       }
 
-      #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.foward{
+      #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward{
           background: #${custom.background2};
           font-weight: bold;
           margin: 5px 0px;
@@ -234,11 +237,11 @@ in
           font-size: 28px;
       }
 
-      #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.foward {
+      #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward {
           background: #${custom.background2};
           font-size: 22px;
       }
-      #custom-playerctl.backward:hover, #custom-playerctl.play:hover, #custom-playerctl.foward:hover{
+      #custom-playerctl.backward:hover, #custom-playerctl.play:hover, #custom-playerctl.forward:hover{
           color: #${custom.tertiary_accent};
       }
       #custom-playerctl.backward {
@@ -251,7 +254,7 @@ in
           color: #${custom.secondary_accent};
           padding: 0 5px;
       }
-      #custom-playerctl.foward {
+      #custom-playerctl.forward {
           color: #${custom.primary_accent};
           border-radius: 0px 24px 10px 0px;
           padding-right: 12px;
