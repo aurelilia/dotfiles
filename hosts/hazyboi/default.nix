@@ -4,7 +4,8 @@
     ./backup.nix
     ./hardware.nix
   ];
-  nixpkgs.config.allowUnfreePredicate = pkg: (lib.hasPrefix "steam" (lib.getName pkg)) || (lib.hasPrefix "iscan" (lib.getName pkg));
+  nixpkgs.config.allowUnfreePredicate =
+    pkg: (lib.hasPrefix "steam" (lib.getName pkg)) || (lib.hasPrefix "iscan" (lib.getName pkg));
 
   # Libvirt
   virtualisation.libvirtd = {
