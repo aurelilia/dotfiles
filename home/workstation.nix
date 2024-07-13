@@ -38,6 +38,7 @@ in
     ./library/vscode.nix
     ./library/waybar.nix
     ./library/xdg.nix
+    ./library/zed.nix
   ];
 
   config = {
