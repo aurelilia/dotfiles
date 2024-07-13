@@ -260,8 +260,7 @@
           command = "'${pkgs.systemd}/bin/systemctl suspend-then-hibernate'";
         };
     };
-  # TODO backport https://github.com/nix-community/home-manager/pull/5475
-  systemd.user.services.swayidle.Unit.ConditionEnvironment = "WAYLAND_DISPLAY";
+  systemd.user.services.swayidle.Service.Environment = [ "WAYLAND_DISPLAY=wayland-1" ];
 
   # Dunst
   services.dunst = {
@@ -287,6 +286,7 @@
 
     XCURSOR_THEME = "Catppuchin-Mocha-Maroon";
     XCURSOR_SIZE = 24;
+    WAYLAND_DISPLAY = "wayland-1";
   };
 
   # Packages
