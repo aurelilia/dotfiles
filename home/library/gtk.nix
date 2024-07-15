@@ -1,5 +1,23 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+let
+  theme = config.catppuccin;
+  cursor-theme = "catppuccin-${theme.flavor}-${theme.accent}-cursors";
+  cursor-package = pkgs.catppuccin-cursors.mochaRed;
+in
+{
+  home.pointerCursor = {
+    name = cursor-theme;
+    package = cursor-package;
+    size = 32;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
   gtk = {
     enable = true;
     catppuccin.enable = true; # TODO find a replacement.
@@ -11,44 +29,27 @@
       size = 10;
     };
 
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.catppuccin-papirus-folders.override { inherit (theme) accent flavor; };
+    };
+
+    cursorTheme = {
+      package = cursor-package;
+      name = cursor-theme;
+    };
+
     gtk3 = {
       bookmarks = [
         "file:///home/leela/personal/images/screenshots"
         "file:///home/leela/personal"
+        "file:///home/leela/git/public"
         "file:///home/leela/misc"
         "file:///ethereal"
         "file:///mnt"
       ];
 
       extraConfig."gtk-application-prefer-dark-theme" = true;
-      extraCss = ''
-        .horizontal>separator {
-          border: 1px solid #1a1823;
-        }
-
-        .thunar .standard-view.frame {
-            border-style: none;
-        }
-
-        .thunar .sidebar {
-            background-color: #1a1823;
-        }
-
-        .thunar .sidebar .view {
-            color: #F9F9F9;
-            background: transparent;
-        }
-
-        .thunar .sidebar .view:not(:selected) {
-            background-color: transparent;
-        }
-
-        .thunar statusbar {
-            margin: 0 -10px;
-            padding: 0 4px;
-            border-top: 1px solid rgba(0, 0, 0, 0);
-        }
-      '';
     };
   };
 

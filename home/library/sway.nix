@@ -284,8 +284,7 @@
     MOZ_ENABLE_WAYLAND = 1;
     _JAVA_AWT_WM_NONREPARENTING = 1;
 
-    XCURSOR_THEME = "Catppuchin-Mocha-Maroon";
-    XCURSOR_SIZE = 24;
+    inherit (config.home.sessionVariables) XCURSOR_THEME XCURSOR_SIZE XCURSOR_PATH;
     WAYLAND_DISPLAY = "wayland-1";
   };
 
@@ -303,5 +302,6 @@
     nixosConfig.lib.pkgs-oldstable.swww
     ulauncher
     alsa-utils
+    catppuccin-cursors.mochaRed
   ];
 }
