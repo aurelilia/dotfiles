@@ -30,8 +30,10 @@ in
 {
   imports = [
     ./library/alacritty.nix
+    ./library/dunst.nix
     ./library/gtk.nix
     ./library/mozilla.nix
+    ./library/rofi.nix
     ./library/ssh.nix
     ./library/sway.nix
     ./library/virt.nix

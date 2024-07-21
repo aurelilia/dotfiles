@@ -89,7 +89,8 @@
           # Kill focused window
           "Mod1+4" = "kill";
           # Start launcher
-          "${modifier}+t" = "exec ulauncher-toggle";
+          "${modifier}+t" = "exec rofi -show-icons -show drun";
+          "${modifier}+shift+period" = "exec rofimoji -r emoji";
           # Dunst history
           "${modifier}+grave" = "exec dunstctl history-pop";
           # Screen locker
@@ -97,6 +98,7 @@
           # Screenshots
           "${modifier}+q" = "exec ~/.config/sway/scripts/screenshot.sh";
           "${modifier}+Shift+q" = "exec ~/.config/sway/scripts/screenshot-delay.sh";
+          "${modifier}+Control+q" = "exec rofi-screenshot";
           # Pick a colour
           "${modifier}+p" = "exec ~/.config/sway/scripts/picker.sh";
 
@@ -262,13 +264,6 @@
     };
   systemd.user.services.swayidle.Service.Environment = [ "WAYLAND_DISPLAY=wayland-1" ];
 
-  # Dunst
-  services.dunst = {
-    enable = true;
-    configFile = "$XDG_CONFIG_HOME/dunstrc";
-  };
-  xdg.configFile."dunstrc".source = ../files/dunstrc;
-
   # Misc services
   # Ulauncher tries to open themes RW (?!?!) which obviously does not work
   # with the store, so we copy it's files directly out of this repo.
@@ -300,7 +295,6 @@
     ripgrep
     libnotify
     nixosConfig.lib.pkgs-oldstable.swww
-    ulauncher
     alsa-utils
     catppuccin-cursors.mochaRed
   ];

@@ -12,6 +12,5 @@ waybar &
 systemctl --user restart swayidle
 
 # Apps
-ulauncher &
 thunderbird &
 keepassxc &

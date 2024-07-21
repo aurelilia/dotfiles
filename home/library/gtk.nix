@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, ... }:
 let
   theme = config.catppuccin;
   cursor-theme = "catppuccin-${theme.flavor}-${theme.accent}-cursors";
