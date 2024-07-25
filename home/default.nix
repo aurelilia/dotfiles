@@ -32,6 +32,7 @@
       less
       ncdu
       wget
+      comma
     ];
 
     catppuccin = nixosConfig.catppuccin;
