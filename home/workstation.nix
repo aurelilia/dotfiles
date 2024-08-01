@@ -83,6 +83,7 @@ in
       feishin
       # Steam
       flatpak
+      jetbrains.rust-rover
 
       # Fonts / Style
       fira-code-nerdfont
