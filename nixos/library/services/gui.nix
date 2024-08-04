@@ -31,7 +31,7 @@
     # SwayFX
     programs.sway = {
       enable = true;
-      package = pkgs-oldstable.swayfx.overrideAttrs (old: {
+      package = pkgs.swayfx.overrideAttrs (old: {
         passthru.providedSessions = [ "sway" ];
       });
       wrapperFeatures.gtk = true;
