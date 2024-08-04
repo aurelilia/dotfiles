@@ -105,6 +105,7 @@ in
       rustup
       github-cli
       jellyfin-media-player
+      distrobox
     ];
   };
 }
