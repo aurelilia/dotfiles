@@ -40,6 +40,11 @@ in
       "workstation"
       "mobile"
     ];
+    mainecoon.tags = [
+      "defaults"
+      "workstation"
+      "mobile"
+    ];
     hazyboi.tags = [
       "defaults"
       "workstation"

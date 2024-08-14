@@ -4,30 +4,7 @@
   pkgs,
   lib,
   ...
-}:
-let
-  # Thank you, piegames!
-  # https://git.darmstadt.ccc.de/piegames/home-config/-/blob/master/main.nix?ref_type=heads 
-  wrapWithNixGL =
-    package:
-    let
-      binFiles = lib.pipe "${lib.getBin package}/bin" [
-        builtins.readDir
-        builtins.attrNames
-        (builtins.filter (n: builtins.match "^\\..*" n == null))
-      ];
-      wrapBin =
-        name:
-        nixosConfig.lib.pkgs-unstable.writeShellScriptBin name ''
-          exec ${nixosConfig.lib.nixgl.nixGLIntel}/bin/nixGLIntel ${package}/bin/${name} "$@"
-        '';
-    in
-    nixosConfig.lib.pkgs-unstable.symlinkJoin {
-      name = "${package.name}-nixgl";
-      paths = (map wrapBin binFiles) ++ [ package ];
-    };
-in
-{
+}: {
   imports = [
     ./library/alacritty.nix
     ./library/dunst.nix
@@ -36,7 +13,6 @@ in
     ./library/rofi.nix
     ./library/ssh.nix
     ./library/sway.nix
-    ./library/virt.nix
     ./library/vscode.nix
     ./library/waybar.nix
     ./library/xdg.nix
@@ -57,17 +33,8 @@ in
       experimental-features = nix-command flakes
       warn-dirty = false
     '';
-    # Programs
-    programs = {
-      mpv.enable = true;
-      obs-studio = {
-        enable = true;
-        plugins = [ pkgs.obs-studio-plugins.input-overlay ];
-      };
-    };
     # Services
     services.flameshot.enable = true;
-    services.ssh-agent.enable = true;
 
     home.packages = with pkgs; [
       # Graphical
@@ -76,13 +43,7 @@ in
       gnome.file-roller
       gnome.nautilus
       pavucontrol
-      hotspot
-      logseq
-      xournalpp
-      keepassxc
       feishin
-      # Steam
-      flatpak
 
       # Fonts / Style
       fira-code-nerdfont
@@ -101,10 +62,6 @@ in
       zip
       scc
       sshuttle
-      rustup
-      github-cli
-      jellyfin-media-player
-      distrobox
     ];
   };
 }

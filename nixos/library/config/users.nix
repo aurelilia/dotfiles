@@ -18,7 +18,7 @@ in
       home-manager.users.${cfg.user}.imports = [
         ../../../home
         catppuccin-hm
-      ] ++ lib.optional cfg.full ../../../home/workstation.nix;
+      ] ++ lib.optional cfg.full ../../../home/workstation.nix ++ lib.optional cfg.full-slim ../../../home/workstation-slim.nix;
     })
 
     (lib.mkIf cfg.create-user {
@@ -42,6 +42,7 @@ in
 
     enable = lib.mkEnableOption "Dotfiles";
     full = lib.mkEnableOption "full dotfiles";
+    full-slim = lib.mkEnableOption "full dotfiles - slimmed";
     create-user = lib.mkEnableOption "user creation";
   };
 }
