@@ -6,7 +6,11 @@
 }:
 {
   nixpkgs.config.allowUnfreePredicate =
-    pkg: builtins.elem (lib.getName pkg) [ "vscode-extension-github-copilot" "rust-rover" ];
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "vscode-extension-github-copilot"
+      "rust-rover"
+    ];
   programs.vscode = {
     enable = true;
     package = nixosConfig.lib.pkgs-unstable.vscodium.fhsWithPackages (ps: with ps; [ nil ]);
