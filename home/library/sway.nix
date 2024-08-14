@@ -264,16 +264,6 @@
     };
   systemd.user.services.swayidle.Service.Environment = [ "WAYLAND_DISPLAY=wayland-1" ];
 
-  # Misc services
-  # Ulauncher tries to open themes RW (?!?!) which obviously does not work
-  # with the store, so we copy it's files directly out of this repo.
-  # https://github.com/nix-community/home-manager/issues/257
-  home.activation.linkUlauncher = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    rm -rf $HOME/.config/ulauncher || true
-    cp -r ${../files/ulauncher} $HOME/.config/ulauncher
-    chmod 755 -R $HOME/.config/ulauncher
-  '';
-
   # Session variables
   systemd.user.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;

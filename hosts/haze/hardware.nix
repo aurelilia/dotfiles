@@ -32,7 +32,7 @@
 
   boot.zfs = {
     requestEncryptionCredentials = [
-      "zroot"
+      "zroot/data"
       "zmedia"
     ];
     extraPools = [
