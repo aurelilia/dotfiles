@@ -29,6 +29,7 @@
         # Assigns
         assigns = {
           "10" = [ { app_id = "thunderbird"; } ];
+          "3" = [ { title = "PinMAME"; } ];
         };
 
         # Appearance
@@ -63,6 +64,20 @@
             {
               command = "inhibit_idle fullscreen";
               criteria.class = ".*";
+            }
+
+            # VPX
+            {
+              command = "floating enable";
+              criteria.title = "PinMAME";
+            }
+            {
+              command = "resize set width 870px";
+              criteria.title = "PinMAME";
+            }
+            {
+              command = "resize set height 225px";
+              criteria.title = "PinMAME";
             }
           ];
         };
