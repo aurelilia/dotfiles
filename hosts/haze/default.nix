@@ -19,12 +19,14 @@
     ./services/adguard.nix
     ./services/bupstash.nix
     ./services/ddclient.nix
+    ./services/grafana.nix
     ./services/homeassistant.nix
     ./services/matrix-ehira.nix
     ./services/matrix-tessa.nix
     ./services/navidrome.nix
     ./services/nfs.nix
     ./services/paperless.nix
+    ./services/prometheus.nix
     ./services/redirs.nix
     ./services/scrutiny.nix
     ./services/vikunja.nix

@@ -25,6 +25,7 @@
     ./services/docker.nix
     ./services/docker-compose.nix
     ./services/gui.nix
+    ./services/prometheus.nix
     ./services/smart-metrics.nix
     ./services/ssh.nix
     ./services/syncthing.nix

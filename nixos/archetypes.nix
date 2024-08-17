@@ -28,6 +28,7 @@ let
       };
     };
     docker.feline.docker.enable = true;
+    prometheus.feline.prometheus.enable = true;
 
     workstation = {
       # I want Mullvad on GUI systems
