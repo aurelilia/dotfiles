@@ -116,6 +116,8 @@
           "${modifier}+Control+q" = "exec rofi-screenshot";
           # Pick a colour
           "${modifier}+p" = "exec ~/.config/sway/scripts/picker.sh";
+          # Pinball :)
+          "${modifier}+Shift+p" = "exec ~/.config/sway/scripts/pin.sh";
 
           # Moving around
           # Move your focus around
