@@ -104,7 +104,7 @@
           # Kill focused window
           "Mod1+4" = "kill";
           # Start launcher
-          "${modifier}+t" = "exec rofi -show-icons -show drun";
+          "${modifier}+t" = "exec ~/.config/sway/scripts/launcher.sh";
           "${modifier}+shift+period" = "exec rofimoji -r emoji";
           # Dunst history
           "${modifier}+grave" = "exec dunstctl history-pop";
@@ -193,6 +193,14 @@
           # Show the next scratchpad window or hide the focused scratchpad window.
           # If there are multiple scratchpad windows, this command cycles through them.
           "${modifier}+minus" = "scratchpad show";
+
+          # FN hotkeys
+          "XF86AudioPlay" = "exec playerctl play-pause";
+          "XF86AudioNext" = "exec playerctl next";
+          "XF86AudioPrev" = "exec playerctl previous";
+          "XF86AudioMute" = "exec amixer -q set Master toggle";
+          "XF86AudioLowerVolume" = "exec amixer -q set Master 5%-";
+          "XF86AudioRaiseVolume" = "exec amixer -q set Master 5%+";
         };
 
         bars = [ ];

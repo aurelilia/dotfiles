@@ -37,7 +37,7 @@ let
       # I want a basic docker host on GUI systems
       virtualisation.docker.enable = true;
 
-      # I want my NAS NFS share available on GUI systems when needed
+      # I want my NAS NFS shares available on GUI systems when needed
       fileSystems."/haze" = {
         device = "haze:/media";
         fsType = "nfs4";
@@ -45,6 +45,22 @@ let
           "noauto"
           "x-systemd.idle-timeout=600"
         ];
+      };
+      fileSystems."/wolf" = {
+        device = "haze:/wolf";
+        fsType = "nfs4";
+        options = [
+          "noauto"
+          "x-systemd.idle-timeout=600"
+        ];
+      };
+      systemd.services.create-dirs = {
+        description = "Create directories";
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig.Type = "oneshot";
+        script = ''
+          mkdir -p /haze /wolf /mnt
+        '';
       };
 
       feline = {
