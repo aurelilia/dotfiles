@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DIRECTORY="/ethereal/pins"
+DIRECTORY="/ethereal/Games/VPX/pins"
 FILES=$(fd -e vpx --base-directory "$DIRECTORY" | rev | cut -c5- | rev)
 if [ -z "$FILES" ]; then
   exit 1
@@ -11,4 +11,4 @@ if [ -z "$SELECTED_FILE" ]; then
   exit 1
 fi
 
-alacritty -e /home/leela/.vpinball/run-db.sh "/ethereal/pins/$SELECTED_FILE.vpx"
+alacritty -e /home/leela/.vpinball/run-db.sh "/ethereal/Games/VPX/pins/$SELECTED_FILE.vpx"

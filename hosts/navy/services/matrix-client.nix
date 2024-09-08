@@ -168,4 +168,8 @@ in
       url = "ehir.art";
     };
   };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "fluffychat-web-1.20.0"
+  ];
 }

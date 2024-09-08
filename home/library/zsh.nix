@@ -8,6 +8,10 @@
     nix-direnv.enable = true;
   };
 
+  feline.shellAliases = {
+    o = "xdg-open";
+  };
+
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";

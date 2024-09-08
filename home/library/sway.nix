@@ -29,7 +29,10 @@
         # Assigns
         assigns = {
           "10" = [ { app_id = "thunderbird"; } ];
-          "3" = [ { title = "PinMAME"; } ];
+          "3" = [
+            { title = "PinMAME"; }
+            { title = "FlexDMD"; }
+          ];
         };
 
         # Appearance
@@ -78,6 +81,14 @@
             {
               command = "resize set height 225px";
               criteria.title = "PinMAME";
+            }
+            {
+              command = "resize set width 1500px";
+              criteria.title = "FlexDMD";
+            }
+            {
+              command = "resize set height 1500px";
+              criteria.title = "FlexDMD";
             }
           ];
         };

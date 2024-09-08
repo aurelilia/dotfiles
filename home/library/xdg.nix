@@ -26,7 +26,6 @@
       '';
     };
 
-    cacheHome = "/ethereal/cache/xdg";
     mime.enable = true;
     userDirs = {
       enable = true;
@@ -46,5 +45,6 @@
   home.activation.linkCache = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     rm -rf $HOME/.cache
     ln -sf /ethereal/cache/xdg $HOME/.cache
+    ln -sf /ethereal/cache/xdg $HOME/.local/cache
   '';
 }

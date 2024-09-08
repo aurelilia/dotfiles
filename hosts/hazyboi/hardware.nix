@@ -51,12 +51,4 @@
     "10.1.0.1"
     "9.9.9.9"
   ];
-
-  # Clevis
-  feline.zfs.clevis = [
-    {
-      cryptroot = "zroot";
-      keyfile = "/boot/zroot.jwe";
-    }
-  ];
 }
