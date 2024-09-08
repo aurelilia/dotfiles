@@ -2,13 +2,13 @@
 let
   path = "/persist/data/authentik";
   image = "ghcr.io/goauthentik/server";
-  version = "2024.2.2";
+  version = "2024.8.1";
   port = 50042;
 in
 {
   feline.compose.authentik.services = {
     postgresql = {
-      image = "docker.io/library/postgres:12-alpine";
+      image = "docker.io/library/postgres:15-alpine";
       container_name = "authentik-postgres";
       env_file = [ "${path}/.env" ];
       environment = {
