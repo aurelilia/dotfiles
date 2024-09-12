@@ -61,16 +61,16 @@ in
     listeners = [
       {
         port = 1883;
-        address = "localhost";
         users = {
           "home-assistant" = {
             acl = [ "readwrite #" ];
-            password = "localhost";
+            hashedPassword = "$7$101$pINRYODd4Oj1e2S3$X7eVtC1TG4aXcN4QKE+Bl+bUdHzWZu37Oxs/yML8kaNcuXn4kPrEZC8nity0K8RjvSG6OPuYPLSrGaf8UX6n5w==";
           };
         };
       }
     ];
   };
+  networking.firewall.allowedTCPPorts = [ 1883 ];
 
   feline.caddy.routes."${url}" = {
     mode = "sso";

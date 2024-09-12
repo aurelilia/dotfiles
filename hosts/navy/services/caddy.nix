@@ -56,6 +56,7 @@ in
     "ehir.art".extra = (mkMatrixWellKnown "ehir.art");
     "tessa.dog" = {
       root = "${root}/tessa";
+      no-robots = false;
       extra = (mkMatrixWellKnown "tessa.dog");
     };
 

@@ -171,5 +171,6 @@ in
 
   nixpkgs.config.permittedInsecurePackages = [
     "fluffychat-web-1.20.0"
+    "olm-3.2.16"
   ];
 }
