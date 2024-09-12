@@ -76,4 +76,8 @@ in
     mode = "sso";
     inherit port;
   };
+  feline.caddy.routes."valetudo.feline.works" = {
+    mode = "sso";
+    host = "10.1.0.147:80";
+  };
 }
