@@ -37,14 +37,13 @@
 
   networking = {
     useDHCP = false;
-    defaultGateway = "10.0.0.1";
+    defaultGateway = "192.168.0.1";
     nameservers = [
-      "10.0.0.1"
       "9.9.9.9"
     ];
     interfaces.lan.ipv4.addresses = [
       {
-        address = "10.0.1.1";
+        address = "192.168.0.10";
         prefixLength = 16;
       }
     ];
