@@ -26,7 +26,7 @@ in
         "MYSQL_HOST=db"
         "MYSQL_DATABASE=darkflame"
         "MYSQL_USERNAME=darkflame"
-        "EXTERNAL_IP=0.0.0.0"
+        "EXTERNAL_IP=haze"
         "CLIENT_NET_VERSION=171022"
       ];
       env_file = [ "${data}/.env" ];
