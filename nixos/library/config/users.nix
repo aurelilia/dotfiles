@@ -11,8 +11,9 @@ in
 {
   config = lib.mkMerge [
     (lib.mkIf cfg.enable {
+      programs.fish.enable = true;
       programs.zsh.enable = true;
-      users.users.root.shell = pkgs.zsh;
+      users.users.root.shell = pkgs.fish;
 
       nix.settings.trusted-users = [ cfg.user ];
       home-manager.users.${cfg.user}.imports =
@@ -27,7 +28,7 @@ in
     (lib.mkIf cfg.create-user {
       users.users.${cfg.user} = {
         isNormalUser = true;
-        shell = pkgs.zsh;
+        shell = pkgs.fish;
         group = cfg.user;
         extraGroups = [ "wheel" ];
         hashedPassword = "$y$j9T$sHyEvuQc0WD/wi5fxThVv.$tSJK5ie2wmohukSp7tOIEwiOmTF/BPe7u2l/c.L0O79";

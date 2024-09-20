@@ -19,6 +19,7 @@
 
     ./services/adguard.nix
     ./services/bupstash.nix
+    ./services/code.nix
     ./services/ddclient.nix
     ./services/grafana.nix
     ./services/homeassistant.nix

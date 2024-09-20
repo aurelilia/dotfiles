@@ -18,4 +18,8 @@
     ls = "lsd -lFh";
     la = "lsd -lFha";
   };
+  programs.fish.shellAliases = {
+    ls = "lsd -lFh";
+    la = "lsd -lFha";
+  };
 }

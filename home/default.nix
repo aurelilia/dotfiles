@@ -7,6 +7,7 @@
 {
   imports = [
     ./library/bat.nix
+    ./library/fish.nix
     ./library/git.nix
     ./library/lsd.nix
     ./library/micro.nix

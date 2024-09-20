@@ -1,4 +1,4 @@
-{ config, ... }:
+{ pkgs-unstable, ... }:
 let
   url = "music.kitten.works";
 in
@@ -24,5 +24,5 @@ in
     file = ../../../secrets/haze/streamrip.age;
     path = "/root/.config/streamrip/config.toml";
   };
-  environment.systemPackages = [ config.lib.pkgs.streamrip ];
+  environment.systemPackages = [ pkgs-unstable.streamrip ];
 }

@@ -64,6 +64,13 @@
       plymouth.enable = true;
     };
 
+    # Auth
+    security.pam.services = {
+      login.u2fAuth = true;
+      sudo.u2fAuth = true;
+    };
+    services.pcscd.enable = true;
+
     # Misc.
     services.gvfs.enable = true;
     lib.pkgs-unstable = pkgs-unstable;

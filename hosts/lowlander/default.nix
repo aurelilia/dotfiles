@@ -20,6 +20,7 @@
       znap.enable = true;
     };
   };
+  services.keyd.enable = lib.mkForce false;
 
   # Locale
   i18n.defaultLocale = lib.mkForce "de_DE.UTF-8";
