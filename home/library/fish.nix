@@ -27,10 +27,10 @@
       {
         name = "fzf";
         src = pkgs.fetchFromGitHub {
-          owner = "jethrokuan";
+          owner = "aurelilia";
           repo = "fzf";
-          rev = "479fa67d7439b23095e01b64987ae79a91a4e283";
-          sha256 = "28QW/WTLckR4lEfHv6dSotwkAKpNJFCShxmKFGQQ1Ew=";
+          rev = "a01d0ea0df92987d4154d908f141bf440b9beddb";
+          sha256 = "a7Ps1Qh1WkFLfKxmmDIO28UuSRtadJk9kTIWbkCjryM=";
         };
       }
       {
@@ -39,7 +39,7 @@
           owner = "jorgebucaran";
           repo = "replay.fish";
           rev = "d2ecacd3fe7126e822ce8918389f3ad93b14c86c";
-          sha256 = "28QW/WTLckR4lEfHv6dSotwkAKpNJFCShxmKFGQQ1Ew=";
+          sha256 = "TzQ97h9tBRUg+A7DSKeTBWLQuThicbu19DHMwkmUXdg=";
         };
       }
     ];
