@@ -1,24 +1,20 @@
-{ pkgs, ... }: {
-  services.code-server = {
-    enable = true;
-    disableTelemetry = true;
-    host = "0.0.0.0";
-    hashedPassword = "$argon2i$v=19$m=4096,t=3,p=1$ZHJqaG5lYmpudmJuem9ndA$3GbFWpZ+IUT+Iu8LVKNphEPqyqf1+rlybnmwLweNDvY";
-
-    package = pkgs.vscode-with-extensions.override {
-      vscode = pkgs.code-server;
-      vscodeExtensions = with pkgs.vscode-extensions; [];
+{ ... }: {
+  feline.compose.code.services.code = {
+    image = "lscr.io/linuxserver/code-server:latest";
+    container_name = "code-server";
+    environment = {
+      "PUID" = "1000";
+      "PGID" = "1000";
+      "TZ" = "Etc/UTC";
+      "HASHED_PASSWORD" = "$$argon2i$$v=19$$m=4096,t=3,p=1$$ZHJqaG5lYmpudmJuem9ndA$$3GbFWpZ+IUT+Iu8LVKNphEPqyqf1+rlybnmwLweNDvY";
+      "DEFAULT_WORKSPACE" = "/config/workspace";
     };
-
-    userDataDir = "/media/personal/code-server/.userdata";
-    extensionsDir = "/media/personal/code-server/.extensions";
+    ports = [ "4444:8443" ];
+    volumes = [ "/media/personal/code-server:/config" ];
   };
 
-  systemd.services.code-server.serviceConfig = {
-    TemporaryFileSystem = "/";
-    BindPaths = [ "/home/code-server" "/media/personal/code-server" ];
-    BindReadOnlyPaths = "/nix/";    
+  feline.caddy.routes."berg.ehir.art" = {
+    mode = "local";
+    port = 4444;
   };
-
-  networking.firewall.allowedTCPPorts = [ 4444 ];
 }
