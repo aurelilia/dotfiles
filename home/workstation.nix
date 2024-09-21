@@ -2,6 +2,7 @@
   nixosConfig,
   config,
   pkgs,
+  pkgs-unstable,
   lib,
   ...
 }:
@@ -80,7 +81,7 @@ in
       logseq
       xournalpp
       keepassxc
-      feishin
+      (wrapWithNixGL pkgs-unstable.feishin)
       # Steam
       flatpak
 

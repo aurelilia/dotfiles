@@ -28,6 +28,14 @@ let
     }
     redir @not-allowed-local https://www.youtube.com/watch?v=dQw4w9WgXcQ
   '';
+  tailnet = ''
+    @not-allowed-tailnet {
+        not {
+            remote_ip 100.64.0.0/16
+        }
+    }
+    redir @not-allowed-tailnet https://www.youtube.com/watch?v=dQw4w9WgXcQ
+  '';
 in
 {
   config = lib.mkIf (cfg.routes != { }) {
@@ -48,6 +56,7 @@ in
             ++ lib.optionals route.no-robots [ no-robots ]
             ++ lib.optionals (route.mode == "sso") [ sso ]
             ++ lib.optionals (route.mode == "local") [ local ]
+            ++ lib.optionals (route.mode == "tailnet") [ tailnet ]
             ++ lib.optionals (route.host != null) [ "reverse_proxy ${route.host}" ]
             ++ lib.optionals (route.redir != null) [ "redir https://${route.redir}{uri}" ]
             ++ lib.optionals (route.port != null) [ "reverse_proxy localhost:${toString route.port}" ]
@@ -165,6 +174,7 @@ in
                     "public"
                     "sso"
                     "local"
+                    "tailnet"
                   ];
                   description = "Mode to run the route with.";
                   default = "public";

@@ -15,7 +15,7 @@ in
         "DRONE_SERVER_PROTO=https"
         "DRONE_USER_CREATE=username:leela,admin:true"
       ];
-      ports = [ "${toString port}:80" ];
+      ports = [ "127.0.0.1:${toString port}:80" ];
       volumes = [ "${path}/data:/data" ];
     };
     drone-runner-docker = {

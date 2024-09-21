@@ -9,7 +9,7 @@ in
     nextcloud = {
       image = "nextcloud:stable";
       environment.NEXTCLOUD_DATA_DIR = "/data";
-      ports = [ "${toString port}:80" ];
+      ports = [ "127.0.0.1:${toString port}:80" ];
       volumes = [
         "${path}/www:/var/www/html"
         "${path}/srv:/data"

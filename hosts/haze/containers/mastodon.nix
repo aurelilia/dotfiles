@@ -42,7 +42,7 @@ in
         "redis"
       ];
       env_file = "${path}/.env.production";
-      ports = [ "40001:4000" ];
+      ports = [ "127.0.0.1:40001:4000" ];
     };
     mastodon-web = {
       image = "ghcr.io/glitch-soc/mastodon:latest";
@@ -52,7 +52,7 @@ in
         "redis"
       ];
       env_file = "${path}/.env.production";
-      ports = [ "30001:3000" ];
+      ports = [ "127.0.0.1:30001:3000" ];
       inherit volumes;
     };
   };

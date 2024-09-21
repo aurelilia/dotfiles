@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    nixpkgs-oldstable.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
@@ -28,10 +27,6 @@
       url = "github:Janik-Haag/nixos-dns";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    conduwuit = {
-      url = "github:girlbossceo/conduwuit/158de10fe6582b2fe3fa3e45c60edfe1626f14c0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     catppuccin.url = "github:catppuccin/nix";
   };
 
@@ -40,13 +35,11 @@
       self,
       home-manager,
       nixpkgs,
-      nixpkgs-oldstable,
       nixpkgs-unstable,
       agenix,
       disko,
       nixgl,
       nixos-dns,
-      conduwuit,
       catppuccin,
       ...
     }:
@@ -70,10 +63,8 @@
 
         _module.args = {
           pkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
-          pkgs-oldstable = import nixpkgs-oldstable { system = "x86_64-linux"; };
           catppuccin-hm = catppuccin.homeManagerModules.catppuccin;
           nixgl = nixgl.packages.x86_64-linux;
-          conduwuit = conduwuit.packages.x86_64-linux;
         };
       };
     in

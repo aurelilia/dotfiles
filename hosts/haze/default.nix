@@ -13,7 +13,7 @@
     ./containers/jellyfin.nix
     ./containers/mastodon.nix
     ./containers/matrix-garden.nix
-    ./containers/matrix-louane.nix
+    ./containers/matrix-ehira.nix
     ./containers/minecraft.nix
     ./containers/nextcloud.nix
 
@@ -23,7 +23,6 @@
     ./services/ddclient.nix
     ./services/grafana.nix
     ./services/homeassistant.nix
-    ./services/matrix-ehira.nix
     ./services/matrix-tessa.nix
     ./services/navidrome.nix
     ./services/nfs.nix

@@ -17,7 +17,7 @@ in
       SYNCSERVER_SQLURI = "sqlite:////data/syncserver.db";
       TZ = "Europe/Berlin";
     };
-    ports = [ "${toString port}:5000" ];
+    ports = [ "127.0.0.1:${toString port}:5000" ];
     volumes = [ "${path}/data:/data" ];
   };
 

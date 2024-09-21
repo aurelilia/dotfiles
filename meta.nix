@@ -10,7 +10,6 @@ in
       tags = [
         "defaults"
         "server"
-        "docker"
         "virtual"
         "prometheus"
       ];

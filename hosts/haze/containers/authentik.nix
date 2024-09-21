@@ -37,7 +37,7 @@ in
         AUTHENTIK_POSTGRESQL__USER = "authentik";
         AUTHENTIK_REDIS__HOST = "redis";
       };
-      ports = [ "${toString port}:9000" ];
+      ports = [ "127.0.0.1:${toString port}:9000" ];
       volumes = [
         "${path}/media:/media"
         "${path}/custom-templates:/templates"

@@ -6,7 +6,7 @@ in
   virtualisation.oci-containers.containers.actual = {
     image = "actualbudget/actual-server:latest-alpine";
     autoStart = true;
-    ports = [ "${toString port}:5006" ];
+    ports = [ "127.0.0.1:${toString port}:5006" ];
     volumes = [ "/persist/data/actual:/data" ];
   };
 

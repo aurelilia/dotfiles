@@ -5,12 +5,14 @@ in
 {
   services.grafana = {
     enable = true;
-    domain = url;
-    addr = "127.0.0.1";
     dataDir = "/persist/data/grafana";
     settings = {
       security.admin_user = "leela";
-      server.http_port = 2342;
+      server = {
+        domain = url;
+        http_addr = "127.0.0.1";
+        http_port = 2342;
+      };
     };
   };
 

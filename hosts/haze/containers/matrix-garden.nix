@@ -29,7 +29,7 @@ in
     };
     synapse = {
       image = "matrixdotorg/synapse:latest";
-      ports = [ "${toString port}:8008" ];
+      ports = [ "127.0.0.1:${toString port}:8008" ];
       volumes = [
         "${path}/data:/data"
         "${path}/media:/media"

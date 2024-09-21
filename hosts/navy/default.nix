@@ -8,7 +8,6 @@ in
     ./hardware.nix
 
     ./containers/forgejo.nix
-    ./containers/piped.nix
 
     ./services/caddy.nix
     ./services/coturn.nix

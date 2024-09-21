@@ -27,7 +27,7 @@ in
         "redis"
       ];
       env_file = [ "${path}/env" ];
-      ports = [ "2283:3001" ];
+      ports = [ "127.0.0.1:2283:3001" ];
       volumes = [
         "/media/personal/immich:/usr/src/app/upload"
         "/etc/localtime:/etc/localtime:ro"

@@ -57,7 +57,7 @@ in
       ];
       env_file = [ "${data}/.env" ];
       image = "ghcr.io/darkflameuniverse/nexusdashboard:latest";
-      ports = [ "${toString port}:8000" ];
+      ports = [ "127.0.0.1:${toString port}:8000" ];
       volumes = [
         "${client}:/app/luclient:ro"
         "${data}/web/cache:/app/cache"
