@@ -18,32 +18,12 @@ in
 
     immich-server = {
       image = "ghcr.io/immich-app/immich-server:release";
-      command = [
-        "start.sh"
-        "immich"
-      ];
       depends_on = [
         "database"
         "redis"
       ];
       env_file = [ "${path}/env" ];
-      ports = [ "127.0.0.1:2283:3001" ];
-      volumes = [
-        "/media/personal/immich:/usr/src/app/upload"
-        "/etc/localtime:/etc/localtime:ro"
-      ];
-    };
-    immich-microservices = {
-      image = "ghcr.io/immich-app/immich-server:release";
-      command = [
-        "start.sh"
-        "microservices"
-      ];
-      depends_on = [
-        "database"
-        "redis"
-      ];
-      env_file = [ "${path}/env" ];
+      ports = [ "127.0.0.1:2283:2283" ];
       volumes = [
         "/media/personal/immich:/usr/src/app/upload"
         "/etc/localtime:/etc/localtime:ro"

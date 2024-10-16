@@ -2,7 +2,6 @@
   nixosConfig,
   config,
   pkgs,
-  pkgs-unstable,
   lib,
   ...
 }:
@@ -81,9 +80,8 @@ in
       logseq
       xournalpp
       keepassxc
-      (wrapWithNixGL pkgs-unstable.feishin)
-      # Steam
-      flatpak
+      (wrapWithNixGL nixosConfig.lib.pkgs-unstable.feishin)
+      (wrapWithNixGL nixosConfig.lib.pkgs-unstable.joplin-desktop)
 
       # Fonts / Style
       fira-code-nerdfont

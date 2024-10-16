@@ -289,8 +289,8 @@
           }
           {
             timeout = 360;
-            command = """'${pkgs.swayfx}/bin/swaymsg output "*" power off'""";
-            resumeCommand = """'${pkgs.swayfx}/bin/swaymsg output "*" power on'""";
+            command = "'${pkgs.swayfx}/bin/swaymsg output \"*\" power off'";
+            resumeCommand = "'${pkgs.swayfx}/bin/swaymsg output \"*\" power on'";
           }
         ]
         ++ lib.optional (nixosConfig.feline.gui.autoSuspend) {
