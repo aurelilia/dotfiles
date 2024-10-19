@@ -1,7 +1,7 @@
 # In part based on:
 # https://headless-render-api.com/blog/2024/04/08/mullvad-vpn-containerized-nixos
 # https://github.com/pceiley/nix-config/blob/3854c687d951ee3fe48be46ff15e8e094dd8e89f/hosts/common/modules/qbittorrent.nix
-{ pkgs, ... }:
+{ lib, pkgs, pkgs-unstable, ... }:
 {
   services.jellyfin = {
     enable = true;
@@ -173,6 +173,30 @@
           uid = 888;
         };
         users.groups.qbittorrent.gid = 888;
+
+        # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/misc/flaresolverr.nix
+        systemd.services.flaresolverr = {
+          description = "FlareSolverr";
+          after = [ "network.target" ];
+          wantedBy = [ "multi-user.target" ];
+
+          environment = {
+            HOME = "/run/flaresolverr";
+            PORT = "8191";
+          };
+
+          serviceConfig = {
+            SyslogIdentifier = "flaresolverr";
+            Restart = "always";
+            RestartSec = 5;
+            Type = "simple";
+            DynamicUser = true;
+            RuntimeDirectory = "flaresolverr";
+            WorkingDirectory = "/run/flaresolverr";
+            ExecStart = lib.getExe pkgs-unstable.flaresolverr;
+            TimeoutStopSec = 30;
+          };
+        };
       };
   };
 }
