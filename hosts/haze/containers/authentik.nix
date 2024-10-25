@@ -2,7 +2,7 @@
 let
   path = "/persist/data/authentik";
   image = "ghcr.io/goauthentik/server";
-  version = "2024.8.1";
+  version = "2024.8.3";
   port = 50042;
 in
 {

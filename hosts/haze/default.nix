@@ -14,7 +14,6 @@
     ./containers/mastodon.nix
     ./containers/matrix-garden.nix
     ./containers/matrix-ehira.nix
-    ./containers/minecraft.nix
     ./containers/nextcloud.nix
 
     ./services/adguard.nix
