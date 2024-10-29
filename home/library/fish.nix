@@ -27,10 +27,10 @@
       {
         name = "fzf";
         src = pkgs.fetchFromGitHub {
-          owner = "aurelilia";
-          repo = "fzf";
-          rev = "a01d0ea0df92987d4154d908f141bf440b9beddb";
-          sha256 = "a7Ps1Qh1WkFLfKxmmDIO28UuSRtadJk9kTIWbkCjryM=";
+          owner = "PatrickF1";
+          repo = "fzf.fish";
+          rev = "8920367cf85eee5218cc25a11e209d46e2591e7a";
+          sha256 = "T8KYLA/r/gOKvAivKRoeqIwE2pINlxFQtZJHpOy9GMM=";
         };
       }
       {
@@ -52,10 +52,8 @@
       set -gx DIRENV_LOG_FORMAT ""
 
       # fzf
-      set -U FZF_COMPLETE 2
-      set -U FZF_PREVIEW_FILE_CMD "${pkgs.pistol}/bin/pistol"
-      # This needs re-sourcing for some reason?
-      source ~/.config/fish/conf.d/plugin-fzf.fish
+      set -gx fzf_preview_file_cmd "${pkgs.pistol}/bin/pistol"
+      fzf_configure_bindings --directory=\cf
       set -gx FZF_DEFAULT_OPTS "--height ~30% \
       --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
       --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \

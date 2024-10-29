@@ -7,7 +7,7 @@
 }:
 let
   # Thank you, piegames!
-  # https://git.darmstadt.ccc.de/piegames/home-config/-/blob/master/main.nix?ref_type=heads 
+  # https://git.darmstadt.ccc.de/piegames/home-config/-/blob/master/main.nix?ref_type=heads
   wrapWithNixGL =
     package:
     let
@@ -80,8 +80,8 @@ in
       logseq
       xournalpp
       keepassxc
+      jellyfin-media-player
       (wrapWithNixGL nixosConfig.lib.pkgs-unstable.feishin)
-      (wrapWithNixGL nixosConfig.lib.pkgs-unstable.joplin-desktop)
 
       # Fonts / Style
       fira-code-nerdfont
@@ -102,7 +102,6 @@ in
       sshuttle
       rustup
       github-cli
-      jellyfin-media-player
       distrobox
     ];
   };
