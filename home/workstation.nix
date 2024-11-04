@@ -105,10 +105,8 @@ in
       distrobox
     ];
 
-    nixpkgs.config.allowInsecurePredicate =
-      pkg:
-      builtins.elem (lib.getName pkg) [
-        "logseq"
-      ];
+    nixpkgs.config.permittedInsecurePackages = [
+      "electron-27.3.11"
+    ];
   };
 }
