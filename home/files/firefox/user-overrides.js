@@ -84,7 +84,7 @@ user_pref("ui.prefersReducedMotion", 0);
 /* Change sync server */
 user_pref("identity.sync.tokenserver.uri", "https://firefox.feline.works/token/1.0/sync/1.5");
 
-/* Fractional scaling */
-user_pref("widget.wayland.fractional-scale.enabled", true);
+/* Fractional scaling TODO This is broken?? as of v131 */
+user_pref("widget.wayland.fractional-scale.enabled", false);
 
 user_pref("_user.js.parrot", "all done!");

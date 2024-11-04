@@ -1,5 +1,5 @@
- /* Hide border on tab bar, force its state to 'scroll', adjust margin-left for width of scrollbar. */
- #tabbar {
+/* Hide border on tab bar, force its state to 'scroll', adjust margin-left for width of scrollbar. */
+#tabbar {
 	border: 0;
 	overflow-y: scroll !important;
 	margin-left: -18px !important;
@@ -31,38 +31,17 @@
 	display: none;
 }
 
-
-
-/* ##### THEME ############################################ */
-@keyframes pulse {
-	0% {
-		width: 0px;
-		height: 0px;
-		opacity: 1;
-	}
-	100% {
-		width: 350px;
-		height: 350px;
-		opacity: 0;
-		top: calc(50% - 175px);
-		left: calc(50% - 175px);
-	}
-}
-
-
-
 #tabbar {
 	border-right: 1px solid #1e1e2d;
 	box-shadow: none !important;
 	background-color: var(--theme-colors-sidebar);
 }
 
-
-
 .tab {
 	background-color: transparent;
-    box-shadow: none !important;
+	box-shadow: none !important;
 }
+
 .tab .label {
 	color: #D9E0EE !important;
 }
@@ -70,30 +49,11 @@
 .tab.discarded {
 	background-color: var(--theme-colors-frame);
 }
+
 .tab.discarded:hover {
-    background-color: #302D41 !important;
+	background-color: #302D41 !important;
 }
 
 .tab.active .label {
 	font-weight: bold;
 }
-
-
-
-/* Adjust style for tab that has sound playing. */
-.tab.sound-playing .favicon::after {
-	content: '';
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	border-radius: 50%;
-	background: #FFFFFF;
-	animation: pulse 2s ease-out 0s infinite;
-	z-index: -1;
-	opacity: 0;
-}
-
-/* Adjust style for tab that is muted. */
-.tab.muted {
-	opacity: 0.5;
-} 

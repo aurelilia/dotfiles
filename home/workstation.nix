@@ -104,5 +104,11 @@ in
       github-cli
       distrobox
     ];
+
+    nixpkgs.config.allowInsecurePredicate =
+      pkg:
+      builtins.elem (lib.getName pkg) [
+        "logseq"
+      ];
   };
 }
