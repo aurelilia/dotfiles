@@ -116,7 +116,9 @@
         };
       };
 
-      userChrome = (lib.readFile ../files/firefox/userChromeStyle.css) + (lib.readFile ../files/firefox/userChrome.css);
+      userChrome =
+        (lib.readFile ../files/firefox/userChromeStyle.css)
+        + (lib.readFile ../files/firefox/userChrome.css);
       userContent = lib.readFile ../files/firefox/userContent.css;
       extraConfig =
         (lib.readFile ../files/firefox/user.js) + (lib.readFile ../files/firefox/user-overrides.js);

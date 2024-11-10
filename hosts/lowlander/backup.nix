@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   feline = {
     borg = {
       persist = {

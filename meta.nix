@@ -17,7 +17,7 @@ in
       ipv4 = "202.61.255.155";
       ipv6 = "2a03:4000:55:f57::1";
     };
-    lowlander.tags = [  ];
+    lowlander.tags = [ ];
     haze = {
       tags = [
         "defaults"

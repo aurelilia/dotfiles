@@ -5,7 +5,10 @@
     ./hardware.nix
   ];
   nixpkgs.config.allowUnfreePredicate =
-    pkg: (lib.hasPrefix "steam" (lib.getName pkg)) || (lib.hasPrefix "iscan" (lib.getName pkg)) || (lib.hasPrefix "vmware" (lib.getName pkg));
+    pkg:
+    (lib.hasPrefix "steam" (lib.getName pkg))
+    || (lib.hasPrefix "iscan" (lib.getName pkg))
+    || (lib.hasPrefix "vmware" (lib.getName pkg));
 
   # Libvirt
   virtualisation.libvirtd = {
@@ -77,11 +80,11 @@
 
   # VMWare
   virtualisation.vmware.host = {
-  	enable = true;
-  	extraConfig = ''
-  	  # Allow unsupported device's OpenGL and Vulkan acceleration for guest vGPU
-  	  mks.gl.allowUnsupportedDrivers = "TRUE"
-  	  mks.vk.allowUnsupportedDevices = "TRUE"
-  	'';
+    enable = true;
+    extraConfig = ''
+        # Allow unsupported device's OpenGL and Vulkan acceleration for guest vGPU
+        mks.gl.allowUnsupportedDrivers = "TRUE"
+        mks.vk.allowUnsupportedDevices = "TRUE"
+    '';
   };
 }

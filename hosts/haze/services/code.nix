@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   feline.compose.code.services.code = {
     image = "lscr.io/linuxserver/code-server:latest";
     container_name = "code-server";

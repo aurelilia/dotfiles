@@ -62,19 +62,23 @@
   };
 
   # Users
-  users.users = let user = name: {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    group = name;
-    extraGroups = [ "wheel" ];
-    hashedPassword = "$y$j9T$Cux7IceNmg8uwaZB6P0mU0$KiqsjlGnfD39Pwd21o/Au.JJpuxWwtYsWe/2Aza3EF4";
-    openssh.authorizedKeys.keys = (import ../../secrets/keys.nix).ssh;
-  }; in {
-    axel = user "axel";
-    ursula = user "ursula";
-  };
+  users.users =
+    let
+      user = name: {
+        isNormalUser = true;
+        shell = pkgs.zsh;
+        group = name;
+        extraGroups = [ "wheel" ];
+        hashedPassword = "$y$j9T$Cux7IceNmg8uwaZB6P0mU0$KiqsjlGnfD39Pwd21o/Au.JJpuxWwtYsWe/2Aza3EF4";
+        openssh.authorizedKeys.keys = (import ../../secrets/keys.nix).ssh;
+      };
+    in
+    {
+      axel = user "axel";
+      ursula = user "ursula";
+    };
   users.groups = {
-    axel = {};
-    ursula = {};
+    axel = { };
+    ursula = { };
   };
 }

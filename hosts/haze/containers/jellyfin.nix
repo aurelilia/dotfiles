@@ -1,7 +1,12 @@
 # In part based on:
 # https://headless-render-api.com/blog/2024/04/08/mullvad-vpn-containerized-nixos
 # https://github.com/pceiley/nix-config/blob/3854c687d951ee3fe48be46ff15e8e094dd8e89f/hosts/common/modules/qbittorrent.nix
-{ lib, pkgs, pkgs-unstable, ... }:
+{
+  lib,
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 {
   services.jellyfin = {
     enable = true;
