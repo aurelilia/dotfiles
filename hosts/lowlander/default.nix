@@ -35,7 +35,10 @@
   # GUI
   services = {
     xserver.enable = true;
-    displayManager.sddm.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      catppuccin.enable = false;
+    };
     desktopManager.plasma6.enable = true;
   };
 
@@ -58,7 +61,7 @@
       enable = true;
       languagePacks = [ "de" ];
     };
-    zsh.enable = true;
+    fish.enable = true;
   };
 
   # Users
@@ -66,7 +69,7 @@
     let
       user = name: {
         isNormalUser = true;
-        shell = pkgs.zsh;
+        shell = pkgs.fish;
         group = name;
         extraGroups = [ "wheel" ];
         hashedPassword = "$y$j9T$Cux7IceNmg8uwaZB6P0mU0$KiqsjlGnfD39Pwd21o/Au.JJpuxWwtYsWe/2Aza3EF4";

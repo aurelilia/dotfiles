@@ -11,6 +11,7 @@ rec {
   jade = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBTTaHIF2zQr6uNVSWcZdL+Ld8/yKBzn6WyGXvQlUNb/";
   bengal = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIBST5nykVjA+vC6D+RQXFR3MnEpLZnLgFKsBMlcvn28";
   mainecoon = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAldVnwdJ6zAp54SgIhnD+ywT6yGLft2s9jtGuruAUlH";
+  lowlander = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL3huIw2Xd2xs+SHsaEc1PhysaKYxqzLRyu+uNtKh5ff";
 
   haze-swarm1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDnZFdRCB5lc7W9MvNE5dFn2QXDS0O0Iy8Wi7/XW/wZw";
   haze-swarm2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO5/dSp3qU12xmlKDCnhN2SuqNKb0mSiirT1zl3W4nIQ";
@@ -25,6 +26,7 @@ rec {
     jade
     bengal
     mainecoon
+    lowlander
     haze-swarm1
     haze-swarm2
     haze-swarm3
@@ -37,6 +39,7 @@ rec {
     haze
     jade
     bengal
+    lowlander
   ];
   zfs-sender = [
     bengal
@@ -44,6 +47,7 @@ rec {
     hazyboi
     haze
     jade
+    lowlander
   ];
   zfs-receiver = {
     jade.publicKey = jade;
