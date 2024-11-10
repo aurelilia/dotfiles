@@ -159,7 +159,7 @@
                 '';
               in
               "!${preStartScript}";
-            ExecStart = "${pkgs.qbittorrent-nox}/bin/qbittorrent-nox";
+            ExecStart = "${pkgs-unstable.qbittorrent-nox}/bin/qbittorrent-nox";
           };
 
           environment = {

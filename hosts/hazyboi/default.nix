@@ -5,7 +5,7 @@
     ./hardware.nix
   ];
   nixpkgs.config.allowUnfreePredicate =
-    pkg: (lib.hasPrefix "steam" (lib.getName pkg)) || (lib.hasPrefix "iscan" (lib.getName pkg));
+    pkg: (lib.hasPrefix "steam" (lib.getName pkg)) || (lib.hasPrefix "iscan" (lib.getName pkg)) || (lib.hasPrefix "vmware" (lib.getName pkg));
 
   # Libvirt
   virtualisation.libvirtd = {
@@ -13,14 +13,6 @@
     parallelShutdown = 5;
     qemu.runAsRoot = false;
   };
-
-  # Scanner / SANE
-  hardware.sane = {
-    enable = true;
-    extraBackends = [ pkgs.epkowa ];
-  };
-  users.users.leela.extraGroups = [ "scanner" ];
-  environment.systemPackages = [ pkgs.skanlite ];
 
   # Steam.
   programs.steam.enable = true;
