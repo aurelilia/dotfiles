@@ -82,6 +82,7 @@ in
       keepassxc
       jellyfin-media-player
       (wrapWithNixGL nixosConfig.lib.pkgs-unstable.feishin)
+      input-leap
 
       # Fonts / Style
       fira-code-nerdfont

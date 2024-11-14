@@ -45,6 +45,7 @@
       gnome.nautilus
       pavucontrol
       feishin
+      input-leap
 
       # Fonts / Style
       fira-code-nerdfont
@@ -63,6 +64,7 @@
       zip
       scc
       sshuttle
+      rustup
     ];
   };
 }
