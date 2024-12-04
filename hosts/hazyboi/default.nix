@@ -28,7 +28,7 @@
         position = "0 0";
         transform = "90";
       };
-      DP-3 = {
+      DP-1 = {
         resolution = "3840x2160";
         position = "1440 780";
         scale = "1.5";
@@ -37,7 +37,7 @@
 
     workspaceOutputAssign = [
       {
-        output = "DP-3";
+        output = "DP-1";
         workspace = "1";
       }
       {
@@ -45,7 +45,7 @@
         workspace = "2";
       }
       {
-        output = "DP-3";
+        output = "DP-1";
         workspace = "3";
       }
       {

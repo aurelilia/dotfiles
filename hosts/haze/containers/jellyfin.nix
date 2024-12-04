@@ -25,7 +25,7 @@
 
   boot.kernelParams = [ "i915.enable_guc=2" ];
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
@@ -47,6 +47,13 @@
     path = "/persist/data/qbittorrent/mullvad";
     symlink = false;
   };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "aspnetcore-runtime-6.0.36"
+    "aspnetcore-runtime-wrapped-6.0.36"
+    "dotnet-sdk-6.0.428"
+    "dotnet-sdk-wrapped-6.0.428"
+  ];
 
   feline.containers.jellyseerr = {
     mounts."/media" = {

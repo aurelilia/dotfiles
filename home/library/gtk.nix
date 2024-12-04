@@ -8,7 +8,7 @@ in
   home.pointerCursor = {
     name = cursor-theme;
     package = cursor-package;
-    size = 32;
+    size = 24;
     gtk.enable = true;
     x11.enable = true;
   };

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 let
   element-conf = server: {
     brand = "feline chat";
@@ -150,7 +150,16 @@ let
     };
   fluffy = args: {
     extra = "respond /config.json `${builtins.toJSON (fluffy-conf args)}`";
-    root = "${pkgs.fluffychat-web}";
+    root = "${pkgs-unstable.fluffychat-web}";
+  };
+
+  cinny-conf = server: {
+    defaultHomeserver = 0;
+    homeserverList = [ server ];
+  };
+  cinny = args: {
+    extra = "respond /config.json `${builtins.toJSON (cinny-conf args)}`";
+    root = "${pkgs-unstable.cinny}";
   };
 in
 {
@@ -167,10 +176,7 @@ in
       server = "ehir.art";
       url = "ehir.art";
     };
+    "cinny.feline.works" = cinny "elia.garden";
+    "cinny.ehir.art" = cinny "ehir.art";
   };
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "fluffychat-web-1.20.0"
-    "olm-3.2.16"
-  ];
 }

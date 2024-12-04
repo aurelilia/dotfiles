@@ -45,7 +45,7 @@
       gnome.nautilus
       pavucontrol
       feishin
-      input-leap
+      nixosConfig.lib.pkgs-unstable.lan-mouse
 
       # Fonts / Style
       fira-code-nerdfont

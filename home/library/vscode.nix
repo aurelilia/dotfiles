@@ -31,8 +31,7 @@
       mkhl.direnv
 
       thenuprojectcontributors.vscode-nushell-lang
-      mgt19937.typst-preview
-      nvarner.typst-lsp
+      myriad-dreamin.tinymist
     ];
 
     userSettings = {

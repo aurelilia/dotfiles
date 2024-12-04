@@ -2,11 +2,11 @@
   description = "aurlila's full system configurations using Lix, NixOS, and HM";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {
@@ -62,7 +62,11 @@
         ];
 
         _module.args = {
-          pkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
+          pkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; config.permittedInsecurePackages = [
+    "fluffychat-web-1.22.1"
+    "olm-3.2.16"
+    "cinny-unwrapped-4.2.3"
+  ]; };
           catppuccin-hm = catppuccin.homeManagerModules.catppuccin;
           nixgl = nixgl.packages.x86_64-linux;
         };

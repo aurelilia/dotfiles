@@ -5,7 +5,7 @@
     settings = {
       env.TERM = "xterm-256color";
 
-      shell = {
+      terminal.shell = {
         program = "${pkgs.fish}/bin/fish";
         args = [ "-l" ];
       };
@@ -33,7 +33,7 @@
         unfocused_hollow = false;
       };
 
-      live_config_reload = false;
+      general.live_config_reload = false;
 
       mouse = {
         bindings = [
