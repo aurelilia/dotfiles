@@ -48,7 +48,7 @@ in
           ''
         ]
         ++ (lib.optional (cfg.remotes != [ ]) (
-          "colmena apply --on " + (lib.concatStringsSep "," cfg.remotes)
+          "colmena apply --impure --on " + (lib.concatStringsSep "," cfg.remotes)
         ))
         ++ (lib.optional cfg.local ''
           CURRENT="$(readlink -f /run/current-system/bin/switch-to-configuration)"
