@@ -52,7 +52,7 @@ in
         ))
         ++ (lib.optional cfg.local ''
           CURRENT="$(readlink -f /run/current-system/bin/switch-to-configuration)"
-          if colmena apply-local ; then
+          if colmena apply-local --impure ; then
             echo "Deployed!"
             exit 0
           fi
