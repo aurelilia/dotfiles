@@ -16,5 +16,5 @@ in
     };
   };
 
-  feline.caddy.routes.${url}.port = config.services.grafana.port;
+  feline.caddy.routes.${url}.port = config.services.grafana.settings.server.http_port;
 }

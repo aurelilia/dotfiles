@@ -87,4 +87,12 @@
       mks.vk.allowUnsupportedDevices = "TRUE"
     '';
   };
+
+  # Printer
+  services.avahi.enable = true;
+  services.printing = {
+  	enable = true;
+  	drivers = [ pkgs.ipp-usb ];
+  	cups-pdf.enable = true;
+  };
 }

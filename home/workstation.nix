@@ -83,6 +83,7 @@ in
       jellyfin-media-player
       (wrapWithNixGL nixosConfig.lib.pkgs-unstable.feishin)
       nixosConfig.lib.pkgs-unstable.lan-mouse
+      nixosConfig.lib.pkgs-unstable.orca-slicer
 
       # Fonts / Style
       fira-code-nerdfont

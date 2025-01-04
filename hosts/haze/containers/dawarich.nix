@@ -7,16 +7,10 @@ in
     dawarich_app = {
       command = [ "bin/dev" ];
       container_name = "dawarich_app";
-      depends_on = {
-        dawarich_db = {
-          condition = "service_healthy";
-          restart = true;
-        };
-        dawarich_redis = {
-          condition = "service_healthy";
-          restart = true;
-        };
-      };
+      depends_on = [
+        "dawarich_db"
+        "dawarich_redis"
+      ];
       entrypoint = "dev-entrypoint.sh";
       environment = {
         APPLICATION_HOST = "track.feline.works";
@@ -63,20 +57,11 @@ in
     dawarich_sidekiq = {
       command = [ "sidekiq" ];
       container_name = "dawarich_sidekiq";
-      depends_on = {
-        dawarich_app = {
-          condition = "service_healthy";
-          restart = true;
-        };
-        dawarich_db = {
-          condition = "service_healthy";
-          restart = true;
-        };
-        dawarich_redis = {
-          condition = "service_healthy";
-          restart = true;
-        };
-      };
+      depends_on = [
+        "dawarich_app"
+        "dawarich_db"
+        "dawarich_redis"
+      ];
       entrypoint = "dev-entrypoint.sh";
       environment = {
         APPLICATION_HOST = "track.feline.works";

@@ -36,7 +36,11 @@
       comma
     ];
 
-    catppuccin = nixosConfig.catppuccin;
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+      accent = "red";
+    };
   };
 
   options = {

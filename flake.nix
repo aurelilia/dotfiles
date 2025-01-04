@@ -62,11 +62,7 @@
         ];
 
         _module.args = {
-          pkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; config.permittedInsecurePackages = [
-    "fluffychat-web-1.22.1"
-    "olm-3.2.16"
-    "cinny-unwrapped-4.2.3"
-  ]; };
+          pkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
           catppuccin-hm = catppuccin.homeManagerModules.catppuccin;
           nixgl = nixgl.packages.x86_64-linux;
         };
