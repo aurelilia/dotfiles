@@ -135,32 +135,6 @@ let
     extra = "respond /config.json `${builtins.toJSON (element-conf server)}`";
     root = "${pkgs.element-web}";
   };
-
-  fluffy-conf =
-    { server, url }:
-    {
-      application_name = "FluffyChat";
-      application_welcome_message = "Hewwo";
-      default_homeserver = server;
-      web_base_url = "https://fluff.${url}/web";
-      privacy_url = "https://fluff.${url}/en/privacy.html";
-      render_html = false;
-      hide_redacted_events = false;
-      hide_unknown_events = false;
-    };
-  fluffy = args: {
-    extra = "respond /config.json `${builtins.toJSON (fluffy-conf args)}`";
-    root = "${pkgs-unstable.fluffychat-web}";
-  };
-
-  cinny-conf = server: {
-    defaultHomeserver = 0;
-    homeserverList = [ server ];
-  };
-  cinny = args: {
-    extra = "respond /config.json `${builtins.toJSON (cinny-conf args)}`";
-    root = "${pkgs-unstable.cinny}";
-  };
 in
 {
   feline.caddy.routes = {
@@ -168,15 +142,5 @@ in
     "element.louane.xyz" = element "louane.xyz";
     "chat.feline.works" = element "elia.garden";
     "element.ehir.art" = element "ehir.art";
-    "fluff.feline.works" = fluffy {
-      server = "elia.garden";
-      url = "feline.works";
-    };
-    "fluff.ehir.art" = fluffy {
-      server = "ehir.art";
-      url = "ehir.art";
-    };
-    "cinny.feline.works" = cinny "elia.garden";
-    "cinny.ehir.art" = cinny "ehir.art";
   };
 }
