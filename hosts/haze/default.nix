@@ -7,7 +7,6 @@
     ./containers/actual.nix
     ./containers/authentik.nix
     ./containers/darkflame.nix
-    ./containers/dawarich.nix
     ./containers/drone.nix
     ./containers/ffsync.nix
     ./containers/immich.nix

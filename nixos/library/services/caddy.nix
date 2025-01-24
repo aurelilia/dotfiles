@@ -7,7 +7,7 @@ let
       @not-allowed {
         remote_ip 114.119.0.0/16 # Some weird bot network?
       }
-      redir @not-allowed https://www.youtube.com/watch?v=dQw4w9WgXcQ
+      redir @not-allowed https://www.youtube.com/watch?v=wpV-gGA4PSk
   '';
   sso = ''
     # always forward outpost path to actual outpost
@@ -26,7 +26,7 @@ let
             remote_ip 10.0.0.0/8 192.168.0.0/16 172.16.0.0/12 100.64.0.0/16
         }
     }
-    redir @not-allowed-local https://www.youtube.com/watch?v=dQw4w9WgXcQ
+    redir @not-allowed-local https://www.youtube.com/watch?v=wpV-gGA4PSk
   '';
   tailnet = ''
     @not-allowed-tailnet {
@@ -34,7 +34,7 @@ let
             remote_ip 100.64.0.0/16
         }
     }
-    redir @not-allowed-tailnet https://www.youtube.com/watch?v=dQw4w9WgXcQ
+    redir @not-allowed-tailnet https://www.youtube.com/watch?v=wpV-gGA4PSk
   '';
 in
 {

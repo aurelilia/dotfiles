@@ -18,8 +18,24 @@
   feline.caddy.routes = {
     "media.kitten.works".port = 8096;
     "request.kitten.works" = {
-      port = 5055;
-      mode = "sso";
+      host = "jellyseerr.container:5055";
+      mode = "tailnet";
+    };
+    "q.request.kitten.works" = {
+      host = "jellyseerr.container:7979";
+      mode = "tailnet";
+    };
+    "s.request.kitten.works" = {
+      host = "jellyseerr.container:8989";
+      mode = "tailnet";
+    };
+    "r.request.kitten.works" = {
+      host = "jellyseerr.container:7878";
+      mode = "tailnet";
+    };
+    "p.request.kitten.works" = {
+      host = "jellyseerr.container:9696";
+      mode = "tailnet";
     };
   };
 
@@ -185,30 +201,6 @@
           uid = 888;
         };
         users.groups.qbittorrent.gid = 888;
-
-        # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/misc/flaresolverr.nix
-        systemd.services.flaresolverr = {
-          description = "FlareSolverr";
-          after = [ "network.target" ];
-          wantedBy = [ "multi-user.target" ];
-
-          environment = {
-            HOME = "/run/flaresolverr";
-            PORT = "8191";
-          };
-
-          serviceConfig = {
-            SyslogIdentifier = "flaresolverr";
-            Restart = "always";
-            RestartSec = 5;
-            Type = "simple";
-            DynamicUser = true;
-            RuntimeDirectory = "flaresolverr";
-            WorkingDirectory = "/run/flaresolverr";
-            ExecStart = lib.getExe pkgs-unstable.flaresolverr;
-            TimeoutStopSec = 30;
-          };
-        };
       };
   };
 }
