@@ -14,6 +14,7 @@ in
     ./services/headscale.nix
     ./services/kuma.nix
     ./services/matrix-client.nix
+    ./services/postfix.nix
     ./services/redirs.nix
   ];
   feline = {

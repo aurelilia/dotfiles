@@ -28,6 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
+    nixos-mail.url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
   };
 
   outputs =
@@ -40,6 +41,7 @@
       disko,
       nixgl,
       nixos-dns,
+      nixos-mail,
       catppuccin,
       ...
     }:
@@ -58,6 +60,7 @@
           disko.nixosModules.disko
           catppuccin.nixosModules.catppuccin
           nixos-dns.nixosModules.dns
+          nixos-mail.nixosModules.default          
           ./nixos
         ];
 
