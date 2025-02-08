@@ -81,9 +81,10 @@ in
       xournalpp
       keepassxc
       jellyfin-media-player
-      (wrapWithNixGL nixosConfig.lib.pkgs-unstable.feishin)
-      nixosConfig.lib.pkgs-unstable.lan-mouse
-      nixosConfig.lib.pkgs-unstable.orca-slicer
+      feishin
+      lan-mouse
+      orca-slicer
+      qbittorrent
 
       # Fonts / Style
       fira-code-nerdfont

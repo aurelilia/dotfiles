@@ -307,6 +307,7 @@
 
     inherit (config.home.sessionVariables) XCURSOR_THEME XCURSOR_SIZE XCURSOR_PATH;
     WAYLAND_DISPLAY = "wayland-1";
+    NIXOS_OZONE_WL = 1;
   };
 
   # Packages
