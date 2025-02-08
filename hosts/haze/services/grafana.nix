@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  url = "dash.feline.works";
+  url = "dash.monitor.catin.eu";
 in
 {
   services.grafana = {

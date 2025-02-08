@@ -45,14 +45,8 @@ in
       '';
     };
 
-    "browse.elia.garden".extra = ''
-      root * ${root}/browse
-      file_server browse
-    '';
+    "branding.catin.eu".root = ../../../branding;
 
-    "branding.feline.works".root = ../../../branding;
-
-    "louane.xyz".extra = (mkMatrixWellKnown "louane.xyz");
     "ehir.art".extra = (mkMatrixWellKnown "ehir.art");
     "tessa.dog" = {
       root = "${root}/tessa";
@@ -64,6 +58,7 @@ in
     "kitten.works".redir = "elia.garden";
     "feline.works".redir = "elia.garden";
     "theria.nl".redir = "elia.garden";
+    "catin.eu".redir = "elia.garden";
 
     # Google telemetry workaround for some networks
     "http://connectivitycheck.gstatic.com" = {

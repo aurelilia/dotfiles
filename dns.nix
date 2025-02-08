@@ -18,5 +18,7 @@ in
     };
     "theria.nl" = gcore-ns;
     "ehir.art" = gcore-ns;
+    "tessa.dog" = gcore-ns;
+    "catin.eu" = gcore-ns;
   };
 }

@@ -1,6 +1,6 @@
 { pkgs-unstable, ... }:
 let
-  url = "home.feline.works";
+  url = "home.catin.eu";
   port = 51321;
 in
 {
@@ -76,8 +76,9 @@ in
     mode = "sso";
     inherit port;
   };
-  feline.caddy.routes."valetudo.feline.works" = {
+  feline.caddy.routes."valetudo.catin.eu" = {
     mode = "sso";
     host = "10.1.0.147:80";
   };
+  feline.caddy.routes."home.feline.works".redir = url;
 }

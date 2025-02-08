@@ -1,6 +1,6 @@
 { ... }:
 let
-  url = "forge.feline.works";
+  url = "forge.catin.eu";
 in
 {
   feline.containers.forgejo = {
@@ -75,5 +75,6 @@ in
   feline.caddy.routes = {
     ${url}.host = "forgejo:3000";
     "git.elia.garden".redir = url;
+    "forge.feline.works".redir = url;
   };
 }

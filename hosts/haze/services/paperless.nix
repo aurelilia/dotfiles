@@ -1,6 +1,6 @@
 { ... }:
 let
-  url = "docs.theria.nl";
+  url = "docs.catin.eu";
 in
 {
   services.paperless = {

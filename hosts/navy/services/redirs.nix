@@ -1,8 +1,9 @@
 { ... }:
 {
   feline.caddy.routes = {
-    "media.elia.garden".redir = "media.kitten.works";
-    "photos.elia.garden".redir = "photos.kitten.works";
-    "vikunja.elia.garden".redir = "notes.feline.works";
+    "media.elia.garden".redir = "media.catin.eu";
+    "photos.elia.garden".redir = "photos.catin.eu";
+    "media.kitten.works".redir = "media.catin.eu";
+    "photos.kitten.works".redir = "photos.catin.eu";
   };
 }

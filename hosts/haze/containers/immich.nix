@@ -36,5 +36,5 @@ in
     };
   };
 
-  feline.caddy.routes."photos.kitten.works".port = 2283;
+  feline.caddy.routes."photos.catin.eu".port = 2283;
 }

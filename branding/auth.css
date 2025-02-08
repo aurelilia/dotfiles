@@ -1,6 +1,6 @@
 :root {
     --ak-accent: #331559;
-    --ak-flow-background: url(https://branding.feline.works/background.jpg) !important;
+    --ak-flow-background: url(https://branding.catin.eu/background.jpg) !important;
     --pf-global--primary-color--100: #8839ef;
     --pf-global--primary-color--200: #481d7f;
     --pf-global--primary-color--400: var(--ak-accent);
@@ -11,5 +11,5 @@
 }
 
 pf-c-background-image {
-    --ak-flow-background: url(https://branding.feline.works/background.jpg) !important;
+    --ak-flow-background: url(https://branding.catin.eu/background.jpg) !important;
 }

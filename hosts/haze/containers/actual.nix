@@ -10,7 +10,7 @@ in
     volumes = [ "/persist/data/actual:/data" ];
   };
 
-  feline.caddy.routes."budget.feline.works" = {
+  feline.caddy.routes."budget.catin.eu" = {
     mode = "sso";
     inherit port;
   };

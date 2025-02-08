@@ -2,7 +2,7 @@
 let
   path = "/persist/data/droneci";
   port = 50043;
-  url = "anvil.feline.works";
+  url = "anvil.catin.eu";
 in
 {
   feline.compose.drone.services = {
@@ -10,7 +10,7 @@ in
       image = "drone/drone:2";
       env_file = [ "${path}/env" ];
       environment = [
-        "DRONE_GITEA_SERVER=https://forge.feline.works"
+        "DRONE_GITEA_SERVER=https://forge.catin.eu"
         "DRONE_SERVER_HOST=${url}"
         "DRONE_SERVER_PROTO=https"
         "DRONE_USER_CREATE=username:leela,admin:true"
@@ -32,4 +32,5 @@ in
   };
 
   feline.caddy.routes."${url}".port = port;
+  feline.caddy.routes."anvil.feline.works".redir = url;
 }

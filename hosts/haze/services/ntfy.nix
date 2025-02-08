@@ -1,6 +1,6 @@
 { ... }:
 let
-  url = "ntfy.feline.works";
+  url = "ntfy.catin.eu";
   port = 23438;
 in
 {

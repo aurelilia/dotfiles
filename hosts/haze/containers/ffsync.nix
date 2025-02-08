@@ -2,7 +2,7 @@
 let
   path = "/persist/data/ffsync";
   port = 50075;
-  url = "firefox.feline.works";
+  url = "firefox.catin.eu";
 in
 {
   # I would use services.firefox-syncserver here, but it sadly forces
@@ -22,4 +22,5 @@ in
   };
 
   feline.caddy.routes."${url}".port = port;
+    feline.caddy.routes."firefox.feline.works".redir = url;
 }

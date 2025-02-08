@@ -6,7 +6,6 @@
 
     ./containers/actual.nix
     ./containers/authentik.nix
-    ./containers/darkflame.nix
     ./containers/drone.nix
     ./containers/ffsync.nix
     ./containers/immich.nix
@@ -18,7 +17,6 @@
 
     ./services/adguard.nix
     ./services/bupstash.nix
-    ./services/code.nix
     ./services/ddclient.nix
     ./services/grafana.nix
     ./services/homeassistant.nix
@@ -26,11 +24,10 @@
     ./services/navidrome.nix
     ./services/nfs.nix
     ./services/ntfy.nix
-    # ./services/paperless.nix
+    ./services/paperless.nix
     ./services/prometheus.nix
     ./services/redirs.nix
     ./services/scrutiny.nix
-    ./services/vikunja.nix
 
     # ./vms/cauldron.nix
     # ./vms/swarm.nix

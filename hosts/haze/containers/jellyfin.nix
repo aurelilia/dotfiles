@@ -1,10 +1,5 @@
-# In part based on:
-# https://headless-render-api.com/blog/2024/04/08/mullvad-vpn-containerized-nixos
-# https://github.com/pceiley/nix-config/blob/3854c687d951ee3fe48be46ff15e8e094dd8e89f/hosts/common/modules/qbittorrent.nix
 {
-  lib,
   pkgs,
-  pkgs-unstable,
   ...
 }:
 {
@@ -16,12 +11,12 @@
 
   feline.persist."jellyfin".path = "/var/lib/jellyfin";
   feline.caddy.routes = {
-    "media.kitten.works".port = 8096;
-    "s.request.kitten.works" = {
+    "media.catin.eu".port = 8096;
+    "s.media.catin.eu" = {
       host = "jellyseerr.container:8989";
       mode = "tailnet";
     };
-    "r.request.kitten.works" = {
+    "r.media.catin.eu" = {
       host = "jellyseerr.container:7878";
       mode = "tailnet";
     };
@@ -35,15 +30,6 @@
       intel-media-driver
       intel-compute-runtime
     ];
-  };
-
-  # critical fix for mullvad-daemon to run in container, otherwise errors with: "EPERM: Operation not permitted"
-  # It seems net_cls API filesystem is deprecated as it's part of cgroup v1. So it's not available by default on hosts using cgroup v2.
-  # https://github.com/mullvad/mullvadvpn-app/issues/5408#issuecomment-1805189128
-  fileSystems."/tmp/net_cls" = {
-    device = "net_cls";
-    fsType = "cgroup";
-    options = [ "net_cls" ];
   };
 
   nixpkgs.config.permittedInsecurePackages = [

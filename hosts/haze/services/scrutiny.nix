@@ -15,7 +15,7 @@ in
       influxdb2.path = "/var/lib/influxdb2";
     };
 
-    caddy.routes."smart.theria.nl" = {
+    caddy.routes."smart.monitor.catin.eu" = {
       inherit port;
       mode = "local";
     };

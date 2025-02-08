@@ -1,6 +1,6 @@
 { ... }:
 let
-  url = "cloud.feline.works";
+  url = "cloud.catin.eu";
   path = "/persist/data/nextcloud";
   port = 40013;
 in
@@ -34,4 +34,5 @@ in
     '';
     inherit port;
   };
+  feline.caddy.routes."cloud.feline.works".redir = url;
 }

@@ -2,7 +2,7 @@
 let
   path = "/persist/data/authentik";
   image = "ghcr.io/goauthentik/server";
-  version = "2024.10.2";
+  version = "2024.12.3";
   port = 50042;
 in
 {
@@ -78,6 +78,14 @@ in
         	header /static/dist/custom.css Content-Type text/css
           respond /static/dist/custom.css `${builtins.readFile ../../../branding/auth.css}`
           redir /static/dist/assets/images/flow_background.jpg https://branding.feline.works/background.jpg
+      '';
+    };
+    routes."auth.catin.eu" = {
+      inherit port;
+      extra = ''
+        	header /static/dist/custom.css Content-Type text/css
+          respond /static/dist/custom.css `${builtins.readFile ../../../branding/auth.css}`
+          redir /static/dist/assets/images/flow_background.jpg https://branding.catin.eu/background.jpg
       '';
     };
   };

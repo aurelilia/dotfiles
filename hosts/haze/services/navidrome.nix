@@ -1,6 +1,6 @@
 { pkgs-unstable, ... }:
 let
-  url = "music.kitten.works";
+  url = "music.catin.eu";
 in
 {
   services.navidrome = {

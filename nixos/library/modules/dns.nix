@@ -19,6 +19,7 @@ in
         "tessa.dog" = cfg.baseRecord;
         "louane.xyz" = cfg.baseRecord;
         "ehir.art" = cfg.baseRecord;
+        "catin.eu" = cfg.baseRecord;
       };
     };
   };
