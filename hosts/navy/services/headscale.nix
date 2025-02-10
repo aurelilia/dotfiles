@@ -111,7 +111,7 @@ in
 
         oidc = {
           only_start_if_oidc_is_available = true;
-          issuer = "https://sso.elia.garden/application/o/headscale/";
+          issuer = "https://auth.catin.eu/application/o/headscale/";
           client_id = "headscale";
           scope = ["openid" "profile" "email"];
           extra_params = {

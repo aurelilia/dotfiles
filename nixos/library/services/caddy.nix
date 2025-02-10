@@ -216,7 +216,7 @@ in
     sso = lib.mkOption {
       type = lib.types.str;
       description = "Host for Authentik SSO.";
-      default = "https://sso.elia.garden";
+      default = "https://auth.catin.eu";
     };
   };
 }

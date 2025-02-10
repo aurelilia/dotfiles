@@ -70,15 +70,9 @@ in
 
   feline.caddy = {
     sso = "http://localhost:${toString port}";
-    routes."sso.elia.garden".port = port;
-    routes."auth.feline.works" = {
-      inherit port;
-      aliases = [ "auth.kitten.works" ];
-      extra = ''
-        	header /static/dist/custom.css Content-Type text/css
-          respond /static/dist/custom.css `${builtins.readFile ../../../branding/auth.css}`
-          redir /static/dist/assets/images/flow_background.jpg https://branding.feline.works/background.jpg
-      '';
+    routes."sso.elia.garden" = {
+      aliases = [ "auth.feline.works" "auth.kitten.works" ];
+      redir = "auth.catin.eu";
     };
     routes."auth.catin.eu" = {
       inherit port;
