@@ -10,6 +10,12 @@
     || (lib.hasPrefix "iscan" (lib.getName pkg))
     || (lib.hasPrefix "vmware" (lib.getName pkg));
 
+  # Extra programs
+  environment.systemPackages = [
+    pkgs.sonarr
+    pkgs.radarr
+  ];
+
   # Libvirt
   virtualisation.libvirtd = {
     enable = true;
@@ -70,7 +76,6 @@
       }
     '';
   };
-
   feline.persist = {
     "bluetooth" = {
       path = "/var/lib/bluetooth";
