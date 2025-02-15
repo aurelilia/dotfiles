@@ -36,7 +36,7 @@ in
         [
           ''
             rm -rf /tmp/dotfiles
-            git clone https://git.elia.garden/leela/dotfiles.git /tmp/dotfiles
+            git clone https://forge.catin.eu/leela/dotfiles.git /tmp/dotfiles
             cd /tmp/dotfiles
 
             cp flake.lock flake.lock.old
