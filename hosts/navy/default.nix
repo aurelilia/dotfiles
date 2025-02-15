@@ -7,10 +7,9 @@ in
     ./backup.nix
     ./hardware.nix
 
-    ./containers/forgejo.nix
-
     ./services/caddy.nix
     ./services/coturn.nix
+    ./services/forgejo.nix
     ./services/headscale.nix
     ./services/kuma.nix
     ./services/matrix-client.nix
@@ -27,10 +26,6 @@ in
     };
   };
 
-  # SSH
-  # Port 22 is taken by Forgejo
+  # SSH - Server is publically reachable, make it slightly less bad
   services.openssh.ports = [ 9022 ];
-
-  # nspawn NAT
-  feline.natExternal = "ens3";
 }

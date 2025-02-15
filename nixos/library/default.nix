@@ -14,7 +14,6 @@
 
     ./modules/dns.nix
     ./modules/notify.nix
-    ./modules/nspawn.nix
     ./modules/persist.nix
     ./modules/qemu.nix
     ./modules/steamcmd.nix
