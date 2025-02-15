@@ -71,7 +71,10 @@ in
   feline.caddy = {
     sso = "http://localhost:${toString port}";
     routes."sso.elia.garden" = {
-      aliases = [ "auth.feline.works" "auth.kitten.works" ];
+      aliases = [
+        "auth.feline.works"
+        "auth.kitten.works"
+      ];
       redir = "auth.catin.eu";
     };
     routes."auth.catin.eu" = {

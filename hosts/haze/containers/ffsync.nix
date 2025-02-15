@@ -7,9 +7,8 @@ in
 {
   # I would use services.firefox-syncserver here, but it sadly forces
   # MySQL and is therefore incompatible with historical data I still have.
-  feline.compose.ffsync.services.ffsync = {
+  virtualisation.oci-containers.containers.ffsync = {
     image = "mozilla/syncserver";
-    env_file = [ "${path}/env" ];
     environment = {
       SYNCSERVER_BATCH_UPLOAD_ENABLED = "true";
       SYNCSERVER_FORCE_WSGI_ENVIRON = "true";
@@ -17,10 +16,11 @@ in
       SYNCSERVER_SQLURI = "sqlite:////data/syncserver.db";
       TZ = "Europe/Berlin";
     };
+    environmentFiles = [ "${path}/env" ];
     ports = [ "127.0.0.1:${toString port}:5000" ];
     volumes = [ "${path}/data:/data" ];
   };
 
   feline.caddy.routes."${url}".port = port;
-    feline.caddy.routes."firefox.feline.works".redir = url;
+  feline.caddy.routes."firefox.feline.works".redir = url;
 }

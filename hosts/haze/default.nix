@@ -6,10 +6,8 @@
 
     ./containers/actual.nix
     ./containers/authentik.nix
-    ./containers/drone.nix
     ./containers/ffsync.nix
     ./containers/immich.nix
-    ./containers/jellyfin.nix
     ./containers/mastodon.nix
     ./containers/matrix-garden.nix
     ./containers/matrix-ehira.nix
@@ -20,6 +18,7 @@
     ./services/ddclient.nix
     ./services/grafana.nix
     ./services/homeassistant.nix
+    ./services/jellyfin.nix
     ./services/matrix-tessa.nix
     ./services/navidrome.nix
     ./services/nfs.nix

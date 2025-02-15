@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./config/containers.nix
     ./config/grub.nix
     ./config/keymap.nix
     ./config/lix.nix
@@ -24,6 +25,7 @@
     ./services/docker.nix
     ./services/docker-compose.nix
     ./services/gui.nix
+    ./services/postgres.nix
     ./services/prometheus.nix
     ./services/smart-metrics.nix
     ./services/ssh.nix
