@@ -16,6 +16,9 @@ let
           {
             container_name = name;
             restart = "unless-stopped";
+            extra_hosts = [
+              "host.runc.internal:172.17.0.1"
+            ];
           }
           // value
         )
