@@ -45,6 +45,10 @@ let
       "/home/*/.local/share/PrismLauncher"
       "/home/*/.local/share/JetBrains"
       "/home/*/.local/share/flatpak"
+      "/home/*/.local/share/Steam"
+      "/home/*/.local/share/umu"
+      "/home/*/.local/share/zed/node"
+      "/home/*/.local/share/dolphin-emu"
       "/home/*/.nuget"
       "/home/*/.m2"
       "/home/*/.mozilla"
@@ -59,6 +63,7 @@ let
       "/home/*/.var"
       "/home/*/.cargo"
       "/home/*/.rustup"
+      "/home/*/.npm"
       "/home/*/.gradle"
       "/home/*/download"
       "/home/*/downloads"
@@ -78,7 +83,8 @@ let
 
       # Misc files
       "*.ignore"
-      "kuma.db"
+      "kuma.db" # uptime-kuma
+      "classification_model.pickle" # paperless
     ];
   };
 
