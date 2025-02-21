@@ -74,7 +74,7 @@
     {
       devShells.${hostSystem}.default = nixpkgsHost.mkShell {
         buildInputs = [
-          nixpkgsHost.colmena
+          (nixpkgsHost.colmena.override { nix = nixpkgsHost.lix; })
           agenix.packages.${hostSystem}.default
           nixpkgsHost.nixfmt-rfc-style
           (nixpkgsHost.octodns.withProviders (
