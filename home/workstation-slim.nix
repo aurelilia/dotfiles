@@ -1,8 +1,6 @@
 {
-  nixosConfig,
   config,
   pkgs,
-  lib,
   ...
 }:
 {
@@ -39,13 +37,13 @@
 
     home.packages = with pkgs; [
       # Graphical
-      gnome.eog
-      gnome.evince
-      gnome.file-roller
-      gnome.nautilus
+      eog
+      evince
+      file-roller
+      nautilus
       pavucontrol
       feishin
-      nixosConfig.lib.pkgs-unstable.lan-mouse
+      lan-mouse
 
       # Fonts / Style
       fira-code-nerdfont

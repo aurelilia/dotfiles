@@ -71,10 +71,10 @@ in
 
     home.packages = with pkgs; [
       # Graphical
-      gnome.eog
-      gnome.evince
-      gnome.file-roller
-      gnome.nautilus
+      eog
+      evince
+      file-roller
+      nautilus
       pavucontrol
       hotspot
       logseq
