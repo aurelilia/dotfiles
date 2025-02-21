@@ -4,6 +4,10 @@ if address :matches :domain "from" ["*dpd.de", "*dhl.de", "*hermes.de"] {
     fileinto "Commercial/Delivery";
     stop; 
 }
+if address :matches "from" ["*for-amusement-only*"] {
+    fileinto "Personal/FAO";
+    stop; 
+}
 
 if address :all :matches "To" "*.*.*@*" {
   set :lower :upperfirst "category" "${1}";
@@ -16,7 +20,9 @@ if address :all :matches "To" "*.*.*@*" {
     if mailboxexists "${category}.${subcat}" {
       fileinto "${category}.${subcat}";
     } else {
-      fileinto "${category}";
+      if mailboxexists "${category}" {
+        fileinto "${category}";
+      }
     }
   }
 }
@@ -28,7 +34,9 @@ else {
     if mailboxexists "${category}.${subcat}" {
       fileinto "${category}.${subcat}";
     } else {
-      fileinto "${category}";
+      if mailboxexists "${category}" {
+        fileinto "${category}";
+      }
     }
   }
 }
