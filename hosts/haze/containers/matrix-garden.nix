@@ -18,15 +18,6 @@ in
       image = "dock.mau.dev/mautrix/whatsapp:latest";
       volumes = [ "${path}/whatsapp_data:/data" ];
     };
-    postgresql = {
-      container_name = "synapse-postgres";
-      environment = {
-        POSTGRES_DB = "synapse";
-        POSTGRES_USER = "synapse";
-      };
-      image = "postgres:14-alpine";
-      volumes = [ "${path}/postgres:/var/lib/postgresql/data" ];
-    };
     synapse = {
       image = "matrixdotorg/synapse:latest";
       ports = [ "127.0.0.1:${toString port}:8008" ];
@@ -38,4 +29,5 @@ in
   };
 
   feline.caddy.routes."${url}".port = port;
+  feline.postgres.databases = [ "synapse" ];
 }

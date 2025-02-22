@@ -7,16 +7,6 @@ let
 in
 {
   feline.compose.authentik.services = {
-    postgresql = {
-      image = "docker.io/library/postgres:15-alpine";
-      container_name = "authentik-postgres";
-      env_file = [ "${path}/.env" ];
-      environment = {
-        POSTGRES_DB = "authentik";
-        POSTGRES_USER = "authentik";
-      };
-      volumes = [ "${path}/database:/var/lib/postgresql/data" ];
-    };
     redis = {
       image = "docker.io/library/redis:alpine";
       container_name = "authentik-redis";
@@ -27,12 +17,11 @@ in
       image = "${image}:${version}";
       command = "server";
       depends_on = [
-        "postgresql"
         "redis"
       ];
       env_file = [ "${path}/.env" ];
       environment = {
-        AUTHENTIK_POSTGRESQL__HOST = "postgresql";
+        AUTHENTIK_POSTGRESQL__HOST = "host.runc.internal";
         AUTHENTIK_POSTGRESQL__NAME = "authentik";
         AUTHENTIK_POSTGRESQL__USER = "authentik";
         AUTHENTIK_REDIS__HOST = "redis";
@@ -47,13 +36,12 @@ in
       image = "${image}:${version}";
       command = "worker";
       depends_on = [
-        "postgresql"
         "redis"
       ];
       env_file = [ "${path}/.env" ];
 
       environment = {
-        AUTHENTIK_POSTGRESQL__HOST = "postgresql";
+        AUTHENTIK_POSTGRESQL__HOST = "host.runc.internal";
         AUTHENTIK_POSTGRESQL__NAME = "authentik";
         AUTHENTIK_POSTGRESQL__USER = "authentik";
         AUTHENTIK_REDIS__HOST = "redis";
@@ -86,4 +74,5 @@ in
       '';
     };
   };
+  feline.postgres.databases = [ "authentik" ];
 }

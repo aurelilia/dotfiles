@@ -5,26 +5,14 @@ let
   port = 40013;
 in
 {
-  feline.compose.nextcloud.services = {
-    nextcloud = {
-      image = "nextcloud:stable";
-      environment.NEXTCLOUD_DATA_DIR = "/data";
-      ports = [ "127.0.0.1:${toString port}:80" ];
-      volumes = [
-        "${path}/www:/var/www/html"
-        "${path}/srv:/data"
-      ];
-    };
-    postgres = {
-      image = "postgres:14-alpine";
-      container_name = "nextcloud-sql";
-      environment = {
-        POSTGRES_DB = "nextcloud";
-        POSTGRES_PASSWORD = "WbU6!m4B$Z^&bZfS5eGa";
-        POSTGRES_USER = "nextcloud";
-      };
-      volumes = [ "${path}/postgres:/var/lib/postgresql/data" ];
-    };
+  feline.containers.nextcloud = {
+    image = "nextcloud:stable";
+    environment.NEXTCLOUD_DATA_DIR = "/data";
+    ports = [ "127.0.0.1:${toString port}:80" ];
+    volumes = [
+      "${path}/www:/var/www/html"
+      "${path}/srv:/data"
+    ];
   };
 
   feline.caddy.routes."${url}" = {
@@ -35,4 +23,5 @@ in
     inherit port;
   };
   feline.caddy.routes."cloud.feline.works".redir = url;
+  feline.postgres.databases = [ "nextcloud" ];
 }
