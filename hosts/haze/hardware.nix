@@ -33,11 +33,10 @@
   boot.zfs = {
     requestEncryptionCredentials = [
       "zroot/data"
-      "zmedia"
     ];
     extraPools = [
-      "zbackup"
       "zmedia"
+      "ziggurat"
     ];
   };
 
