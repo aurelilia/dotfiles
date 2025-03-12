@@ -10,6 +10,7 @@
     exports = ''
       /media        *(rw,async,no_subtree_check,crossmnt,no_root_squash)
       /wolf  *(rw,async,no_subtree_check,crossmnt,no_root_squash)
+      /ziggurat  *(rw,async,no_subtree_check,crossmnt,no_root_squash)
     '';
   };
 }

@@ -54,12 +54,20 @@ let
           "x-systemd.idle-timeout=600"
         ];
       };
+      fileSystems."/ziggurat" = {
+        device = "haze:/ziggurat";
+        fsType = "nfs4";
+        options = [
+          "noauto"
+          "x-systemd.idle-timeout=600"
+        ];
+      };
       systemd.services.create-dirs = {
         description = "Create directories";
         wantedBy = [ "multi-user.target" ];
         serviceConfig.Type = "oneshot";
         script = ''
-          mkdir -p /haze /wolf /mnt
+          mkdir -p /haze /wolf /mnt /ziggurat /media
         '';
       };
 
