@@ -48,11 +48,14 @@ in
       "jellyfin"
       "rmvtransport"
       "mqtt"
+      "local_todo"
+      "ping"
     ];
 
     extraPackages =
       python3Packages: with python3Packages; [
         aiogithubapi # HACS
+        beautifulsoup4 # ha-bambulab
       ];
   };
 
