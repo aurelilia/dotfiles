@@ -15,9 +15,8 @@
     enable = true;
     package = nixosConfig.lib.pkgs-unstable.vscodium.fhsWithPackages (ps: with ps; [ nil ]);
 
-    extensions = with pkgs.vscode-extensions; [
+    extensions = with nixosConfig.lib.pkgs-unstable.vscode-extensions; [
       catppuccin.catppuccin-vsc-icons
-      catppuccin.catppuccin-vsc
 
       rust-lang.rust-analyzer
       tamasfe.even-better-toml

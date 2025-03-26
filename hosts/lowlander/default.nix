@@ -84,4 +84,12 @@
     axel = { };
     ursula = { };
   };
+
+  # Printer
+  services.avahi.enable = true;
+  services.printing = {
+  	enable = true;
+  	drivers = [ pkgs.brlaser ];
+  	cups-pdf.enable = true;
+  };
 }
