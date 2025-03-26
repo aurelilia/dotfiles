@@ -77,6 +77,9 @@ let
           znap.enable = true;
         };
         gui.enable = true;
+        # Persistent timers get wiped on reboot, so update
+        # during the day instead of at night
+        autodeploy.time = "18:00";
 
         dotfiles = {
           user = "leela";

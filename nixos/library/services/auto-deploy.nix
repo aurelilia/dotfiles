@@ -64,7 +64,7 @@ in
 
       );
 
-      startAt = "04:27";
+      startAt = cfg.time;
       after = [ "network-online.target" ];
       wants = [ "network-online.target" ];
     };
@@ -79,6 +79,11 @@ in
       type = lib.types.listOf lib.types.str;
       description = "Remote hosts to deploy their configuration to.";
       default = [ ];
+    };
+    time = lib.mkOption {
+      type = lib.types.str;
+      description = "Time of the day to deploy the configuration.";
+      default = "04:27";
     };
   };
 }

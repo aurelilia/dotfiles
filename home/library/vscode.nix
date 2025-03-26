@@ -24,7 +24,6 @@
 
       streetsidesoftware.code-spell-checker
       yzhang.markdown-all-in-one
-      github.copilot
 
       bbenoist.nix # This one just has better syntax highlight, sorry nix-ide
       jnoortheen.nix-ide
