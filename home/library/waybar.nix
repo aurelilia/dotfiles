@@ -33,11 +33,12 @@ in
         "custom/playerctl#forward"
         "custom/playerlabel"
       ];
-      modules-center = [ "sway/workspaces" ];
+      modules-center = [ "sway/workspaces" "niri/workspaces" ];
       modules-right =
         if nixosConfig.feline.power-management.enable then
           [
             "sway/window"
+            "niri/window"
             "battery"
             "brightness"
             "pulseaudio"
@@ -47,6 +48,7 @@ in
         else
           [
             "sway/window"
+            "niri/window"
             "pulseaudio"
             "clock"
           ];
@@ -70,6 +72,20 @@ in
       "sway/window" = {
         format = "≋ {title} ≋";
         all-outputs = true;
+      };
+      "niri/workspaces" = {
+        format = "{value}";
+        on-click = "activate";
+        format-icons = {
+          urgent = "";
+          active = "";
+          default = "";
+          sort-by-number = true;
+        };
+      };
+      "niri/window" = {
+        format = "≋ {title} ≋";
+        seperate-outputs = true;
       };
       "custom/playerctl#backward" = {
         format = "󰙣 ";
@@ -190,8 +206,7 @@ in
           background: ${custom.background};
           transition: all 0.3s ease-in-out;
       }
-
-      #workspaces button.visible {
+      #workspaces button.visible, #workspaces button.focused {
           background-color: #f38ba8;
           color: #11111b;
           border-radius: 16px;
@@ -199,7 +214,9 @@ in
           background-size: 400% 400%;
           transition: all 0.3s ease-in-out;
       }
-
+      #workspaces button.empty {
+          color: #6c7086;
+      }
       #workspaces button:hover {
           background-color: #eba0ac;
           color: #11111b;

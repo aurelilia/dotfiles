@@ -19,10 +19,10 @@
       enable = true;
       restart = false;
       settings = {
-        default_session.command = "tuigreet --cmd 'dbus-run-session sway' -t -r --asterisks -g 'welcome to the garden'";
+        default_session.command = "tuigreet --cmd 'dbus-run-session niri' -t -r --asterisks -g 'welcome to the garden'";
         initial_session = {
           user = "leela";
-          command = "dbus-run-session sway";
+          command = "dbus-run-session niri";
         };
       };
     };
@@ -37,13 +37,19 @@
     };
     programs.xwayland.enable = true;
     services.dbus.enable = true;
+
+    # Niri
+    programs.niri.enable = true;
+
+    # Portal
     xdg.portal = {
       enable = true;
-      wlr.enable = true;
+      wlr.enable = lib.mkForce true;
       extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
       xdgOpenUsePortal = true;
       config.common.default = [
         "gtk"
+        "gnome"
         "wlr"
       ];
     };
