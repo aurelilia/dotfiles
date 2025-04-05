@@ -44,13 +44,12 @@
     # Portal
     xdg.portal = {
       enable = true;
-      wlr.enable = lib.mkForce true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      wlr.enable = lib.mkForce false;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome ];
       xdgOpenUsePortal = true;
       config.common.default = [
         "gtk"
         "gnome"
-        "wlr"
       ];
     };
 

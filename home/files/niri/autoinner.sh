@@ -5,7 +5,7 @@ export NIXOS_OZONE_WL=1
 # Apply user
 if [ -e ~/.config/environment.d/ ]; then . ~/.config/environment.d/*; fi
 # Misc env apps
-~/.config/niri/scripts/wallpaper.sh &
+~/.config/niri/wallpaper.sh &
 dunst -conf ~/.config/dunst/dunstrc &
 waybar &
 systemctl --user restart swayidle
