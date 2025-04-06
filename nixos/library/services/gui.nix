@@ -29,24 +29,30 @@
 
     # SwayFX
     programs.sway = {
-      enable = true;
+      enable = false;
       package = pkgs.swayfx.overrideAttrs (old: {
         passthru.providedSessions = [ "sway" ];
       });
       wrapperFeatures.gtk = true;
     };
     programs.xwayland.enable = true;
-    services.dbus.enable = true;
 
     # Niri
     programs.niri.enable = true;
+    services.dbus.enable = true;
 
     # Portal
     xdg.portal = {
-      enable = false;
+      enable = true;
       wlr.enable = lib.mkForce false;
-      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gnome
+        pkgs.xdg-desktop-portal-gtk
+      ];
       configPackages = [ pkgs.niri ];
+      config.common = {
+        "org.freedesktop.impl.portal.FileChooser" = "gtk";
+      };
     };
     services.gnome.gnome-keyring.enable = true;
 
