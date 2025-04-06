@@ -19,10 +19,10 @@
       enable = true;
       restart = false;
       settings = {
-        default_session.command = "tuigreet --cmd 'dbus-run-session niri' -t -r --asterisks -g 'welcome to the garden'";
+        default_session.command = "tuigreet --cmd 'niri-session' -t -r --asterisks -g 'welcome to the garden'";
         initial_session = {
           user = "leela";
-          command = "dbus-run-session niri";
+          command = "niri-session";
         };
       };
     };
@@ -43,15 +43,12 @@
 
     # Portal
     xdg.portal = {
-      enable = true;
+      enable = false;
       wlr.enable = lib.mkForce false;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome ];
-      xdgOpenUsePortal = true;
-      config.common.default = [
-        "gtk"
-        "gnome"
-      ];
+      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+      configPackages = [ pkgs.niri ];
     };
+    services.gnome.gnome-keyring.enable = true;
 
     # Audio
     services.pipewire = {
