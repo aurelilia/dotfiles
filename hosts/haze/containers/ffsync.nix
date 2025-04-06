@@ -7,7 +7,7 @@ in
 {
   # I would use services.firefox-syncserver here, but it sadly forces
   # MySQL and is therefore incompatible with historical data I still have.
-  virtualisation.oci-containers.containers.ffsync = {
+  feline.containers.ffsync = {
     image = "mozilla/syncserver";
     environment = {
       SYNCSERVER_BATCH_UPLOAD_ENABLED = "true";
