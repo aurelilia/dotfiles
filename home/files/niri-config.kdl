@@ -109,16 +109,16 @@ binds {
     // Terminal
     Mod+Return { spawn "alacritty"; }
     // Launcher + Emoji
-    Mod+T { spawn "~/.config/sway/scripts/launcher.sh"; }
+    Mod+T { spawn "~/.config/niri/scripts/launcher.sh"; }
     Mod+Shift+T { spawn "rofimoji" "-r" "emoji"; }
     // Dunst history
     Mod+Grave { spawn "dunstctl" "history-pop"; }
     // Screen locker
     Mod+L { spawn "swaylock"; }
     // Pick a colour
-    Mod+P { spawn "~/.config/sway/scripts/picker.sh"; }
+    Mod+P { spawn "~/.config/niri/scripts/picker.sh"; }
     // Pinball :)
-    Mod+Shift+P { spawn "~/.config/sway/scripts/pin.sh"; }
+    Mod+Shift+P { spawn "~/.config/niri/scripts/pin.sh"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "amixer" "-q" "set" "Master" "5%+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "amixer" "-q" "set" "Master" "5%-"; }
