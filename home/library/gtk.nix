@@ -32,6 +32,7 @@ in
     cursorTheme = {
       package = cursor-package;
       name = cursor-theme;
+      size = config.home.pointerCursor.size;
     };
 
     gtk3 = {

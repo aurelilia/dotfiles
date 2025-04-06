@@ -60,6 +60,18 @@
       }
     ];
   };
+  feline.gui.extraNiri = ''
+    output "Dell Inc. DELL S2721D HK7CP43" {
+        mode "2560x1440"
+        position x=0 y=0
+        transform "270"
+    }
+    output "Samsung Electric Company LU28R55 HNMW602400" {
+        mode "3840x2160"
+        scale 1.5
+        position x=1440 y=780
+    }
+  '';
 
   # Bluetooth
   hardware.bluetooth = {

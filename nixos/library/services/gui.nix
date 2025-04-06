@@ -90,5 +90,10 @@
       description = "Configuration to add to Sway.";
       default = { };
     };
+    extraNiri = lib.mkOption {
+      type = lib.types.str;
+      description = "Configuration to add to Niri.";
+      default = { };
+    };
   };
 }

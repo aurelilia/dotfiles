@@ -22,17 +22,6 @@ input {
     workspace-auto-back-and-forth
 }
 
-output "Dell Inc. DELL S2721D HK7CP43" {
-    mode "2560x1440"
-    position x=0 y=0
-    transform "270"
-}
-output "Samsung Electric Company LU28R55 HNMW602400" {
-    mode "3840x2160"
-    scale 1.5
-    position x=1440 y=780
-}
-
 layout {
     gaps 5
     center-focused-column "never"
@@ -85,6 +74,10 @@ cursor {
     xcursor-size 24
 }
 
+workspace "Mail" {
+    open-on-output "Dell Inc. DELL S2721D HK7CP43"
+}
+
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
@@ -96,10 +89,11 @@ window-rule {
 window-rule {
     match title="PinMAME"
     open-fullscreen true
+    open-on-output "Samsung Electric Company LU28R55 HNMW602400"
 }
 window-rule {
     match app-id="thunderbird"
-    open-on-output "Dell Inc. DELL S2721D HK7CP43"
+    open-on-workspace "Mail"
 }
 
 window-rule {
@@ -155,10 +149,10 @@ binds {
     Mod+Ctrl+Up    { focus-monitor-up; }
     Mod+Ctrl+Right { focus-monitor-right; }
 
-    Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
-    Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
-    Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+    Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
+    Mod+Shift+Ctrl+Down  { move-window-to-monitor-down; }
+    Mod+Shift+Ctrl+Up    { move-window-to-monitor-up; }
+    Mod+Shift+Ctrl+Right { move-window-to-monitor-right; }
 
     Mod+Page_Down      { focus-workspace-down; }
     Mod+Page_Up        { focus-workspace-up; }
@@ -198,15 +192,17 @@ binds {
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
-    Mod+Ctrl+1 { move-window-to-workspace 1; }
-    Mod+Ctrl+2 { move-window-to-workspace 2; }
-    Mod+Ctrl+3 { move-window-to-workspace 3; }
-    Mod+Ctrl+4 { move-window-to-workspace 4; }
-    Mod+Ctrl+5 { move-window-to-workspace 5; }
-    Mod+Ctrl+6 { move-window-to-workspace 6; }
-    Mod+Ctrl+7 { move-window-to-workspace 7; }
-    Mod+Ctrl+8 { move-window-to-workspace 8; }
-    Mod+Ctrl+9 { move-window-to-workspace 9; }
+    Mod+0 { focus-workspace "Mail"; }
+    Mod+Shift+1 { move-window-to-workspace 1; }
+    Mod+Shift+2 { move-window-to-workspace 2; }
+    Mod+Shift+3 { move-window-to-workspace 3; }
+    Mod+Shift+4 { move-window-to-workspace 4; }
+    Mod+Shift+5 { move-window-to-workspace 5; }
+    Mod+Shift+6 { move-window-to-workspace 6; }
+    Mod+Shift+7 { move-window-to-workspace 7; }
+    Mod+Shift+8 { move-window-to-workspace 8; }
+    Mod+Shift+9 { move-window-to-workspace 9; }
+    Mod+Shift+0 { move-window-to-workspace "Mail"; }
 
     Mod+Tab { focus-workspace-previous; }
 

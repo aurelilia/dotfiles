@@ -246,60 +246,6 @@
   };
   xdg.configFile."sway/scripts".source = ../files/sway-scripts;
 
-  # Swaylock
-  programs.swaylock = {
-    enable = true;
-    package = pkgs.swaylock-effects;
-    settings = {
-      screenshots = true;
-      clock = true;
-      indicator = true;
-      indicator-radius = "200";
-      indicator-thickness = "20";
-      effect-blur = "8x5";
-      effect-vignette = "0.5:0.5";
-      effect-greyscale = true;
-      grace = "0";
-      fade-in = "0.2";
-    };
-  };
-
-  # Swayidle
-  services.swayidle =
-    let
-      lock = "'${config.programs.swaylock.package}/bin/swaylock'";
-    in
-    {
-      enable = true;
-      events = [
-        {
-          event = "before-sleep";
-          command = lock;
-        }
-        {
-          event = "lock";
-          command = lock;
-        }
-      ];
-      timeouts =
-        [
-          {
-            timeout = 300;
-            command = lock;
-          }
-          {
-            timeout = 360;
-            command = "'${pkgs.swayfx}/bin/swaymsg output \"*\" power off'";
-            resumeCommand = "'${pkgs.swayfx}/bin/swaymsg output \"*\" power on'";
-          }
-        ]
-        ++ lib.optional (nixosConfig.feline.gui.autoSuspend) {
-          timeout = 600;
-          command = "'${pkgs.systemd}/bin/systemctl suspend-then-hibernate'";
-        };
-    };
-  systemd.user.services.swayidle.Service.Environment = [ "WAYLAND_DISPLAY=wayland-1" ];
-
   # Session variables
   systemd.user.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
