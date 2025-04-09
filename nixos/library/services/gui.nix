@@ -61,7 +61,25 @@
       enable = true;
       alsa.enable = true;
       pulse.enable = true;
-      wireplumber.enable = true;
+      wireplumber = {
+        enable = true;
+        extraConfig."ldac-hq" = {
+          "monitor.bluez.rules" = [
+            {
+              matches = [
+                {
+                  "device.name" = "~bluez_card.*";
+                }
+              ];
+              actions = {
+                update-props = {
+                  "bluez5.a2dp.ldac.quality" = "hq";
+                };
+              };
+            }
+          ];
+        };
+      };
     };
 
     # Plymouth
