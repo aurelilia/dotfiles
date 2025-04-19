@@ -54,7 +54,7 @@
     # Photo inbox from my phone
     camera-inbox = {
       path = "/media/photo-inbox/camera-inbox";
-      devices = [ "murray" ];
+      devices = [ "munchkin" ];
     };
 
     # Windows VM for scans
