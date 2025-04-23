@@ -102,4 +102,12 @@
   	drivers = [ pkgs.ipp-usb ];
   	cups-pdf.enable = true;
   };
+
+  # Ollama
+  services.ollama = {
+  	enable = true;
+  	acceleration = "rocm";
+  	openFirewall = true;
+  	home = "/ethereal/cache/ollama";
+  };
 }

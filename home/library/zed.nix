@@ -1,11 +1,11 @@
-# https://github.com/nix-community/home-manager/pull/5455
 {
   nixosConfig,
   ...
 }: {
   config = {
-    home.packages = [ nixosConfig.lib.pkgs-unstable.zed-editor ];
     programs.zed-editor = {
+      enable = true;
+      package = nixosConfig.lib.pkgs-unstable.zed-editor;
       userSettings = {
         base_keymap = "VSCode";
         telemetry = {
@@ -13,9 +13,10 @@
           diagnostics = false;
         };
 
-        theme = "Catppuccin Mocha";
         ui_font_size = 15;
+        ui_font_family = "Noto Sans";
         buffer_font_size = 13;
+        buffer_font_family = "FiraCode Nerd Font Mono";
 
         autosave = "on_focus_change";
         auto_update = false;
