@@ -30,6 +30,5 @@ in
   feline.caddy.routes = {
     ${url}.port = 3000;
     "git.elia.garden".redir = url;
-    "forge.feline.works".redir = url;
   };
 }

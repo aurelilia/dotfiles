@@ -139,8 +139,6 @@ in
 {
   feline.caddy.routes = {
     "element.elia.garden" = element "elia.garden";
-    "element.louane.xyz" = element "louane.xyz";
-    "chat.feline.works" = element "elia.garden";
     "chat.catin.eu" = element "elia.garden";
     "element.ehir.art" = element "ehir.art";
   };

@@ -22,5 +22,4 @@ in
   };
 
   feline.caddy.routes."${url}".port = port;
-  feline.caddy.routes."firefox.feline.works".redir = url;
 }

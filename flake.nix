@@ -172,9 +172,6 @@
               config.check_origin = false;
             };
             zones = {
-              "kitten.works." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
-              "feline.works." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
-              "theria.nl." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
               "ehir.art." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
               "tessa.dog." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
               "catin.eu." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];

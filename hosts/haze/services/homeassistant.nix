@@ -83,5 +83,4 @@ in
     mode = "sso";
     host = "10.1.0.147:80";
   };
-  feline.caddy.routes."home.feline.works".redir = url;
 }

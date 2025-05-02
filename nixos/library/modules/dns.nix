@@ -13,11 +13,7 @@ in
       enable = cfg.enable;
       baseDomains = {
         "elia.garden" = cfg.baseRecord;
-        "kitten.works" = cfg.baseRecord;
-        "feline.works" = cfg.baseRecord;
-        "theria.nl" = cfg.baseRecord;
         "tessa.dog" = cfg.baseRecord;
-        "louane.xyz" = cfg.baseRecord;
         "ehir.art" = cfg.baseRecord;
         "catin.eu" = cfg.baseRecord;
       };

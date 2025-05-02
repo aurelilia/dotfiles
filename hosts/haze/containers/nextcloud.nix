@@ -22,6 +22,5 @@ in
     '';
     inherit port;
   };
-  feline.caddy.routes."cloud.feline.works".redir = url;
   feline.postgres.databases = [ "nextcloud" ];
 }
