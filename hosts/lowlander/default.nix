@@ -92,4 +92,8 @@
   	drivers = [ pkgs.brlaser ];
   	cups-pdf.enable = true;
   };
+  feline.persist."cups" = {
+    path = "/var/lib/cups";
+    kind = "config";
+  };
 }

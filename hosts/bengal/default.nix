@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   imports = [
     ./backup.nix
@@ -11,6 +11,12 @@
     allowHibernation = true;
     forceImportRoot = false;
   };
+
+  # Steam
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    (lib.hasPrefix "steam" (lib.getName pkg));
+  programs.steam.enable = true;
 
   # Sway config
   feline.gui = {

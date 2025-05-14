@@ -5,7 +5,7 @@ in
 {
   services.paperless = {
     enable = true;
-    package = pkgs-unstable.paperless-ngx;
+    # package = pkgs-unstable.paperless-ngx;
     dataDir = "/persist/data/paperless";
     settings = {
       PAPERLESS_OCR_LANGUAGE = "deu+eng";
@@ -14,7 +14,7 @@ in
   };
 
   feline.caddy.routes.${url} = {
-    mode = "sso";
+    mode = "local";
     port = 28981;
   };
 }
