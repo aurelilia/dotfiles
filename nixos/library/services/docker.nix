@@ -18,9 +18,10 @@
         image = "containrrr/watchtower";
         volumes = [ "/run/docker.sock:/var/run/docker.sock" ];
         cmd = [
-          "--interval"
-          "7200"
+          "--schedule"
+          "0 0 3 * * *"
         ];
+        environment.TZ = "Europe/Berlin";
         autoStart = true;
       };
     };

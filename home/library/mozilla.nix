@@ -46,13 +46,13 @@
 
     profiles.default = {
       search = {
-        default = "DuckDuckGo";
-        privateDefault = "DuckDuckGo";
+        default = "ddg";
+        privateDefault = "ddg";
         force = true;
         engines = {
-          "Google".metaData.hidden = true;
+          "google".metaData.hidden = true;
           "Amazon".metaData.hidden = true;
-          "Bing".metaData.hidden = true;
+          "bing".metaData.hidden = true;
 
           "Nix Packages" = {
             urls = [

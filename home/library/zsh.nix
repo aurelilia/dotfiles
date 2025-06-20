@@ -26,7 +26,7 @@
     };
 
     shellAliases = config.feline.shellAliases;
-    initExtra = ''
+    initContent = ''
       # Quiet direnv
       export DIRENV_LOG_FORMAT=""
 

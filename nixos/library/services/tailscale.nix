@@ -10,6 +10,7 @@
         "https://headscale.elia.garden"
         "--timeout"
         "30s"
+        "--accept-dns=false"
       ];
     };
 

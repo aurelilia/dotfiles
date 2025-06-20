@@ -1,22 +1,24 @@
 { lib, config, ... }:
 let
   cfg = config.feline.persist;
+  
+  mkBindMountNameValuePair = { name, value }: {
+    name = value.path;
+    value = {
+      device = "/persist/${value.kind}/${name}";
+      noCheck = true;
+      options = [ "bind" "X-fstrim.notrim" "x-gvfs-hide" ];
+      depends = lib.mkIf config.feline.mountPersistAtBoot [ "/persist" ];
+    };
+  };
+  bindMounts = lib.listToAttrs (map mkBindMountNameValuePair (lib.attrsToList cfg));
 in
 {
   config = lib.mkMerge [
     {
-      systemd.tmpfiles.rules = lib.mapAttrsToList (
-        name: rule:
-        let
-          ppath = "/persist/${rule.kind}/${name}";
-        in
-        "L ${rule.path} - - - - ${ppath}"
-      ) cfg;
-
+      fileSystems = bindMounts;
       systemd.services.tmp-target-create = {
         description = "Create target directories for temp files";
-        after = [ "systemd-tmpfiles-setup.service" ];
-        wants = [ "systemd-tmpfiles-setup.service" ];
         wantedBy = [ "multi-user.target" ];
 
         serviceConfig.Type = "oneshot";

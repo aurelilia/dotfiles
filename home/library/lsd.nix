@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   programs.lsd = {
     enable = true;
@@ -10,16 +10,12 @@
     };
   };
 
-  feline.shellAliases = {
-    lsd = "lsd -lFh";
-    lad = "lsd -lFha";
-  };
   programs.zsh.shellAliases = {
-    ls = "lsd -lFh";
-    la = "lsd -lFha";
+    ls = lib.mkForce "lsd -l";
+    la = lib.mkForce "lsd -la";
   };
   programs.fish.shellAliases = {
-    ls = "lsd -lFh";
-    la = "lsd -lFha";
+    ls = lib.mkForce "lsd -l";
+    la = lib.mkForce "lsd -la";
   };
 }

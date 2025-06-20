@@ -20,11 +20,11 @@
     ./services/homeassistant.nix
     ./services/jellyfin.nix
     ./services/matrix-tessa.nix
-    # ./services/mealie.nix
+    ./services/mealie.nix
     ./services/navidrome.nix
     ./services/nfs.nix
     ./services/ntfy.nix
-    ./services/paperless.nix
+    # ./services/paperless.nix
     ./services/prometheus.nix
     ./services/redirs.nix
     ./services/scrutiny.nix

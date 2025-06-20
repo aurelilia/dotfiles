@@ -50,7 +50,7 @@ in
         ++ (lib.optional (cfg.remotes != [ ]) (
           "colmena apply --impure --on " + (lib.concatStringsSep "," cfg.remotes)
         ))
-        ++ (lib.optional cfg.local ''
+        ++ (lib.optional (cfg.local && !cfg.noSwitch) ''
           CURRENT="$(readlink -f /run/current-system/bin/switch-to-configuration)"
           if colmena apply-local --impure ; then
             echo "Deployed!"
@@ -61,7 +61,9 @@ in
           $CURRENT switch
           exit 1
         '')
-
+        ++ (lib.optional (cfg.local && cfg.noSwitch) ''
+          colmena apply-local --impure boot
+        '')
       );
 
       startAt = cfg.time;
@@ -85,5 +87,6 @@ in
       description = "Time of the day to deploy the configuration.";
       default = "04:27";
     };
+    noSwitch = lib.mkEnableOption "Don't switch to configuration immediately";
   };
 }

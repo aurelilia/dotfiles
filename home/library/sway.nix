@@ -251,7 +251,7 @@
     MOZ_ENABLE_WAYLAND = 1;
     _JAVA_AWT_WM_NONREPARENTING = 1;
 
-    inherit (config.home.sessionVariables) XCURSOR_THEME XCURSOR_SIZE XCURSOR_PATH;
+    inherit (config.home.sessionVariables) XCURSOR_THEME XCURSOR_SIZE;
     WAYLAND_DISPLAY = "wayland-1";
     NIXOS_OZONE_WL = 1;
   };

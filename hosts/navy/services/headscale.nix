@@ -86,7 +86,7 @@ in
 
   feline.caddy.routes."headscale.elia.garden" = {
     port = 50013;
-    extra = "redir / https://elia.garden/blog/headscale.html";
+    extra = "redir / https://catin.eu/blog/headscale.html";
   };
 
   # Persist files

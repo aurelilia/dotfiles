@@ -1,10 +1,12 @@
-{ ... }:
+{ lib, ... }:
 let
   sieveScript = builtins.readFile ./filter.sieve;
 in
 {
+  environment.etc."dovecot/modules".source = lib.mkForce "/run/current-system/sw/lib/dovecot/modules";
   mailserver = {
     enable = true;
+    stateVersion = 1;
 
     mailDirectory = "/persist/data/mail/mail";
     sieveDirectory = "/persist/data/mail/sieve";

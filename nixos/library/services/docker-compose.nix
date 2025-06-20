@@ -37,6 +37,7 @@ in
         serviceConfig = {
           ExecStart = "${pkgs.docker}/bin/docker compose -p ${name} -f ${config} up";
           ExecStop = "${pkgs.docker}/bin/docker compose -f ${config} down";
+          Restart = "always";
         };
         wantedBy = [ "multi-user.target" ];
         after = [

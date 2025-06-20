@@ -77,9 +77,13 @@ let
           znap.enable = true;
         };
         gui.enable = true;
-        # Persistent timers get wiped on reboot, so update
-        # during the day instead of at night
-        autodeploy.time = "18:00";
+        autodeploy = {
+          # Persistent timers get wiped on reboot, so update
+          # during the day instead of at night
+          time = "18:00";
+          # Config switches while trying to actually use a system are annoying
+          noSwitch = true;
+        };
 
         dotfiles = {
           user = "leela";

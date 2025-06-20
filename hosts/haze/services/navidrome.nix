@@ -16,7 +16,7 @@ in
     };
   };
 
-  feline.persist.navidrome.path = "/var/lib/private/navidrome";
+  feline.persist.navidrome.path = "/var/lib/navidrome";
   feline.caddy.routes."${url}".port = 4533;
 
   # I want streamrip
