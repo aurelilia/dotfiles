@@ -6,7 +6,7 @@ if [ -z "$FILES" ]; then
   exit 1
 fi
 
-export SELECTED_FILE=$(echo "$FILES" | rofi -dmenu -p "Pinball")
+export SELECTED_FILE=$(echo "$FILES" | rofi -dmenu -i -l 50 -no-custom -matching fuzzy -p "Pinball")
 if [ -z "$SELECTED_FILE" ]; then
   exit 1
 fi
