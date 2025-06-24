@@ -11,7 +11,6 @@
     environment.systemPackages = with pkgs; [
       greetd.tuigreet
       lutris-free
-      wineWowPackages.waylandFull
     ];
 
     # Greeter 
