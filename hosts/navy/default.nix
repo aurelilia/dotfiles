@@ -15,6 +15,7 @@ in
     ./services/matrix-client.nix
     ./services/postfix.nix
     ./services/redirs.nix
+    ./services/send.nix
   ];
   feline = {
     # Persist is not a separate mountpoint
