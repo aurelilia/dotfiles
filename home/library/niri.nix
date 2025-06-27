@@ -1,5 +1,13 @@
-{ pkgs, lib, config, nixosConfig, ... }: {
-  xdg.configFile."niri/config.kdl".text = (lib.readFile ../files/niri-config.kdl) + nixosConfig.feline.gui.extraNiri;
+{
+  pkgs,
+  lib,
+  config,
+  nixosConfig,
+  ...
+}:
+{
+  xdg.configFile."niri/config.kdl".text =
+    (lib.readFile ../files/niri-config.kdl) + nixosConfig.feline.gui.extraNiri;
   xdg.configFile."niri/scripts".source = ../files/niri-scripts;
 
   # Swayidle
@@ -86,6 +94,6 @@
     swww
     alsa-utils
     catppuccin-cursors.mochaRed
-    xwayland-satellite
+    nixosConfig.lib.pkgs-unstable.xwayland-satellite
   ];
 }

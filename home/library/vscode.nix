@@ -1,7 +1,6 @@
 {
   nixosConfig,
   lib,
-  pkgs,
   ...
 }:
 {

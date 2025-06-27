@@ -24,7 +24,7 @@
     ./services/navidrome.nix
     ./services/nfs.nix
     ./services/ntfy.nix
-    # ./services/paperless.nix
+    ./services/paperless.nix
     ./services/prometheus.nix
     ./services/redirs.nix
     ./services/scrutiny.nix

@@ -13,7 +13,7 @@
       lutris-free
     ];
 
-    # Greeter 
+    # Greeter
     services.greetd = {
       enable = true;
       restart = false;
@@ -39,6 +39,12 @@
     # Niri
     programs.niri.enable = true;
     services.dbus.enable = true;
+
+    # Keyboard permissions
+    security.sudo.extraConfig = ''
+      %leela ALL= NOPASSWD: /run/current-system/sw/bin/systemctl start keyd
+      %leela ALL= NOPASSWD: /run/current-system/sw/bin/systemctl stop keyd
+    '';
 
     # Portal
     xdg.portal = {

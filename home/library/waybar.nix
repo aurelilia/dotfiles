@@ -31,9 +31,13 @@ in
         "custom/playerctl#backward"
         "custom/playerctl#play"
         "custom/playerctl#forward"
+        "custom/keyboard"
         "custom/playerlabel"
       ];
-      modules-center = [ "sway/workspaces" "niri/workspaces" ];
+      modules-center = [
+        "sway/workspaces"
+        "niri/workspaces"
+      ];
       modules-right =
         if nixosConfig.feline.power-management.enable then
           [
@@ -119,6 +123,16 @@ in
         exec = "playerctl -p Feishin -a metadata --format '{\"text\": \"{{markup_escape(artist)}} - {{markup_escape(title)}} [{{duration(position)}} / {{duration(mpris:length)}}]\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
         on-click = "";
       };
+      "custom/keyboard" = {
+        format = "⌨️ {text}";
+        return-type = "json";
+        interval = "once";
+        exec = "sh ~/.config/niri/scripts/keylayout.sh";
+        exec-if = "sleep 0.05";
+        exec-on-event = true;
+        on-click = "sh ~/.config/niri/scripts/keyswitch.sh";
+      };
+
       battery = {
         states = {
           good = 95;
@@ -170,11 +184,11 @@ in
           ];
         };
         scroll-step = 1;
-        on-click = "sh ~/.config/sway/scripts/audio-click.sh";
+        on-click = "sh ~/.config/niri/scripts/audio-click.sh";
       };
       "custom/launcher" = {
         format = "";
-        on-click = "ulauncher-toggle";
+        on-click = "sh ~/.config/niri/scripts/launcher.sh";
         tooltip = "false";
       };
     };
@@ -225,12 +239,12 @@ in
           background-size: 400% 400%;
       }
 
-      #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward{
+      #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward {
           background: #${custom.background2};
           font-weight: bold;
           margin: 5px 0px;
       }
-      #tray, #pulseaudio, #network, #battery{
+      #tray, #pulseaudio, #network, #battery, #custom-keyboard {
           background: #${custom.background2};
           color: #${custom.tertiary_accent};
           border-radius: 24px 10px 24px 10px;
