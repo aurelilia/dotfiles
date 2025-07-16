@@ -20,6 +20,7 @@
     $DRY_RUN_CMD ${pkgs.coreutils}/bin/rm ${config.home.homeDirectory}/.mozilla/firefox/default/containers.json || true
   '';
 
+  catppuccin.firefox.profiles.default.enable = false;
   programs.firefox = {
     enable = true;
 
