@@ -13,9 +13,9 @@ in
     x11.enable = true;
   };
 
+  catppuccin.gtk.icon.enable = true;
   gtk = {
     enable = true;
-    catppuccin.enable = true; # TODO find a replacement.
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
     font = {
@@ -24,9 +24,15 @@ in
       size = 10;
     };
 
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override { inherit (theme) accent flavor; };
+    theme = {
+      #name = "catppuccin-${theme.flavor}-${theme.accent}-standard";
+      name = "Catppuccin-GTK-Red-Dark";
+      package = (
+        pkgs.magnetic-catppuccin-gtk.override {
+          shade = "dark";
+          accent = [ theme.accent ];
+        }
+      );
     };
 
     cursorTheme = {

@@ -102,17 +102,9 @@ let
 
     mobile = {
       environment.systemPackages = [ pkgs.brightnessctl ];
-
       feline = {
         power-management.enable = true;
         wireless.enable = true;
-
-        gui.extraSway = {
-          input."*" = {
-            middle_emulation = "enabled";
-            tap = "enabled";
-          };
-        };
       };
     };
 

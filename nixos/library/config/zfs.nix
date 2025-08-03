@@ -21,9 +21,6 @@ in
       services.zfs.autoScrub.enable = true;
       services.zfs.trim.enable = true;
       systemd.services.zfs-mount.enable = true;
-
-      # Make sure a proper kernel is available. I want newest stable, not LTS
-      boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     })
 
     (lib.mkIf cfg.lustrate {
@@ -72,7 +69,7 @@ in
           };
         }) cfg.clevis
       );
-      # Create disabled systemd mounts to discourage systemd from trying to actually mount these 
+      # Create disabled systemd mounts to discourage systemd from trying to actually mount these
       systemd.mounts = builtins.map (entry: {
         enable = false;
         where = "/tmp/${entry.cryptroot}";

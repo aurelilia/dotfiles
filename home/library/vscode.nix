@@ -14,7 +14,7 @@
     enable = true;
     package = nixosConfig.lib.pkgs-unstable.vscodium.fhsWithPackages (ps: with ps; [ nil ]);
 
-    extensions = with nixosConfig.lib.pkgs-unstable.vscode-extensions; [
+    profiles.default.extensions = with nixosConfig.lib.pkgs-unstable.vscode-extensions; [
       catppuccin.catppuccin-vsc-icons
 
       rust-lang.rust-analyzer
@@ -31,7 +31,7 @@
       myriad-dreamin.tinymist
     ];
 
-    userSettings = {
+    profiles.default.userSettings = {
       "workbench.iconTheme" = "catppuccin-mocha";
       "workbench.colorTheme" = "Catppuccin Mocha";
       "files.exclude" = {

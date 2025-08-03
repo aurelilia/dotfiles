@@ -27,21 +27,20 @@
           command = lock;
         }
       ];
-      timeouts =
-        [
-          {
-            timeout = 300;
-            command = lock;
-          }
-          {
-            timeout = 360;
-            command = "'${pkgs.niri}/bin/niri msg action power-off-monitors";
-          }
-        ]
-        ++ lib.optional (nixosConfig.feline.gui.autoSuspend) {
-          timeout = 600;
-          command = "'${pkgs.systemd}/bin/systemctl suspend-then-hibernate'";
-        };
+      timeouts = [
+        {
+          timeout = 300;
+          command = lock;
+        }
+        {
+          timeout = 360;
+          command = "'${pkgs.niri}/bin/niri msg action power-off-monitors'";
+        }
+      ]
+      ++ lib.optional (nixosConfig.feline.gui.autoSuspend) {
+        timeout = 600;
+        command = "'${pkgs.systemd}/bin/systemctl suspend-then-hibernate'";
+      };
     };
   systemd.user.services.swayidle.Service.Environment = [ "WAYLAND_DISPLAY=wayland-1" ];
 
@@ -80,6 +79,16 @@
       RestartSec = 1;
       TimeoutStopSec = 10;
     };
+  };
+
+  # Session variables
+  systemd.user.sessionVariables = {
+    MOZ_ENABLE_WAYLAND = 1;
+    _JAVA_AWT_WM_NONREPARENTING = 1;
+
+    inherit (config.home.sessionVariables) XCURSOR_THEME XCURSOR_SIZE;
+    WAYLAND_DISPLAY = "wayland-1";
+    NIXOS_OZONE_WL = 1;
   };
 
   home.packages = with pkgs; [

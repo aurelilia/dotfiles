@@ -9,13 +9,12 @@
     ./library/dunst.nix
     ./library/gtk.nix
     ./library/mozilla.nix
+    ./library/niri.nix
     ./library/rofi.nix
     ./library/ssh.nix
-    ./library/sway.nix
     ./library/vscode.nix
     ./library/waybar.nix
     ./library/xdg.nix
-    ./library/zed.nix
   ];
 
   config = {
@@ -46,7 +45,7 @@
       lan-mouse
 
       # Fonts / Style
-      fira-code-nerdfont
+      nerd-fonts.fira-code
       dejavu_fonts
       comfortaa
       iosevka

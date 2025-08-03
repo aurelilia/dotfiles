@@ -28,6 +28,6 @@
     forceImportRoot = false;
   };
 
-  # Sway config
+  # Niri config
   feline.gui.autoSuspend = true;
 }

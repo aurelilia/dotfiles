@@ -35,13 +35,11 @@ in
         "custom/playerlabel"
       ];
       modules-center = [
-        "sway/workspaces"
         "niri/workspaces"
       ];
       modules-right =
         if nixosConfig.feline.power-management.enable then
           [
-            "sway/window"
             "niri/window"
             "battery"
             "brightness"
@@ -51,7 +49,6 @@ in
           ]
         else
           [
-            "sway/window"
             "niri/window"
             "pulseaudio"
             "clock"
@@ -62,20 +59,6 @@ in
         tooltip = "true";
         tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         format-alt = " {:%d/%m}";
-      };
-      "sway/workspaces" = {
-        format = "{name}";
-        on-click = "activate";
-        format-icons = {
-          urgent = "";
-          active = "";
-          default = "";
-          sort-by-number = true;
-        };
-      };
-      "sway/window" = {
-        format = "≋ {title} ≋";
-        all-outputs = true;
       };
       "niri/workspaces" = {
         format = "{value}";

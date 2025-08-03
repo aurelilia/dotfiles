@@ -1,4 +1,10 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  nixosConfig,
+  ...
+}:
 {
   programs.fzf = {
     enable = true;
@@ -50,6 +56,10 @@
 
       # Quiet direnv
       set -gx DIRENV_LOG_FORMAT ""
+
+      # nix-ld
+      set -gx NIX_LD_LIBRARY_PATH "${lib.makeLibraryPath nixosConfig.environment.systemPackages}"
+      set -gx NIX_LD "${lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"}"
 
       # fzf
       set -gx fzf_preview_file_cmd "${pkgs.pistol}/bin/pistol"

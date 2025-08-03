@@ -36,7 +36,6 @@ in
     ./library/niri.nix
     ./library/rofi.nix
     ./library/ssh.nix
-    ./library/sway.nix
     ./library/virt.nix
     ./library/vscode.nix
     ./library/waybar.nix
@@ -86,9 +85,10 @@ in
       lan-mouse
       orca-slicer
       qbittorrent
+      video-trimmer
 
       # Fonts / Style
-      fira-code-nerdfont
+      nerd-fonts.fira-code
       dejavu_fonts
       comfortaa
       iosevka

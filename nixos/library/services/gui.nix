@@ -18,23 +18,13 @@
       enable = true;
       restart = false;
       settings = {
-        default_session.command = "tuigreet --cmd 'niri-session' -t -r --asterisks -g 'welcome to the garden'";
+        default_session.command = "tuigreet --cmd 'niri-session' -t -r --asterisks -g 'welcome to the cat nest'";
         initial_session = {
           user = "leela";
           command = "niri-session";
         };
       };
     };
-
-    # SwayFX
-    programs.sway = {
-      enable = false;
-      package = pkgs.swayfx.overrideAttrs (old: {
-        passthru.providedSessions = [ "sway" ];
-      });
-      wrapperFeatures.gtk = true;
-    };
-    programs.xwayland.enable = true;
 
     # Niri
     programs.niri.enable = true;
@@ -49,7 +39,6 @@
     # Portal
     xdg.portal = {
       enable = true;
-      wlr.enable = lib.mkForce false;
       extraPortals = [
         pkgs.xdg-desktop-portal-gnome
         pkgs.xdg-desktop-portal-gtk
@@ -68,6 +57,7 @@
       pulse.enable = true;
       wireplumber = {
         enable = true;
+        # I want always HQ LDAC
         extraConfig."ldac-hq" = {
           "monitor.bluez.rules" = [
             {
@@ -103,6 +93,7 @@
 
     # Misc.
     services.gvfs.enable = true;
+    programs.nix-ld.enable = true;
     lib.pkgs-unstable = pkgs-unstable;
     lib.nixgl = nixgl;
   };
@@ -111,15 +102,10 @@
     enable = lib.mkEnableOption "GUI";
     autoSuspend = lib.mkEnableOption "automatic suspend on idle";
 
-    extraSway = lib.mkOption {
-      type = lib.types.attrs;
-      description = "Configuration to add to Sway.";
-      default = { };
-    };
     extraNiri = lib.mkOption {
       type = lib.types.str;
       description = "Configuration to add to Niri.";
-      default = { };
+      default = "";
     };
   };
 }

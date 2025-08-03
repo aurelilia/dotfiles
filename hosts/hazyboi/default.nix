@@ -26,40 +26,7 @@
   # Steam.
   programs.steam.enable = true;
 
-  # Sway configuration
-  feline.gui.extraSway = {
-    output = {
-      HDMI-A-1 = {
-        resolution = "2560x1440";
-        position = "0 0";
-        transform = "90";
-      };
-      DP-1 = {
-        resolution = "3840x2160";
-        position = "1440 780";
-        scale = "1.5";
-      };
-    };
-
-    workspaceOutputAssign = [
-      {
-        output = "DP-1";
-        workspace = "1";
-      }
-      {
-        output = "HDMI-A-1";
-        workspace = "2";
-      }
-      {
-        output = "DP-1";
-        workspace = "3";
-      }
-      {
-        output = "HDMI-A-1";
-        workspace = "10";
-      }
-    ];
-  };
+  # Niri configuration
   feline.gui.extraNiri = ''
     output "Dell Inc. DELL S2721D HK7CP43" {
         mode "2560x1440"
@@ -102,8 +69,8 @@
   # Printer
   services.avahi.enable = true;
   services.printing = {
-  	enable = true;
-  	drivers = [ pkgs.ipp-usb ];
-  	cups-pdf.enable = true;
+    enable = true;
+    drivers = [ pkgs.ipp-usb ];
+    cups-pdf.enable = true;
   };
 }
