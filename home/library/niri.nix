@@ -13,7 +13,7 @@
   # Swayidle
   services.swayidle =
     let
-      lock = "'${config.programs.swaylock.package}/bin/swaylock'";
+      lock = "${config.programs.swaylock.package}/bin/swaylock -f";
     in
     {
       enable = true;
@@ -34,12 +34,12 @@
         }
         {
           timeout = 360;
-          command = "'${pkgs.niri}/bin/niri msg action power-off-monitors'";
+          command = "${pkgs.niri}/bin/niri msg action power-off-monitors";
         }
       ]
       ++ lib.optional (nixosConfig.feline.gui.autoSuspend) {
         timeout = 600;
-        command = "'${pkgs.systemd}/bin/systemctl suspend-then-hibernate'";
+        command = "${pkgs.systemd}/bin/systemctl suspend-then-hibernate";
       };
     };
   systemd.user.services.swayidle.Service.Environment = [ "WAYLAND_DISPLAY=wayland-1" ];
