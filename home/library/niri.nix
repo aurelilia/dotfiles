@@ -55,10 +55,22 @@
       indicator-radius = "200";
       indicator-thickness = "20";
       effect-blur = "8x5";
-      effect-vignette = "0.5:0.5";
+      effect-vignette = "0.25:0.25";
       effect-greyscale = true;
-      grace = "0";
-      fade-in = "0.2";
+      grace = "5";
+      timestr = "%H:%M";
+      datestr = "%a, %d.%m.%y";
+
+      inside-color = lib.mkForce "1e1e2e";
+      inside-clear-color = lib.mkForce "1e1e2e";
+      inside-caps-lock-color = lib.mkForce "1e1e2e";
+      inside-ver-color = lib.mkForce "1e1e2e";
+      inside-wrong-color = lib.mkForce "1e1e2e";
+      ring-color = lib.mkForce "f38ba8";
+      ring-clear-color = lib.mkForce "f38ba8";
+      ring-caps-lock-color = lib.mkForce "f38ba8";
+      ring-ver-color = lib.mkForce "f38ba8";
+      ring-wrong-color = lib.mkForce "f38ba8";
     };
   };
 
