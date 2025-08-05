@@ -50,6 +50,7 @@ in
       "mqtt"
       "local_todo"
       "ping"
+      "caldav"
     ];
 
     extraPackages =
