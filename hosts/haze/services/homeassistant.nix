@@ -35,6 +35,8 @@ in
       sensor = "!include sensor.yaml";
       "automation ui" = "!include automations.yaml";
       "scene ui" = "!include scenes.yaml";
+
+      frontend.themes = "!include_dir_merge_named themes";
     };
 
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/home-assistant/component-packages.nix
@@ -51,6 +53,7 @@ in
       "local_todo"
       "ping"
       "caldav"
+      "mealie"
     ];
 
     extraPackages =

@@ -20,7 +20,7 @@
     ./services/homeassistant.nix
     ./services/jellyfin.nix
     ./services/matrix-tessa.nix
-    # ./services/mealie.nix
+    ./services/mealie.nix
     ./services/navidrome.nix
     ./services/nfs.nix
     ./services/ntfy.nix
