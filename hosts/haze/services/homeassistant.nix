@@ -8,36 +8,7 @@ in
     enable = true;
     configDir = "/persist/data/hassio";
     package = pkgs-unstable.home-assistant;
-
-    config = {
-      default_config = { };
-      homeassistant.time_zone = "Europe/Brussels";
-      http = {
-        server_host = "127.0.0.1";
-        server_port = port;
-        use_x_forwarded_for = true;
-        trusted_proxies = [
-          "127.0.0.1"
-          "::1"
-        ];
-      };
-
-      lovelace = {
-        mode = "storage";
-        resources = [
-          {
-            type = "module";
-            url = "/local/check-button-card.js";
-          }
-        ];
-      };
-
-      sensor = "!include sensor.yaml";
-      "automation ui" = "!include automations.yaml";
-      "scene ui" = "!include scenes.yaml";
-
-      frontend.themes = "!include_dir_merge_named themes";
-    };
+    config = null;
 
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/home-assistant/component-packages.nix
     extraComponents = [
@@ -45,15 +16,14 @@ in
       "esphome"
       "met"
       "zha"
-      "speedtestdotnet"
-      "adguard"
       "jellyfin"
-      "rmvtransport"
       "mqtt"
       "local_todo"
       "ping"
       "caldav"
       "mealie"
+      "wyoming"
+      "ollama"
     ];
 
     extraPackages =
@@ -78,6 +48,28 @@ in
     ];
   };
   networking.firewall.allowedTCPPorts = [ 1883 ];
+
+  services.ollama = {
+    enable = true;
+    host = "0.0.0.0";
+  };
+  services.wyoming = {
+    faster-whisper.servers.small = {
+      enable = true;
+      uri = "tcp://0.0.0.0:27001";
+      model = "small-int8";
+      language = "en";
+    };
+    piper.servers.en = {
+      enable = true;
+      uri = "tcp://0.0.0.0:27101";
+      voice = "en_GB-jenny_dioco-medium";
+    };
+    openwakeword = {
+      enable = true;
+      uri = "tcp://0.0.0.0:27201";
+    };
+  };
 
   feline.caddy.routes."${url}" = {
     mode = "sso";
