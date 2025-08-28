@@ -16,7 +16,6 @@
     ./modules/dns.nix
     ./modules/notify.nix
     ./modules/persist.nix
-    ./modules/qemu.nix
     ./modules/steamcmd.nix
 
     ./services/auto-deploy.nix
@@ -26,7 +25,6 @@
     ./services/docker-compose.nix
     ./services/gui.nix
     ./services/postgres.nix
-    ./services/prometheus.nix
     ./services/smart-metrics.nix
     ./services/ssh.nix
     ./services/syncthing.nix

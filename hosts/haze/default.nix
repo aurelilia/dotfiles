@@ -11,26 +11,21 @@
     ./containers/mastodon.nix
     ./containers/matrix-garden.nix
     ./containers/matrix-ehira.nix
+    ./containers/mealie.nix
     ./containers/nextcloud.nix
 
     ./services/adguard.nix
     ./services/bupstash.nix
     ./services/ddclient.nix
-    ./services/grafana.nix
     ./services/homeassistant.nix
     ./services/jellyfin.nix
     ./services/matrix-tessa.nix
-    ./services/mealie.nix
     ./services/navidrome.nix
     ./services/nfs.nix
     ./services/ntfy.nix
     ./services/paperless.nix
-    ./services/prometheus.nix
     ./services/redirs.nix
     ./services/scrutiny.nix
-
-    # ./vms/cauldron.nix
-    # ./vms/swarm.nix
   ];
 
   # Initrd networking kernel drivers

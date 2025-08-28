@@ -28,11 +28,14 @@ let
       };
     };
     docker.feline.docker.enable = true;
-    prometheus.feline.prometheus.enable = true;
 
     workstation = {
       # I want Mullvad on GUI systems
       services.mullvad-vpn.enable = true;
+      feline.persist."mullvad" = {
+        path = "/etc/mullvad-vpn";
+        kind = "config";
+      };
 
       # I want a basic docker host on GUI systems
       virtualisation.docker.enable = true;

@@ -11,7 +11,6 @@ in
         "defaults"
         "server"
         "virtual"
-        "prometheus"
       ];
       extra-exporters = [ 59423 ];
       ipv4 = "202.61.255.155";
@@ -23,7 +22,6 @@ in
         "defaults"
         "server"
         "docker"
-        "prometheus"
       ];
       extra-exporters = [ 59423 ];
     };

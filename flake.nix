@@ -1,5 +1,5 @@
 {
-  description = "aurlila's full system configurations using Lix, NixOS, and HM";
+  description = "aurelila's full system configurations using Lix, NixOS, and HM";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
@@ -60,7 +60,7 @@
           disko.nixosModules.disko
           catppuccin.nixosModules.catppuccin
           nixos-dns.nixosModules.dns
-          nixos-mail.nixosModules.default          
+          nixos-mail.nixosModules.default
           ./nixos
         ];
 

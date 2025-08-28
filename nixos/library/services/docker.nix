@@ -8,7 +8,6 @@
         enable = true;
         flags = [ "--all" ];
       };
-      daemon.settings = lib.mkIf config.feline.docker.metrics-enable { metrics-addr = "0.0.0.0:59423"; };
     };
 
     virtualisation.oci-containers = lib.mkIf (config.feline.docker.enable) {
@@ -27,12 +26,5 @@
     };
   };
 
-  options.feline.docker = {
-    enable = lib.mkEnableOption "Docker host";
-    metrics-enable = lib.mkOption {
-      type = lib.types.bool;
-      default = config.feline.prometheus.enable;
-      description = "Enable docker metrics";
-    };
-  };
+  options.feline.docker.enable = lib.mkEnableOption "Docker host";
 }

@@ -15,8 +15,6 @@
     package = nixosConfig.lib.pkgs-unstable.vscodium.fhsWithPackages (ps: with ps; [ nil ]);
 
     profiles.default.extensions = with nixosConfig.lib.pkgs-unstable.vscode-extensions; [
-      catppuccin.catppuccin-vsc-icons
-
       rust-lang.rust-analyzer
       tamasfe.even-better-toml
 
