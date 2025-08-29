@@ -34,52 +34,129 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 
 /* Remove below if not using TreeStyleTab extension */
 /* Hide splitter, when using Tree Style Tab. */
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]+#sidebar-splitter {
+#sidebar-box+#sidebar-splitter {
   display: none !important;
 }
 
 /* Hide sidebar header, when using Tree Style Tab. */
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+#sidebar-box #sidebar-header {
   visibility: collapse;
 }
 
-/* Shrink sidebar until hovered, when using Tree Style Tab. */
-:root {
-  --thin-tab-width: 30px;
-  --wide-tab-width: 200px;
+/* Hide on hover */
+:where(#main-window) #browser{
+  --uc-sidebar-width: 32px;
+  --uc-sidebar-hover-width: 210px;
+}
+#main-window[sizemode="fullscreen"] #browser{
+  --uc-sidebar-width: 1px;
+}
+#sidebar-box{
+  --uc-autohide-sidebar-delay: 0ms; /* Don't wait before hiding sidebar */
+  --uc-autohide-transition-duration: 200ms;
+  --uc-autohide-transition-type: ease-in-out;
+  --browser-area-z-index-sidebar: 3;
+  position: relative;
+  min-width: var(--uc-sidebar-width) !important;
+  width: var(--uc-sidebar-width) !important;
+  max-width: var(--uc-sidebar-width) !important;
+  z-index: var(--browser-area-z-index-sidebar,3);
+  background-color: inherit;
+  /* This directionality flipper is played so that sidebar "grows" into the right direction */
+  direction: ltr;
+  &:is([positionend],[sidebar-positionend]):not(:-moz-locale-dir(rtl)){
+    direction: rtl;
+  }
+}
+.sidebar-browser-stack{
+  background: inherit;
+}
+#main-window[sizemode="fullscreen"] #browser{ --uc-sidebar-width: 1px; }
+
+#sidebar-splitter{ display: none }
+
+#sidebar-header{
+  overflow: hidden;
+  color: var(--chrome-color, inherit) !important;
+  padding-inline: 0 !important;
 }
 
-#sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
-  min-width: var(--wide-tab-width) !important;
-  max-width: none !important;
+#sidebar-header::before,
+#sidebar-header::after{
+  content: "";
+  display: flex;
+  padding-left: 8px;
 }
 
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] {
-  overflow: hidden !important;
-  position: relative !important;
-  transition: all 200ms !important;
-  min-width: var(--thin-tab-width) !important;
-  max-width: var(--thin-tab-width) !important;
-  will-change: auto !important;
+#sidebar-header,
+#sidebar{
+  transition: min-width var(--uc-autohide-transition-duration) var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay) !important;
+  min-width: var(--uc-sidebar-width) !important;
+  will-change: min-width;
+  direction: ltr;
+  &:-moz-locale-dir(rtl){
+    direction: rtl;
+  }
+}
+#sidebar-box:hover > #sidebar-header,
+#sidebar-box:hover > #sidebar,
+#sidebar-box:hover > .sidebar-browser-stack > #sidebar{
+  min-width: var(--uc-sidebar-hover-width) !important;
+  transition-delay: 0ms !important;
 }
 
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover,
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar {
-  transition: all 200ms !important;
-  min-width: var(--wide-tab-width) !important;
-  max-width: var(--wide-tab-width) !important;
+.sidebar-panel{
+  background-color: transparent !important;
+  color: var(--newtab-text-primary-color) !important;
 }
 
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
-  margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;
+.sidebar-panel #search-box{
+  -moz-appearance: none !important;
+  background-color: rgba(249,249,250,0.1) !important; 
+  color: inherit !important;
 }
 
-#sidebar {
-  position: relative !important;
+/* Move statuspanel to the other side when sidebar is hovered so it doesn't get covered by sidebar */
+#sidebar-box:not([positionend],[sidebar-positionend]):hover ~ #appcontent #statuspanel{
+  inset-inline: auto 0px !important;
 }
-
-#sidebar-box :-moz-any(#sidebar, #sidebar-header) {
-  z-index: 3;
+#sidebar-box:not([positionend],[sidebar-positionend]):hover ~ #appcontent #statuspanel-label{
+  margin-inline: 0px !important;
+  border-left-style: solid !important; 
+}
+@media -moz-pref("userchrome.autohide-sidebar.static-layout.enabled"){
+  #sidebar-box{
+    min-width: var(--uc-sidebar-width) !important;
+    contain: size;
+    box-shadow: var(--content-area-shadow);
+  }
+  #sidebar{
+    min-width: var(--uc-sidebar-hover-width) !important;
+  }
+  .sidebar-browser-stack{
+    overflow: hidden;
+    width: 100%;
+    transition: width var(--uc-autohide-transition-duration) var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay);
+    direction: ltr;
+    &:hover{
+      transition-delay: 0ms;
+      width: var(--uc-sidebar-hover-width);
+    }
+    &:-moz-locale-dir(rtl){
+      transition-property: transform,width !important;
+    }
+  }
+  #sidebar-box[sidebar-positionend]:hover :is(#sidebar-header,#sidebar):-moz-locale-dir(ltr){
+    transform: translateX(0);
+    transition-delay: 0ms !important;
+  }
+  #sidebar-box:not([sidebar-positionend]):hover .sidebar-browser-stack:-moz-locale-dir(rtl){
+    transform: translateX(calc(-1 * var(--uc-sidebar-hover-width) + var(--uc-sidebar-width)));
+  }
+  #sidebar-box[sidebar-positionend]:hover > .sidebar-browser-stack:-moz-locale-dir(rtl){
+    transform: translateX(calc(var(--uc-sidebar-hover-width) - var(--uc-sidebar-width)));
+    transition-delay: 0ms !important;
+  }
 }
 
 /* Hide fullscreen warning */
