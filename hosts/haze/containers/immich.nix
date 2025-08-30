@@ -33,9 +33,12 @@ in
 
   feline.postgres.databases = [ "immich" ];
   services.postgresql = {
-    extensions = [ pkgs.postgresql16Packages.pgvecto-rs ];
+    extensions = [
+      pkgs.postgresql16Packages.pgvecto-rs
+      pkgs-unstable.postgresql16Packages.vectorchord
+    ];
     settings = {
-      shared_preload_libraries = "vectors.so";
+      shared_preload_libraries = "vectors.so, vchord.so";
     };
   };
 }
