@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  lib.pkgs = {
+  imports = [
+    ./paperless.nix
+  ];
+  config.lib.pkgs = {
     postgres-upgrade =
       { new, old }:
       (pkgs.writeScriptBin "pg-upgrade-${old.psqlSchema}-to-${new.psqlSchema}" ''

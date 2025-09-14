@@ -1,15 +1,15 @@
-{ ... }:
+{ pkgs-unstable, ... }:
 let
   url = "docs.catin.eu";
 in
 {
-  services.paperless = {
+  feline.paperless = {
     enable = true;
+    package = pkgs-unstable.paperless-ngx;
     dataDir = "/persist/data/paperless";
-    settings = {
-      PAPERLESS_OCR_LANGUAGE = "deu+eng";
-      PAPERLESS_URL = "https://${url}";
-    };
+    configureNginx = false;
+    domain = url;
+    settings.PAPERLESS_OCR_LANGUAGE = "deu+eng";
   };
 
   feline.caddy.routes.${url} = {
