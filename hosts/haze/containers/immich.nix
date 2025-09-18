@@ -33,9 +33,9 @@ in
 
   feline.postgres.databases = [ "immich" ];
   services.postgresql = {
-    extensions = [
-      pkgs.postgresql16Packages.pgvecto-rs
-      pkgs-unstable.postgresql16Packages.vectorchord
+    extensions = ps: [
+      ps.pgvector
+      ps.vectorchord
     ];
     settings = {
       shared_preload_libraries = "vectors.so, vchord.so";
