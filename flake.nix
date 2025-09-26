@@ -27,7 +27,7 @@
       url = "github:Janik-Haag/nixos-dns";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.url = "github:catppuccin/nix/release-25.05";
     nixos-mail.url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
   };
 
@@ -74,7 +74,7 @@
     {
       devShells.${hostSystem}.default = nixpkgsHost.mkShell {
         buildInputs = [
-          (nixpkgsHost.colmena.override { nix = nixpkgsHost.lix; })
+          nixpkgsHost.colmena
           agenix.packages.${hostSystem}.default
           nixpkgsHost.nixfmt-rfc-style
           (nixpkgsHost.octodns.withProviders (

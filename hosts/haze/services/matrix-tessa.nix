@@ -1,4 +1,4 @@
-{ pkgs-unstable, ... }:
+{ pkgs-unstable, config, ... }:
 let
   url = "matrix.tessa.dog";
   port = 51047;
@@ -6,7 +6,7 @@ in
 {
   services.matrix-continuwuity = {
     enable = true;
-    package = pkgs-unstable.matrix-continuwuity;
+    package = config.lib.pkgs.continuwuity;
     settings.global = {
       server_name = "tessa.dog";
       port = [ port ];
