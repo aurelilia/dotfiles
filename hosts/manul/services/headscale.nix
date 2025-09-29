@@ -4,7 +4,7 @@ let
 in
 {
   age.secrets.headscale-config = {
-    file = ../../../secrets/navy/headscale-config.age;
+    file = ../../../secrets/manul/headscale-config.age;
     owner = "headscale";
     group = "headscale";
     path = "/etc/headscale/config.yaml";

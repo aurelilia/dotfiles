@@ -36,15 +36,6 @@ in
       root = "${root}/gamegirl";
     };
 
-    "file.elia.garden" = {
-      root = "${root}/file";
-      extra = ''
-        basicauth /hidden/* {
-          aurelia $2a$14$HDTVj/YGiEtAA7nICvlSxeEivE3HryuQ9dnFChHGbXYqnDtFVMMba
-        }
-      '';
-    };
-
     "branding.catin.eu".root = ../../../branding;
 
     "ehir.art".extra = (mkMatrixWellKnown "ehir.art");

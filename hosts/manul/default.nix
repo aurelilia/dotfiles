@@ -8,9 +8,13 @@ in
     ./disko.nix
     ./hardware.nix
 
+    ./services/caddy.nix
+    ./services/coturn.nix
     ./services/forgejo.nix
+    ./services/headscale.nix
     ./services/kuma.nix
     ./services/matrix-client.nix
+    ./services/postfix.nix
     ./services/send.nix
   ];
 

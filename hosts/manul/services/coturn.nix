@@ -1,7 +1,7 @@
 { config, ... }:
 {
   age.secrets.coturn-auth = {
-    file = ../../../secrets/navy/coturn-auth.age;
+    file = ../../../secrets/manul/coturn-auth.age;
     owner = "turnserver";
     group = "turnserver";
   };
@@ -30,7 +30,7 @@
     no-tls = true;
     no-dtls = true;
 
-    realm = "navy.elia.garden";
+    realm = "manul.elia.garden";
     relay-ips = [ "202.61.255.155" ];
     static-auth-secret-file = config.age.secrets.coturn-auth.path;
 

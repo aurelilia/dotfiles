@@ -13,7 +13,7 @@ in
     indexDir = "/var/lib/dovecot/indices";
 
     fqdn = "catin.eu";
-    sendingFqdn = "navy.elia.garden";
+    sendingFqdn = "manul.elia.garden";
     domains = [
       "elia.garden"
       "catin.eu"

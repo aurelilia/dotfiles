@@ -8,10 +8,6 @@
       jade.user = "root";
       helio.user = "root";
       haze.user = "root";
-      navy = {
-        user = "root";
-        port = 9022;
-      };
       manul = {
         user = "root";
         port = 9022;
