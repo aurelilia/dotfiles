@@ -12,14 +12,4 @@ in
     };
   };
   feline.caddy.routes.${url}.port = 1443;
-
-  fileSystems."/var/lib/send" = {
-    device = "/dev/mapper/root";
-    fsType = "btrfs";
-    options = [
-      "subvol=/send"
-      "compress=zstd"
-      "noatime"
-    ];
-  };
 }

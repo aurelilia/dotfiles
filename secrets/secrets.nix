@@ -15,10 +15,6 @@ in
     leela
     navy
   ];
-  "jade/bookstack-key.age".publicKeys = with keys; [
-    leela
-    jade
-  ];
   "haze/streamrip.age".publicKeys = with keys; [
     leela
     haze

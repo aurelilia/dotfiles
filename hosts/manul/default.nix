@@ -5,20 +5,20 @@ in
 {
   imports = [
     ./backup.nix
+    ./disko.nix
     ./hardware.nix
 
-    ./services/caddy.nix
-    ./services/coturn.nix
-    ./services/headscale.nix
-    ./services/postfix.nix
+    ./services/forgejo.nix
+    ./services/kuma.nix
+    ./services/matrix-client.nix
+    ./services/send.nix
   ];
+
   feline = {
-    # Persist is not a separate mountpoint
-    mountPersistAtBoot = false;
     # DNS: Direct records
     dns.baseRecord = {
-      a.data = nodes.navy.ipv4;
-      aaaa.data = nodes.navy.ipv6;
+      a.data = nodes.manul.ipv4;
+      aaaa.data = nodes.manul.ipv6;
     };
   };
 

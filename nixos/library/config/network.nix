@@ -14,6 +14,7 @@
       100.64.0.5      haze haze.elia.garden
       100.64.0.1      lowlander lowlander.elia.garden
       100.64.0.2      navy navy.elia.garden
+      100.64.0.10     manul manul.elia.garden
     '';
   };
 }

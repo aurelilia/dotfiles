@@ -12,6 +12,10 @@
         user = "root";
         port = 9022;
       };
+      manul = {
+        user = "root";
+        port = 9022;
+      };
     };
   };
 

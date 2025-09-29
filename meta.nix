@@ -1,9 +1,3 @@
-let
-  haze-swarm = {
-    config = "haze-swarm";
-    tags = [ "virtual" ];
-  };
-in
 {
   nodes = {
     navy = {
@@ -12,23 +6,25 @@ in
         "server"
         "virtual"
       ];
-      extra-exporters = [ 59423 ];
       ipv4 = "202.61.255.155";
       ipv6 = "2a03:4000:55:f57::1";
     };
-    lowlander.tags = [ ];
-    haze = {
+    manul = {
       tags = [
         "defaults"
         "server"
+        "virtual"
         "docker"
       ];
-      extra-exporters = [ 59423 ];
+      ipv4 = "85.215.174.234";
+      ipv6 = "2a01:239:41e:af00::1";
     };
-
-    haze-swarm1 = haze-swarm;
-    haze-swarm2 = haze-swarm;
-    haze-swarm3 = haze-swarm;
+    lowlander.tags = [ ];
+    haze.tags = [
+      "defaults"
+      "server"
+      "docker"
+    ];
 
     mauve.tags = [
       "defaults"

@@ -27,8 +27,5 @@ in
   };
 
   feline.persist.forgejo.path = "/var/lib/forgejo";
-  feline.caddy.routes = {
-    ${url}.port = 3000;
-    "git.elia.garden".redir = url;
-  };
+  feline.caddy.routes.${url}.port = 3000;
 }
