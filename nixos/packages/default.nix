@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./paperless.nix
@@ -32,7 +32,5 @@
         --data "{\"msgtype\":\"m.text\",\"body\":\"$1\"}" \
         https://matrix.elia.garden/_matrix/client/r0/rooms/$ROOM/send/m.room.message/$RANDOM$RANDOM$RANDOM$RANDOM 
     '';
-
-    continuwuity = pkgs-unstable.callPackage ./continuwuity.nix {};
   };
 }

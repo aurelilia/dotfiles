@@ -1,7 +1,7 @@
 { ... }:
 let
-  path = "/persist/data/mastodon";
-  cache = "/media/media/mastodon_cache";
+  path = "/persist/data/mastodon/data";
+  cache = "/persist/data/mastodon/media";
   url = "social.elia.garden";
 
   volumes = [

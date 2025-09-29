@@ -5,13 +5,8 @@
     ./hardware.nix
 
     ./containers/actual.nix
-    ./containers/authentik.nix
     ./containers/ffsync.nix
     ./containers/immich.nix
-    ./containers/mastodon.nix
-    ./containers/matrix-garden.nix
-    ./containers/matrix-ehira.nix
-    ./containers/mealie.nix
     ./containers/nextcloud.nix
 
     ./services/adguard.nix
@@ -19,12 +14,9 @@
     ./services/ddclient.nix
     ./services/homeassistant.nix
     ./services/jellyfin.nix
-    ./services/matrix-tessa.nix
     ./services/navidrome.nix
     ./services/nfs.nix
-    ./services/ntfy.nix
     ./services/paperless.nix
-    ./services/redirs.nix
     ./services/scrutiny.nix
   ];
 
