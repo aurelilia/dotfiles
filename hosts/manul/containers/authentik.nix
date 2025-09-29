@@ -16,9 +16,7 @@ in
     authentik-server = {
       image = "${image}:${version}";
       command = "server";
-      depends_on = [
-        "redis"
-      ];
+      depends_on = [ "redis" ];
       env_file = [ "${path}/.env" ];
       environment = {
         AUTHENTIK_POSTGRESQL__HOST = "host.runc.internal";
@@ -35,9 +33,7 @@ in
     authentik-worker = {
       image = "${image}:${version}";
       command = "worker";
-      depends_on = [
-        "redis"
-      ];
+      depends_on = [ "redis" ];
       env_file = [ "${path}/.env" ];
 
       environment = {

@@ -1,7 +1,5 @@
+{ nixosConfig, ... }:
 {
-  nixosConfig,
-  ...
-}: {
   config = {
     programs.zed-editor = {
       enable = true;

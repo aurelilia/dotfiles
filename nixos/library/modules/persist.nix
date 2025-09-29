@@ -1,16 +1,22 @@
 { lib, config, ... }:
 let
   cfg = config.feline.persist;
-  
-  mkBindMountNameValuePair = { name, value }: {
-    name = value.path;
-    value = {
-      device = "/persist/${value.kind}/${name}";
-      noCheck = true;
-      options = [ "bind" "X-fstrim.notrim" "x-gvfs-hide" ];
-      depends = lib.mkIf config.feline.mountPersistAtBoot [ "/persist" ];
+
+  mkBindMountNameValuePair =
+    { name, value }:
+    {
+      name = value.path;
+      value = {
+        device = "/persist/${value.kind}/${name}";
+        noCheck = true;
+        options = [
+          "bind"
+          "X-fstrim.notrim"
+          "x-gvfs-hide"
+        ];
+        depends = lib.mkIf config.feline.mountPersistAtBoot [ "/persist" ];
+      };
     };
-  };
   bindMounts = lib.listToAttrs (map mkBindMountNameValuePair (lib.attrsToList cfg));
 in
 {

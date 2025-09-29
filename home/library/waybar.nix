@@ -34,9 +34,7 @@ in
         "custom/keyboard"
         "custom/playerlabel"
       ];
-      modules-center = [
-        "niri/workspaces"
-      ];
+      modules-center = [ "niri/workspaces" ];
       modules-right =
         if nixosConfig.feline.power-management.enable then
           [

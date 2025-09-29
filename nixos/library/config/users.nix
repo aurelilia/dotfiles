@@ -16,13 +16,12 @@ in
       users.users.root.shell = pkgs.fish;
 
       nix.settings.trusted-users = [ cfg.user ];
-      home-manager.users.${cfg.user}.imports =
-        [
-          ../../../home
-          catppuccin-hm
-        ]
-        ++ lib.optional cfg.full ../../../home/workstation.nix
-        ++ lib.optional cfg.full-slim ../../../home/workstation-slim.nix;
+      home-manager.users.${cfg.user}.imports = [
+        ../../../home
+        catppuccin-hm
+      ]
+      ++ lib.optional cfg.full ../../../home/workstation.nix
+      ++ lib.optional cfg.full-slim ../../../home/workstation-slim.nix;
     })
 
     (lib.mkIf cfg.create-user {

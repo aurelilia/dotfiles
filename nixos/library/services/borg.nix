@@ -125,7 +125,8 @@ in
       age.secrets.borg-ssh-id.file = ../../../secrets/borg-ssh-id.age;
       # Hosts
       programs.ssh.knownHosts = {
-        "c689j5a8.repo.borgbase.com".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
+        "c689j5a8.repo.borgbase.com".publicKey =
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
       };
     })
   ];

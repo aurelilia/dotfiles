@@ -31,9 +31,7 @@
   };
 
   boot.zfs = {
-    requestEncryptionCredentials = [
-      "zroot/data"
-    ];
+    requestEncryptionCredentials = [ "zroot/data" ];
     extraPools = [
       "zmedia"
       "ziggurat"

@@ -1,8 +1,6 @@
 { pkgs, ... }:
 {
-  imports = [
-    ./paperless.nix
-  ];
+  imports = [ ./paperless.nix ];
   config.lib.pkgs = {
     postgres-upgrade =
       { new, old }:

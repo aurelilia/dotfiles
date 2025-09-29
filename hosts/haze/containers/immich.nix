@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ ... }:
 let
   path = "/persist/data/immich";
 in
@@ -12,9 +12,7 @@ in
 
     immich-server = {
       image = "ghcr.io/immich-app/immich-server:release";
-      depends_on = [
-        "redis"
-      ];
+      depends_on = [ "redis" ];
       env_file = [ "${path}/env" ];
       ports = [ "127.0.0.1:2283:2283" ];
       volumes = [

@@ -88,9 +88,9 @@
   # Printer
   services.avahi.enable = true;
   services.printing = {
-  	enable = true;
-  	drivers = [ pkgs.brlaser ];
-  	cups-pdf.enable = true;
+    enable = true;
+    drivers = [ pkgs.brlaser ];
+    cups-pdf.enable = true;
   };
   feline.persist."cups" = {
     path = "/var/lib/cups";

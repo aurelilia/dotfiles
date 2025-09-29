@@ -25,18 +25,12 @@ let
     GRANIAN_PORT = toString cfg.port;
     GRANIAN_WORKERS_KILL_TIMEOUT = "60";
   }
-  // lib.optionalAttrs (config.time.timeZone != null) {
-    PAPERLESS_TIME_ZONE = config.time.timeZone;
-  }
-  // lib.optionalAttrs enableRedis {
-    PAPERLESS_REDIS = "unix://${redisServer.unixSocket}";
-  }
+  // lib.optionalAttrs (config.time.timeZone != null) { PAPERLESS_TIME_ZONE = config.time.timeZone; }
+  // lib.optionalAttrs enableRedis { PAPERLESS_REDIS = "unix://${redisServer.unixSocket}"; }
   // lib.optionalAttrs (cfg.settings.PAPERLESS_ENABLE_NLTK or true) {
     PAPERLESS_NLTK_DIR = cfg.package.nltkDataDir;
   }
-  // lib.optionalAttrs (cfg.openMPThreadingWorkaround) {
-    OMP_NUM_THREADS = "1";
-  }
+  // lib.optionalAttrs (cfg.openMPThreadingWorkaround) { OMP_NUM_THREADS = "1"; }
   // (lib.mapAttrs (
     _: s:
     if (lib.isAttrs s || lib.isList s) then
@@ -410,9 +404,7 @@ in
         };
 
         feline.paperless.settings = lib.mkMerge [
-          (lib.mkIf (cfg.domain != "") {
-            PAPERLESS_URL = "https://${cfg.domain}";
-          })
+          (lib.mkIf (cfg.domain != "") { PAPERLESS_URL = "https://${cfg.domain}"; })
           (lib.mkIf cfg.database.createLocally {
             PAPERLESS_DBENGINE = "postgresql";
             PAPERLESS_DBHOST = "/run/postgresql";
