@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   cfg = config.feline.borg;
   job = {
@@ -102,11 +107,29 @@ in
 {
   config = lib.mkMerge [
     (lib.mkIf (cfg.persist.enable) {
-      services.borgbackup.jobs.persist = job // {
-        paths = [ "/persist" ];
-        repo = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
-        startAt = cfg.persist.time;
-      };
+      # If /persist is a ZFS dataset: Create a snapshot to back up instead of directly doing so
+      # This prevents backup failures due to file changes during backup
+      services.borgbackup.jobs.persist =
+        job
+        // (
+          if (config.fileSystems ? "/persist") && config.fileSystems."/persist".fsType == "zfs" then
+            let
+              device = config.fileSystems."/persist".device;
+            in
+            {
+              paths = [ "/persist/.zfs/snapshot/borg" ];
+              repo = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
+              startAt = cfg.persist.time;
+              preHook = "${pkgs.zfs}/bin/zfs snapshot ${device}@borg";
+              postCreate = "${pkgs.zfs}/bin/zfs destroy ${device}@borg";
+            }
+          else
+            {
+              paths = [ "/persist" ];
+              repo = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
+              startAt = cfg.persist.time;
+            }
+        );
       feline.notify = [ "borgbackup-job-persist" ];
       systemd.services.borgbackup-job-persist = serviceCfg;
     })
