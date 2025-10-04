@@ -117,11 +117,19 @@ in
               device = config.fileSystems."/persist".device;
             in
             {
-              paths = [ "/persist/.zfs/snapshot/borg" ];
+              paths = [ "/tmp/borg-persist" ];
               repo = "c689j5a8@c689j5a8.repo.borgbase.com:repo";
               startAt = cfg.persist.time;
-              preHook = "${pkgs.zfs}/bin/zfs snapshot ${device}@borg";
-              postCreate = "${pkgs.zfs}/bin/zfs destroy ${device}@borg";
+              preHook = ''
+                ${pkgs.coreutils}/bin/mkdir -p /tmp/borg-persist
+                ${pkgs.zfs}/bin/zfs destroy ${device}@borg || true
+                ${pkgs.zfs}/bin/zfs snapshot ${device}@borg
+                ${pkgs.util-linux}/bin/mount -t zfs ${device}@borg /tmp/borg-persist
+              '';
+              postCreate = ''
+                ${pkgs.util-linux}/bin/umount /tmp/borg-persist
+                ${pkgs.zfs}/bin/zfs destroy ${device}@borg
+              '';
             }
           else
             {
