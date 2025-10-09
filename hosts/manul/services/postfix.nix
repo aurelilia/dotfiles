@@ -33,6 +33,13 @@ in
         hashedPassword = "$2b$05$yUAbKtU/5M6h.K.6jdkMuus3QRW8IIPHqxICi8kPFDYPxRZRxWT8a";
         aliases = [ "@ehir.art" ];
       };
+
+      "noreply@auth.catin.eu" = {
+        hashedPassword = "$2b$05$TjbQF7BxfIZAp6BfG3LIBO2ToqCMJj9AlPc/ypCGaerrAXrjJ5day";
+      };
+      "noreply@zulip.catin.eu" = {
+        hashedPassword = "$2b$05$iFioMK0WM0BvkbXRSr3D8.I1mdVo9cfCRE08ybm3tyyQSUZdw1rI.";
+      };
     };
 
     fullTextSearch = {

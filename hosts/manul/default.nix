@@ -13,6 +13,7 @@ in
     ./containers/matrix/ehira.nix
     ./containers/matrix/garden.nix
     ./containers/mealie.nix
+    ./containers/zulip.nix
 
     ./services/caddy.nix
     ./services/coturn.nix
