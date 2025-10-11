@@ -11,10 +11,6 @@ in
     leela
     manul
   ];
-  "manul/headscale-config.age".publicKeys = with keys; [
-    leela
-    manul
-  ];
   "haze/streamrip.age".publicKeys = with keys; [
     leela
     haze
