@@ -1,4 +1,4 @@
-{ pkgs-unstable, ... }:
+{ config, pkgs-unstable, ... }:
 let
   url = "home.catin.eu";
   port = 51321;
@@ -49,10 +49,6 @@ in
   };
   networking.firewall.allowedTCPPorts = [ 1883 ];
 
-  services.ollama = {
-    enable = true;
-    host = "0.0.0.0";
-  };
   services.wyoming = {
     faster-whisper.servers.small = {
       enable = true;
@@ -69,6 +65,22 @@ in
       enable = true;
       uri = "tcp://0.0.0.0:27201";
     };
+  };
+
+  # Do this weirdly and separately like this since STP requires passing a secret
+  # in its cmdline, so we just have a script that contains a docker run command.
+  systemd.services.docker-speech-to-phrase = {
+    description = "Docker container for Speech-to-Phrase";
+
+    serviceConfig.Restart = "always";
+    path = [ config.virtualisation.docker.package ];
+    script = "/persist/data/hassio/stp.sh";
+
+    after = [
+      "docker.service"
+      "docker.socket"
+    ];
+    wants = [ "network-online.target" ];
   };
 
   feline.caddy.routes."${url}" = {
