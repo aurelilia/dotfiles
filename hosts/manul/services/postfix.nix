@@ -40,6 +40,9 @@ in
       "noreply@zulip.catin.eu" = {
         hashedPassword = "$2b$05$iFioMK0WM0BvkbXRSr3D8.I1mdVo9cfCRE08ybm3tyyQSUZdw1rI.";
       };
+      "noreply@social.catin.eu" = {
+        hashedPassword = "$2b$05$GalNO3SzDlHXh6uzBA1uQe.j6btuLudSlAOOaej9dectYb5pQfLfO";
+      };
     };
 
     fullTextSearch = {

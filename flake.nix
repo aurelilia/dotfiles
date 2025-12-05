@@ -2,11 +2,11 @@
   description = "aurelila's full system configurations using Lix, NixOS, and HM";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {
@@ -27,7 +27,8 @@
       url = "github:Janik-Haag/nixos-dns";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix/release-25.05";
+    # TODO use release branches once they exist
+    catppuccin.url = "github:catppuccin/nix";
     nixos-mail.url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
   };
 

@@ -80,7 +80,6 @@ in
       logseq
       xournalpp
       keepassxc
-      jellyfin-media-player
       feishin
       lan-mouse
       orca-slicer

@@ -9,7 +9,7 @@
 {
   config = lib.mkIf (config.feline.gui.enable) {
     environment.systemPackages = with pkgs; [
-      greetd.tuigreet
+      tuigreet
       lutris-free
     ];
 
@@ -40,13 +40,9 @@
     xdg.portal = {
       enable = true;
       extraPortals = [
-        pkgs.xdg-desktop-portal-gnome
         pkgs.xdg-desktop-portal-gtk
       ];
-      configPackages = [ pkgs.niri ];
-      config.common = {
-        "org.freedesktop.impl.portal.FileChooser" = "gtk";
-      };
+      config.common.default = "gnome";
     };
     services.gnome.gnome-keyring.enable = true;
 
