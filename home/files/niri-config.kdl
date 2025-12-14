@@ -92,8 +92,19 @@ window-rule {
 }
 window-rule {
     match app-id="thunderbird"
+    match at-startup=true
     open-on-workspace "Mail"
 }
+
+output "Hisense Electric Co., Ltd. HISENSE 0x00000001" {
+    scale 2
+}
+window-rule {
+    match app-id="mpv"
+    open-maximized true
+    open-on-output "Hisense Electric Co., Ltd. HISENSE 0x00000001"
+}
+
 
 window-rule {
     geometry-corner-radius 5

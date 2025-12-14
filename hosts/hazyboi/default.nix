@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
     ./backup.nix
@@ -15,13 +19,6 @@
     pkgs.sonarr
     pkgs.radarr
   ];
-
-  # Libvirt
-  virtualisation.libvirtd = {
-    enable = true;
-    parallelShutdown = 5;
-    qemu.runAsRoot = false;
-  };
 
   # Steam.
   programs.steam.enable = true;

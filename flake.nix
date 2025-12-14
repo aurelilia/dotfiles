@@ -29,7 +29,7 @@
     };
     # TODO use release branches once they exist
     catppuccin.url = "github:catppuccin/nix";
-    nixos-mail.url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
+    nixos-mail.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
   };
 
   outputs =

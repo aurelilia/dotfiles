@@ -68,6 +68,7 @@ in
     # Services
     services.flameshot.enable = true;
     services.ssh-agent.enable = true;
+    services.jellyfin-mpv-shim.enable = true;
 
     home.packages = with pkgs; [
       # Graphical
