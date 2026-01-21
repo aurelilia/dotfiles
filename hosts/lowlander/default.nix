@@ -35,10 +35,7 @@
   # GUI
   services = {
     xserver.enable = true;
-    displayManager.sddm = {
-      enable = true;
-      catppuccin.enable = false;
-    };
+    displayManager.sddm.enable = true;
     desktopManager.plasma6.enable = true;
   };
 

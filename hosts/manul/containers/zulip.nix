@@ -81,4 +81,11 @@ in
       }
     }
   '';
+  feline.caddy.routes."zulip.ehir.art".extra = ''
+    reverse_proxy localhost:34502 {
+      transport http {
+        tls_insecure_skip_verify
+      }
+    }
+  '';
 }

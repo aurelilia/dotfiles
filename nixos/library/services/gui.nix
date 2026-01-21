@@ -67,7 +67,33 @@
           ];
         };
       };
+      extraConfig = {
+        pipewire."99-quantum.conf" = {
+          "context.properties" = {
+            "default.clock.rate" = 48000;
+            "default.clock.quantum" = 1024;
+            "default.clock.min-quantum" = 128;
+            "default.clock.max-quantum" = 2048;
+          };
+        };
+      };
     };
+    # https://cmm.github.io/soapbox/the-year-of-linux-on-the-desktop.html
+    environment.etc."wireplumber/main.lua.d/99-alsa-config.lua".text = ''
+      -- prepend, otherwise the change-nothing stock config will match first:
+      table.insert(alsa_monitor.rules, 1, {
+        matches = {
+          {
+            -- Matches all sinks.
+            { "node.name", "matches", "alsa_output.*" },
+          },
+        },
+        apply_properties = {
+          ["api.alsa.headroom"] = 1024,
+        },
+      })
+    '';
+    security.rtkit.enable = true;
 
     # Plymouth
     boot = {

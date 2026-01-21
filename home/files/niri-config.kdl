@@ -105,11 +105,19 @@ window-rule {
     open-on-output "Hisense Electric Co., Ltd. HISENSE 0x00000001"
 }
 
-
 window-rule {
     geometry-corner-radius 5
     clip-to-geometry true
     draw-border-with-background false
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+overview {
+    zoom 0.4
+	backdrop-color "#1e1e2e"
 }
 
 binds {
