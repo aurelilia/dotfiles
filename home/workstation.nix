@@ -86,6 +86,12 @@ in
       orca-slicer
       qbittorrent
       video-trimmer
+      gimp
+      signal-desktop
+      pdfslicer
+      ungoogled-chromium
+      libreoffice-fresh
+      wl-mirror
 
       # Fonts / Style
       nerd-fonts.fira-code

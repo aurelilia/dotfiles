@@ -23,6 +23,7 @@ in
     ./services/kuma.nix
     ./services/matrix/client.nix
     ./services/matrix/tessa.nix
+    ./services/mollysocket.nix
     # ./services/netbird.nix
     ./services/ntfy.nix
     ./services/postfix.nix

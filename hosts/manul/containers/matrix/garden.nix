@@ -10,13 +10,17 @@ in
       image = "dock.mau.dev/mautrix/discord";
       volumes = [ "${path}/discord_data:/data" ];
     };
-    mautrix-signal = {
-      image = "dock.mau.dev/mautrix/signal:latest";
-      volumes = [ "${path}/signal/data:/data" ];
-    };
     mautrix-whatsapp = {
       image = "dock.mau.dev/mautrix/whatsapp:latest";
       volumes = [ "${path}/whatsapp_data:/data" ];
+    };
+    mas = {
+      image = "ghcr.io/element-hq/matrix-authentication-service:latest";
+      volumes = [
+        "${path}/mas:/data"
+      ];
+      ports = [ "127.0.0.1:${toString (port + 1)}:8080" ];
+      environment."MAS_CONFIG" = "/data/config.yml";
     };
     synapse = {
       image = "matrixdotorg/synapse:latest";
@@ -28,6 +32,13 @@ in
     };
   };
 
-  feline.caddy.routes."${url}".port = port;
+  feline.caddy.routes."${url}" = {
+    port = port;
+    extra = ''
+      @mas path_regexp ^/_matrix/client/(.*)/(login|logout|refresh)
+      reverse_proxy @mas localhost:${toString (port + 1)}
+    '';
+  };
+  feline.caddy.routes."mas.${url}".port = (port + 1);
   feline.postgres.databases = [ "synapse" ];
 }

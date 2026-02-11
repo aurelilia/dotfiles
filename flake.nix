@@ -27,8 +27,7 @@
       url = "github:Janik-Haag/nixos-dns";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # TODO use release branches once they exist
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.url = "github:catppuccin/nix/release-25.11";
     nixos-mail.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
   };
 
