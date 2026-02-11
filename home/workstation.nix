@@ -89,7 +89,6 @@ in
       gimp
       signal-desktop
       pdfslicer
-      ungoogled-chromium
       libreoffice-fresh
       wl-mirror
 
