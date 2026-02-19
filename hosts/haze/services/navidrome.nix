@@ -5,6 +5,7 @@ in
 {
   services.navidrome = {
     enable = true;
+    package = pkgs-unstable.navidrome;
     openFirewall = true;
     settings = {
       ScanSchedule = "@every 2h";

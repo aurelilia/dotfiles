@@ -24,11 +24,10 @@
           "$@"
       '');
 
-    matrix-notify = pkgs.writeShellScript "matrix-notify-service" ''
+    ntfy-notify = pkgs.writeShellScript "ntfy-notify-service" ''
       #!/run/current-system/sw/bin/bash
-      ${pkgs.curl}/bin/curl -X PUT -H "Authorization: Bearer $ACCESS_TOKEN" \
-        --data "{\"msgtype\":\"m.text\",\"body\":\"$1\"}" \
-        https://matrix.elia.garden/_matrix/client/r0/rooms/$ROOM/send/m.room.message/$RANDOM$RANDOM$RANDOM$RANDOM 
+      ${pkgs.curl}/bin/curl -d "$1" \
+        https://ntfy.catin.eu/$ACCESS_TOKEN
     '';
   };
 }

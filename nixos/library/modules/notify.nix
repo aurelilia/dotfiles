@@ -11,15 +11,15 @@
       (lib.listToAttrs (
         map (name: {
           inherit name;
-          value.onFailure = [ "matrix-notify@${name}.service" ];
+          value.onFailure = [ "ntfy-notify@${name}.service" ];
         }) config.feline.notify
       ))
       // {
-        "matrix-notify@" = {
+        "ntfy-notify@" = {
           serviceConfig = {
             EnvironmentFile = "${config.age.secrets.matrix-notify.path}";
             Type = "oneshot";
-            ExecStart = "${config.lib.pkgs.matrix-notify} '[${name}] systemd unit %i experienced a failure!'";
+            ExecStart = "${config.lib.pkgs.ntfy-notify} '[${name}] systemd unit %i experienced a failure!'";
           };
         };
       };

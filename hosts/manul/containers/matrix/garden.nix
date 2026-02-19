@@ -6,10 +6,6 @@ let
 in
 {
   feline.compose.matrix.services = {
-    mautrix-discord = {
-      image = "dock.mau.dev/mautrix/discord";
-      volumes = [ "${path}/discord_data:/data" ];
-    };
     mautrix-whatsapp = {
       image = "dock.mau.dev/mautrix/whatsapp:latest";
       volumes = [ "${path}/whatsapp_data:/data" ];
