@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   home.sessionVariables = {
     LESSHISTFILE = "/dev/null";
@@ -27,6 +32,16 @@
     };
 
     mime.enable = true;
+    mimeApps = {
+      enable = true;
+      defaultApplicationPackages = with pkgs; [
+        eog
+        file-roller
+        nautilus
+        evince
+      ];
+    };
+
     userDirs = {
       enable = true;
 

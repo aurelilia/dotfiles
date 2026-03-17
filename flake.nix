@@ -76,7 +76,7 @@
         buildInputs = [
           nixpkgsHost.colmena
           agenix.packages.${hostSystem}.default
-          nixpkgsHost.nixfmt-rfc-style
+          nixpkgsHost.nixfmt
           (nixpkgsHost.octodns.withProviders (
             ps:
             with nixpkgsHost;

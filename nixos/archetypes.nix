@@ -38,7 +38,13 @@ let
       };
 
       # I want a basic docker host on GUI systems
-      virtualisation.docker.enable = true;
+      virtualisation.docker = {
+        enable = true;
+        rootless = {
+          enable = true;
+          setSocketVariable = true;
+        };
+      };
 
       # I want my NAS NFS shares available on GUI systems when needed
       fileSystems."/haze" = {

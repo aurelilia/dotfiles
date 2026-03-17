@@ -111,6 +111,11 @@ window-rule {
     draw-border-with-background false
 }
 
+layer-rule {
+  match namespace="^noctalia-overview*"
+  place-within-backdrop true
+}
+
 hotkey-overlay {
     skip-at-startup
 }
@@ -127,23 +132,25 @@ binds {
     // Terminal
     Mod+Return { spawn "alacritty"; }
     // Launcher + Emoji
-    Mod+T { spawn "~/.config/niri/scripts/launcher.sh"; }
-    Mod+Shift+T { spawn "rofimoji" "-r" "emoji"; }
-    // Dunst history
-    Mod+Grave { spawn "dunstctl" "history-pop"; }
+    Mod+T { spawn-sh "noctalia-shell ipc call launcher toggle"; }
+    // Settings
+    Mod+C { spawn-sh "noctalia-shell ipc call controlCenter toggle"; }
+    Mod+Grave { spawn-sh "noctalia-shell ipc call notifications toggleHistory"; }
     // Screen locker
-    Mod+L { spawn "swaylock"; }
+    Mod+L { spawn "noctalia-shell ipc call lockScreen lock"; }
     // Pick a colour
     Mod+P { spawn "~/.config/niri/scripts/picker.sh"; }
     // Pinball :)
     Mod+Shift+P { spawn "~/.config/niri/scripts/pin.sh"; }
 
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "amixer" "-q" "set" "Master" "5%+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "amixer" "-q" "set" "Master" "5%-"; }
-    XF86AudioMute        allow-when-locked=true { spawn "amixer" "-q" "set" "Master" "toggle"; }
-    XF86AudioPlay        allow-when-locked=true { spawn "playerctl" "play-pause"; }
-    XF86AudioNext        allow-when-locked=true { spawn "playerctl" "next"; }
-    XF86AudioPrev        allow-when-locked=true { spawn "playerctl" "previous"; }
+    XF86AudioPlay        allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
+    XF86AudioNext        allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "next"; }
+    XF86AudioPrev        allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "previous"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
+    XF86AudioMute        allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+    XF86MonBrightnessUp                         { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
+    XF86MonBrightnessDown                       { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
 
     Alt+4 { close-window; }
 
@@ -245,8 +252,6 @@ binds {
     // Makes the column "fill the rest of the space".
     Mod+Ctrl+F { expand-column-to-available-width; }
 
-    Mod+C { center-column; }
-
     // Finer width adjustments.
     // This command can also:
     // * set width in pixels: "1000"
@@ -311,3 +316,5 @@ environment {
     ELECTRON_OZONE_PLATFORM_HINT "wayland"
     IS_NIRI "1"
 }
+
+include "noctalia.kdl"

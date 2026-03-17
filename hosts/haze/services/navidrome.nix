@@ -1,11 +1,13 @@
-{ pkgs-unstable, ... }:
+{
+  pkgs-unstable,
+  ...
+}:
 let
   url = "music.catin.eu";
 in
 {
   services.navidrome = {
     enable = true;
-    package = pkgs-unstable.navidrome;
     openFirewall = true;
     settings = {
       ScanSchedule = "@every 2h";

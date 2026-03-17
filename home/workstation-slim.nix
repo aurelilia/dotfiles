@@ -2,14 +2,12 @@
 {
   imports = [
     ./library/alacritty.nix
-    ./library/dunst.nix
     ./library/gtk.nix
     ./library/mozilla.nix
     ./library/niri.nix
     ./library/rofi.nix
     ./library/ssh.nix
     ./library/vscode.nix
-    ./library/waybar.nix
     ./library/xdg.nix
   ];
 

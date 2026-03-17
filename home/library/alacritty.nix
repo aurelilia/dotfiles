@@ -2,6 +2,7 @@
 {
   programs.alacritty = {
     enable = true;
+    catppuccin.enable = false;
     settings = {
       env.TERM = "xterm-256color";
 
@@ -33,7 +34,10 @@
         unfocused_hollow = false;
       };
 
-      general.live_config_reload = false;
+      general = {
+        live_config_reload = true;
+        import = ["~/.config/alacritty/themes/noctalia.toml"];
+      };
 
       mouse = {
         bindings = [

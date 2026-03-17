@@ -1,46 +1,20 @@
 {
-  nixosConfig,
   config,
   pkgs,
-  lib,
   ...
 }:
-let
-  # Thank you, piegames!
-  # https://git.darmstadt.ccc.de/piegames/home-config/-/blob/master/main.nix?ref_type=heads
-  wrapWithNixGL =
-    package:
-    let
-      binFiles = lib.pipe "${lib.getBin package}/bin" [
-        builtins.readDir
-        builtins.attrNames
-        (builtins.filter (n: builtins.match "^\\..*" n == null))
-      ];
-      wrapBin =
-        name:
-        nixosConfig.lib.pkgs-unstable.writeShellScriptBin name ''
-          exec ${nixosConfig.lib.nixgl.nixGLIntel}/bin/nixGLIntel ${package}/bin/${name} "$@"
-        '';
-    in
-    nixosConfig.lib.pkgs-unstable.symlinkJoin {
-      name = "${package.name}-nixgl";
-      paths = (map wrapBin binFiles) ++ [ package ];
-    };
-in
 {
   imports = [
     ./library/alacritty.nix
-    ./library/dunst.nix
     ./library/gtk.nix
     ./library/mozilla.nix
     ./library/niri.nix
+    ./library/noctalia.nix
     ./library/rofi.nix
     ./library/ssh.nix
     ./library/virt.nix
     ./library/vscode.nix
-    ./library/waybar.nix
     ./library/xdg.nix
-    ./library/zed.nix
   ];
 
   config = {
@@ -58,15 +32,8 @@ in
       warn-dirty = false
     '';
     # Programs
-    programs = {
-      mpv.enable = true;
-      obs-studio = {
-        enable = true;
-        plugins = [ pkgs.obs-studio-plugins.input-overlay ];
-      };
-    };
+    programs.mpv.enable = true;
     # Services
-    services.flameshot.enable = true;
     services.ssh-agent.enable = true;
     services.jellyfin-mpv-shim.enable = true;
 
@@ -82,7 +49,6 @@ in
       xournalpp
       keepassxc
       feishin
-      lan-mouse
       orca-slicer
       qbittorrent
       video-trimmer
@@ -110,10 +76,7 @@ in
       scc
       sshuttle
       rustup
-      github-cli
       distrobox
     ];
-
-    nixpkgs.config.permittedInsecurePackages = [ "electron-27.3.11" ];
   };
 }

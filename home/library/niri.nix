@@ -13,7 +13,7 @@
   # Swayidle
   services.swayidle =
     let
-      lock = "${config.programs.swaylock.package}/bin/swaylock -f";
+      lock = "${nixosConfig.lib.pkgs-unstable.noctalia-shell}/bin/noctalia-shell ipc call lockScreen lock";
     in
     {
       enable = true;
@@ -43,36 +43,6 @@
       };
     };
   systemd.user.services.swayidle.Service.Environment = [ "WAYLAND_DISPLAY=wayland-1" ];
-
-  # Swaylock
-  programs.swaylock = {
-    enable = true;
-    package = pkgs.swaylock-effects;
-    settings = {
-      screenshots = true;
-      clock = true;
-      indicator = true;
-      indicator-radius = "200";
-      indicator-thickness = "20";
-      effect-blur = "8x5";
-      effect-vignette = "0.25:0.25";
-      effect-greyscale = true;
-      grace = "5";
-      timestr = "%H:%M";
-      datestr = "%a, %d.%m.%y";
-
-      inside-color = lib.mkForce "1e1e2e";
-      inside-clear-color = lib.mkForce "1e1e2e";
-      inside-caps-lock-color = lib.mkForce "1e1e2e";
-      inside-ver-color = lib.mkForce "1e1e2e";
-      inside-wrong-color = lib.mkForce "1e1e2e";
-      ring-color = lib.mkForce "f38ba8";
-      ring-clear-color = lib.mkForce "f38ba8";
-      ring-caps-lock-color = lib.mkForce "f38ba8";
-      ring-ver-color = lib.mkForce "f38ba8";
-      ring-wrong-color = lib.mkForce "f38ba8";
-    };
-  };
 
   # Polkit
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
@@ -112,8 +82,6 @@
     ydotool
     ripgrep
     libnotify
-    swww
-    alsa-utils
     catppuccin-cursors.mochaRed
     nixosConfig.lib.pkgs-unstable.xwayland-satellite
   ];
