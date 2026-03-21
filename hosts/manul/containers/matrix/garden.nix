@@ -34,6 +34,7 @@ in
       @mas path_regexp ^/_matrix/client/(.*)/(login|logout|refresh)
       reverse_proxy @mas localhost:${toString (port + 1)}
     '';
+    monitoringStatusCode = "302";
   };
   feline.caddy.routes."mas.${url}".port = (port + 1);
   feline.postgres.databases = [ "synapse" ];

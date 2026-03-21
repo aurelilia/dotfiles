@@ -57,6 +57,7 @@
       pdfslicer
       libreoffice-fresh
       wl-mirror
+      ungoogled-chromium
 
       # Fonts / Style
       nerd-fonts.fira-code

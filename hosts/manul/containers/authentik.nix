@@ -62,6 +62,7 @@ in
           respond /static/dist/custom.css `${builtins.readFile ../../../branding/auth.css}`
           redir /static/dist/assets/images/flow_background.jpg https://branding.catin.eu/background.jpg
       '';
+      monitoringStatusCode = "302";
     };
   };
   feline.postgres.databases = [ "authentik" ];

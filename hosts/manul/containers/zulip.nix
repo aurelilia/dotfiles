@@ -74,18 +74,24 @@ in
     };
   };
 
-  feline.caddy.routes."${url}".extra = ''
-    reverse_proxy localhost:34502 {
-      transport http {
-        tls_insecure_skip_verify
+  feline.caddy.routes."${url}" = {
+    extra = ''
+      reverse_proxy localhost:34502 {
+        transport http {
+          tls_insecure_skip_verify
+        }
       }
-    }
-  '';
-  feline.caddy.routes."zulip.ehir.art".extra = ''
-    reverse_proxy localhost:34502 {
-      transport http {
-        tls_insecure_skip_verify
+    '';
+    monitoringEnable = false;
+  };
+  feline.caddy.routes."zulip.ehir.art" = {
+    extra = ''
+      reverse_proxy localhost:34502 {
+        transport http {
+          tls_insecure_skip_verify
+        }
       }
-    }
-  '';
+    '';
+    monitoringEnable = false;
+  };
 }

@@ -38,7 +38,10 @@ in
 
     "branding.catin.eu".root = ../../../branding;
 
-    "ehir.art".extra = (mkMatrixWellKnown "ehir.art");
+    "ehir.art" = {
+      extra = (mkMatrixWellKnown "ehir.art");
+      monitoringEnable = false;
+    };
     "tessa.dog" = {
       root = "${root}/tessa";
       no-robots = false;
@@ -51,6 +54,7 @@ in
     "http://connectivitycheck.gstatic.com" = {
       extra = "respond /generate_204 204";
       configureDns = false;
+      monitoringEnable = false;
     };
   };
 }

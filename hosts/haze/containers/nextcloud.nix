@@ -21,6 +21,7 @@ in
       redir /.well-known/caldav /remote.php/dav 301
     '';
     inherit port;
+    monitoringStatusCode = "302";
   };
   feline.postgres.databases = [ "nextcloud" ];
 }

@@ -6,7 +6,6 @@
 }:
 {
   config = {
-    age.secrets.matrix-notify.file = ../../../secrets/matrix-notify.age;
     systemd.services =
       (lib.listToAttrs (
         map (name: {
@@ -17,9 +16,8 @@
       // {
         "ntfy-notify@" = {
           serviceConfig = {
-            EnvironmentFile = "${config.age.secrets.matrix-notify.path}";
             Type = "oneshot";
-            ExecStart = "${config.lib.pkgs.ntfy-notify} '[${name}] systemd unit %i experienced a failure!'";
+            ExecStart = "${config.lib.pkgs.ntfy-notify} '[${name}] systemd unit %i experienced a failure!' SYSTEMD";
           };
         };
       };

@@ -15,5 +15,6 @@ in
   feline.caddy.routes.${url} = {
     mode = "local";
     port = 28981;
+    monitoringStatusCode = "302";
   };
 }

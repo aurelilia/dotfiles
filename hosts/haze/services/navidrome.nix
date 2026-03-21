@@ -20,7 +20,10 @@ in
   };
 
   feline.persist.navidrome.path = "/var/lib/navidrome";
-  feline.caddy.routes."${url}".port = 4533;
+  feline.caddy.routes."${url}" = {
+    port = 4533;
+    monitoringPath = "app";
+  };
 
   # I want streamrip
   age.secrets.streamrip = {

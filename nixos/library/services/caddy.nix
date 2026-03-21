@@ -1,6 +1,14 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.feline.caddy;
+  cfgMonitorRoutes = lib.filterAttrs (
+    n: v: v.redir == null && v.root == null && v.monitoringEnable
+  ) cfg.routes;
   no-robots = ''
       respond /robots.txt `User-agent: *
     Disallow: /`
@@ -85,52 +93,86 @@ in
       in
       routeDns // aliasDns;
 
-    # Hardening, based on:
-    # https://github.com/NixOS/nixpkgs/blob/nixos-23.11/nixos/modules/services/web-servers/nginx/default.nix
-    # https://github.com/caddyserver/dist/pull/79
-    systemd.services.caddy.serviceConfig = {
-      # Static file access
-      ReadOnlyPaths =
-        cfg.readDirs
-        ++ lib.filter (x: x != null) (lib.mapAttrsToList (route: { root, ... }: root) cfg.routes);
-      # Proc filesystem
-      ProtectProc = "invisible";
-      # Capabilities
-      AmbientCapabilities = [
-        "CAP_NET_BIND_SERVICE"
-        "CAP_SYS_RESOURCE"
-      ];
-      CapabilityBoundingSet = [
-        "CAP_NET_BIND_SERVICE"
-        "CAP_SYS_RESOURCE"
-      ];
-      # Security
-      NoNewPrivileges = true;
-      # Sandboxing (sorted by occurrence in https://www.freedesktop.org/software/systemd/man/systemd.exec.html)
-      ProtectSystem = "strict";
-      ProtectHome = true;
-      PrivateTmp = true;
-      PrivateDevices = true;
-      ProtectHostname = true;
-      ProtectClock = true;
-      ProtectKernelTunables = true;
-      ProtectKernelModules = true;
-      ProtectKernelLogs = true;
-      ProtectControlGroups = true;
-      RestrictNamespaces = true;
-      LockPersonality = true;
-      MemoryDenyWriteExecute = true;
-      RestrictRealtime = true;
-      RestrictSUIDSGID = true;
-      RemoveIPC = true;
-    };
-
     feline.persist.caddy = {
       path = "/var/lib/caddy";
       owner = "caddy";
       group = "caddy";
     };
     feline.notify = [ "caddy" ];
+
+    systemd.services =
+      let
+        # Service monitoring
+        monitoring = lib.mapAttrs' (
+          name: value:
+          lib.nameValuePair "caddy-monitor-${lib.replaceString "." "-" name}" {
+            script = ''
+              STATUS=$(${pkgs.curl}/bin/curl -s -o /dev/null -w "%{http_code}" https://${name}/${value.monitoringPath})
+              if [ "$STATUS" != ${value.monitoringStatusCode} ]; then
+                ${config.lib.pkgs.ntfy-notify} "[${name}] $STATUS was unexpected!" SERVICES
+              fi
+            '';
+            serviceConfig = {
+              Type = "oneshot";
+              User = "caddy";
+            };
+          }
+        ) cfgMonitorRoutes;
+
+        # Hardening, based on:
+        # https://github.com/NixOS/nixpkgs/blob/nixos-23.11/nixos/modules/services/web-servers/nginx/default.nix
+        # https://github.com/caddyserver/dist/pull/79
+        hardening = {
+          caddy.serviceConfig = {
+            # Static file access
+            ReadOnlyPaths =
+              cfg.readDirs
+              ++ lib.filter (x: x != null) (lib.mapAttrsToList (route: { root, ... }: root) cfg.routes);
+            # Proc filesystem
+            ProtectProc = "invisible";
+            # Capabilities
+            AmbientCapabilities = [
+              "CAP_NET_BIND_SERVICE"
+              "CAP_SYS_RESOURCE"
+            ];
+            CapabilityBoundingSet = [
+              "CAP_NET_BIND_SERVICE"
+              "CAP_SYS_RESOURCE"
+            ];
+            # Security
+            NoNewPrivileges = true;
+            # Sandboxing (sorted by occurrence in https://www.freedesktop.org/software/systemd/man/systemd.exec.html)
+            ProtectSystem = "strict";
+            ProtectHome = true;
+            PrivateTmp = true;
+            PrivateDevices = true;
+            ProtectHostname = true;
+            ProtectClock = true;
+            ProtectKernelTunables = true;
+            ProtectKernelModules = true;
+            ProtectKernelLogs = true;
+            ProtectControlGroups = true;
+            RestrictNamespaces = true;
+            LockPersonality = true;
+            MemoryDenyWriteExecute = true;
+            RestrictRealtime = true;
+            RestrictSUIDSGID = true;
+            RemoveIPC = true;
+          };
+        };
+      in
+      monitoring // hardening;
+
+    systemd.timers = lib.mapAttrs' (
+      name: value:
+      lib.nameValuePair "caddy-monitor-${lib.replaceString "." "-" name}" {
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+          OnCalendar = "hourly";
+          Unit = "caddy-monitor-${lib.replaceString "." "-" name}.service";
+        };
+      }
+    ) cfgMonitorRoutes;
   };
 
   options.feline.caddy = {
@@ -204,6 +246,21 @@ in
                   type = bool;
                   default = true;
                   description = "Automatically add a DNS entry for the route.";
+                };
+                monitoringEnable = lib.mkOption {
+                  type = bool;
+                  default = true;
+                  description = "Enable monitoring of the route.";
+                };
+                monitoringPath = lib.mkOption {
+                  type = str;
+                  default = "";
+                  description = "URI to try and receive.";
+                };
+                monitoringStatusCode = lib.mkOption {
+                  type = str;
+                  default = "200";
+                  description = "Expected status code.";
                 };
               };
             }

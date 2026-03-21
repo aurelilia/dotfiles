@@ -80,6 +80,9 @@ in
   feline.caddy.routes."headscale.elia.garden" = {
     port = 50013;
     extra = "redir / https://catin.eu/blog/headscale.html";
+    monitoringEnable = true;
+    monitoringPath = "test";
+    monitoringStatusCode = "404";
   };
 
   # Persist files

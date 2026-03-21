@@ -6,5 +6,8 @@
   };
 
   feline.persist."jellyfin".path = "/var/lib/jellyfin";
-  feline.caddy.routes."media.catin.eu".port = 8096;
+  feline.caddy.routes."media.catin.eu" = {
+    port = 8096;
+    monitoringStatusCode = "302";
+  };
 }

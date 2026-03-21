@@ -8,10 +8,10 @@
     firewall.enable = lib.mkDefault true;
 
     extraHosts = ''
-      202.61.255.155 connectivitycheck.gstatic.com
+      202.61.255.155  connectivitycheck.gstatic.com
       100.64.0.15     hazyboi hazyboi.elia.garden
       100.64.0.11     bengal bengal.elia.garden
-      100.64.0.5      haze haze.elia.garden
+      100.64.0.5      haze haze.elia.garden home.catin.eu budget.catin.eu docs.catin.eu
       100.64.0.1      lowlander lowlander.elia.garden
       100.64.0.10     manul manul.elia.garden
     '';

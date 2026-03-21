@@ -14,6 +14,9 @@ in
     ];
   };
 
-  feline.caddy.routes."${url}".port = port;
+  feline.caddy.routes."${url}" = {
+    inherit port;
+    monitoringStatusCode = "302";
+  };
   feline.postgres.users = [ "synapse_ehira" ];
 }
