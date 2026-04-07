@@ -2,27 +2,19 @@
 let
   path = "/persist/data/authentik";
   image = "ghcr.io/goauthentik/server";
-  version = "2025.8";
+  version = "2025.10";
   port = 50042;
 in
 {
   feline.compose.authentik.services = {
-    redis = {
-      image = "docker.io/library/redis:alpine";
-      container_name = "authentik-redis";
-      command = "--save 60 1 --loglevel warning";
-      volumes = [ "${path}/redis:/data" ];
-    };
     authentik-server = {
       image = "${image}:${version}";
       command = "server";
-      depends_on = [ "redis" ];
       env_file = [ "${path}/.env" ];
       environment = {
         AUTHENTIK_POSTGRESQL__HOST = "host.runc.internal";
         AUTHENTIK_POSTGRESQL__NAME = "authentik";
         AUTHENTIK_POSTGRESQL__USER = "authentik";
-        AUTHENTIK_REDIS__HOST = "redis";
       };
       ports = [ "127.0.0.1:${toString port}:9000" ];
       volumes = [
@@ -33,14 +25,12 @@ in
     authentik-worker = {
       image = "${image}:${version}";
       command = "worker";
-      depends_on = [ "redis" ];
       env_file = [ "${path}/.env" ];
 
       environment = {
         AUTHENTIK_POSTGRESQL__HOST = "host.runc.internal";
         AUTHENTIK_POSTGRESQL__NAME = "authentik";
         AUTHENTIK_POSTGRESQL__USER = "authentik";
-        AUTHENTIK_REDIS__HOST = "redis";
       };
       user = "root";
       volumes = [
