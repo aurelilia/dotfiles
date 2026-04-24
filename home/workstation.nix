@@ -58,6 +58,7 @@
       libreoffice-fresh
       wl-mirror
       ungoogled-chromium
+      joplin-desktop
 
       # Fonts / Style
       nerd-fonts.fira-code
@@ -78,6 +79,7 @@
       sshuttle
       rustup
       distrobox
+      elan
     ];
   };
 }

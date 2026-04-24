@@ -39,6 +39,7 @@
         file-roller
         nautilus
         evince
+        firefox
       ];
     };
 

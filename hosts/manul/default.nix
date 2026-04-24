@@ -9,6 +9,7 @@ in
     ./hardware.nix
 
     ./containers/authentik.nix
+    ./containers/joplin.nix
     ./containers/mastodon.nix
     ./containers/matrix/ehira.nix
     ./containers/matrix/garden.nix
