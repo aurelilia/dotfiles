@@ -1,6 +1,5 @@
 { pkgs, config, ... }:
 {
-  imports = [ ./paperless.nix ];
   config = {
     age.secrets.matrix-notify.file = ../../secrets/matrix-notify.age;
 

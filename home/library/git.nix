@@ -2,8 +2,8 @@
 {
   programs.git = {
     enable = true;
-    userName = "Leela Aurelia";
-    userEmail = "git@elia.garden";
+    userName = "leela aurelia Elentári";
+    userEmail = "tech.git@catin.eu";
 
     aliases = {
       pall = "!git remote | xargs -I R git push R main";
@@ -11,7 +11,6 @@
     };
 
     delta.enable = true;
-
     extraConfig = {
       # https://jvns.ca/blog/2024/02/16/popular-git-config-options/
       core = {

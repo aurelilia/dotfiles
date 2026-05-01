@@ -7,10 +7,6 @@ in
   "tailscale-preauth.age".publicKeys = keys.all;
   "matrix-notify.age".publicKeys = keys.all;
 
-  "manul/coturn-auth.age".publicKeys = with keys; [
-    leela
-    manul
-  ];
   "haze/streamrip.age".publicKeys = with keys; [
     leela
     haze

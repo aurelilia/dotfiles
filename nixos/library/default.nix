@@ -16,7 +16,6 @@
     ./modules/dns.nix
     ./modules/notify.nix
     ./modules/persist.nix
-    ./modules/steamcmd.nix
 
     ./services/auto-deploy.nix
     ./services/borg.nix
@@ -29,7 +28,6 @@
     ./services/ssh.nix
     ./services/syncthing.nix
     ./services/tailscale.nix
-    ./services/tang.nix
     ./services/znapzend.nix
   ];
 }

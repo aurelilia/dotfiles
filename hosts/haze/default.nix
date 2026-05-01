@@ -37,22 +37,6 @@
     user = "syncthing";
     dataDir = "/media/media/syncthing";
   };
-  services.syncthing.settings.folders = {
-    # Photo inbox from my phone
-    camera-inbox = {
-      path = "/media/photo-inbox/camera-inbox";
-      devices = [ "munchkin" ];
-    };
-
-    # Windows VM for scans
-    scan-inbox = {
-      path = "/media/photo-inbox/scan-inbox";
-      devices = [ "hazyboi-windows" ];
-    };
-  };
-
-  # Tang
-  feline.tang.enable = true;
 
   # Needs DNS
   feline.caddy.routes."mc.catin.eu".redir = "catin.eu";

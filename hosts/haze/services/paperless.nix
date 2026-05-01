@@ -3,7 +3,7 @@ let
   url = "docs.catin.eu";
 in
 {
-  feline.paperless = {
+  services.paperless = {
     enable = true;
     package = pkgs-unstable.paperless-ngx;
     dataDir = "/persist/data/paperless";

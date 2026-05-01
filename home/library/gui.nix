@@ -6,6 +6,7 @@
   ...
 }:
 {
+  # Niri
   xdg.configFile."niri/config.kdl".text =
     (lib.readFile ../files/niri-config.kdl) + nixosConfig.feline.gui.extraNiri;
   xdg.configFile."niri/scripts".source = ../files/niri-scripts;
@@ -63,6 +64,14 @@
     };
   };
 
+  # Noctalia
+  xdg.configFile."noctalia/colors.json".source = ../files/noctalia/colors.json;
+  xdg.configFile."noctalia/plugins.json".source = ../files/noctalia/plugins.json;
+  xdg.configFile."noctalia/settings.json".source = ../files/noctalia/settings.json;
+
+  # Misc
+  programs.rofi.enable = true;
+
   # Session variables
   systemd.user.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
@@ -74,6 +83,7 @@
   };
 
   home.packages = with pkgs; [
+    # Script tools
     grim
     jq
     inetutils
@@ -84,5 +94,12 @@
     libnotify
     catppuccin-cursors.mochaRed
     nixosConfig.lib.pkgs-unstable.xwayland-satellite
+
+    # Noctalia
+    nixosConfig.lib.pkgs-unstable.noctalia-shell
+    nixosConfig.lib.pkgs-unstable.quickshell
+    gpu-screen-recorder
+    wlsunset
+    pywalfox-native
   ];
 }

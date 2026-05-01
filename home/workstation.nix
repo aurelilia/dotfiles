@@ -6,13 +6,10 @@
 {
   imports = [
     ./library/alacritty.nix
-    ./library/gtk.nix
+    ./library/gui.nix
     ./library/mozilla.nix
-    ./library/niri.nix
-    ./library/noctalia.nix
-    ./library/rofi.nix
     ./library/ssh.nix
-    ./library/virt.nix
+    ./library/theming.nix
     ./library/vscode.nix
     ./library/xdg.nix
   ];

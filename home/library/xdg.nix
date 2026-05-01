@@ -20,6 +20,7 @@
   };
 
   xdg = {
+    enable = true;
     configFile = {
       "npm/npmrc".text = ''
         prefix=/ethereal/cache/npm-prefix

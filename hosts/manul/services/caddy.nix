@@ -24,10 +24,7 @@ in
   feline.caddy.routes = {
     "elia.garden" = {
       root = "${root}/html";
-      extra =
-        (mkMatrixWellKnown "elia.garden")
-        + "\n"
-        + "redir /.well-known/webfinger https://social.elia.garden{uri}";
+      extra = "redir /.well-known/webfinger https://social.elia.garden{uri}";
     };
 
     "gamelin.elia.garden".root = "${root}/gamelin";
@@ -38,10 +35,6 @@ in
 
     "branding.catin.eu".root = ../../../branding;
 
-    "ehir.art" = {
-      extra = (mkMatrixWellKnown "ehir.art");
-      monitoringEnable = false;
-    };
     "tessa.dog" = {
       root = "${root}/tessa";
       no-robots = false;
