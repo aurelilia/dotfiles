@@ -541,9 +541,9 @@
         "enableBatteryToast": true,
         "enableKeyboardLayoutToast": true,
         "enableMarkdown": true,
-        "enableMediaToast": true,
+        "enableMediaToast": false,
         "enabled": true,
-        "location": "top_left",
+        "location": "top_right",
         "lowUrgencyDuration": 3,
         "monitors": [
             "DP-1"
