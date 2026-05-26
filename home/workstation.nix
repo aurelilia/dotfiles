@@ -41,13 +41,10 @@
       file-roller
       nautilus
       pavucontrol
-      hotspot
-      logseq
       xournalpp
       keepassxc
       feishin
       orca-slicer
-      qbittorrent
       video-trimmer
       gimp
       signal-desktop
