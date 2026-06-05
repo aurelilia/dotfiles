@@ -11,7 +11,6 @@ in
     ./containers/authentik.nix
     ./containers/joplin.nix
     ./containers/mastodon.nix
-    ./containers/mealie.nix
 
     ./services/caddy.nix
     ./services/forgejo.nix
