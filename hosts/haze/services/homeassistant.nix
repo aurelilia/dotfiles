@@ -4,6 +4,7 @@ let
   port = 51321;
 in
 {
+  catppuccin.home-assistant.enable = false; # ???
   services.home-assistant = {
     enable = true;
     configDir = "/persist/data/hassio";
@@ -23,7 +24,6 @@ in
       "caldav"
       "mealie"
       "wyoming"
-      "ollama"
     ];
 
     extraPackages =

@@ -6,7 +6,10 @@
       lidSwitch = "suspend-then-hibernate";
       lidSwitchExternalPower = "ignore";
     };
-    systemd.sleep.extraConfig = "HibernateDelaySec=1200";
+    systemd.sleep.settings.Sleep = {
+      HibernateDelaySec = "4h";
+      HibernateOnACPower = false;
+    };
     services.upower.enable = true;
     services.auto-cpufreq.enable = true;
 

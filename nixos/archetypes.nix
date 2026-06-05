@@ -13,7 +13,6 @@ let
         borg.persist.enable = true;
         tailscale.enable = true;
         dotfiles.enable = true;
-        theme.enable = true;
 
         borg.media.enable = lib.mkDefault true;
         smartd.enable = lib.mkDefault true;
@@ -86,6 +85,7 @@ let
           znap.enable = true;
         };
         gui.enable = true;
+        theme.enable = true;
         autodeploy = {
           # Persistent timers get wiped on reboot, so update
           # during the day instead of at night

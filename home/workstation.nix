@@ -48,7 +48,7 @@
       video-trimmer
       gimp
       signal-desktop
-      pdfslicer
+      pdfarranger
       libreoffice-fresh
       wl-mirror
       ungoogled-chromium

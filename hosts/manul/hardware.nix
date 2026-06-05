@@ -56,4 +56,19 @@
       ];
     };
   };
+
+  boot.initrd.systemd.network = {
+    enable = true;
+    networks."10-ens6" = {
+      matchConfig.Name = "ens6";
+      address = [
+        "85.215.174.234/24"
+        "2a01:239:41e:af00::1/64"
+      ];
+      routes = [
+        { Gateway = "85.215.174.1"; }
+        { Gateway = "85.215.174.1"; }
+      ];
+    };
+  };
 }

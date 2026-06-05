@@ -40,17 +40,9 @@ in
 
     (lib.mkIf config.feline.initrd-ssh.enable {
       # Initrd SSH with ZFS unlock on port 2222.
+      fileSystems."/".options = [ "x-systemd.device-timeout=infinity" ];
       boot.initrd.network = {
         enable = true;
-        udhcpc.enable = lib.mkDefault true;
-
-        postCommands = ''
-          if type "zpool" > /dev/null; then
-            # Import all pools
-            zpool import -a
-          fi
-        '';
-
         ssh = {
           enable = true;
           port = 2222;

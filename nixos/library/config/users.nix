@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  catppuccin-hm,
+  catppuccin,
   ...
 }:
 let
@@ -18,7 +18,7 @@ in
       nix.settings.trusted-users = [ cfg.user ];
       home-manager.users.${cfg.user}.imports = [
         ../../../home
-        catppuccin-hm
+        catppuccin.homeModules.catppuccin
       ]
       ++ lib.optional cfg.full ../../../home/workstation.nix
       ++ lib.optional cfg.full-slim ../../../home/workstation-slim.nix;

@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
+  catppuccin.alacritty.enable = false;
   programs.alacritty = {
     enable = true;
-    catppuccin.enable = false;
     settings = {
       env.TERM = "xterm-256color";
 
@@ -36,7 +36,7 @@
 
       general = {
         live_config_reload = true;
-        import = ["~/.config/alacritty/themes/noctalia.toml"];
+        import = [ "~/.config/alacritty/themes/noctalia.toml" ];
       };
 
       mouse = {

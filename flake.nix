@@ -2,11 +2,11 @@
   description = "aurelila's full system configurations using Lix, NixOS, and HM";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {
@@ -27,8 +27,8 @@
       url = "github:Janik-Haag/nixos-dns";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix/release-25.11";
-    nixos-mail.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
+    catppuccin.url = "github:catppuccin/nix/release-26.05";
+    nixos-mail.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-26.05";
   };
 
   outputs =
@@ -47,10 +47,9 @@
     }:
     let
       hostSystem = "x86_64-linux";
-      nixpkgsHost = import nixpkgs-unstable { system = hostSystem; };
+      nixpkgsHost = nixpkgs-unstable.legacyPackages.${hostSystem};
       forAllSystems = nixpkgs.lib.genAttrs [
         "x86_64-linux"
-        "aarch64-linux"
       ];
 
       nixos-imports = {
@@ -65,8 +64,8 @@
         ];
 
         _module.args = {
-          pkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
-          catppuccin-hm = catppuccin.homeModules.catppuccin;
+          inherit catppuccin;
+          pkgs-unstable = nixpkgs-unstable.legacyPackages."x86_64-linux";
           nixgl = nixgl.packages.x86_64-linux;
         };
       };
@@ -85,14 +84,14 @@
               octodns-providers.bind
               (buildPythonPackage rec {
                 pname = "octodns-gcore";
-                version = "0.0.5-unstable";
+                version = "1.0.0";
                 pyproject = true;
 
                 src = fetchFromGitHub {
                   owner = "octodns";
                   repo = "octodns-gcore";
-                  rev = "84ce0854a9a27cee9a00cae62049c402eb47c719";
-                  hash = "sha256-v+NLsBSoTRUB35sxeF824v6uOcWK8/pCZTc9k3NH50A=";
+                  rev = "f50c31c5886703396aab90ac6e6191dc6db5904c";
+                  hash = "sha256-s/wiDSnmR/hfRKINgolEizk4m39cXLXrpvUCB7aw94w=";
                 };
 
                 nativeBuildInputs = [ setuptools ];
@@ -126,7 +125,7 @@
           imports = [ ./hosts/${host.config or name} ];
         }) (import ./meta.nix).nodes)
         // {
-          meta.nixpkgs = import nixpkgs { system = "x86_64-linux"; };
+          meta.nixpkgs = nixpkgs.legacyPackages."x86_64-linux";
 
           defaults = nixos-imports // {
             deployment = {
@@ -172,8 +171,6 @@
               config.check_origin = false;
             };
             zones = {
-              "ehir.art." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
-              "tessa.dog." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
               "catin.eu." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
             };
           };

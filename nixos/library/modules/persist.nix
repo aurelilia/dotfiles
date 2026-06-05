@@ -15,6 +15,7 @@ let
           "x-gvfs-hide"
         ];
         depends = lib.mkIf config.feline.mountPersistAtBoot [ "/persist" ];
+        fsType = "auto";
       };
     };
   bindMounts = lib.listToAttrs (map mkBindMountNameValuePair (lib.attrsToList cfg));

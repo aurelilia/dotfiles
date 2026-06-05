@@ -1,6 +1,6 @@
 { nixosConfig, ... }:
 {
-  programs.vscode = {
+  programs.vscodium = {
     enable = true;
     package = nixosConfig.lib.pkgs-unstable.vscodium.fhsWithPackages (ps: with ps; [ nil ]);
 

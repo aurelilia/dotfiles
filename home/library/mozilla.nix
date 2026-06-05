@@ -123,18 +123,6 @@
       userContent = lib.readFile ../files/firefox/userContent.css;
       extraConfig =
         (lib.readFile ../files/firefox/user.js) + (lib.readFile ../files/firefox/user-overrides.js);
-
-      containers = {
-        testing = {
-          color = "blue";
-          icon = "fruit";
-        };
-        work = {
-          color = "red";
-          icon = "cart";
-          id = 1;
-        };
-      };
     };
   };
 }

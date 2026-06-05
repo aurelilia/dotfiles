@@ -19,7 +19,7 @@
       colordiff
       fd
       htop
-      neofetch
+      hyfetch
       nvd
       rsync
       sshfs
