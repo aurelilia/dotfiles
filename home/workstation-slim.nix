@@ -28,6 +28,12 @@
     # Services
     services.flameshot.enable = true;
 
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+      accent = "red";
+    };
+
     home.packages = with pkgs; [
       # Graphical
       eog

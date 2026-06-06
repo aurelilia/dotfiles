@@ -34,6 +34,12 @@
     services.ssh-agent.enable = true;
     services.jellyfin-mpv-shim.enable = true;
 
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+      accent = "red";
+    };
+
     home.packages = with pkgs; [
       # Graphical
       eog
