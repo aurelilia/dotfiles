@@ -10,6 +10,7 @@ in
 
     ./containers/authentik.nix
     ./containers/joplin.nix
+    ./containers/mastodon.nix
 
     ./services/caddy.nix
     ./services/forgejo.nix
