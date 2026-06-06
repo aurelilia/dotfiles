@@ -17,7 +17,6 @@
     ./services/navidrome.nix
     ./services/nfs.nix
     ./services/paperless.nix
-    ./services/scrutiny.nix
   ];
 
   # Initrd networking kernel drivers

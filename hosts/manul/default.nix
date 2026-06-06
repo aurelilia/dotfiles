@@ -10,17 +10,14 @@ in
 
     ./containers/authentik.nix
     ./containers/joplin.nix
-    ./containers/mastodon.nix
 
     ./services/caddy.nix
     ./services/forgejo.nix
     ./services/headscale.nix
     ./services/homepage.nix
-    ./services/matrix-tessa.nix
     ./services/mollysocket.nix
     ./services/ntfy.nix
     ./services/postfix.nix
-    ./services/send.nix
   ];
 
   # DNS: Direct records
