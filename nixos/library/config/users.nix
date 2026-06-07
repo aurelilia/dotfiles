@@ -16,12 +16,20 @@ in
       users.users.root.shell = pkgs.fish;
 
       nix.settings.trusted-users = [ cfg.user ];
-      home-manager.users.${cfg.user}.imports = [
-        ../../../home
-        catppuccin.homeModules.catppuccin
-      ]
-      ++ lib.optional cfg.full ../../../home/workstation.nix
-      ++ lib.optional cfg.full-slim ../../../home/workstation-slim.nix;
+      home-manager.users.${cfg.user} = {
+        imports = [
+          ../../../home
+          catppuccin.homeModules.catppuccin
+        ]
+        ++ lib.optional cfg.full ../../../home/workstation-full.nix
+        ++ lib.optional cfg.full-slim ../../../home/workstation-base.nix;
+
+        catppuccin.sources = catppuccin.packages.${pkgs.stdenv.hostPlatform.system}.overrideScope (
+          final: prev: {
+            whiskers = pkgs.catppuccin-whiskers;
+          }
+        );
+      };
     })
 
     (lib.mkIf cfg.create-user {

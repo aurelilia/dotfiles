@@ -3,10 +3,7 @@
   programs.ssh = {
     enable = true;
     compression = true;
-
     matchBlocks = {
-      jade.user = "root";
-      helio.user = "root";
       haze.user = "root";
       manul = {
         user = "root";

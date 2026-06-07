@@ -28,6 +28,12 @@
       wget
       comma
     ];
+
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+      accent = "red";
+    };
   };
 
   options = {

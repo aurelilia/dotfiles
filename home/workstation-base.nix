@@ -2,11 +2,10 @@
 {
   imports = [
     ./library/alacritty.nix
-    ./library/gtk.nix
+    ./library/gui.nix
     ./library/mozilla.nix
-    ./library/niri.nix
-    ./library/rofi.nix
     ./library/ssh.nix
+    ./library/theming.nix
     ./library/vscode.nix
     ./library/xdg.nix
   ];
@@ -25,14 +24,6 @@
       experimental-features = nix-command flakes
       warn-dirty = false
     '';
-    # Services
-    services.flameshot.enable = true;
-
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-      accent = "red";
-    };
 
     home.packages = with pkgs; [
       # Graphical
@@ -42,7 +33,9 @@
       nautilus
       pavucontrol
       feishin
-      lan-mouse
+      video-trimmer
+      pdfarranger
+      libreoffice-fresh
 
       # Fonts / Style
       nerd-fonts.fira-code
