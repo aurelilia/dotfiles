@@ -14,10 +14,11 @@
     };
   };
 
-  # Firefox seems to love resolving this link for no reason, causing the
+  # Firefox seems to love resolving these links for no reason, causing the
   # activation to fail
   home.activation."Firefox is an asshole" = lib.hm.dag.entryBefore [ "installPackages" ] ''
-    $DRY_RUN_CMD ${pkgs.coreutils}/bin/rm ${config.home.homeDirectory}/.mozilla/firefox/default/containers.json || true
+    $DRY_RUN_CMD ${pkgs.coreutils}/bin/rm ${config.home.homeDirectory}/.config/mozilla/firefox/profiles.ini || true
+    $DRY_RUN_CMD ${pkgs.coreutils}/bin/rm ${config.home.homeDirectory}/.config/mozilla/firefox/default/containers.json || true
   '';
 
   catppuccin.firefox.profiles.default.enable = false;
