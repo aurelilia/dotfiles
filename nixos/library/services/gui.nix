@@ -52,16 +52,18 @@
       pulse.enable = true;
       wireplumber = {
         enable = true;
-        # I want always HQ LDAC
-        extraConfig."ldac-hq" = {
-          "monitor.bluez.rules" = [
+        extraConfig = {
+          # I want always HQ LDAC
+          "ldac-hq"."monitor.bluez.rules" = [
             {
               matches = [ { "device.name" = "~bluez_card.*"; } ];
-              actions = {
-                update-props = {
-                  "bluez5.a2dp.ldac.quality" = "hq";
-                };
-              };
+              actions.update-props."bluez5.a2dp.ldac.quality" = "hq";
+            }
+          ];
+          "alsa-headroom"."monitor.alsa.rules" = [
+            {
+              matches = [ { "node.name" = "alsa_output.*"; } ];
+              actions.update-props."api.alsa.headroom" = 1024;
             }
           ];
         };
@@ -75,28 +77,44 @@
             "default.clock.max-quantum" = 2048;
           };
         };
+        pipewire."99-rt.conf" = {
+          "context.modules" = [
+            {
+              name = "libpipewire-module-rt";
+              args = {
+                "nice.level" = -11;
+                "rt.prio" = 19;
+              };
+            }
+          ];
+        };
       };
     };
     # https://cmm.github.io/soapbox/the-year-of-linux-on-the-desktop.html
-    environment.etc."wireplumber/main.lua.d/99-alsa-config.lua".text = ''
-      -- prepend, otherwise the change-nothing stock config will match first:
-      table.insert(alsa_monitor.rules, 1, {
-        matches = {
-          {
-            -- Matches all sinks.
-            { "node.name", "matches", "alsa_output.*" },
-          },
-        },
-        apply_properties = {
-          ["api.alsa.headroom"] = 1024,
-        },
-      })
+    users.users.leela.extraGroups = [
+      "audio"
+      "rtkit"
+    ];
+    security.pam.loginLimits = [
+      {
+        domain = "@audio";
+        type = "-";
+        item = "rtprio";
+        value = "90";
+      }
+    ];
+    services.udev.extraRules = ''
+      DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
+      DEVPATH=="/devices/virtual/misc/hpet", OWNER="root", GROUP="audio", MODE="0660"
     '';
     security.rtkit.enable = true;
 
-    # Plymouth
+    # Plymouth + threadirqs
     boot = {
-      kernelParams = [ "quiet" ];
+      kernelParams = [
+        "threadirqs"
+        "quiet"
+      ];
       initrd.systemd.enable = true;
       plymouth.enable = true;
     };
