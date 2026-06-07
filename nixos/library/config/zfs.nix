@@ -13,6 +13,7 @@ in
   config = lib.mkMerge [
     (lib.mkIf (root-mnt.fsType == "zfs") {
       # General config
+      boot.zfs.forceImportRoot = false;
       networking.hostId = lib.mkDefault "00000000";
       virtualisation.docker.storageDriver = lib.mkDefault "zfs";
       virtualisation.docker.extraPackages = [ pkgs.zfs ];

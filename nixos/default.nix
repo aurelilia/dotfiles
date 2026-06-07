@@ -1,7 +1,6 @@
 { pkgs, lib, ... }:
 {
   imports = [
-    ./archetypes.nix
     ./backports
     ./library
     ./packages

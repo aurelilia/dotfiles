@@ -2,15 +2,17 @@
   pkgs,
   config,
   lib,
+  name,
   ...
 }:
 let
   cfg = config.feline.autodeploy;
+  nixos-rebuild = ''${config.system.build.nixos-rebuild}/bin/nixos-rebuild --flake ".#${name}"'';
 in
 {
   config = lib.mkIf (cfg.local or (cfg.remotes != [ ])) {
-    systemd.services.colmena-autodeploy = {
-      description = "Automatic Colmena Deploy";
+    systemd.services.nixos-autodeploy = {
+      description = "Automatic NixOS Deploy";
 
       restartIfChanged = false;
       unitConfig.X-StopOnRemoval = false;
@@ -29,7 +31,6 @@ in
         gitMinimal
         config.nix.package.out
         config.programs.ssh.package
-        colmena
       ];
 
       script = lib.concatStringsSep "\n" (
@@ -47,12 +48,9 @@ in
             fi
           ''
         ]
-        ++ (lib.optional (cfg.remotes != [ ]) (
-          "colmena apply --impure --on " + (lib.concatStringsSep "," cfg.remotes)
-        ))
         ++ (lib.optional (cfg.local && !cfg.noSwitch) ''
           CURRENT="$(readlink -f /run/current-system/bin/switch-to-configuration)"
-          if colmena apply-local --impure ; then
+          if ${nixos-rebuild} switch ; then
             echo "Deployed!"
             exit 0
           fi
@@ -62,7 +60,7 @@ in
           exit 1
         '')
         ++ (lib.optional (cfg.local && cfg.noSwitch) ''
-          colmena apply-local --impure boot
+          ${nixos-rebuild} boot
         '')
       );
 
@@ -71,17 +69,12 @@ in
       wants = [ "network-online.target" ];
     };
 
-    systemd.timers.colmena-autodeploy.timerConfig.Persistent = true;
-    feline.notify = [ "colmena-autodeploy" ];
+    systemd.timers.nixos-autodeploy.timerConfig.Persistent = true;
+    feline.notify = [ "nixos-autodeploy" ];
   };
 
   options.feline.autodeploy = {
     local = lib.mkEnableOption "Automatically deploying the current configuration locally";
-    remotes = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      description = "Remote hosts to deploy their configuration to.";
-      default = [ ];
-    };
     time = lib.mkOption {
       type = lib.types.str;
       description = "Time of the day to deploy the configuration.";

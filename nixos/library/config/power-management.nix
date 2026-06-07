@@ -1,13 +1,13 @@
 { config, lib, ... }:
 {
   config = lib.mkIf config.feline.power-management.enable {
-    services.logind = {
-      powerKey = "ignore";
-      lidSwitch = "suspend-then-hibernate";
-      lidSwitchExternalPower = "ignore";
+    services.logind.settings.Login = {
+      HandlePowerKey = "ignore";
+      HandleLidSwitch = "suspend-then-hibernate";
+      HandleLidSwitchExternalPower = "ignore";
     };
     systemd.sleep.settings.Sleep = {
-      HibernateDelaySec = "4h";
+      HibernateDelaySec = "12h";
       HibernateOnACPower = false;
     };
     services.upower.enable = true;

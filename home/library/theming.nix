@@ -25,12 +25,11 @@ in
     };
 
     theme = {
-      #name = "catppuccin-${theme.flavor}-${theme.accent}-standard";
       name = "Catppuccin-GTK-Red-Dark";
       package = (
         pkgs.magnetic-catppuccin-gtk.override {
           shade = "dark";
-          accent = [ theme.accent ];
+          accent = [ "red" ];
         }
       );
     };
@@ -52,6 +51,11 @@ in
       ];
 
       extraConfig."gtk-application-prefer-dark-theme" = true;
+    };
+
+    gtk4 = {
+      colorScheme = "dark";
+      theme = null;
     };
   };
 

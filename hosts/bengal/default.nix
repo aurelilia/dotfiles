@@ -8,7 +8,7 @@
 
   # Separate Swap partition
   boot.zfs = {
-    allowHibernation = true;
+    unsafeAllowHibernation = true;
     forceImportRoot = false;
   };
 

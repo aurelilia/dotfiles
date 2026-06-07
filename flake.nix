@@ -19,10 +19,6 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixgl = {
-      url = "github:guibou/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
     nixos-dns = {
       url = "github:Janik-Haag/nixos-dns";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,7 +35,6 @@
       nixpkgs-unstable,
       agenix,
       disko,
-      nixgl,
       nixos-dns,
       nixos-mail,
       catppuccin,
@@ -66,16 +61,17 @@
         _module.args = {
           inherit catppuccin;
           pkgs-unstable = nixpkgs-unstable.legacyPackages."x86_64-linux";
-          nixgl = nixgl.packages.x86_64-linux;
         };
       };
     in
     {
       devShells.${hostSystem}.default = nixpkgsHost.mkShell {
         buildInputs = [
-          nixpkgsHost.colmena
           agenix.packages.${hostSystem}.default
           nixpkgsHost.nixfmt
+          nixpkgsHost.nix-output-monitor
+          nixpkgsHost.nvd
+
           (nixpkgsHost.octodns.withProviders (
             ps:
             with nixpkgsHost;
@@ -119,21 +115,21 @@
         ];
       };
 
-      colmena =
-        (builtins.mapAttrs (name: host: {
-          deployment.tags = host.tags;
-          imports = [ ./hosts/${host.config or name} ];
-        }) (import ./meta.nix).nodes)
-        // {
-          meta.nixpkgs = nixpkgs.legacyPackages."x86_64-linux";
-
-          defaults = nixos-imports // {
-            deployment = {
-              buildOnTarget = true;
-              allowLocalDeployment = true;
-            };
-          };
-        };
+      nixosConfigurations = (
+        builtins.mapAttrs (
+          name: host:
+          nixpkgs.lib.nixosSystem {
+            modules = [
+              {
+                _module.args.name = name;
+              }
+              nixos-imports
+              (import ./nixos/archetypes.nix { tags = host.tags; })
+              ./hosts/${host.config or name}
+            ];
+          }
+        ) (import ./meta.nix).nodes
+      );
 
       packages = forAllSystems (
         system:

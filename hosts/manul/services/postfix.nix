@@ -7,8 +7,8 @@ in
     enable = true;
     stateVersion = 5;
 
-    mailDirectory = "/persist/data/mail/mail";
-    dkimKeyDirectory = "/persist/data/mail/dkim";
+    storage.path = "/persist/data/mail/mail";
+    dkim.keyDirectory = "/persist/data/mail/dkim";
     indexDir = "/var/lib/dovecot/indices";
 
     fqdn = "catin.eu";
@@ -17,7 +17,7 @@ in
       "elia.garden"
       "catin.eu"
     ];
-    loginAccounts = {
+    accounts = {
       "leela@catin.eu" = {
         inherit sieveScript;
         hashedPassword = "$2b$05$eCjOxdKHKdrqgFpzWN0M5.R1du0NVIhs8zo/aB6kM3F12lbbIGg96";

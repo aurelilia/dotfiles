@@ -1,11 +1,10 @@
+{ tags }:
 {
   lib,
   pkgs,
-  name,
   ...
 }:
 let
-  tags = (import ../meta.nix).nodes.${name}.tags;
   conf = {
     defaults = {
       feline = {

@@ -30,6 +30,7 @@
       "nix/nix.conf".text = ''
         use-xdg-base-directories = true
       '';
+      "mimeapps.list".force = true;
     };
 
     mime.enable = true;
@@ -46,6 +47,7 @@
 
     userDirs = {
       enable = true;
+      setSessionVariables = false;
 
       documents = "${config.home.homeDirectory}/personal/documents";
       download = "${config.home.homeDirectory}/download";

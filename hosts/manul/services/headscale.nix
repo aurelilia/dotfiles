@@ -18,6 +18,7 @@ in
   systemd.services.headscale = {
     description = "headscale coordination server for Tailscale";
     after = [ "network-online.target" ];
+    requires = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
 
     environment.GIN_MODE = "release";

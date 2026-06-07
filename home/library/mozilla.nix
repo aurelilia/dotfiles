@@ -23,6 +23,7 @@
   catppuccin.firefox.profiles.default.enable = false;
   programs.firefox = {
     enable = true;
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
 
     policies = {
       DefaultDownloadDirectory = "/home/leela/download";

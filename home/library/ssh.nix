@@ -2,12 +2,24 @@
 {
   programs.ssh = {
     enable = true;
-    compression = true;
-    matchBlocks = {
-      haze.user = "root";
-      manul = {
-        user = "root";
-        port = 9022;
+    enableDefaultConfig = false;
+    settings = {
+      "*" = {
+        Compression = true;
+        ForwardAgent = false;
+        AddKeysToAgent = "no";
+        ServerAliveInterval = 0;
+        ServerAliveCountMax = 3;
+        HashKnownHosts = false;
+        UserKnownHostsFile = "~/.ssh/known_hosts";
+        ControlMaster = "no";
+        ControlPath = "~/.ssh/master-%r@%n:%p";
+        ControlPersist = "no";
+      };
+      "Host haze".User = "root";
+      "Host manul" = {
+        User = "root";
+        Port = "9022";
       };
     };
   };
