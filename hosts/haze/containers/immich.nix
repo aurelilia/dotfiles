@@ -11,7 +11,7 @@ in
     };
 
     immich-server = {
-      image = "ghcr.io/immich-app/immich-server:release";
+      image = "ghcr.io/immich-app/immich-server:v3";
       depends_on = [ "redis" ];
       env_file = [ "${path}/env" ];
       ports = [ "127.0.0.1:2283:2283" ];
@@ -21,7 +21,7 @@ in
       ];
     };
     immich-machine-learning = {
-      image = "ghcr.io/immich-app/immich-machine-learning:release";
+      image = "ghcr.io/immich-app/immich-machine-learning:v3";
       env_file = [ "${path}/env" ];
       volumes = [ "/var/lib/immich-cache:/cache" ];
     };
