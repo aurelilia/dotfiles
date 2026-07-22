@@ -16,7 +16,6 @@
     ./services/jellyfin.nix
     ./services/navidrome.nix
     ./services/nfs.nix
-    ./services/paperless.nix
   ];
 
   # Initrd networking kernel drivers

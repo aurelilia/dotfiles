@@ -25,11 +25,4 @@ in
     port = 4533;
     monitoringPath = "app";
   };
-
-  # I want streamrip
-  age.secrets.streamrip = {
-    file = ../../../secrets/haze/streamrip.age;
-    path = "/root/.config/streamrip/config.toml";
-  };
-  environment.systemPackages = [ pkgs-unstable.streamrip ];
 }
