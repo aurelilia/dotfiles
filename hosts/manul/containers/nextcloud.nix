@@ -11,7 +11,7 @@ in
     ports = [ "127.0.0.1:${toString port}:80" ];
     volumes = [
       "${path}/www:/var/www/html"
-      "${path}/srv:/data"
+      "/media/personal/nextcloud:/data"
     ];
   };
 

@@ -4,17 +4,11 @@
     ./backup.nix
     ./hardware.nix
 
-    ./containers/actual.nix
-    ./containers/ffsync.nix
-    ./containers/immich.nix
-    ./containers/nextcloud.nix
-
     ./services/adguard.nix
     ./services/bupstash.nix
     ./services/ddclient.nix
     ./services/homeassistant.nix
     ./services/jellyfin.nix
-    ./services/navidrome.nix
     ./services/nfs.nix
   ];
 

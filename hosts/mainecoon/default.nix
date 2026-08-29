@@ -11,7 +11,6 @@
     borg.persist.enable = lib.mkForce false;
     zfs.znap.enable = lib.mkForce false;
     syncthing.enable = lib.mkForce false;
-    tang.enable = lib.mkForce false;
     tailscale.enable = lib.mkForce false;
     borg.media.enable = lib.mkForce false;
     smartd.enable = lib.mkForce false;

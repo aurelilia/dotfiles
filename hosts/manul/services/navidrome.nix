@@ -1,5 +1,4 @@
 {
-  pkgs-unstable,
   ...
 }:
 let
@@ -12,6 +11,7 @@ in
     settings = {
       ScanSchedule = "@every 2h";
       MusicFolder = "/media/personal/music";
+      CacheFolder = "/cache/navidrome";
       EnableSharing = true;
       LastFM = {
         ApiKey = "7215047f29bbb24662ef06f59c3c9fae";

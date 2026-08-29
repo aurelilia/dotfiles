@@ -99,7 +99,6 @@
 
                 pythonImportsCheck = [ "octodns_gcore" ];
                 nativeCheckInputs = [
-                  pytestCheckHook
                   requests-mock
                 ];
 

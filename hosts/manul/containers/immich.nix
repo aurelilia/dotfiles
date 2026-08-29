@@ -36,7 +36,7 @@ in
       ps.vectorchord
     ];
     settings = {
-      shared_preload_libraries = "vectors.so, vchord.so";
+      shared_preload_libraries = "vchord.so";
     };
   };
 }
