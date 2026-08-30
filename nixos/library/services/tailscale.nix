@@ -7,7 +7,7 @@
       authKeyFile = config.age.secrets.tailscale.path;
       extraUpFlags = [
         "--login-server"
-        "https://headscale.elia.garden"
+        "https://mesh.catin.eu"
         "--timeout"
         "30s"
         "--accept-dns=false"

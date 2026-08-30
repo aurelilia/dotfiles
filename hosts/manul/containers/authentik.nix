@@ -44,7 +44,6 @@ in
 
   feline.caddy = {
     sso = "http://localhost:${toString port}";
-    routes."sso.elia.garden".redir = "auth.catin.eu";
     routes."auth.catin.eu" = {
       inherit port;
       extra = ''

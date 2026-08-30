@@ -14,7 +14,6 @@ in
       baseDomains = {
         "elia.garden" = cfg.baseRecord;
         "tessa.dog" = cfg.baseRecord;
-        "ehir.art" = cfg.baseRecord;
         "catin.eu" = cfg.baseRecord;
       };
     };

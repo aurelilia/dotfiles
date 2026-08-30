@@ -78,7 +78,8 @@ in
       };
   };
 
-  feline.caddy.routes."headscale.elia.garden" = {
+  feline.caddy.routes."mesh.catin.eu" = {
+    aliases = [ "headscale.elia.garden" ];
     port = 50013;
     extra = "redir / https://catin.eu/blog/headscale.html";
     monitoringEnable = true;

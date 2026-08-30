@@ -14,7 +14,7 @@ in
       enable = true;
       autoCreation = true;
       pure = true;
-      mailErrorSummaryTo = "znap@elia.garden";
+      mailErrorSummaryTo = "tech.infra.znap@catin.eu";
 
       features = {
         compressed = true;

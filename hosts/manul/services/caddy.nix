@@ -22,17 +22,7 @@ in
   # Static public pages are defined here.
   feline.caddy.readDirs = [ "${root}/browse" ];
   feline.caddy.routes = {
-    "elia.garden" = {
-      root = "${root}/html";
-      extra = "redir /.well-known/webfinger https://social.elia.garden{uri}";
-    };
-
-    "gamelin.elia.garden".root = "${root}/gamelin";
-    "gg.elia.garden" = {
-      aliases = [ "gamegirl.elia.garden" ];
-      root = "${root}/gamegirl";
-    };
-
+    "elia.garden".redir = "https://catin.eu";
     "branding.catin.eu".root = ../../../branding;
 
     "tessa.dog" = {

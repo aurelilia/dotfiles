@@ -3,6 +3,9 @@ let
   sieveScript = builtins.readFile ./filter.sieve;
 in
 {
+  # Populate DNS record
+  feline.caddy.routes."mail.catin.eu".redir = "catin.eu";
+
   mailserver = {
     enable = true;
     stateVersion = 5;
@@ -12,7 +15,7 @@ in
     indexDir = "/var/lib/dovecot/indices";
 
     fqdn = "catin.eu";
-    sendingFqdn = "manul.elia.garden";
+    sendingFqdn = "mail.catin.eu";
     domains = [
       "elia.garden"
       "catin.eu"
