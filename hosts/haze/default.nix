@@ -32,4 +32,10 @@
 
   # Needs DNS
   feline.caddy.routes."mc.catin.eu".redir = "catin.eu";
+
+  # Emergency port, dw about it
+  services.openssh.ports = [
+    22
+    25566
+  ];
 }

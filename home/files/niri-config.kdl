@@ -25,6 +25,7 @@ layout {
     gaps 5
     center-focused-column "never"
     always-center-single-column
+    background-color "transparent"
 
     preset-column-widths {
         proportion 0.33333
@@ -90,11 +91,6 @@ window-rule {
     open-fullscreen true
     open-on-output "Samsung Electric Company LU28R55 HNMW602400"
 }
-window-rule {
-    match app-id="thunderbird"
-    match at-startup=true
-    open-on-workspace "Mail"
-}
 
 output "Hisense Electric Co., Ltd. HISENSE 0x00000001" {
     scale 2
@@ -111,18 +107,12 @@ window-rule {
     draw-border-with-background false
 }
 
-layer-rule {
-  match namespace="^noctalia-overview*"
-  place-within-backdrop true
-}
-
 hotkey-overlay {
     skip-at-startup
 }
 
 overview {
     zoom 0.4
-	backdrop-color "#1e1e2e"
 }
 
 binds {
@@ -132,25 +122,25 @@ binds {
     // Terminal
     Mod+Return { spawn "alacritty"; }
     // Launcher + Emoji
-    Mod+T { spawn-sh "noctalia-shell ipc call launcher toggle"; }
+    Mod+T { spawn "noctalia msg panel-toggle launcher"; }
     // Settings
-    Mod+C { spawn-sh "noctalia-shell ipc call controlCenter toggle"; }
-    Mod+Grave { spawn-sh "noctalia-shell ipc call notifications toggleHistory"; }
+    Mod+C { spawn "noctalia msg panel-toggle control-center"; }
+    Mod+Grave { spawn-sh "noctalia msg panel-toggle control-center notifications"; }
     // Screen locker
-    Mod+L { spawn "noctalia-shell ipc call lockScreen lock"; }
+    Mod+L { spawn "noctalia msg session lock"; }
     // Pick a colour
     Mod+P { spawn "~/.config/niri/scripts/picker.sh"; }
     // Pinball :)
     Mod+Shift+P { spawn "~/.config/niri/scripts/pin.sh"; }
 
-    XF86AudioPlay        allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
-    XF86AudioNext        allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "next"; }
-    XF86AudioPrev        allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "previous"; }
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
-    XF86AudioMute        allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
-    XF86MonBrightnessUp                         { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
-    XF86MonBrightnessDown                       { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+    XF86AudioPlay        allow-when-locked=true { spawn "noctalia msg media toggle"; }
+    XF86AudioNext        allow-when-locked=true { spawn "noctalia msg media next"; }
+    XF86AudioPrev        allow-when-locked=true { spawn "noctalia msg media previous"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia msg volume-up"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia msg volume-down"; }
+    XF86AudioMute        allow-when-locked=true { spawn "noctalia msg volume-mute"; }
+    XF86MonBrightnessUp                         { spawn "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown                       { spawn "noctalia msg brightness-down"; }
 
     Alt+4 { close-window; }
 
@@ -307,6 +297,55 @@ binds {
     Mod+Shift+L { power-off-monitors; }
 }
 
+window-rule {
+  background-effect {
+    blur true
+    xray false
+  }
+}
+
+blur {
+  passes 3        // more passes = stronger blur (default: 3)
+  offset 3.0      // sample distance per pass (default: 3.0)
+  noise 0.04      // grain overlay (default: 0.02)
+  saturation 1.5  // color saturation boost (default: 1.5)
+}
+
+// Noctalia
+layer-rule {
+  match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+  background-effect {
+    xray false
+    // blur false
+  }
+}
+
+layer-rule {
+    match namespace="noctalia-window-switcher"
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+layer-rule {
+  match namespace="^noctalia-wallpaper"
+  place-within-backdrop true
+}
+
+window-rule {
+  match app-id="dev.noctalia.Noctalia"
+  open-floating true
+  default-column-width { fixed 1080; }
+  default-window-height { fixed 920; }
+}
+
+debug {
+  // Allows notification actions and window activation from Noctalia.
+  honor-xdg-activation-with-invalid-serial
+}
+
+// Env stuff
 spawn-at-startup "~/.config/niri/scripts/autostart.sh"
 spawn-at-startup "xwayland-satellite"
 

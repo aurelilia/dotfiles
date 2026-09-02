@@ -59,9 +59,7 @@
   };
 
   # Noctalia
-  xdg.configFile."noctalia/colors.json".source = ../files/noctalia/colors.json;
-  xdg.configFile."noctalia/plugins.json".source = ../files/noctalia/plugins.json;
-  xdg.configFile."noctalia/settings.json".source = ../files/noctalia/settings.json;
+  xdg.configFile."noctalia/settings.toml".source = ../files/noctalia.toml;
 
   # Misc
   programs.rofi.enable = true;
@@ -90,10 +88,10 @@
     nixosConfig.lib.pkgs-unstable.xwayland-satellite
 
     # Noctalia
-    nixosConfig.lib.pkgs-unstable.noctalia-shell
-    nixosConfig.lib.pkgs-unstable.quickshell
+    nixosConfig.lib.pkgs-unstable.noctalia
     gpu-screen-recorder
     wlsunset
     pywalfox-native
+    evtest
   ];
 }

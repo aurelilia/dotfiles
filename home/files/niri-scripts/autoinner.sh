@@ -6,7 +6,7 @@ export NIXOS_OZONE_WL=1
 if [ -e ~/.config/environment.d/ ]; then . ~/.config/environment.d/*; fi
 
 # Misc env apps
-noctalia-shell &
+noctalia --daemon
 pywalfox install &
 systemctl --user restart swayidle
 
