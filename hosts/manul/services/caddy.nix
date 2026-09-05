@@ -1,26 +1,9 @@
 { ... }:
 let
   root = "/persist/data/caddy/srv";
-  mkMatrixWellKnown = (
-    name: ''
-      header /.well-known/matrix/* Access-Control-Allow-Origin "*"
-      respond /.well-known/matrix/client `{"m.homeserver":{"base_url":"https://matrix.${name}/"}}`
-      respond /.well-known/matrix/server `{"m.server":"matrix.${name}:443"}`
-    ''
-  );
 in
 {
-  # Drone CI wants to push some static files
-  users.users.drone = {
-    isNormalUser = true;
-    uid = 1000;
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIALvsHGreZy32FpsI/XHMjfSksWCkFxFyjL8QQD0Diis root@jade"
-    ];
-  };
-
   # Static public pages are defined here.
-  feline.caddy.readDirs = [ "${root}/browse" ];
   feline.caddy.routes = {
     "elia.garden".redir = "https://catin.eu";
     "branding.catin.eu".root = ../../../branding;
@@ -28,10 +11,10 @@ in
     "tessa.dog" = {
       root = "${root}/tessa";
       no-robots = false;
-      extra = (mkMatrixWellKnown "tessa.dog");
     };
 
     "catin.eu".root = "${root}/html";
+    "elentari.eu".root = "${root}/elentari";
 
     # Google telemetry workaround for some networks
     "http://connectivitycheck.gstatic.com" = {

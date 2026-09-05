@@ -15,6 +15,7 @@ in
         "elia.garden" = cfg.baseRecord;
         "tessa.dog" = cfg.baseRecord;
         "catin.eu" = cfg.baseRecord;
+        "elentari.eu" = cfg.baseRecord;
       };
     };
   };

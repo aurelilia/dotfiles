@@ -19,6 +19,7 @@ in
     domains = [
       "elia.garden"
       "catin.eu"
+      "elentari.eu"
     ];
     accounts = {
       "leela@catin.eu" = {
@@ -28,6 +29,12 @@ in
           "@catin.eu"
           "@elia.garden"
         ];
+      };
+
+      "kara@elentari.eu" = {
+        inherit sieveScript;
+        hashedPassword = "$y$j9T$y2GUU396GuN7Fmejr9byR1$ulv7kDoTQLMIzfr5ArYQa3lt0j6fd4HDKulYAWO3vF4";
+        aliases = [ "@elentari.eu" ];
       };
 
       "noreply@auth.catin.eu" = {
