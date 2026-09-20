@@ -43,7 +43,7 @@ in
           extraConfig = lib.concatStringsSep "\n" (
             [ route.extra ]
             ++ lib.optionals route.no-robots [ no-robots ]
-            ++ lib.optionals (route.local-only == "sso") [ sso ]
+            ++ lib.optionals route.local-only [ local ]
             ++ lib.optionals (route.host != null) [ "reverse_proxy ${route.host}" ]
             ++ lib.optionals (route.redir != null) [ "redir https://${route.redir}{uri}" ]
             ++ lib.optionals (route.port != null) [ "reverse_proxy localhost:${toString route.port}" ]
