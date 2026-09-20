@@ -13,6 +13,7 @@ in
     ./containers/immich.nix
     ./containers/joplin.nix
     ./containers/nextcloud.nix
+    ./containers/octo-fiesta.nix
 
     ./services/caddy.nix
     ./services/forgejo.nix

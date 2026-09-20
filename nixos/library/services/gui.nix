@@ -3,6 +3,7 @@
   pkgs,
   pkgs-unstable,
   lib,
+  nixgl,
   ...
 }:
 {
@@ -130,6 +131,7 @@
     services.gvfs.enable = true;
     programs.nix-ld.enable = true;
     lib.pkgs-unstable = pkgs-unstable;
+    lib.nixgl = nixgl;
   };
 
   options.feline.gui = {

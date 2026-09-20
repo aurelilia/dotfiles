@@ -23,6 +23,10 @@
       url = "github:Janik-Haag/nixos-dns";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixgl = {
+      url = "github:guibou/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     catppuccin.url = "github:catppuccin/nix/release-26.05";
     nixos-mail.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-26.05";
   };
@@ -37,6 +41,7 @@
       disko,
       nixos-dns,
       nixos-mail,
+      nixgl,
       catppuccin,
       ...
     }:
@@ -61,6 +66,7 @@
         _module.args = {
           inherit catppuccin;
           pkgs-unstable = nixpkgs-unstable.legacyPackages."x86_64-linux";
+          nixgl = nixgl.packages.x86_64-linux;
         };
       };
     in
