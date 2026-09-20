@@ -10,7 +10,7 @@ in
   };
 
   feline.caddy.routes."budget.catin.eu" = {
-    mode = "sso";
+    local-only = true;
     inherit port;
   };
 }

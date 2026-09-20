@@ -84,12 +84,12 @@ in
   };
 
   feline.caddy.routes."${url}" = {
-    mode = "local";
+    local-only = true;
     inherit port;
     monitoringEnable = false;
   };
   feline.caddy.routes."valetudo.catin.eu" = {
-    mode = "local";
+    local-only = true;
     host = "10.1.0.147:80";
     monitoringEnable = false;
   };

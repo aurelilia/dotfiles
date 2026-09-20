@@ -17,17 +17,6 @@ let
       }
       redir @not-allowed https://www.youtube.com/watch?v=wpV-gGA4PSk
   '';
-  sso = ''
-    # always forward outpost path to actual outpost
-    reverse_proxy /outpost.goauthentik.io/* ${cfg.sso}
-    # forward authentication to outpost
-    @extern not client_ip private_ranges
-    forward_auth @extern ${cfg.sso} {
-        uri /outpost.goauthentik.io/auth/caddy
-        copy_headers X-Authentik-Username X-Authentik-Groups X-Authentik-Email X-Authentik-Name X-Authentik-Uid X-Authentik-Jwt X-Authentik-Meta-Jwks X-Authentik-Meta-Outpost X-Authentik-Meta-Provider X-Authentik-Meta-App X-Authentik-Meta-Version
-        trusted_proxies 10.0.1.0/16 172.16.0.0/16 fc00::/7 100.64.0.0/16
-    }
-  '';
   local = ''
     @not-allowed-local {
         not {
@@ -35,14 +24,6 @@ let
         }
     }
     redir @not-allowed-local https://www.youtube.com/watch?v=wpV-gGA4PSk
-  '';
-  tailnet = ''
-    @not-allowed-tailnet {
-        not {
-            remote_ip 100.64.0.0/16
-        }
-    }
-    redir @not-allowed-tailnet https://www.youtube.com/watch?v=wpV-gGA4PSk
   '';
 in
 {
@@ -62,9 +43,7 @@ in
           extraConfig = lib.concatStringsSep "\n" (
             [ route.extra ]
             ++ lib.optionals route.no-robots [ no-robots ]
-            ++ lib.optionals (route.mode == "sso") [ sso ]
-            ++ lib.optionals (route.mode == "local") [ local ]
-            ++ lib.optionals (route.mode == "tailnet") [ tailnet ]
+            ++ lib.optionals (route.local-only == "sso") [ sso ]
             ++ lib.optionals (route.host != null) [ "reverse_proxy ${route.host}" ]
             ++ lib.optionals (route.redir != null) [ "redir https://${route.redir}{uri}" ]
             ++ lib.optionals (route.port != null) [ "reverse_proxy localhost:${toString route.port}" ]
@@ -211,16 +190,7 @@ in
                   description = "Port on local host to reverse proxy.";
                   default = null;
                 };
-                mode = lib.mkOption {
-                  type = enum [
-                    "public"
-                    "sso"
-                    "local"
-                    "tailnet"
-                  ];
-                  description = "Mode to run the route with.";
-                  default = "public";
-                };
+                local-only = lib.mkEnableOption "Local only access.";
                 no-robots = lib.mkOption {
                   type = bool;
                   description = "Disable robots.";

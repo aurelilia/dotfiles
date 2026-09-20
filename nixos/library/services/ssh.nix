@@ -36,6 +36,9 @@ in
         mkdir -p /root/.ssh/
         echo "IdentityFile ${ed-key}" > /root/.ssh/config
       '';
+
+      # Nope :)
+      services.fail2ban.enable = true;
     }
 
     (lib.mkIf config.feline.initrd-ssh.enable {

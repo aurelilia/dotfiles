@@ -32,7 +32,7 @@ in
   };
 
   # SSH - Server is publically reachable, make it slightly less bad
-  services.openssh.ports = [ 9022 ];
+  services.openssh.ports = [ 9029 ];
 
   # Use rclone to get access to larger storage on haze
   environment.systemPackages = [

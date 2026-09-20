@@ -19,7 +19,7 @@
       "Host haze".User = "root";
       "Host manul" = {
         User = "root";
-        Port = "9022";
+        Port = "9029";
       };
     };
   };
