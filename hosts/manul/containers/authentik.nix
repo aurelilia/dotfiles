@@ -2,7 +2,7 @@
 let
   path = "/persist/data/authentik";
   image = "ghcr.io/goauthentik/server";
-  version = "2025.10";
+  version = "2026.8";
   port = 50042;
 in
 {
@@ -18,7 +18,7 @@ in
       };
       ports = [ "127.0.0.1:${toString port}:9000" ];
       volumes = [
-        "${path}/media:/media"
+        "${path}/data:/data"
         "${path}/custom-templates:/templates"
       ];
     };

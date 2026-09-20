@@ -14,7 +14,6 @@
     haze.tags = [
       "defaults"
       "server"
-      "docker"
     ];
 
     bengal.tags = [
