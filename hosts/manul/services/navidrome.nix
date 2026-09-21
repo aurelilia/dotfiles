@@ -8,15 +8,12 @@ in
   services.navidrome = {
     enable = true;
     openFirewall = true;
+    environmentFile = "/persist/secrets/navidrome.env";
     settings = {
       ScanSchedule = "@every 2h";
       MusicFolder = "/media/personal/music";
       CacheFolder = "/cache/navidrome";
       EnableSharing = true;
-      LastFM = {
-        ApiKey = "7215047f29bbb24662ef06f59c3c9fae";
-        Secret = "0945b41f371b9f5acf3d3ceb0107b157";
-      };
     };
   };
 
