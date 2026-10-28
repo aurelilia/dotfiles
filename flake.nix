@@ -174,6 +174,8 @@
             zones = {
               "catin.eu." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
               "elentari.eu." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
+              "mikalis.eu." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
+              "silex-da.de." = inputs.nixos-dns.utils.octodns.generateZoneAttrs [ "gcore" ];
             };
           };
         }

@@ -14,12 +14,12 @@ in
     dkim.keyDirectory = "/persist/data/mail/dkim";
     indexDir = "/var/lib/dovecot/indices";
 
-    fqdn = "catin.eu";
-    sendingFqdn = "mail.catin.eu";
+    fqdn = "mail.catin.eu";
     domains = [
       "elia.garden"
       "catin.eu"
       "elentari.eu"
+      "silex-da.de"
     ];
     accounts = {
       "leela@catin.eu" = {
@@ -37,6 +37,11 @@ in
         aliases = [ "@elentari.eu" ];
       };
 
+      "inbox@silex-da.de" = {
+        hashedPassword = "$y$j9T$kSoqkEkpPndH8CbyBX2q/0$ipFU/JRvp/wLXrWCr/ocGn25W7U1HC8qhd.I/pX2bvC";
+        aliases = [ "@silex-da.de" ];
+      };
+
       "noreply@auth.catin.eu" = {
         hashedPassword = "$2b$05$TjbQF7BxfIZAp6BfG3LIBO2ToqCMJj9AlPc/ypCGaerrAXrjJ5day";
       };
@@ -51,8 +56,8 @@ in
     };
 
     x509 = {
-      certificateFile = "/persist/data/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/catin.eu/catin.eu.crt";
-      privateKeyFile = "/persist/data/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/catin.eu/catin.eu.key";
+      certificateFile = "/persist/data/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/mail.catin.eu/mail.catin.eu.crt";
+      privateKeyFile = "/persist/data/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/mail.catin.eu/mail.catin.eu.key";
     };
   };
 }

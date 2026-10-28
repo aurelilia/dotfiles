@@ -12,21 +12,9 @@
   xdg.configFile."niri/scripts".source = ../files/niri-scripts;
 
   # Swayidle
-  services.swayidle =
-    let
-      lock = "${nixosConfig.lib.pkgs-unstable.noctalia-shell}/bin/noctalia-shell ipc call lockScreen lock";
-    in
-    {
+  services.swayidle = {
       enable = true;
-      events = {
-        "before-sleep" = lock;
-        "lock" = lock;
-      };
       timeouts = [
-        {
-          timeout = 300;
-          command = lock;
-        }
         {
           timeout = 360;
           command = "${pkgs.niri}/bin/niri msg action power-off-monitors";

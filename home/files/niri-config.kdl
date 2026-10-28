@@ -122,25 +122,25 @@ binds {
     // Terminal
     Mod+Return { spawn "alacritty"; }
     // Launcher + Emoji
-    Mod+T { spawn "noctalia msg panel-toggle launcher"; }
+    Mod+T { spawn-sh "noctalia msg panel-toggle launcher"; }
     // Settings
     Mod+C { spawn "noctalia msg panel-toggle control-center"; }
     Mod+Grave { spawn-sh "noctalia msg panel-toggle control-center notifications"; }
     // Screen locker
-    Mod+L { spawn "noctalia msg session lock"; }
+    Mod+L { spawn-sh "noctalia msg session lock"; }
     // Pick a colour
     Mod+P { spawn "~/.config/niri/scripts/picker.sh"; }
     // Pinball :)
     Mod+Shift+P { spawn "~/.config/niri/scripts/pin.sh"; }
 
-    XF86AudioPlay        allow-when-locked=true { spawn "noctalia msg media toggle"; }
-    XF86AudioNext        allow-when-locked=true { spawn "noctalia msg media next"; }
-    XF86AudioPrev        allow-when-locked=true { spawn "noctalia msg media previous"; }
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia msg volume-up"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia msg volume-down"; }
-    XF86AudioMute        allow-when-locked=true { spawn "noctalia msg volume-mute"; }
-    XF86MonBrightnessUp                         { spawn "noctalia msg brightness-up"; }
-    XF86MonBrightnessDown                       { spawn "noctalia msg brightness-down"; }
+    XF86AudioPlay        allow-when-locked=true { spawn-sh "noctalia msg media toggle"; }
+    XF86AudioNext        allow-when-locked=true { spawn-sh "noctalia msg media next"; }
+    XF86AudioPrev        allow-when-locked=true { spawn-sh "noctalia msg media previous"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "noctalia msg volume-mute"; }
+    XF86MonBrightnessUp                         { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown                       { spawn-sh "noctalia msg brightness-down"; }
 
     Alt+4 { close-window; }
 
