@@ -37,8 +37,14 @@ in
         aliases = [ "@elentari.eu" ];
       };
 
-      "inbox@silex-da.de" = {
-        hashedPassword = "$y$j9T$kSoqkEkpPndH8CbyBX2q/0$ipFU/JRvp/wLXrWCr/ocGn25W7U1HC8qhd.I/pX2bvC";
+      "festival@silex-da.de" = {
+        hashedPassword = "$y$j9T$keedB6FI0ZFTMNXTAn8Kd0$HLHmJHaRai.ZGMqHZK9BrDEEMgWalTaChrQZ9LiATb8";
+      };
+      "verein@silex-da.de" = {
+        hashedPassword = "$y$j9T$pIkGA2qF.k/h8GdxN4XHo.$JNsD9J790UUPUnqg.6NBUrK.iXLqrBkCoKLFCMXigJ/";
+      };
+      "admin@silex-da.de" = {
+        hashedPassword = "$y$j9T$TPUe4PhC8PVz5iXN5zOAf0$G7unBluIKzKxu1n7JwlogiMj48ZVoEIudlfDYvyBGH4";
         aliases = [ "@silex-da.de" ];
       };
 
