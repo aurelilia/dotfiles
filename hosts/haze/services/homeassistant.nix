@@ -1,4 +1,9 @@
-{ config, pkgs-unstable, ... }:
+{
+  config,
+  lib,
+  pkgs-unstable,
+  ...
+}:
 let
   url = "home.catin.eu";
   port = 51321;
@@ -22,15 +27,96 @@ in
       "local_todo"
       "ping"
       "caldav"
-      "mealie"
       "wyoming"
+      "matter"
+      "otbr"
+      "thread"
     ];
 
     extraPackages =
       python3Packages: with python3Packages; [
         aiogithubapi # HACS
-        beautifulsoup4 # ha-bambulab
       ];
+  };
+
+  services.openthread-border-router = {
+    enable = true;
+    backboneInterfaces = [ "lan" ];
+    openFirewall = true;
+
+    radio = {
+      device = "/dev/serial/by-id/usb-SMLIGHT_SMLIGHT_SLZB-07_f40b527b9373ed1181c968eefdf7b791-if00-port0";
+      baudRate = 921600;
+      flowControl = true;
+    };
+
+    rest.listenAddress = "::";
+    web = {
+      enable = true;
+      listenAddress = "::";
+      listenPort = 58082;
+    };
+  };
+  systemd.services.matterjs-server = {
+    description = "Matter Controller WebSocket server based on Matter.js";
+    documentation = [ "https://github.com/matter-js/matterjs-server" ];
+
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+
+    path = [ pkgs-unstable.iputils ];
+
+    serviceConfig = {
+      ExecStart = lib.escapeShellArgs ([
+        (lib.getExe pkgs-unstable.matterjs-server)
+        "--storage-path=%S/matterjs-server"
+        "--listen-address=0.0.0.0"
+        "--port=51322"
+        "--production-mode"
+        "--ble-proxy"
+      ]);
+
+      StateDirectory = "matterjs-server";
+      StateDirectoryMode = "0700";
+
+      DynamicUser = true;
+
+      # Required for interaction with hci devices and bluetooth sockets
+      LockPersonality = true;
+      NoNewPrivileges = true;
+      PrivateTmp = true;
+      PrivateUsers = true; # Prevents gaining capabilities in the host namespace
+      ProcSubset = "pid";
+      ProtectClock = true;
+      ProtectControlGroups = true;
+      ProtectHome = true;
+      ProtectHostname = true;
+      ProtectKernelLogs = true;
+      ProtectKernelModules = true;
+      ProtectKernelTunables = true;
+      ProtectProc = "invisible";
+      ProtectSystem = "strict";
+      RestrictAddressFamilies = [
+        "AF_INET"
+        "AF_INET6"
+        "AF_NETLINK"
+        "AF_UNIX"
+      ];
+      RestrictNamespaces = true;
+      RestrictRealtime = true;
+      RestrictSUIDSGID = true;
+      SystemCallArchitectures = "native";
+      SystemCallFilter = [
+        "@system-service"
+        "~@privileged"
+
+        # ping from iputils (used for pinging nodes) needs this to drop privileges
+        "capset"
+        "setuid"
+      ];
+      UMask = "0077";
+    };
   };
 
   services.mosquitto = {
@@ -88,9 +174,9 @@ in
     inherit port;
     monitoringEnable = false;
   };
-  feline.caddy.routes."valetudo.catin.eu" = {
+  feline.caddy.routes."thread.catin.eu" = {
     local-only = true;
-    host = "10.1.0.147:80";
+    port = 8081;
     monitoringEnable = false;
   };
 }
