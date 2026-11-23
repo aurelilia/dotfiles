@@ -31,6 +31,8 @@ in
       "matter"
       "otbr"
       "thread"
+      "wled"
+      "luci"
     ];
 
     extraPackages =
