@@ -33,6 +33,7 @@ in
       "thread"
       "wled"
       "luci"
+      "music_assistant"
     ];
 
     extraPackages =
@@ -121,6 +122,21 @@ in
     };
   };
 
+  services.music-assistant = {
+    enable = true;
+    package = pkgs-unstable.music-assistant;
+    openFirewall = true;
+    providers = [
+      "hass"
+      "snapcast"
+      "opensubsonic"
+      "subsonic_scrobble"
+      "ytmusic"
+      "genius_lyrics"
+      "lrclib"
+    ];
+  };
+
   services.mosquitto = {
     enable = true;
     listeners = [
@@ -135,7 +151,7 @@ in
       }
     ];
   };
-  networking.firewall.allowedTCPPorts = [ 1883 ];
+  networking.firewall.allowedTCPPorts = [ 1883 8095 ];
 
   services.wyoming = {
     faster-whisper.servers.small = {
@@ -179,6 +195,11 @@ in
   feline.caddy.routes."thread.catin.eu" = {
     local-only = true;
     port = 8081;
+    monitoringEnable = false;
+  };
+  feline.caddy.routes."home-music.catin.eu" = {
+    local-only = true;
+    port = 8095;
     monitoringEnable = false;
   };
 }
