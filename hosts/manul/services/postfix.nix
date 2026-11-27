@@ -38,21 +38,18 @@ in
       };
 
       "festival@silex-da.de" = {
-        hashedPassword = "$y$j9T$keedB6FI0ZFTMNXTAn8Kd0$HLHmJHaRai.ZGMqHZK9BrDEEMgWalTaChrQZ9LiATb8";
+        hashedPassword = "$y$j9T$IGNksFFOKz7Yqb47/rjvu0$kT33X5b/2J7JmBudW3AqAkEnatOagr8QvvacchMpNU5";
       };
       "verein@silex-da.de" = {
-        hashedPassword = "$y$j9T$pIkGA2qF.k/h8GdxN4XHo.$JNsD9J790UUPUnqg.6NBUrK.iXLqrBkCoKLFCMXigJ/";
+        hashedPassword = "$y$j9T$nY2St.pSQ1Chti79RJ8Zx0$sosXp0z.SwM9lm4Ycrjdl6Dbg57.tEn8..6y2lFpM21";
       };
       "admin@silex-da.de" = {
-        hashedPassword = "$y$j9T$TPUe4PhC8PVz5iXN5zOAf0$G7unBluIKzKxu1n7JwlogiMj48ZVoEIudlfDYvyBGH4";
+        hashedPassword = "$y$j9T$203nJk7EDeMaBVADO1nKK.$gzhgvgDuLnm01TSyx1Alf4tBhkUpA7bBHzo6jm2Bl6.";
         aliases = [ "@silex-da.de" ];
       };
 
       "noreply@auth.catin.eu" = {
         hashedPassword = "$2b$05$TjbQF7BxfIZAp6BfG3LIBO2ToqCMJj9AlPc/ypCGaerrAXrjJ5day";
-      };
-      "noreply@social.catin.eu" = {
-        hashedPassword = "$2b$05$GalNO3SzDlHXh6uzBA1uQe.j6btuLudSlAOOaej9dectYb5pQfLfO";
       };
     };
 
